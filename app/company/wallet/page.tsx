@@ -1,101 +1,161 @@
 "use client";
 
 import React from "react";
-import { Wallet, ArrowUpRight, ArrowDownLeft, RefreshCw, Plus, CreditCard } from "lucide-react";
+import { 
+  Wallet, 
+  ArrowUpRight, 
+  ArrowDownLeft, 
+  Plus, 
+  ShieldCheck, 
+  Sparkles 
+} from "lucide-react";
 
 export default function WalletPage() {
   const transactions = [
-    { type: "Purchase", desc: "Added 1,000 Credits", amount: "+1,000", date: "Jun 24, 2026", status: "Completed", positive: true },
-    { type: "Usage", desc: "Unlocked Candidate Profile (Omar Haddad)", amount: "-10", date: "Jun 23, 2026", status: "Completed", positive: false },
-    { type: "Usage", desc: "Posted Job: Senior Product Designer", amount: "-50", date: "Jun 22, 2026", status: "Completed", positive: false },
-    { type: "Purchase", desc: "Added 500 Credits", amount: "+500", date: "Jun 18, 2026", status: "Completed", positive: true },
+    { desc: "Top-up • Momentum bundle", method: "Apple Pay", date: "Mar 14", amount: "+150", positive: true },
+    { desc: "Auto-apply • Emirates NBD", method: "Credits", date: "Mar 13", amount: "-1", positive: false },
+    { desc: "AI cover letter • Careem", method: "Credits", date: "Mar 13", amount: "-2", positive: false },
+    { desc: "AI interview • STC Pay", method: "Credits", date: "Mar 12", amount: "-5", positive: false },
+    { desc: "Referral reward", method: "Bonus", date: "Mar 10", amount: "+20", positive: true },
+    { desc: "Auto-apply • ADNOC", method: "Credits", date: "Mar 09", amount: "-1", positive: false },
   ];
 
   return (
     <div className="p-8 space-y-8 max-w-7xl mx-auto">
-      <div className="flex justify-between items-center">
+      {/* Top Header */}
+      <div className="flex justify-between items-end">
         <div>
-          <h1 className="text-sm font-medium text-slate-400 uppercase tracking-widest">Hiring Workspace</h1>
-          <p className="text-3xl font-extrabold text-white mt-1 tracking-tight">Wallet & Credits</p>
+          <h1 className="text-3xl font-extrabold text-white tracking-tight">Your wallet</h1>
+          <p className="text-sm text-slate-400 mt-1">Credits never expire. Use them anywhere on QudraHire.</p>
         </div>
-        <button className="flex items-center gap-2 bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold px-5 py-2.5 rounded-xl transition-all duration-200 shadow-lg shadow-[#00D07C]/10 active:scale-[0.98]">
-          <Plus className="h-5 w-5" />
-          Buy Credits
+        <button className="border border-slate-700/80 hover:bg-slate-800 text-slate-300 px-4 py-2 rounded-xl text-sm font-semibold transition-all">
+          View all bundles
         </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {/* Credits Balance Card */}
-        <div className="md:col-span-1 bg-gradient-to-br from-[#0F172A] to-[#1E293B] border border-[#2E3C51]/60 rounded-2xl p-6 relative overflow-hidden flex flex-col justify-between min-h-[180px]">
-          <div className="absolute right-0 top-0 translate-x-4 -translate-y-4 opacity-10">
-            <Wallet className="h-40 w-40 text-white" />
+      {/* Wallet Cards Top Row */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Balance Card (2/3 width) */}
+        <div className="lg:col-span-2 bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-6 flex flex-col justify-between space-y-6">
+          <div className="flex items-center gap-2 text-sm font-bold text-[#00D07C]">
+            <Wallet className="h-4.5 w-4.5" />
+            Balance
           </div>
-          <div>
-            <span className="text-xs text-slate-400 font-semibold uppercase tracking-wider">Available Credits</span>
-            <p className="text-4xl font-extrabold text-white mt-1.5">1,240</p>
-          </div>
-          <div className="flex gap-2.5 mt-6">
-            <button className="flex-1 bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] text-xs font-bold py-2.5 px-3 rounded-lg text-center transition-colors flex items-center justify-center gap-1.5">
-              <Plus className="h-3.5 w-3.5" /> Top Up
-            </button>
-            <button className="flex-1 bg-[#162032] hover:bg-[#162032]/80 border border-[#2A3C58]/60 text-slate-300 text-xs font-bold py-2.5 px-3 rounded-lg text-center transition-colors flex items-center justify-center gap-1.5">
-              <CreditCard className="h-3.5 w-3.5" /> Manage Cards
-            </button>
-          </div>
-        </div>
 
-        {/* Info card 1 */}
-        <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-6 flex flex-col justify-between">
-          <div>
-            <span className="text-xs text-slate-400 font-semibold uppercase tracking-wider">Usage This Month</span>
-            <p className="text-3xl font-extrabold text-white mt-1.5">260 Credits</p>
-            <p className="text-xs text-slate-500 mt-1">Across 4 job postings & 6 profile unlocks</p>
+          <div className="space-y-1">
+            <div className="flex items-baseline gap-2">
+              <span className="text-5xl font-extrabold text-white tracking-tight">1,240</span>
+              <span className="text-base text-slate-400 font-semibold">credits</span>
+            </div>
+            <p className="text-xs text-slate-500 font-medium">
+              ≈ AED 1,860 value • enough for ~1,240 auto-applies or ~248 AI interviews.
+            </p>
           </div>
-          <div className="text-xs text-[#00D07C] font-semibold flex items-center gap-1 mt-4">
-            <RefreshCw className="h-3 w-3 animate-spin" style={{ animationDuration: '6s' }} /> Renews on July 1st, 2026
-          </div>
-        </div>
 
-        {/* Info card 2 */}
-        <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-6 flex flex-col justify-between">
-          <div>
-            <span className="text-xs text-slate-400 font-semibold uppercase tracking-wider">Payment Method</span>
-            <p className="text-lg font-bold text-white mt-1.5">Visa ending in 8839</p>
-            <p className="text-xs text-slate-500 mt-1">Primary corporate account method</p>
+          {/* Core Info Grid */}
+          <div className="grid grid-cols-3 gap-4 border-t border-b border-[#1E293B]/60 py-4">
+            <div>
+              <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Used this month</span>
+              <p className="text-lg font-bold text-white mt-1">312</p>
+            </div>
+            <div>
+              <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Saved (Auto)</span>
+              <p className="text-lg font-bold text-white mt-1">48 hrs</p>
+            </div>
+            <div>
+              <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Member since</span>
+              <p className="text-lg font-bold text-white mt-1">Jan 2026</p>
+            </div>
           </div>
-          <button className="text-xs font-semibold text-slate-400 hover:text-white mt-4 text-left self-start">
-            View Billing Details
+
+          <button className="flex items-center justify-center gap-2 bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold py-3 px-5 rounded-xl w-32 transition-all duration-200 active:scale-[0.98]">
+            <Plus className="h-4 w-4" />
+            Top up
           </button>
+        </div>
+
+        {/* Quick Top-up Card (1/3 width) */}
+        <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-6 flex flex-col space-y-4">
+          <div className="flex justify-between items-center">
+            <span className="text-sm font-bold text-white">Quick top-up</span>
+            <span className="text-[10px] text-slate-500 flex items-center gap-1 font-bold uppercase tracking-wider">
+              <ShieldCheck className="h-3.5 w-3.5 text-[#00D07C]" />
+              Secure
+            </span>
+          </div>
+
+          <div className="space-y-3">
+            {[
+              { credits: 50, desc: "Starter", price: "AED 99", active: false },
+              { credits: 150, desc: "Most popular", price: "AED 249", active: true },
+              { credits: 400, desc: "Sprint", price: "AED 499", active: false }
+            ].map((pkg, idx) => (
+              <div 
+                key={idx} 
+                className={`p-4 rounded-xl border flex items-center justify-between transition-all ${
+                  pkg.active 
+                    ? "bg-[#162032] border-[#00D07C]/50 shadow-[0_0_15px_-3px_rgba(0,208,124,0.15)]" 
+                    : "bg-[#0A0F1D]/60 border-[#1E293B]/60 hover:border-slate-700"
+                }`}
+              >
+                <div>
+                  <p className="text-sm font-bold text-white">{pkg.credits} credits</p>
+                  <p className="text-[10px] text-slate-500 font-medium mt-0.5">{pkg.desc}</p>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="text-xs font-bold text-white">{pkg.price}</span>
+                  <button className="bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] text-xs font-bold px-3 py-1.5 rounded-lg transition-colors">
+                    Buy
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
-      {/* Transaction History */}
+      {/* Recent Activity Table */}
       <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-6 space-y-5">
-        <div>
-          <h2 className="text-lg font-bold text-white">Transaction History</h2>
-          <p className="text-xs text-slate-500 mt-0.5">Recent account charges and credits</p>
+        <div className="flex justify-between items-center">
+          <h2 className="text-lg font-bold text-white">Recent activity</h2>
+          <span className="text-[10px] text-[#00D07C] bg-[#00D07C]/10 border border-[#00D07C]/20 px-2 py-0.5 rounded-full flex items-center gap-1 font-semibold">
+            <Sparkles className="h-3 w-3" />
+            Auto-tracked
+          </span>
         </div>
 
-        <div className="divide-y divide-[#1E293B]/60">
-          {transactions.map((t, idx) => (
-            <div key={idx} className="flex justify-between items-center py-4 first:pt-0 last:pb-0">
-              <div className="flex items-center gap-3">
-                <div className={`p-2 rounded-lg ${t.positive ? "bg-[#00D07C]/10 text-[#00D07C]" : "bg-slate-800 text-slate-400"}`}>
-                  {t.positive ? <ArrowDownLeft className="h-4 w-4" /> : <ArrowUpRight className="h-4 w-4" />}
-                </div>
-                <div>
-                  <h3 className="text-sm font-semibold text-slate-200">{t.desc}</h3>
-                  <p className="text-xs text-slate-500 mt-0.5">{t.date} • {t.type}</p>
-                </div>
-              </div>
-              <div className="text-right">
-                <p className={`text-sm font-bold ${t.positive ? "text-[#00D07C]" : "text-white"}`}>
-                  {t.amount}
-                </p>
-                <p className="text-[10px] text-slate-500 mt-0.5">{t.status}</p>
-              </div>
-            </div>
-          ))}
+        <div className="overflow-x-auto">
+          <table className="w-full text-left border-collapse">
+            <thead>
+              <tr className="border-b border-[#1E293B]/60 text-slate-400 text-xs font-semibold uppercase tracking-wider bg-[#0A0F1D]/40">
+                <th className="py-4 px-6 font-medium text-slate-400">Activity</th>
+                <th className="py-4 px-6 font-medium text-slate-400">Method</th>
+                <th className="py-4 px-6 font-medium text-slate-400">Date</th>
+                <th className="py-4 px-6 font-medium text-slate-400 text-right">Amount</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-[#1E293B]/40 text-slate-200 text-sm">
+              {transactions.map((t, idx) => (
+                <tr key={idx} className="hover:bg-[#162032]/30 transition-colors group">
+                  <td className="py-4 px-6 flex items-center gap-3 font-semibold text-white">
+                    <div className={`p-1.5 rounded-lg border ${
+                      t.positive 
+                        ? "bg-[#00D07C]/10 border-[#00D07C]/20 text-[#00D07C]" 
+                        : "bg-slate-800/40 border-slate-700/60 text-slate-400"
+                    }`}>
+                      {t.positive ? <ArrowDownLeft className="h-3.5 w-3.5" /> : <ArrowUpRight className="h-3.5 w-3.5" />}
+                    </div>
+                    {t.desc}
+                  </td>
+                  <td className="py-4 px-6 text-slate-400 font-medium">{t.method}</td>
+                  <td className="py-4 px-6 text-slate-400 font-medium">{t.date}</td>
+                  <td className={`py-4 px-6 text-right font-bold ${t.positive ? "text-[#00D07C]" : "text-white"}`}>
+                    {t.amount}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
