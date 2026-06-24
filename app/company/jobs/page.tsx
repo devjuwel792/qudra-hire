@@ -1,62 +1,75 @@
 "use client";
 
 import React from "react";
-import { Briefcase, Calendar, MapPin, Sparkles, Plus, Eye, Trash2 } from "lucide-react";
+import { Plus, Users } from "lucide-react";
 
 export default function JobsPage() {
   const jobs = [
-    { title: "Senior Product Designer", location: "Dubai, UAE", type: "Full-time", applicants: 51, posted: "2 days ago", active: true },
-    { title: "Full-Stack Engineer (React / Node)", location: "Dubai, UAE", type: "Remote • Full-time", applicants: 62, posted: "5 days ago", active: true },
-    { title: "AI / ML Engineer", location: "Riyadh, KSA", type: "Full-time", applicants: 73, posted: "1 week ago", active: true },
-    { title: "Talent Acquisition Lead", location: "Abu Dhabi, UAE", type: "Full-time", applicants: 84, posted: "2 weeks ago", active: true },
+    { role: "Senior Product Designer", location: "Dubai, UAE", applicants: 53, matches: 96, status: "Open" },
+    { role: "Full-Stack Engineer (React / Node)", location: "Dubai, UAE • Remote", applicants: 66, matches: 92, status: "Open" },
+    { role: "AI / ML Engineer", location: "Riyadh, KSA", applicants: 79, matches: 89, status: "Open" },
+    { role: "Talent Acquisition Lead", location: "Abu Dhabi, UAE", applicants: 92, matches: 85, status: "Open" },
+    { role: "Growth Marketing Manager", location: "Kuwait City, KW", applicants: 105, matches: 81, status: "Open" },
+    { role: "Data Analyst", location: "Abu Dhabi, UAE", applicants: 118, matches: 78, status: "Open" },
   ];
 
   return (
     <div className="p-8 space-y-8 max-w-7xl mx-auto">
-      <div className="flex justify-between items-center">
+      {/* Header section matching the screenshot */}
+      <div className="flex justify-between items-end">
         <div>
-          <h1 className="text-sm font-medium text-slate-400 uppercase tracking-widest">Hiring Workspace</h1>
-          <p className="text-3xl font-extrabold text-white mt-1 tracking-tight">Manage Jobs</p>
+          <h1 className="text-3xl font-extrabold text-white tracking-tight">Manage jobs</h1>
+          <p className="text-sm text-slate-400 mt-1">Post, monitor and close listings.</p>
         </div>
-        <button className="flex items-center gap-2 bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold px-5 py-2.5 rounded-xl transition-all duration-200 shadow-lg shadow-[#00D07C]/10 active:scale-[0.98]">
+        <button className="flex items-center gap-2 bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold px-5 py-3 rounded-xl transition-all duration-200 shadow-lg shadow-[#00D07C]/10 active:scale-[0.98]">
           <Plus className="h-5 w-5" />
-          Create New Job
+          Post a job
         </button>
       </div>
 
-      <div className="grid grid-cols-1 gap-4">
-        {jobs.map((job, idx) => (
-          <div 
-            key={idx} 
-            className="bg-[#0F172A] border border-[#1E293B]/60 hover:border-[#334155] rounded-2xl p-6 transition-all duration-300 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 group"
-          >
-            <div className="space-y-2">
-              <div className="flex items-center gap-2">
-                <h2 className="text-lg font-bold text-white group-hover:text-[#00D07C] transition-colors">{job.title}</h2>
-                <span className="text-[10px] font-semibold text-[#00D07C] bg-[#00D07C]/10 px-2.5 py-0.5 rounded-full border border-[#00D07C]/20">Active</span>
-              </div>
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-400">
-                <span className="flex items-center gap-1"><MapPin className="h-3.5 w-3.5 text-slate-500" />{job.location}</span>
-                <span className="flex items-center gap-1"><Briefcase className="h-3.5 w-3.5 text-slate-500" />{job.type}</span>
-                <span className="flex items-center gap-1"><Calendar className="h-3.5 w-3.5 text-slate-500" />Posted {job.posted}</span>
-              </div>
-            </div>
-            <div className="flex items-center gap-6 w-full md:w-auto justify-between md:justify-end border-t md:border-t-0 border-[#1E293B]/60 pt-4 md:pt-0">
-              <div className="text-right">
-                <p className="text-lg font-bold text-white">{job.applicants}</p>
-                <p className="text-xs text-slate-500">Total Applicants</p>
-              </div>
-              <div className="flex items-center gap-2">
-                <button className="p-2 bg-[#162032] border border-[#2A3C58]/60 text-slate-300 hover:text-white rounded-lg hover:border-[#00D07C]/40 transition-colors">
-                  <Eye className="h-4 w-4" />
-                </button>
-                <button className="p-2 bg-red-950/20 border border-red-900/30 text-red-400 hover:text-red-300 rounded-lg hover:bg-red-950/40 transition-colors">
-                  <Trash2 className="h-4 w-4" />
-                </button>
-              </div>
-            </div>
-          </div>
-        ))}
+      {/* Jobs Table Container */}
+      <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl overflow-hidden shadow-xl">
+        <div className="overflow-x-auto">
+          <table className="w-full text-left border-collapse">
+            <thead>
+              <tr className="border-b border-[#1E293B]/60 text-slate-400 text-xs font-semibold uppercase tracking-wider bg-[#0A0F1D]/40">
+                <th className="py-4 px-6 font-medium text-slate-400">Role</th>
+                <th className="py-4 px-6 font-medium text-slate-400">Location</th>
+                <th className="py-4 px-6 font-medium text-slate-400">Applicants</th>
+                <th className="py-4 px-6 font-medium text-slate-400">AI Matches</th>
+                <th className="py-4 px-6 font-medium text-slate-400">Status</th>
+                <th className="py-4 px-6 font-medium text-slate-400 text-right"></th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-[#1E293B]/40 text-slate-200 text-sm">
+              {jobs.map((job, idx) => (
+                <tr key={idx} className="hover:bg-[#162032]/30 transition-colors group">
+                  {/* Role name in bold white */}
+                  <td className="py-5 px-6 font-bold text-white tracking-tight">{job.role}</td>
+                  {/* Location in light slate */}
+                  <td className="py-5 px-6 text-slate-400 font-medium">{job.location}</td>
+                  {/* Applicants Count */}
+                  <td className="py-5 px-6 font-extrabold text-white">{job.applicants}</td>
+                  {/* AI Matches Score in Qudra Green */}
+                  <td className="py-5 px-6 font-bold text-[#00D07C]">{job.matches}</td>
+                  {/* Status Badge */}
+                  <td className="py-5 px-6">
+                    <span className="inline-flex items-center bg-[#00D07C]/10 text-[#00D07C] border border-[#00D07C]/20 px-2.5 py-0.5 rounded-full text-xs font-semibold">
+                      {job.status}
+                    </span>
+                  </td>
+                  {/* Action Button */}
+                  <td className="py-5 px-6 text-right">
+                    <button className="inline-flex items-center gap-1.5 border border-slate-700/80 hover:border-slate-600 bg-[#162032] hover:bg-[#1C283F] text-slate-200 px-3.5 py-2 rounded-xl text-xs font-bold transition-all active:scale-[0.98]">
+                      <Users className="h-3.5 w-3.5 text-slate-400" />
+                      Applicants
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
