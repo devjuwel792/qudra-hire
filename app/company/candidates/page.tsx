@@ -1,85 +1,289 @@
 "use client";
 
-import React from "react";
-import { Users, Search, Filter, Sparkles, Star, ArrowUpRight } from "lucide-react";
+import React, { useState } from "react";
+import { 
+  Users, 
+  Search, 
+  SlidersHorizontal, 
+  Sparkles, 
+  Lock, 
+  MessageSquare, 
+  Bot, 
+  FileText,
+  X,
+  Plus
+} from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogClose
+} from "@/components/ui/dialog";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from "@/components/ui/select";
 
 export default function CandidatesPage() {
-  const candidates = [
-    { name: "Layla Al-Mansoori", role: "Senior Product Designer", location: "Dubai, UAE", match: "97%", stage: "Applied", status: "Highly Qualified" },
-    { name: "Omar Haddad", role: "Full-Stack Engineer", location: "Dubai, UAE", match: "94%", stage: "Applied", status: "Highly Qualified" },
-    { name: "Tariq S.", role: "DevOps Engineer", location: "Dubai, UAE", match: "93%", stage: "Hired", status: "Offer Accepted" },
-    { name: "Sara Khan", role: "ML Engineer", location: "Dubai, UAE", match: "91%", stage: "Shortlisted", status: "Under Review" },
-    { name: "Zainab M.", role: "UX Researcher", location: "Dubai, UAE", match: "90%", stage: "Offer", status: "Offer Sent" },
-    { name: "Khalid Al-Otaibi", role: "TA Lead", location: "Abu Dhabi, UAE", match: "88%", stage: "Interview", status: "Interview Scheduled" },
+  const [isFiltersOpen, setIsFiltersOpen] = useState(false);
+  const [roleFilter, setRoleFilter] = useState("");
+  const [skills, setSkills] = useState(["Figma", "React", "TypeScript"]);
+  const [skillInput, setSkillInput] = useState("");
+  const [experienceLevel, setExperienceLevel] = useState("All Levels");
+
+  // Candidates list matching the screenshot
+  const initialCandidates = [
+    {
+      name: "Layla Al-Mansoori",
+      role: "Senior Product Designer",
+      initials: "LM",
+      match: "97%",
+      skills: ["Figma", "Design Systems", "Fintech"],
+      exp: "7 yrs",
+      location: "Dubai",
+      credits: 10
+    },
+    {
+      name: "Omar Haddad",
+      role: "Full-Stack Engineer",
+      initials: "OH",
+      match: "94%",
+      skills: ["React", "Node", "AWS"],
+      exp: "5 yrs",
+      location: "Riyadh",
+      credits: 10
+    },
+    {
+      name: "Sara Khan",
+      role: "ML Engineer",
+      initials: "SK",
+      match: "91%",
+      skills: ["PyTorch", "LLMs"],
+      exp: "4 yrs",
+      location: "Remote",
+      credits: 10
+    },
+    {
+      name: "Khalid Al-Otaibi",
+      role: "TA Lead",
+      initials: "KO",
+      match: "88%",
+      skills: ["Recruitment", "Leadership"],
+      exp: "9 yrs",
+      location: "Abu Dhabi",
+      credits: 10
+    },
+    {
+      name: "Noura Bin Saeed",
+      role: "Growth Manager",
+      initials: "NB",
+      match: "86%",
+      skills: ["Paid", "Lifecycle"],
+      exp: "6 yrs",
+      location: "Kuwait",
+      credits: 10
+    }
   ];
+
+  const handleAddSkill = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" || e.key === ",") {
+      e.preventDefault();
+      const cleanSkill = skillInput.trim().replace(/,/g, "");
+      if (cleanSkill && !skills.includes(cleanSkill)) {
+        setSkills([...skills, cleanSkill]);
+      }
+      setSkillInput("");
+    }
+  };
+
+  const handleRemoveSkill = (skillToRemove: string) => {
+    setSkills(skills.filter(s => s !== skillToRemove));
+  };
 
   return (
     <div className="p-8 space-y-8 max-w-7xl mx-auto">
-      <div>
-        <h1 className="text-sm font-medium text-slate-400 uppercase tracking-widest">Hiring Workspace</h1>
-        <p className="text-3xl font-extrabold text-white mt-1 tracking-tight">Candidates</p>
-      </div>
+      {/* Header section matching the screenshot */}
+      <div className="flex justify-between items-end">
+        <div>
+          <h1 className="text-2xl font-bold text-white tracking-tight">AI-ranked candidates</h1>
+          <p className="text-sm text-slate-400 mt-1">Unlock full profiles using credits.</p>
+        </div>
 
-      <div className="flex flex-col sm:flex-row gap-4 items-center justify-between bg-[#0F172A] p-4 rounded-xl border border-[#1E293B]/60">
-        <div className="relative w-full sm:w-80">
-          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
-          <input 
-            type="text" 
-            placeholder="Search candidates by name or role..." 
-            className="w-full bg-[#080C14] border border-[#1E293B]/60 rounded-lg py-2 pl-10 pr-4 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-[#00D07C]"
+        {/* Shadcn Dialog Trigger for Filters */}
+        <Dialog open={isFiltersOpen} onOpenChange={setIsFiltersOpen}>
+          <DialogTrigger
+            render={
+              <button className="flex items-center gap-2 border border-slate-700/80 bg-[#0F172A] hover:bg-[#1E293B] text-slate-200 px-4 py-2 rounded-xl text-sm font-semibold transition-all active:scale-[0.98]">
+                <SlidersHorizontal className="h-4 w-4 text-slate-400" />
+                Filters
+              </button>
+            }
           />
-        </div>
-        <button className="flex items-center gap-2 border border-[#1E293B]/60 text-slate-300 hover:text-white px-4 py-2 rounded-lg text-sm transition-colors w-full sm:w-auto justify-center">
-          <Filter className="h-4 w-4" />
-          Filters
-        </button>
+
+          {/* Filters Modal Content matching the screenshot exactly */}
+          <DialogContent className="max-w-md w-full bg-[#0B0F19] border border-[#1E293B] p-6 rounded-2xl text-slate-200 shadow-2xl! ring-0! outline-hidden">
+            <DialogHeader className="flex flex-row items-center justify-between border-b border-[#1E293B]/60 pb-4">
+              <DialogTitle className="text-xl font-bold text-white tracking-tight">Filters</DialogTitle>
+              <DialogClose
+                render={
+                  <button className="p-1 rounded-lg hover:bg-[#162032] text-slate-400 hover:text-white transition-colors">
+                    <X className="h-5 w-5" />
+                  </button>
+                }
+              />
+            </DialogHeader>
+
+            <div className="space-y-5 py-4">
+              {/* Role filter */}
+              <div className="space-y-2">
+                <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Role</label>
+                <input 
+                  type="text" 
+                  value={roleFilter}
+                  onChange={(e) => setRoleFilter(e.target.value)}
+                  placeholder="Search by role (e.g. Senior Designer)"
+                  className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#00D07C] text-slate-200 placeholder-slate-500 rounded-xl px-4 py-3 text-sm focus:outline-none transition-colors"
+                />
+              </div>
+
+              {/* Skills Filter with Tag Input */}
+              <div className="space-y-2">
+                <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Skills</label>
+                <div className="flex flex-wrap gap-2 items-center w-full bg-[#131926] border border-[#2A3C58]/60 focus-within:border-[#00D07C] rounded-xl p-2.5 transition-colors">
+                  {skills.map((skill, idx) => (
+                    <Badge 
+                      key={idx} 
+                      variant="outline" 
+                      className="bg-[#1C263A] text-slate-200 border-[#2A3C58] rounded-md px-2 py-1 flex items-center gap-1.5 text-xs font-medium"
+                    >
+                      {skill}
+                      <button onClick={() => handleRemoveSkill(skill)} className="text-slate-400 hover:text-white">
+                        <X className="h-3 w-3" />
+                      </button>
+                    </Badge>
+                  ))}
+                  <input 
+                    type="text"
+                    value={skillInput}
+                    onChange={(e) => setSkillInput(e.target.value)}
+                    onKeyDown={handleAddSkill}
+                    placeholder={skills.length === 0 ? "Add skills..." : "Add skills..."}
+                    className="flex-1 min-w-[120px] bg-transparent text-xs text-slate-200 placeholder-slate-500 focus:outline-none py-1"
+                  />
+                </div>
+                <p className="text-[10px] text-slate-500">Separate skills with a comma or press Enter.</p>
+              </div>
+
+              {/* Experience level using Shadcn Select */}
+              <div className="space-y-2">
+                <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Experience Level</label>
+                <Select value={experienceLevel} onValueChange={(val) => setExperienceLevel(val || "All Levels")}>
+                  <SelectTrigger className="w-full bg-[#131926] border-[#2A3C58]/60 text-slate-200 rounded-xl px-4 py-6 text-sm focus:border-[#00D07C] focus:ring-0! transition-colors">
+                    <SelectValue placeholder="Select level" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-[#0B0F19] border-[#2A3C58]/60 text-slate-200 rounded-xl overflow-hidden shadow-xl">
+                    <SelectItem value="All Levels" className="focus:bg-[#162032] focus:text-white">All Levels</SelectItem>
+                    <SelectItem value="Entry Level" className="focus:bg-[#162032] focus:text-white">Entry Level (0-2 yrs)</SelectItem>
+                    <SelectItem value="Mid Level" className="focus:bg-[#162032] focus:text-white">Mid Level (2-5 yrs)</SelectItem>
+                    <SelectItem value="Senior" className="focus:bg-[#162032] focus:text-white">Senior (5-8 yrs)</SelectItem>
+                    <SelectItem value="Lead / Director" className="focus:bg-[#162032] focus:text-white">Lead / Director (8+ yrs)</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+
+            {/* Modal actions */}
+            <div className="flex justify-end gap-3 border-t border-[#1E293B]/60 pt-4 mt-2">
+              <DialogClose
+                render={
+                  <button className="border border-slate-700/80 hover:bg-slate-800/60 text-slate-300 font-semibold px-6 py-2.5 rounded-xl text-sm transition-colors">
+                    Cancel
+                  </button>
+                }
+              />
+              <button 
+                onClick={() => setIsFiltersOpen(false)}
+                className="bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold px-6 py-2.5 rounded-xl text-sm transition-all shadow-md shadow-[#00D07C]/10 active:scale-[0.98]"
+              >
+                Apply Filters
+              </button>
+            </div>
+          </DialogContent>
+        </Dialog>
       </div>
 
-      <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse">
-            <thead>
-              <tr className="border-b border-[#1E293B]/60 text-slate-400 text-xs font-semibold uppercase tracking-wider bg-[#0A0F1D]/40">
-                <th className="py-4 px-6">Name</th>
-                <th className="py-4 px-6">Role</th>
-                <th className="py-4 px-6">Match Score</th>
-                <th className="py-4 px-6">Stage</th>
-                <th className="py-4 px-6">Status</th>
-                <th className="py-4 px-6 text-right">Action</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-[#1E293B]/40 text-slate-200 text-sm">
-              {candidates.map((candidate, idx) => (
-                <tr key={idx} className="hover:bg-[#162032]/40 transition-colors group">
-                  <td className="py-4.5 px-6 font-semibold text-white">{candidate.name}</td>
-                  <td className="py-4.5 px-6 text-slate-400">{candidate.role}</td>
-                  <td className="py-4.5 px-6">
-                    <span className="inline-flex items-center gap-1 text-[#00D07C] font-semibold text-xs bg-[#00D07C]/10 px-2 py-0.5 rounded-md">
-                      <Sparkles className="h-3 w-3" />
-                      {candidate.match}
-                    </span>
-                  </td>
-                  <td className="py-4.5 px-6">
-                    <span className="text-slate-300 text-xs bg-[#1E293B]/80 px-2.5 py-1 rounded-full border border-[#2E3C51]/50">
-                      {candidate.stage}
-                    </span>
-                  </td>
-                  <td className="py-4.5 px-6">
-                    <span className="text-xs text-slate-400 flex items-center gap-1.5">
-                      <span className="h-1.5 w-1.5 rounded-full bg-[#00D07C]" />
-                      {candidate.status}
-                    </span>
-                  </td>
-                  <td className="py-4.5 px-6 text-right">
-                    <button className="text-xs font-semibold text-[#00D07C] group-hover:underline flex items-center gap-1 ml-auto">
-                      View Profile <ArrowUpRight className="h-3 w-3" />
-                    </button>
-                  </td>
-                </tr>
+      {/* Candidates Cards Grid matching the second screenshot */}
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+        {initialCandidates.map((candidate, idx) => (
+          <div 
+            key={idx} 
+            className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-5 space-y-4 flex flex-col justify-between hover:border-[#2A3C58] transition-all duration-300 relative group cursor-pointer"
+          >
+            {/* Top row: Avatar, Name, Role, Match score */}
+            <div className="flex items-start justify-between gap-3">
+              <div className="flex items-center gap-3">
+                <div className="h-11 w-11 rounded-xl bg-gradient-to-br from-[#1E293B] to-[#0F172A] border border-[#2E3C51] flex items-center justify-center font-bold text-slate-300 text-sm shadow-inner flex-shrink-0">
+                  {candidate.initials}
+                </div>
+                <div>
+                  <h3 className="text-base font-bold text-white tracking-tight">{candidate.name}</h3>
+                  <p className="text-xs text-slate-500 font-medium">{candidate.role}</p>
+                </div>
+              </div>
+
+              {/* Match percentage badge with star */}
+              <span className="text-xs font-semibold text-[#00D07C] bg-[#00D07C]/10 border border-[#00D07C]/20 px-2.5 py-0.5 rounded-lg flex items-center gap-1">
+                <Sparkles className="h-3 w-3" />
+                {candidate.match}
+              </span>
+            </div>
+
+            {/* Skills Badges */}
+            <div className="flex flex-wrap gap-1.5">
+              {candidate.skills.map((skill, sIdx) => (
+                <span 
+                  key={sIdx} 
+                  className="bg-[#162032] border border-[#2A3C58]/60 text-slate-400 text-[10px] font-semibold px-2.5 py-1 rounded-md"
+                >
+                  {skill}
+                </span>
               ))}
-            </tbody>
-          </table>
-        </div>
+            </div>
+
+            {/* Experience, Location & Credit cost */}
+            <div className="flex items-center justify-between text-xs text-slate-500 font-medium border-t border-[#1E293B]/40 pt-3">
+              <span>{candidate.exp} • {candidate.location}</span>
+              <span>{candidate.credits} credits to unlock</span>
+            </div>
+
+            {/* Footer actions: Lock View profile, Message, Bot, Document */}
+            <div className="flex items-center gap-2 pt-1.5">
+              <button className="flex-1 bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold py-2.5 px-4 rounded-xl text-xs flex items-center justify-center gap-1.5 transition-all shadow-md shadow-[#00D07C]/5 active:scale-[0.98]">
+                <Lock className="h-3.5 w-3.5" />
+                View profile
+              </button>
+              
+              <button className="p-2.5 bg-[#162032] border border-[#2A3C58]/60 text-slate-400 hover:text-white rounded-xl hover:border-[#00D07C]/40 transition-colors">
+                <MessageSquare className="h-4 w-4" />
+              </button>
+
+              <button className="p-2.5 bg-[#162032] border border-[#2A3C58]/60 text-slate-400 hover:text-white rounded-xl hover:border-[#00D07C]/40 transition-colors">
+                <Bot className="h-4 w-4" />
+              </button>
+
+              <button className="p-2.5 bg-[#162032] border border-[#2A3C58]/60 text-slate-400 hover:text-white rounded-xl hover:border-[#00D07C]/40 transition-colors">
+                <FileText className="h-4 w-4" />
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
