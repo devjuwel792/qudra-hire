@@ -193,10 +193,10 @@ export default function JobApplicantsPage() {
                   <MessageSquare className="h-3.5 w-3.5 text-slate-400" />
                   Message
                 </button>
-                <button className="flex items-center gap-1.5 bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold px-4 py-2 rounded-xl text-xs transition-all shadow-md shadow-[#00D07C]/10 active:scale-[0.98]">
+                <Link href="/company/candidates/interview" className="flex items-center gap-1.5 bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold px-4 py-2 rounded-xl text-xs transition-all shadow-md shadow-[#00D07C]/10 active:scale-[0.98]">
                   <Video className="h-3.5 w-3.5" />
                   Set AI interview
-                </button>
+                </Link>
               </div>
             </div>
           </div>
