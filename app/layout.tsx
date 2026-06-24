@@ -1,0 +1,44 @@
+import type { Metadata } from "next";
+import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
+import "./globals.css";
+import MobileBottomNav from "@/components/layout/MobileBottomNav";
+
+const geistSans = Geist({
+
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
+});
+
+export const metadata: Metadata = {
+  title: "Prep-Ed | Customized School Supply Boxes",
+  description: "Everything Your Child Needs. One Box. Zero Stress. Get school ready with Prep-Ed's personalized supply kits.",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} h-full antialiased`}
+    >
+      <body className="min-h-full flex flex-col bg-[#FDFBF7] text-[#0B2545] pb-16 md:pb-0">
+        {children}
+        <MobileBottomNav />
+      </body>
+    </html>
+  );
+}
