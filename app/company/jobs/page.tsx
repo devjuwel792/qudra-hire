@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Plus, Users } from "lucide-react";
+import Link from "next/link";
 
 export default function JobsPage() {
   const jobs = [
@@ -21,10 +22,10 @@ export default function JobsPage() {
           <h1 className="text-3xl font-extrabold text-white tracking-tight">Manage jobs</h1>
           <p className="text-sm text-slate-400 mt-1">Post, monitor and close listings.</p>
         </div>
-        <button className="flex items-center gap-2 bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold px-5 py-3 rounded-xl transition-all duration-200 shadow-lg shadow-[#00D07C]/10 active:scale-[0.98]">
+        <Link href="/company/jobs/create" className="inline-flex items-center gap-2 bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold px-5 py-3 rounded-xl transition-all duration-200 shadow-lg shadow-[#00D07C]/10 active:scale-[0.98]">
           <Plus className="h-5 w-5" />
           Post a job
-        </button>
+        </Link>
       </div>
 
       {/* Jobs Table Container */}
@@ -60,10 +61,10 @@ export default function JobsPage() {
                   </td>
                   {/* Action Button */}
                   <td className="py-5 px-6 text-right">
-                    <button className="inline-flex items-center gap-1.5 border border-slate-700/80 hover:border-slate-600 bg-[#162032] hover:bg-[#1C283F] text-slate-200 px-3.5 py-2 rounded-xl text-xs font-bold transition-all active:scale-[0.98]">
+                    <Link href="/company/jobs/applicants" className="inline-flex items-center gap-1.5 border border-slate-700/80 hover:border-slate-600 bg-[#162032] hover:bg-[#1C283F] text-slate-200 px-3.5 py-2 rounded-xl text-xs font-bold transition-all active:scale-[0.98]">
                       <Users className="h-3.5 w-3.5 text-slate-400" />
                       Applicants
-                    </button>
+                    </Link>
                   </td>
                 </tr>
               ))}
