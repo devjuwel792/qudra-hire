@@ -1,12 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
-import { 
-  Wallet, 
-  ArrowUpRight, 
-  ArrowDownLeft, 
-  Plus, 
-  ShieldCheck, 
+import {
+  Wallet,
+  ArrowUpRight,
+  ArrowDownLeft,
+  Plus,
+  ShieldCheck,
   Sparkles,
   X
 } from "lucide-react";
@@ -16,6 +16,7 @@ import {
   DialogContent,
   DialogClose,
 } from "@/components/ui/dialog";
+import Link from "next/link";
 
 export default function WalletPage() {
   const [topUpOpen, setTopUpOpen] = useState(false);
@@ -36,9 +37,9 @@ export default function WalletPage() {
           <h1 className="text-3xl font-extrabold text-white tracking-tight">Your wallet</h1>
           <p className="text-sm text-slate-400 mt-1">Credits never expire. Use them anywhere on QudraHire.</p>
         </div>
-        <button className="border border-slate-700/80 hover:bg-slate-800 text-slate-300 px-4 py-2 rounded-xl text-sm font-semibold transition-all">
+        <Link href="/pricing" className="border border-slate-700/80 hover:bg-slate-800 text-slate-300 px-4 py-2 rounded-xl text-sm font-semibold transition-all">
           View all bundles
-        </button>
+        </Link>
       </div>
 
       {/* Wallet Cards Top Row */}
@@ -76,10 +77,55 @@ export default function WalletPage() {
             </div>
           </div>
 
-          <button className="flex items-center justify-center gap-2 bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold py-3 px-5 rounded-xl w-32 transition-all duration-200 active:scale-[0.98]">
-            <Plus className="h-4 w-4" />
-            Top up
-          </button>
+          <Dialog open={topUpOpen} onOpenChange={setTopUpOpen}>
+            <DialogTrigger render={
+              <button className="flex items-center justify-center gap-2 bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold py-3 px-5 rounded-xl w-32 transition-all duration-200 active:scale-[0.98]">
+                <Plus className="h-4 w-4" />
+                Top up
+              </button>
+            } />
+            <DialogContent className="bg-[#0F172A] border border-[#1E293B]/60 text-slate-200 p-6 sm:max-w-md rounded-2xl">
+              {/* <DialogClose render={<button className="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors">
+                <X className="h-5 w-5" />
+              </button>} /> */}
+              <div className="space-y-4">
+                <div className="flex justify-between items-center">
+                  <h2 className="text-lg font-bold text-white">Quick top-up</h2>
+                  <span className="text-[10px] text-slate-500 flex items-center gap-1 font-bold uppercase tracking-wider">
+                    <ShieldCheck className="h-3.5 w-3.5 text-[#00D07C]" />
+                    Secure
+                  </span>
+                </div>
+                <p className="text-xs text-slate-500 font-medium">Choose a bundle below to add credits instantly.</p>
+                <div className="space-y-3">
+                  {[
+                    { credits: 50, desc: "Starter", price: "AED 99", active: false },
+                    { credits: 150, desc: "Most popular", price: "AED 249", active: true },
+                    { credits: 400, desc: "Sprint", price: "AED 499", active: false }
+                  ].map((pkg, idx) => (
+                    <div
+                      key={idx}
+                      className={`p-4 rounded-xl border flex items-center justify-between transition-all ${pkg.active
+                          ? "bg-[#162032] border-[#00D07C]/50 shadow-[0_0_15px_-3px_rgba(0,208,124,0.15)]"
+                          : "bg-[#0A0F1D]/60 border-[#1E293B]/60 hover:border-slate-700"
+                        }`}
+                    >
+                      <div>
+                        <p className="text-sm font-bold text-white">{pkg.credits} credits</p>
+                        <p className="text-[10px] text-slate-500 font-medium mt-0.5">{pkg.desc}</p>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <span className="text-xs font-bold text-white">{pkg.price}</span>
+                        <button className="bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] text-xs font-bold px-3 py-1.5 rounded-lg transition-colors">
+                          Buy
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </DialogContent>
+          </Dialog>
         </div>
 
         {/* Quick Top-up Card (1/3 width) */}
@@ -98,13 +144,12 @@ export default function WalletPage() {
               { credits: 150, desc: "Most popular", price: "AED 249", active: true },
               { credits: 400, desc: "Sprint", price: "AED 499", active: false }
             ].map((pkg, idx) => (
-              <div 
-                key={idx} 
-                className={`p-4 rounded-xl border flex items-center justify-between transition-all ${
-                  pkg.active 
-                    ? "bg-[#162032] border-[#00D07C]/50 shadow-[0_0_15px_-3px_rgba(0,208,124,0.15)]" 
+              <div
+                key={idx}
+                className={`p-4 rounded-xl border flex items-center justify-between transition-all ${pkg.active
+                    ? "bg-[#162032] border-[#00D07C]/50 shadow-[0_0_15px_-3px_rgba(0,208,124,0.15)]"
                     : "bg-[#0A0F1D]/60 border-[#1E293B]/60 hover:border-slate-700"
-                }`}
+                  }`}
               >
                 <div>
                   <p className="text-sm font-bold text-white">{pkg.credits} credits</p>
@@ -146,11 +191,10 @@ export default function WalletPage() {
               {transactions.map((t, idx) => (
                 <tr key={idx} className="hover:bg-[#162032]/30 transition-colors group">
                   <td className="py-4 px-6 flex items-center gap-3 font-semibold text-white">
-                    <div className={`p-1.5 rounded-lg border ${
-                      t.positive 
-                        ? "bg-[#00D07C]/10 border-[#00D07C]/20 text-[#00D07C]" 
+                    <div className={`p-1.5 rounded-lg border ${t.positive
+                        ? "bg-[#00D07C]/10 border-[#00D07C]/20 text-[#00D07C]"
                         : "bg-slate-800/40 border-slate-700/60 text-slate-400"
-                    }`}>
+                      }`}>
                       {t.positive ? <ArrowDownLeft className="h-3.5 w-3.5" /> : <ArrowUpRight className="h-3.5 w-3.5" />}
                     </div>
                     {t.desc}
