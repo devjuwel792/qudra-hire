@@ -1,12 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
-import { 
-  Briefcase, 
-  Users, 
-  MessageSquare, 
-  Wallet, 
-  Plus, 
+import {
+  Briefcase,
+  Users,
+  MessageSquare,
+  Wallet,
+  Plus,
   ExternalLink,
   ChevronRight,
   TrendingUp,
@@ -15,6 +15,7 @@ import {
   Sparkles
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function CompanyDashboard() {
   // Simple state for demonstration / interactions
@@ -86,10 +87,10 @@ export default function CompanyDashboard() {
             Emirates NBD <span className="text-[#00D07C] font-normal">•</span> Talent
           </p>
         </div>
-        <button className="flex items-center gap-2 bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold px-5 py-3 rounded-xl transition-all duration-200 shadow-lg shadow-[#00D07C]/10 active:scale-[0.98]">
+        <Link href="/company/jobs/create" className="flex items-center gap-2 bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold px-5 py-3 rounded-xl transition-all duration-200 shadow-lg shadow-[#00D07C]/10 active:scale-[0.98]">
           <Plus className="h-5 w-5" />
           Post a job
-        </button>
+        </Link>
       </div>
 
       {/* Stats Cards grid */}
@@ -100,8 +101,8 @@ export default function CompanyDashboard() {
           { label: "Messaged", value: 12, icon: MessageSquare, color: "text-purple-400", bg: "bg-purple-400/10" },
           { label: "Credits", value: "1,240", icon: Wallet, color: "text-amber-400", bg: "bg-amber-400/10" },
         ].map((stat, idx) => (
-          <div 
-            key={idx} 
+          <div
+            key={idx}
             className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-5 flex items-center justify-between hover:border-[#334155] transition-all duration-300 group cursor-pointer"
           >
             <div className="space-y-1">
@@ -139,18 +140,19 @@ export default function CompanyDashboard() {
 
                 <div className="flex-1 space-y-2 overflow-y-auto">
                   {stage.candidates.map((candidate) => (
-                    <div 
-                      key={candidate.id} 
+                    <div
+                      key={candidate.id}
                       className="bg-[#162032] border border-[#2A3C58]/60 rounded-lg p-2.5 hover:border-[#00D07C]/50 transition-all duration-200 cursor-pointer group"
-                    >
-                      <p className="text-xs font-semibold text-slate-200 truncate group-hover:text-white">{candidate.name}</p>
-                      <div className="flex items-center justify-between mt-1.5">
-                        <span className="text-[9px] text-slate-500 truncate max-w-[50px]">{candidate.role.split(" ")[0]}</span>
-                        <span className="text-[9px] font-semibold text-[#00D07C] flex items-center gap-0.5">
-                          <Sparkles className="h-2 w-2" />
-                          {candidate.match}
-                        </span>
-                      </div>
+                    ><Link href={`/company/candidates/profile?id=${candidate.id}`} >
+                        <p className="text-xs font-semibold text-slate-200 truncate group-hover:text-white">{candidate.name}</p>
+                        <div className="flex items-center justify-between mt-1.5">
+                          <span className="text-[9px] text-slate-500 truncate max-w-[50px]">{candidate.role.split(" ")[0]}</span>
+                          <span className="text-[9px] font-semibold text-[#00D07C] flex items-center gap-0.5">
+                            <Sparkles className="h-2 w-2" />
+                            {candidate.match}
+                          </span>
+                        </div>
+                      </Link>
                     </div>
                   ))}
                 </div>
@@ -170,8 +172,8 @@ export default function CompanyDashboard() {
 
           <div className="flex-1 flex flex-col justify-between space-y-4">
             {aiMatches.map((match, idx) => (
-              <div 
-                key={idx} 
+              <div
+                key={idx}
                 className="flex items-center justify-between p-3.5 rounded-xl bg-[#0A0F1D]/60 border border-[#1E293B]/30 hover:border-[#00D07C]/30 transition-all duration-300 cursor-pointer"
               >
                 <div className="flex items-center gap-3">
