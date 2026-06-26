@@ -104,34 +104,36 @@ export default function CandidateDashboard() {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {recommendations.map((job, idx) => (
-                <div key={idx} className="bg-[#0A0F1D]/60 border border-[#1E293B]/40 rounded-xl p-4 space-y-3 hover:border-[#2A3C58] transition-all cursor-pointer group">
-                  <div className="flex items-start justify-between gap-2">
-                    <div className="flex items-center gap-2.5">
-                      <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-[#1E293B] to-[#0F172A] border border-[#2E3C51] flex items-center justify-center text-[10px] font-bold text-slate-300 flex-shrink-0">
-                        {job.initials}
+                <Link key={idx} href="/candidate/jobs/detail" className="block min-w-0">
+                  <div className="bg-[#0A0F1D]/60 border border-[#1E293B]/40 rounded-xl p-4 space-y-3 hover:border-[#2A3C58] transition-all cursor-pointer group h-full">
+                    <div className="flex items-start justify-between gap-2">
+                      <div className="flex items-center gap-2.5">
+                        <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-[#1E293B] to-[#0F172A] border border-[#2E3C51] flex items-center justify-center text-[10px] font-bold text-slate-300 flex-shrink-0">
+                          {job.initials}
+                        </div>
+                        <div>
+                          <p className="text-[10px] text-slate-500 font-semibold">{job.company}</p>
+                          <p className="text-xs font-bold text-white leading-tight group-hover:text-[#00D07C] transition-colors">{job.role}</p>
+                        </div>
                       </div>
-                      <div>
-                        <p className="text-[10px] text-slate-500 font-semibold">{job.company}</p>
-                        <p className="text-xs font-bold text-white leading-tight group-hover:text-[#00D07C] transition-colors">{job.role}</p>
-                      </div>
+                      <span className={`text-[10px] font-bold px-2 py-0.5 rounded-md border flex-shrink-0 ${matchColor(job.match)}`}>
+                        {job.match} match
+                      </span>
                     </div>
-                    <span className={`text-[10px] font-bold px-2 py-0.5 rounded-md border flex-shrink-0 ${matchColor(job.match)}`}>
-                      {job.match} match
-                    </span>
+                    <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5 text-[10px] text-slate-500 font-medium">
+                      <span className="flex items-center gap-0.5"><MapPin className="h-3 w-3" />{job.location}</span>
+                      <span className="flex items-center gap-0.5"><Clock className="h-3 w-3" />{job.type}</span>
+                      <span className="flex items-center gap-0.5"><DollarSign className="h-3 w-3" />{job.salary}</span>
+                      <span className="text-[#00D07C]">✓ Visa</span>
+                    </div>
+                    <div className="flex flex-wrap gap-1">
+                      {job.tags.map((t, ti) => (
+                        <span key={ti} className="bg-[#162032] border border-[#2A3C58]/60 text-slate-400 text-[9px] font-semibold px-2 py-0.5 rounded">{t}</span>
+                      ))}
+                    </div>
+                    <p className="text-[10px] text-slate-600 font-medium">{job.age}</p>
                   </div>
-                  <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5 text-[10px] text-slate-500 font-medium">
-                    <span className="flex items-center gap-0.5"><MapPin className="h-3 w-3" />{job.location}</span>
-                    <span className="flex items-center gap-0.5"><Clock className="h-3 w-3" />{job.type}</span>
-                    <span className="flex items-center gap-0.5"><DollarSign className="h-3 w-3" />{job.salary}</span>
-                    <span className="text-[#00D07C]">✓ Visa</span>
-                  </div>
-                  <div className="flex flex-wrap gap-1">
-                    {job.tags.map((t, ti) => (
-                      <span key={ti} className="bg-[#162032] border border-[#2A3C58]/60 text-slate-400 text-[9px] font-semibold px-2 py-0.5 rounded">{t}</span>
-                    ))}
-                  </div>
-                  <p className="text-[10px] text-slate-600 font-medium">{job.age}</p>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
