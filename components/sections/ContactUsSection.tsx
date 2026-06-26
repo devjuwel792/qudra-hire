@@ -147,7 +147,7 @@ export default function ContactUsSection() {
                     placeholder="Your Message"
                     className="w-full rounded-lg border border-gray-200 focus:border-[#FF5C35] bg-white p-4  placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-[#FF5C35] shadow-none resize-none"
                   />
-                  <span className="absolute bottom-4 right-4 text-[10px] text-gray-400">200 Words</span>
+                  <span className="absolute bottom-4 right-4 text-[13px] text-gray-400">200 Words</span>
                 </div>
 
                 <div className="pt-2 text-center">

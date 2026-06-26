@@ -1,13 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
-import { 
-  ArrowLeft, 
-  Sparkles, 
-  Trash2, 
-  Plus, 
-  Send, 
-  Eye 
+import {
+  ArrowLeft,
+  Sparkles,
+  Trash2,
+  Plus,
+  Send,
+  Eye
 } from "lucide-react";
 import Link from "next/link";
 import { Switch } from "@/components/ui/switch";
@@ -52,9 +52,9 @@ export default function SetAIInterviewPage() {
     <div className="p-8 space-y-8 max-w-7xl mx-auto">
       {/* Top Navigation Back */}
       <div>
-        <Link 
-          href="/company/candidates" 
-          className="inline-flex items-center gap-2 text-xs font-semibold text-slate-400 hover:text-white transition-colors"
+        <Link
+          href="/company/candidates"
+          className="inline-flex items-center gap-2  font-semibold text-slate-400 hover:text-white transition-colors"
         >
           <ArrowLeft className="h-4 w-4" />
           Back
@@ -68,29 +68,29 @@ export default function SetAIInterviewPage() {
         </div>
         <div>
           <h1 className="text-2xl font-extrabold text-white tracking-tight">AI interview for Layla Al-Mansoori</h1>
-          <p className="text-xs text-slate-400 font-semibold mt-1">Senior Product Designer • Dubai</p>
+          <p className=" text-slate-400 font-semibold mt-1">Senior Product Designer • Dubai</p>
         </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
         {/* Main Configuration Card (2/3 width) */}
         <div className="lg:col-span-2 bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-6 space-y-6">
-          
+
           {/* Role Context & Duration inputs */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Role context</label>
-              <input 
-                type="text" 
+              <label className=" font-bold text-slate-400 uppercase tracking-wider">Role context</label>
+              <input
+                type="text"
                 value={roleContext}
                 onChange={(e) => setRoleContext(e.target.value)}
                 className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#00D07C] text-slate-200 placeholder-slate-500 rounded-xl px-4 py-3 text-sm focus:outline-none transition-colors"
               />
             </div>
             <div className="space-y-2">
-              <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Duration</label>
-              <input 
-                type="text" 
+              <label className=" font-bold text-slate-400 uppercase tracking-wider">Duration</label>
+              <input
+                type="text"
                 value={duration}
                 onChange={(e) => setDuration(e.target.value)}
                 className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#00D07C] text-slate-200 placeholder-slate-500 rounded-xl px-4 py-3 text-sm focus:outline-none transition-colors"
@@ -100,22 +100,21 @@ export default function SetAIInterviewPage() {
 
           {/* Preloaded Question Packs Grid */}
           <div className="space-y-3">
-            <label className="text-xs font-bold text-slate-400 uppercase tracking-wider block">Preloaded question packs</label>
+            <label className=" font-bold text-slate-400 uppercase tracking-wider block">Preloaded question packs</label>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {packs.map((pack) => {
                 const isSelected = selectedPack === pack.name;
                 return (
-                  <div 
+                  <div
                     key={pack.name}
                     onClick={() => setSelectedPack(pack.name)}
-                    className={`p-4 rounded-xl border cursor-pointer transition-all ${
-                      isSelected 
-                        ? "bg-[#162032] border-[#00D07C]/50 shadow-[0_0_15px_-3px_rgba(0,208,124,0.15)]" 
-                        : "bg-[#0A0F1D]/60 border-[#1E293B]/60 hover:border-slate-700"
-                    }`}
+                    className={`p-4 rounded-xl border cursor-pointer transition-all ${isSelected
+                      ? "bg-[#162032] border-[#00D07C]/50 shadow-[0_0_15px_-3px_rgba(0,208,124,0.15)]"
+                      : "bg-[#0A0F1D]/60 border-[#1E293B]/60 hover:border-slate-700"
+                      }`}
                   >
                     <p className="text-sm font-bold text-white">{pack.name}</p>
-                    <p className="text-[10px] text-slate-500 font-semibold mt-1">{pack.qCount} questions • {pack.time}</p>
+                    <p className="text-[13px] text-slate-500 font-semibold mt-1">{pack.qCount} questions • {pack.time}</p>
                   </div>
                 );
               })}
@@ -125,8 +124,8 @@ export default function SetAIInterviewPage() {
           {/* Questions list with index badges */}
           <div className="space-y-4">
             <div className="flex justify-between items-center">
-              <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Questions ({questions.length})</span>
-              <button className="text-xs text-[#00D07C] font-bold flex items-center gap-1 bg-[#00D07C]/10 border border-[#00D07C]/20 px-3 py-1.5 rounded-lg hover:bg-[#00D07C]/20 transition-all">
+              <span className=" font-bold text-slate-400 uppercase tracking-wider">Questions ({questions.length})</span>
+              <button className=" text-[#00D07C] font-bold flex items-center gap-1 bg-[#00D07C]/10 border border-[#00D07C]/20 px-3 py-1.5 rounded-lg hover:bg-[#00D07C]/20 transition-all">
                 <Sparkles className="h-3.5 w-3.5" />
                 AI suggest
               </button>
@@ -136,12 +135,12 @@ export default function SetAIInterviewPage() {
               {questions.map((q, idx) => (
                 <div key={idx} className="flex items-center justify-between bg-[#0A0F1D]/60 border border-[#1E293B]/40 rounded-xl p-3.5 gap-4 group">
                   <div className="flex items-center gap-3">
-                    <span className="h-5 w-5 rounded-full bg-[#00D07C]/10 border border-[#00D07C]/20 text-[#00D07C] flex items-center justify-center font-bold text-[10px] flex-shrink-0">
+                    <span className="h-5 w-5 rounded-full bg-[#00D07C]/10 border border-[#00D07C]/20 text-[#00D07C] flex items-center justify-center font-bold text-[13px] flex-shrink-0">
                       {idx + 1}
                     </span>
-                    <p className="text-xs font-medium text-slate-200">{q}</p>
+                    <p className=" font-medium text-slate-200">{q}</p>
                   </div>
-                  <button 
+                  <button
                     onClick={() => handleRemoveQuestion(idx)}
                     className="p-1 rounded text-slate-500 hover:text-red-400 hover:bg-red-950/20 transition-all flex-shrink-0"
                   >
@@ -153,14 +152,14 @@ export default function SetAIInterviewPage() {
 
             {/* Add custom question input */}
             <form onSubmit={handleAddQuestion} className="flex gap-2">
-              <input 
-                type="text" 
+              <input
+                type="text"
                 value={newQuestion}
                 onChange={(e) => setNewQuestion(e.target.value)}
                 placeholder="Add custom question..."
-                className="flex-1 bg-[#131926] border border-[#2A3C58]/60 focus:border-[#00D07C] text-slate-200 placeholder-slate-500 rounded-xl px-4 py-3 text-xs focus:outline-none transition-colors"
+                className="flex-1 bg-[#131926] border border-[#2A3C58]/60 focus:border-[#00D07C] text-slate-200 placeholder-slate-500 rounded-xl px-4 py-3  focus:outline-none transition-colors"
               />
-              <button 
+              <button
                 type="submit"
                 className="bg-[#162032] border border-[#2A3C58]/60 text-slate-300 hover:text-white p-3 rounded-xl hover:border-[#00D07C]/40 transition-colors"
               >
@@ -171,13 +170,13 @@ export default function SetAIInterviewPage() {
 
           {/* Settings Switches */}
           <div className="border-t border-[#1E293B]/60 pt-6 space-y-4">
-            <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider">Settings</h3>
+            <h3 className=" font-bold text-slate-400 uppercase tracking-wider">Settings</h3>
             <div className="flex items-center justify-between">
-              <span className="text-xs font-semibold text-slate-300">Allow voice answers</span>
+              <span className=" font-semibold text-slate-300">Allow voice answers</span>
               <Switch checked={allowVoice} onCheckedChange={setAllowVoice} className="data-checked:bg-[#00D07C]!" />
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-xs font-semibold text-slate-300">Notify me when complete</span>
+              <span className=" font-semibold text-slate-300">Notify me when complete</span>
               <Switch checked={notifyComplete} onCheckedChange={setNotifyComplete} className="data-checked:bg-[#00D07C]!" />
             </div>
           </div>
@@ -187,16 +186,16 @@ export default function SetAIInterviewPage() {
         {/* Sidebar Preview Details (1/3 width) */}
         <div className="space-y-4">
           <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-6 space-y-5">
-            <span className="text-[10px] text-[#00D07C] bg-[#00D07C]/10 border border-[#00D07C]/20 px-2.5 py-1 rounded-full flex items-center gap-1 font-bold uppercase tracking-wider w-fit">
+            <span className="text-[13px] text-[#00D07C] bg-[#00D07C]/10 border border-[#00D07C]/20 px-2.5 py-1 rounded-full flex items-center gap-1 font-bold uppercase tracking-wider w-fit">
               <Eye className="h-3.5 w-3.5" />
               Preview
             </span>
 
-            <p className="text-xs text-slate-400 leading-relaxed font-medium">
+            <p className=" text-slate-400 leading-relaxed font-medium">
               Qudra AI will conduct a 5-question interview, transcribe voice, and score answers on clarity, depth and rubric fit.
             </p>
 
-            <div className="space-y-3.5 text-xs font-semibold pt-2">
+            <div className="space-y-3.5  font-semibold pt-2">
               <div className="flex justify-between items-center text-slate-400">
                 <span>Questions</span>
                 <span className="text-white">{questions.length}</span>
@@ -219,7 +218,7 @@ export default function SetAIInterviewPage() {
 
           {/* Under-sidebar info box */}
           <div className="border border-[#1E293B]/40 bg-[#0A0F1D]/30 rounded-2xl p-4">
-            <p className="text-[11px] text-slate-500 leading-relaxed font-medium">
+            <p className="text-[13px] text-slate-500 leading-relaxed font-medium">
               Candidates get a link to complete the interview anytime within 48 hours. You receive a scored report instantly after submission.
             </p>
           </div>

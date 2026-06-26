@@ -41,7 +41,7 @@ export default function JobsPage() {
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="border-b border-[#1E293B]/60 text-slate-400 text-xs font-semibold uppercase tracking-wider bg-[#0A0F1D]/40">
+              <tr className="border-b border-[#1E293B]/60 text-slate-400  font-semibold uppercase tracking-wider bg-[#0A0F1D]/40">
                 <th className="py-4 px-6 font-medium text-slate-400">Role</th>
                 <th className="py-4 px-6 font-medium text-slate-400">Location</th>
                 <th className="py-4 px-6 font-medium text-slate-400">Applicants</th>
@@ -63,7 +63,7 @@ export default function JobsPage() {
                   <td className="py-5 px-6 font-bold text-[#00D07C]">{job.matches}</td>
                   {/* Status Badge */}
                   <td className="py-5 px-6">
-                    <span className="inline-flex items-center bg-[#00D07C]/10 text-[#00D07C] border border-[#00D07C]/20 px-2.5 py-0.5 rounded-full text-xs font-semibold">
+                    <span className="inline-flex items-center bg-[#00D07C]/10 text-[#00D07C] border border-[#00D07C]/20 px-2.5 py-0.5 rounded-full  font-semibold">
                       {job.status}
                     </span>
                   </td>

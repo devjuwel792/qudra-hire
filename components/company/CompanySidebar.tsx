@@ -93,8 +93,8 @@ export default function CompanySidebar() {
             EN
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-xs font-semibold text-slate-200 truncate">Emirates NBD</p>
-            <p className="text-[10px] text-slate-500 truncate">talent@emiratesnbd.com</p>
+            <p className=" font-semibold text-slate-200 truncate">Emirates NBD</p>
+            <p className="text-[13px] text-slate-500 truncate">talent@emiratesnbd.com</p>
           </div>
           <ChevronRight className="h-4 w-4 text-slate-500" />
         </div>

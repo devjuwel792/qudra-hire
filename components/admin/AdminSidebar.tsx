@@ -72,7 +72,7 @@ export default function AdminSidebar() {
       {/* Logo / Brand */}
       <div className="flex flex-col items-center justify-center border-b border-white/10 py-6 px-3">
         <Image src="/logo.png" alt="PrepED Logo" width={120} height={40} className="h-8 w-auto object-contain  " />
-        <span className="text-[10px] font-normal text-white/60 tracking-widest uppercase mt-2">
+        <span className="text-[13px] font-normal text-white/60 tracking-widest uppercase mt-2">
           Admin
         </span>
       </div>
@@ -100,7 +100,7 @@ export default function AdminSidebar() {
                   isActive ? "text-white" : "text-white/60 group-hover:text-white"
                 )}
               />
-              <span className="text-[10px] font-medium leading-tight">{label}</span>
+              <span className="text-[13px] font-medium leading-tight">{label}</span>
             </Link>
           );
         })}
@@ -113,7 +113,7 @@ export default function AdminSidebar() {
           className="flex flex-col items-center gap-1.5 rounded-xl px-2 py-3 text-center text-[#FF5C35] transition-all duration-200 hover:bg-[#FF5C35]/10"
         >
           <LogOut className="h-[18px] w-[18px] flex-shrink-0" />
-          <span className="text-[10px] font-medium">Log Out</span>
+          <span className="text-[13px] font-medium">Log Out</span>
         </Link>
       </div>
     </aside>

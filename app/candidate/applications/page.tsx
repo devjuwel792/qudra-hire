@@ -56,7 +56,7 @@ export default function CandidateApplicationsPage() {
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="border-b border-[#1E293B]/60 text-slate-400 text-xs font-semibold uppercase tracking-wider bg-[#0A0F1D]/25">
+              <tr className="border-b border-[#1E293B]/60 text-slate-400  font-semibold uppercase tracking-wider bg-[#0A0F1D]/25">
                 <th className="py-4 px-6 font-medium text-slate-400">Role</th>
                 <th className="py-4 px-6 font-medium text-slate-400">Company</th>
                 <th className="py-4 px-6 font-medium text-slate-400">Ats</th>
@@ -75,14 +75,14 @@ export default function CandidateApplicationsPage() {
                   <td className="py-4 px-6 text-[#00D07C] font-extrabold">{app.ats}</td>
                   <td className="py-4 px-6 text-slate-400 font-medium">{app.applied}</td>
                   <td className="py-4 px-6">
-                    <span className="text-[10px] font-bold border border-slate-700/60 bg-[#1E293B]/40 text-slate-300 px-3 py-1 rounded-full">
+                    <span className="text-[13px] font-bold border border-slate-700/60 bg-[#1E293B]/40 text-slate-300 px-3 py-1 rounded-full">
                       {app.stage}
                     </span>
                   </td>
                   <td className="py-4 px-6 text-right">
                     <Link
                       href="/candidate/interview"
-                      className="text-xs font-bold text-slate-300 hover:text-white hover:underline transition-all"
+                      className=" font-bold text-slate-300 hover:text-white hover:underline transition-all"
                     >
                       View
                     </Link>
@@ -101,7 +101,7 @@ export default function CandidateApplicationsPage() {
             key={idx}
             className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-5 space-y-1 hover:border-[#2A3C58] transition-all"
           >
-            <span className="text-xs font-semibold text-slate-500">{s.label}</span>
+            <span className=" font-semibold text-slate-500">{s.label}</span>
             <p className="text-3xl font-extrabold text-white">{s.count}</p>
           </div>
         ))}

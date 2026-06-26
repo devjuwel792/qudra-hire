@@ -1,14 +1,14 @@
 "use client";
 
 import React, { useState } from "react";
-import { 
-  Users, 
-  Search, 
-  SlidersHorizontal, 
-  Sparkles, 
-  Lock, 
-  MessageSquare, 
-  Bot, 
+import {
+  Users,
+  Search,
+  SlidersHorizontal,
+  Sparkles,
+  Lock,
+  MessageSquare,
+  Bot,
   FileText,
   X,
   Plus
@@ -42,7 +42,7 @@ export default function CandidatesPage() {
   // Candidates list matching the screenshot
   const initialCandidates = [
     {
-      id:1,
+      id: 1,
       name: "Layla Al-Mansoori",
       role: "Senior Product Designer",
       initials: "LM",
@@ -53,7 +53,7 @@ export default function CandidatesPage() {
       credits: 10
     },
     {
-      id:2,
+      id: 2,
       name: "Omar Haddad",
       role: "Full-Stack Engineer",
       initials: "OH",
@@ -64,7 +64,7 @@ export default function CandidatesPage() {
       credits: 10
     },
     {
-      id:3,
+      id: 3,
       name: "Sara Khan",
       role: "ML Engineer",
       initials: "SK",
@@ -75,7 +75,7 @@ export default function CandidatesPage() {
       credits: 10
     },
     {
-      id:4,
+      id: 4,
       name: "Khalid Al-Otaibi",
       role: "TA Lead",
       initials: "KO",
@@ -86,7 +86,7 @@ export default function CandidatesPage() {
       credits: 10
     },
     {
-      id:5,
+      id: 5,
       name: "Noura Bin Saeed",
       role: "Growth Manager",
       initials: "NB",
@@ -149,9 +149,9 @@ export default function CandidatesPage() {
             <div className="space-y-5 py-4">
               {/* Role filter */}
               <div className="space-y-2">
-                <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Role</label>
-                <input 
-                  type="text" 
+                <label className=" font-semibold text-slate-400 uppercase tracking-wider">Role</label>
+                <input
+                  type="text"
                   value={roleFilter}
                   onChange={(e) => setRoleFilter(e.target.value)}
                   placeholder="Search by role (e.g. Senior Designer)"
@@ -161,13 +161,13 @@ export default function CandidatesPage() {
 
               {/* Skills Filter with Tag Input */}
               <div className="space-y-2">
-                <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Skills</label>
+                <label className=" font-semibold text-slate-400 uppercase tracking-wider">Skills</label>
                 <div className="flex flex-wrap gap-2 items-center w-full bg-[#131926] border border-[#2A3C58]/60 focus-within:border-[#00D07C] rounded-xl p-2.5 transition-colors">
                   {skills.map((skill, idx) => (
-                    <Badge 
-                      key={idx} 
-                      variant="outline" 
-                      className="bg-[#1C263A] text-slate-200 border-[#2A3C58] rounded-md px-2 py-1 flex items-center gap-1.5 text-xs font-medium"
+                    <Badge
+                      key={idx}
+                      variant="outline"
+                      className="bg-[#1C263A] text-slate-200 border-[#2A3C58] rounded-md px-2 py-1 flex items-center gap-1.5  font-medium"
                     >
                       {skill}
                       <button onClick={() => handleRemoveSkill(skill)} className="text-slate-400 hover:text-white">
@@ -175,21 +175,21 @@ export default function CandidatesPage() {
                       </button>
                     </Badge>
                   ))}
-                  <input 
+                  <input
                     type="text"
                     value={skillInput}
                     onChange={(e) => setSkillInput(e.target.value)}
                     onKeyDown={handleAddSkill}
                     placeholder={skills.length === 0 ? "Add skills..." : "Add skills..."}
-                    className="flex-1 min-w-[120px] bg-transparent text-xs text-slate-200 placeholder-slate-500 focus:outline-none py-1"
+                    className="flex-1 min-w-[120px] bg-transparent  text-slate-200 placeholder-slate-500 focus:outline-none py-1"
                   />
                 </div>
-                <p className="text-[10px] text-slate-500">Separate skills with a comma or press Enter.</p>
+                <p className="text-[13px] text-slate-500">Separate skills with a comma or press Enter.</p>
               </div>
 
               {/* Experience level using Shadcn Select */}
               <div className="space-y-2">
-                <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Experience Level</label>
+                <label className=" font-semibold text-slate-400 uppercase tracking-wider">Experience Level</label>
                 <Select value={experienceLevel} onValueChange={(val) => setExperienceLevel(val || "All Levels")}>
                   <SelectTrigger className="w-full bg-[#131926] border-[#2A3C58]/60 text-slate-200 rounded-xl px-4 py-6 text-sm focus:border-[#00D07C] focus:ring-0! transition-colors">
                     <SelectValue placeholder="Select level" />
@@ -214,7 +214,7 @@ export default function CandidatesPage() {
                   </button>
                 }
               />
-              <button 
+              <button
                 onClick={() => setIsFiltersOpen(false)}
                 className="bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold px-6 py-2.5 rounded-xl text-sm transition-all shadow-md shadow-[#00D07C]/10 active:scale-[0.98]"
               >
@@ -228,8 +228,8 @@ export default function CandidatesPage() {
       {/* Candidates Cards Grid matching the second screenshot */}
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
         {initialCandidates.map((candidate, idx) => (
-          <div 
-            key={idx} 
+          <div
+            key={idx}
             className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-5 space-y-4 flex flex-col justify-between hover:border-[#2A3C58] transition-all duration-300 relative group cursor-pointer"
           >
             {/* Top row: Avatar, Name, Role, Match score */}
@@ -240,12 +240,12 @@ export default function CandidatesPage() {
                 </div>
                 <div>
                   <h3 className="text-base font-bold text-white tracking-tight">{candidate.name}</h3>
-                  <p className="text-xs text-slate-500 font-medium">{candidate.role}</p>
+                  <p className=" text-slate-500 font-medium">{candidate.role}</p>
                 </div>
               </div>
 
               {/* Match percentage badge with star */}
-              <span className="text-xs font-semibold text-[#00D07C] bg-[#00D07C]/10 border border-[#00D07C]/20 px-2.5 py-0.5 rounded-lg flex items-center gap-1">
+              <span className=" font-semibold text-[#00D07C] bg-[#00D07C]/10 border border-[#00D07C]/20 px-2.5 py-0.5 rounded-lg flex items-center gap-1">
                 <Sparkles className="h-3 w-3" />
                 {candidate.match}
               </span>
@@ -254,9 +254,9 @@ export default function CandidatesPage() {
             {/* Skills Badges */}
             <div className="flex flex-wrap gap-1.5">
               {candidate.skills.map((skill, sIdx) => (
-                <span 
-                  key={sIdx} 
-                  className="bg-[#162032] border border-[#2A3C58]/60 text-slate-400 text-[10px] font-semibold px-2.5 py-1 rounded-md"
+                <span
+                  key={sIdx}
+                  className="bg-[#162032] border border-[#2A3C58]/60 text-slate-400 text-[13px] font-semibold px-2.5 py-1 rounded-md"
                 >
                   {skill}
                 </span>
@@ -264,21 +264,21 @@ export default function CandidatesPage() {
             </div>
 
             {/* Experience, Location & Credit cost */}
-            <div className="flex items-center justify-between text-xs text-slate-500 font-medium border-t border-[#1E293B]/40 pt-3">
+            <div className="flex items-center justify-between  text-slate-500 font-medium border-t border-[#1E293B]/40 pt-3">
               <span>{candidate.exp} • {candidate.location}</span>
               <span>{candidate.credits} credits to unlock</span>
             </div>
 
             {/* Footer actions: Lock View profile, Message, Bot, Document */}
             <div className="flex items-center gap-2 pt-1.5">
-              <Link 
+              <Link
                 href={`/company/candidates/profile?id=${candidate.id}`}
-                className="flex-1 bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold py-2.5 px-4 rounded-xl text-xs flex items-center justify-center gap-1.5 transition-all shadow-md shadow-[#00D07C]/5 active:scale-[0.98]"
+                className="flex-1 bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold py-2.5 px-4 rounded-xl  flex items-center justify-center gap-1.5 transition-all shadow-md shadow-[#00D07C]/5 active:scale-[0.98]"
               >
                 <Lock className="h-3.5 w-3.5" />
                 View profile
               </Link>
-              
+
               <Link href={`/company/inbox?id=${candidate.id}`} className="p-2.5 bg-[#162032] border border-[#2A3C58]/60 text-slate-400 hover:text-white rounded-xl hover:border-[#00D07C]/40 transition-colors">
                 <MessageSquare className="h-4 w-4" />
               </Link>
@@ -287,7 +287,7 @@ export default function CandidatesPage() {
                 <Bot className="h-4 w-4" />
               </Link>
 
-              <button onClick={() => {}} className="p-2.5 bg-[#162032] border border-[#2A3C58]/60 text-slate-400 hover:text-white rounded-xl hover:border-[#00D07C]/40 transition-colors">
+              <button onClick={() => { }} className="p-2.5 bg-[#162032] border border-[#2A3C58]/60 text-slate-400 hover:text-white rounded-xl hover:border-[#00D07C]/40 transition-colors">
                 <FileText className="h-4 w-4" />
               </button>
             </div>

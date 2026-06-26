@@ -41,7 +41,7 @@ export default function MobileBottomNav() {
                 variant="ghost"
                 className={cn(
                   "w-full h-12 rounded-2xl",
-                  "text-[11px] font-semibold",
+                  "text-[13px] font-semibold",
                   "transition-colors",
                   isActive(pathname, item.href)
                     ? "bg-[#FF5C35] text-white hover:bg-[#FF5C35]"

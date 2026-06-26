@@ -164,7 +164,7 @@ export default function JobApplicantsPage() {
       <div>
         <Link
           href="/company/jobs"
-          className="inline-flex items-center gap-2 text-xs font-semibold text-slate-400 hover:text-white transition-colors"
+          className="inline-flex items-center gap-2  font-semibold text-slate-400 hover:text-white transition-colors"
         >
           <ArrowLeft className="h-4 w-4" />
           Back
@@ -190,13 +190,13 @@ export default function JobApplicantsPage() {
                   <X className="h-5 w-5" />
                 </button>} />
               </div>
-              <p className="text-xs text-slate-500 font-medium">Refine your applicant list</p>
+              <p className=" text-slate-500 font-medium">Refine your applicant list</p>
             </SheetHeader>
 
             <div className="flex-1 overflow-y-auto p-6 space-y-6">
               {/* Stage */}
               <div className="space-y-3">
-                <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider">Stage</h4>
+                <h4 className=" font-bold text-slate-400 uppercase tracking-wider">Stage</h4>
                 <div className="space-y-2">
                   {stages.map((stage) => (
                     <label key={stage} className="flex items-center gap-3 cursor-pointer group">
@@ -214,7 +214,7 @@ export default function JobApplicantsPage() {
 
               {/* Match Score Range */}
               <div className="space-y-3">
-                <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider">Match Score</h4>
+                <h4 className=" font-bold text-slate-400 uppercase tracking-wider">Match Score</h4>
                 <div className="flex items-center gap-3">
                   <input
                     type="number"
@@ -223,7 +223,7 @@ export default function JobApplicantsPage() {
                     onChange={(e) => setTempFilters((prev) => ({ ...prev, matchMin: e.target.value }))}
                     className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#00D07C] text-slate-200 placeholder-slate-500 rounded-xl px-3 py-2 text-sm focus:outline-none transition-colors"
                   />
-                  <span className="text-slate-500 text-xs">—</span>
+                  <span className="text-slate-500 ">—</span>
                   <input
                     type="number"
                     placeholder="Max"
@@ -236,7 +236,7 @@ export default function JobApplicantsPage() {
 
               {/* Location */}
               <div className="space-y-3">
-                <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider">Location</h4>
+                <h4 className=" font-bold text-slate-400 uppercase tracking-wider">Location</h4>
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-500" />
                   <input
@@ -251,7 +251,7 @@ export default function JobApplicantsPage() {
 
               {/* Experience Range */}
               <div className="space-y-3">
-                <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider">Experience (years)</h4>
+                <h4 className=" font-bold text-slate-400 uppercase tracking-wider">Experience (years)</h4>
                 <div className="flex items-center gap-3">
                   <input
                     type="number"
@@ -260,7 +260,7 @@ export default function JobApplicantsPage() {
                     onChange={(e) => setTempFilters((prev) => ({ ...prev, expMin: e.target.value }))}
                     className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#00D07C] text-slate-200 placeholder-slate-500 rounded-xl px-3 py-2 text-sm focus:outline-none transition-colors"
                   />
-                  <span className="text-slate-500 text-xs">—</span>
+                  <span className="text-slate-500 ">—</span>
                   <input
                     type="number"
                     placeholder="Max"
@@ -273,7 +273,7 @@ export default function JobApplicantsPage() {
 
               {/* Interview Status */}
               <div className="space-y-3">
-                <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider">Interview Status</h4>
+                <h4 className=" font-bold text-slate-400 uppercase tracking-wider">Interview Status</h4>
                 <div className="space-y-2">
                   {interviewStatuses.map((status) => (
                     <label key={status} className="flex items-center gap-3 cursor-pointer group">
@@ -291,7 +291,7 @@ export default function JobApplicantsPage() {
 
               {/* Sort By */}
               <div className="space-y-3">
-                <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider">Sort By</h4>
+                <h4 className=" font-bold text-slate-400 uppercase tracking-wider">Sort By</h4>
                 <select
                   value={tempFilters.sort}
                   onChange={(e) => setTempFilters((prev) => ({ ...prev, sort: e.target.value }))}
@@ -333,7 +333,7 @@ export default function JobApplicantsPage() {
             <button
               key={tab}
               onClick={() => setFilter(tab)}
-              className={`text-xs font-bold px-4.5 py-2 rounded-full border transition-all ${isActive
+              className={` font-bold px-4.5 py-2 rounded-full border transition-all ${isActive
                 ? "bg-[#00D07C] border-[#00D07C] text-[#080C14]"
                 : "border-slate-800 text-slate-400 hover:border-slate-700 hover:text-white"
                 }`}
@@ -348,7 +348,7 @@ export default function JobApplicantsPage() {
       {filtered.length === 0 ? (
         <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-12 text-center">
           <p className="text-slate-500 text-sm font-medium">No applicants match your filters.</p>
-          <button onClick={resetFilters} className="mt-3 text-[#00D07C] text-xs font-semibold hover:underline">
+          <button onClick={resetFilters} className="mt-3 text-[#00D07C]  font-semibold hover:underline">
             Reset filters
           </button>
         </div>
@@ -372,7 +372,7 @@ export default function JobApplicantsPage() {
                 </div>
                 <div>
                   <h3 className="text-base font-bold text-white tracking-tight group-hover:text-[#00D07C] transition-colors">{candidate.name}</h3>
-                  <p className="text-xs text-slate-500 font-semibold mt-0.5">
+                  <p className=" text-slate-500 font-semibold mt-0.5">
                     {candidate.role} <span className="text-slate-600">•</span> {candidate.location} <span className="text-slate-600">•</span> {candidate.exp}
                   </p>
                 </div>
@@ -380,11 +380,11 @@ export default function JobApplicantsPage() {
 
               {/* Match and Stage Badges */}
               <div className="flex items-center gap-2">
-                <span className="text-xs font-semibold text-[#00D07C] bg-[#00D07C]/10 border border-[#00D07C]/20 px-2.5 py-0.5 rounded-lg flex items-center gap-1">
+                <span className=" font-semibold text-[#00D07C] bg-[#00D07C]/10 border border-[#00D07C]/20 px-2.5 py-0.5 rounded-lg flex items-center gap-1">
                   <Sparkles className="h-3 w-3" />
                   {candidate.match} match
                 </span>
-                <span className="text-[10px] font-bold text-slate-400 bg-[#162032] border border-[#2A3C58]/60 px-2.5 py-0.5 rounded-md">
+                <span className="text-[13px] font-bold text-slate-400 bg-[#162032] border border-[#2A3C58]/60 px-2.5 py-0.5 rounded-md">
                   Stage: {candidate.stage}
                 </span>
               </div>
@@ -394,33 +394,33 @@ export default function JobApplicantsPage() {
             <div className="flex flex-col md:flex-row md:items-center justify-between pt-4 border-t border-[#1E293B]/40 gap-4">
               {/* Interview Status details */}
               <div className="flex-1 space-y-2">
-                <div className="flex items-center gap-2 text-xs font-semibold">
+                <div className="flex items-center gap-2  font-semibold">
                   <span className="text-slate-500">AI interview</span>
                   {candidate.interviewStatus === "Pending" && (
-                    <span className="text-slate-400 flex items-center gap-1 text-[11px]">
+                    <span className="text-slate-400 flex items-center gap-1 text-[13px]">
                       <Clock className="h-3.5 w-3.5" />
                       Pending
                     </span>
                   )}
                   {candidate.interviewStatus === "In progress" && (
-                    <span className="text-amber-400 flex items-center gap-1 text-[11px]">
+                    <span className="text-amber-400 flex items-center gap-1 text-[13px]">
                       <RefreshCw className="h-3.5 w-3.5 animate-spin" style={{ animationDuration: '6s' }} />
                       In progress
                     </span>
                   )}
                   {candidate.interviewStatus === "Completed" && (
                     <div className="flex items-center gap-3">
-                      <span className="text-[#00D07C] flex items-center gap-1 text-[11px]">
+                      <span className="text-[#00D07C] flex items-center gap-1 text-[13px]">
                         <CheckCircle2 className="h-3.5 w-3.5" />
                         Completed
                       </span>
-                      <span className="text-white font-bold text-[11px] bg-slate-800 px-2 py-0.5 rounded">
+                      <span className="text-white font-bold text-[13px] bg-slate-800 px-2 py-0.5 rounded">
                         {candidate.score}
                       </span>
                       <button onClick={(e) => {
                         e.stopPropagation();
                         router.push(`/company/candidates/interview/report?id=${candidate.id}`);
-                      }} className="text-white hover:underline text-[11px] font-bold">
+                      }} className="text-white hover:underline text-[13px] font-bold">
                         View report
                       </button>
                     </div>
@@ -433,7 +433,7 @@ export default function JobApplicantsPage() {
                     <div className="bg-[#00D07C] h-full rounded-full" style={{ width: `${candidate.progress}%` }} />
                   </div>
                 ) : (
-                  <p className="text-xs text-slate-500 leading-relaxed font-medium">{candidate.interviewDesc}</p>
+                  <p className=" text-slate-500 leading-relaxed font-medium">{candidate.interviewDesc}</p>
                 )}
               </div>
 
@@ -444,14 +444,14 @@ export default function JobApplicantsPage() {
                   router.push(`/company/inbox?id=${candidate.id}`);
 
 
-                }} className="flex items-center gap-1.5 border border-slate-700/80 hover:bg-slate-800 text-slate-300 px-4 py-2 rounded-xl text-xs font-bold transition-all active:scale-[0.98]">
+                }} className="flex items-center gap-1.5 border border-slate-700/80 hover:bg-slate-800 text-slate-300 px-4 py-2 rounded-xl  font-bold transition-all active:scale-[0.98]">
                   <MessageSquare className="h-3.5 w-3.5 text-slate-400" />
                   Message
                 </button>
                 <button onClick={(e) => {
                   e.stopPropagation();
                   router.push(`/company/candidates/${candidate.id}/interview`);
-                }} className="flex items-center gap-1.5 bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold px-4 py-2 rounded-xl text-xs transition-all shadow-md shadow-[#00D07C]/10 active:scale-[0.98]">
+                }} className="flex items-center gap-1.5 bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold px-4 py-2 rounded-xl  transition-all shadow-md shadow-[#00D07C]/10 active:scale-[0.98]">
                   <Video className="h-3.5 w-3.5" />
                   Set AI interview
                 </button>

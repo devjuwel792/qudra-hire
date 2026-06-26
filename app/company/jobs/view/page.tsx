@@ -25,7 +25,7 @@ export default function JobViewPage() {
       <div>
         <Link
           href="/company/jobs"
-          className="inline-flex items-center gap-2 text-xs font-semibold text-slate-400 hover:text-white transition-colors"
+          className="inline-flex items-center gap-2  font-semibold text-slate-400 hover:text-white transition-colors"
         >
           <ArrowLeft className="h-4 w-4" />
           Back
@@ -37,7 +37,7 @@ export default function JobViewPage() {
         <div className="space-y-2">
           <div className="flex items-center gap-3">
             <h1 className="text-3xl font-extrabold text-white tracking-tight">{job.role}</h1>
-            <span className="bg-[#00D07C]/10 text-[#00D07C] border border-[#00D07C]/20 px-3 py-0.5 rounded-full text-xs font-semibold">
+            <span className="bg-[#00D07C]/10 text-[#00D07C] border border-[#00D07C]/20 px-3 py-0.5 rounded-full  font-semibold">
               {job.status}
             </span>
           </div>
@@ -80,22 +80,22 @@ export default function JobViewPage() {
       {/* Stats Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-5 space-y-1">
-          <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Applicants</p>
+          <p className=" font-semibold text-slate-500 uppercase tracking-wider">Applicants</p>
           <p className="text-3xl font-extrabold text-white">{job.applicants}</p>
-          <p className="text-xs text-slate-500">Total candidates applied</p>
+          <p className=" text-slate-500">Total candidates applied</p>
         </div>
         <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-5 space-y-1">
-          <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">AI Match Score</p>
+          <p className=" font-semibold text-slate-500 uppercase tracking-wider">AI Match Score</p>
           <p className="text-3xl font-extrabold text-[#00D07C]">{job.matches}%</p>
-          <p className="text-xs text-slate-500">Average match across applicants</p>
+          <p className=" text-slate-500">Average match across applicants</p>
         </div>
         <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-5 space-y-1">
-          <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Status</p>
+          <p className=" font-semibold text-slate-500 uppercase tracking-wider">Status</p>
           <p className="text-3xl font-extrabold text-white flex items-center gap-2">
             <span className="h-3 w-3 rounded-full bg-[#00D07C] inline-block" />
             {job.status}
           </p>
-          <p className="text-xs text-slate-500">Listing is active and visible</p>
+          <p className=" text-slate-500">Listing is active and visible</p>
         </div>
       </div>
 
@@ -132,7 +132,7 @@ export default function JobViewPage() {
             </h3>
             <div className="flex flex-wrap gap-2">
               {job.skills.split(", ").map((skill, i) => (
-                <span key={i} className="bg-[#1E293B] text-slate-300 text-xs font-semibold px-2.5 py-1 rounded-lg border border-[#2A3C58]/40">
+                <span key={i} className="bg-[#1E293B] text-slate-300  font-semibold px-2.5 py-1 rounded-lg border border-[#2A3C58]/40">
                   {skill}
                 </span>
               ))}
@@ -142,7 +142,7 @@ export default function JobViewPage() {
           {/* Verification */}
           <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-6 space-y-3">
             <h3 className="text-sm font-bold text-white">Verification</h3>
-            <div className="flex items-center gap-2 text-xs text-slate-400">
+            <div className="flex items-center gap-2  text-slate-400">
               <ShieldCheck className="h-4 w-4 text-[#00D07C]" />
               Trade-licence verified
             </div>
@@ -151,7 +151,7 @@ export default function JobViewPage() {
           {/* Cost */}
           <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-6 space-y-4">
             <h3 className="text-sm font-bold text-white">Cost</h3>
-            <div className="space-y-2 text-xs font-semibold">
+            <div className="space-y-2  font-semibold">
               <div className="flex justify-between text-slate-400">
                 <span>Listing</span>
                 <span className="text-white">5 credits</span>
@@ -161,7 +161,7 @@ export default function JobViewPage() {
                 <span className="text-white">Free</span>
               </div>
             </div>
-            <div className="border-t border-[#1E293B]/60 pt-4 text-xs font-bold text-[#00D07C]">
+            <div className="border-t border-[#1E293B]/60 pt-4  font-bold text-[#00D07C]">
               Balance: 1,240 credits
             </div>
           </div>

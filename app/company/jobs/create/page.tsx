@@ -15,9 +15,9 @@ export default function PostJobPage() {
     <div className="p-8 space-y-8 max-w-7xl mx-auto">
       {/* Top Navigation Back / Title */}
       <div className="space-y-3">
-        <Link 
-          href="/company/jobs" 
-          className="inline-flex items-center gap-2 text-xs font-semibold text-slate-400 hover:text-white transition-colors"
+        <Link
+          href="/company/jobs"
+          className="inline-flex items-center gap-2  font-semibold text-slate-400 hover:text-white transition-colors"
         >
           <ArrowLeft className="h-4 w-4" />
           Back
@@ -28,7 +28,7 @@ export default function PostJobPage() {
             <h1 className="text-3xl font-extrabold text-white tracking-tight">Post a new job</h1>
             <p className="text-sm text-slate-400 mt-1">AI will shortlist your top 10 matches within minutes.</p>
           </div>
-          <span className="bg-[#00D07C]/10 text-[#00D07C] border border-[#00D07C]/20 px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5">
+          <span className="bg-[#00D07C]/10 text-[#00D07C] border border-[#00D07C]/20 px-3 py-1.5 rounded-full  font-semibold flex items-center gap-1.5">
             <ShieldCheck className="h-4 w-4" />
             Trade-licence verified
           </span>
@@ -38,12 +38,12 @@ export default function PostJobPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
         {/* Main Form (2/3 width) */}
         <div className="lg:col-span-2 bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-6 space-y-6">
-          
+
           {/* Job Title */}
           <div className="space-y-2">
-            <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Job title</label>
-            <input 
-              type="text" 
+            <label className=" font-bold text-slate-400 uppercase tracking-wider">Job title</label>
+            <input
+              type="text"
               defaultValue="Senior Product Designer"
               placeholder="e.g. Lead Developer"
               className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#00D07C] text-slate-200 placeholder-slate-500 rounded-xl px-4 py-3 text-sm focus:outline-none transition-colors"
@@ -52,9 +52,9 @@ export default function PostJobPage() {
 
           {/* Skills Tag input */}
           <div className="space-y-2">
-            <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Skills</label>
-            <input 
-              type="text" 
+            <label className=" font-bold text-slate-400 uppercase tracking-wider">Skills</label>
+            <input
+              type="text"
               placeholder="Enter Skills"
               className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#00D07C] text-slate-200 placeholder-slate-500 rounded-xl px-4 py-3 text-sm focus:outline-none transition-colors"
             />
@@ -63,18 +63,18 @@ export default function PostJobPage() {
           {/* Location & Employment Type (2 Columns) */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Location</label>
-              <input 
-                type="text" 
+              <label className=" font-bold text-slate-400 uppercase tracking-wider">Location</label>
+              <input
+                type="text"
                 defaultValue="Dubai, UAE"
                 placeholder="e.g. Riyadh, KSA"
                 className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#00D07C] text-slate-200 placeholder-slate-500 rounded-xl px-4 py-3 text-sm focus:outline-none transition-colors"
               />
             </div>
             <div className="space-y-2">
-              <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Employment type</label>
-              <input 
-                type="text" 
+              <label className=" font-bold text-slate-400 uppercase tracking-wider">Employment type</label>
+              <input
+                type="text"
                 defaultValue="Full-time"
                 placeholder="e.g. Contract, Part-time"
                 className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#00D07C] text-slate-200 placeholder-slate-500 rounded-xl px-4 py-3 text-sm focus:outline-none transition-colors"
@@ -85,18 +85,18 @@ export default function PostJobPage() {
           {/* Currency & Salary Range (2 Columns) */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Currency</label>
-              <input 
-                type="text" 
+              <label className=" font-bold text-slate-400 uppercase tracking-wider">Currency</label>
+              <input
+                type="text"
                 defaultValue="AED"
                 placeholder="e.g. SAR, USD"
                 className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#00D07C] text-slate-200 placeholder-slate-500 rounded-xl px-4 py-3 text-sm focus:outline-none transition-colors"
               />
             </div>
             <div className="space-y-2">
-              <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Salary range</label>
-              <input 
-                type="text" 
+              <label className=" font-bold text-slate-400 uppercase tracking-wider">Salary range</label>
+              <input
+                type="text"
                 defaultValue="28,000 — 36,000 / month"
                 placeholder="e.g. 15,000 - 20,000"
                 className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#00D07C] text-slate-200 placeholder-slate-500 rounded-xl px-4 py-3 text-sm focus:outline-none transition-colors"
@@ -106,8 +106,8 @@ export default function PostJobPage() {
 
           {/* Job Description */}
           <div className="space-y-2">
-            <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Job description</label>
-            <textarea 
+            <label className=" font-bold text-slate-400 uppercase tracking-wider">Job description</label>
+            <textarea
               rows={4}
               defaultValue="Own end-to-end design of our flagship banking app..."
               className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#00D07C] text-slate-200 placeholder-slate-500 rounded-xl p-4 text-sm focus:outline-none transition-colors resize-none"
@@ -116,8 +116,8 @@ export default function PostJobPage() {
 
           {/* Requirements */}
           <div className="space-y-2">
-            <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Requirements (one per line)</label>
-            <textarea 
+            <label className=" font-bold text-slate-400 uppercase tracking-wider">Requirements (one per line)</label>
+            <textarea
               rows={4}
               defaultValue={"6+ years product design\nFintech experience\nFluent English; Arabic a plus"}
               className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#00D07C] text-slate-200 placeholder-slate-500 rounded-xl p-4 text-sm focus:outline-none transition-colors resize-none"
@@ -126,44 +126,44 @@ export default function PostJobPage() {
 
           {/* GCC Flags Switches Group */}
           <div className="border border-[#1E293B]/60 rounded-xl p-5 space-y-4">
-            <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">GCC flags</h3>
-            
+            <h3 className=" font-bold text-slate-400 uppercase tracking-wider mb-2">GCC flags</h3>
+
             {/* Visa */}
             <div className="flex items-center justify-between">
-              <span className="text-xs font-semibold text-slate-300">Visa sponsorship offered</span>
-              <Switch 
-                checked={visaSp} 
-                onCheckedChange={setVisaSp} 
+              <span className=" font-semibold text-slate-300">Visa sponsorship offered</span>
+              <Switch
+                checked={visaSp}
+                onCheckedChange={setVisaSp}
                 className="data-checked:bg-[#00D07C]!"
               />
             </div>
 
             {/* Emiratization */}
             <div className="flex items-center justify-between">
-              <span className="text-xs font-semibold text-slate-300">Emiratization (UAE national priority)</span>
-              <Switch 
-                checked={emiratization} 
-                onCheckedChange={setEmiratization} 
+              <span className=" font-semibold text-slate-300">Emiratization (UAE national priority)</span>
+              <Switch
+                checked={emiratization}
+                onCheckedChange={setEmiratization}
                 className="data-checked:bg-[#00D07C]!"
               />
             </div>
 
             {/* Saudization */}
             <div className="flex items-center justify-between">
-              <span className="text-xs font-semibold text-slate-300">Saudization (Nitaqat-aligned)</span>
-              <Switch 
-                checked={saudization} 
-                onCheckedChange={setSaudization} 
+              <span className=" font-semibold text-slate-300">Saudization (Nitaqat-aligned)</span>
+              <Switch
+                checked={saudization}
+                onCheckedChange={setSaudization}
                 className="data-checked:bg-[#00D07C]!"
               />
             </div>
 
             {/* Remote */}
             <div className="flex items-center justify-between">
-              <span className="text-xs font-semibold text-slate-300">Open to remote</span>
-              <Switch 
-                checked={remote} 
-                onCheckedChange={setRemote} 
+              <span className=" font-semibold text-slate-300">Open to remote</span>
+              <Switch
+                checked={remote}
+                onCheckedChange={setRemote}
                 className="data-checked:bg-[#00D07C]!"
               />
             </div>
@@ -171,8 +171,8 @@ export default function PostJobPage() {
 
           {/* Action buttons */}
           <div className="flex justify-start gap-3 border-t border-[#1E293B]/60 pt-6">
-            <Link 
-              href="/company/jobs" 
+            <Link
+              href="/company/jobs"
               className="border border-slate-700/80 hover:bg-slate-800/60 text-slate-300 font-semibold px-6 py-2.5 rounded-xl text-sm transition-colors text-center"
             >
               Cancel
@@ -186,14 +186,14 @@ export default function PostJobPage() {
 
         {/* Sidebar Info Columns (1/3 width) */}
         <div className="space-y-6">
-          
+
           {/* What happens next */}
           <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-6 space-y-4">
             <h3 className="text-sm font-bold text-white flex items-center gap-1.5">
               <Sparkles className="h-4.5 w-4.5 text-[#00D07C]" />
               What happens next
             </h3>
-            <ol className="space-y-3.5 text-xs text-slate-400 list-decimal pl-4 leading-relaxed font-medium">
+            <ol className="space-y-3.5  text-slate-400 list-decimal pl-4 leading-relaxed font-medium">
               <li>AI scans 50,000+ candidate profiles</li>
               <li>Top 10 ranked shortlist within minutes</li>
               <li>Candidates appear anonymised — unlock with credits</li>
@@ -204,8 +204,8 @@ export default function PostJobPage() {
           {/* Cost breakdown */}
           <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-6 space-y-5">
             <h3 className="text-sm font-bold text-white">Cost</h3>
-            
-            <div className="space-y-3.5 text-xs font-semibold">
+
+            <div className="space-y-3.5  font-semibold">
               <div className="flex justify-between items-center text-slate-400">
                 <span>Job post</span>
                 <span className="text-white">5 credits</span>
@@ -220,7 +220,7 @@ export default function PostJobPage() {
               </div>
             </div>
 
-            <div className="border-t border-[#1E293B]/60 pt-4 text-xs font-bold text-[#00D07C]">
+            <div className="border-t border-[#1E293B]/60 pt-4  font-bold text-[#00D07C]">
               Balance: 1,240 credits
             </div>
           </div>

@@ -106,7 +106,7 @@ export default function CompanyDashboard() {
             className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-5 flex items-center justify-between hover:border-[#334155] transition-all duration-300 group cursor-pointer"
           >
             <div className="space-y-1">
-              <span className="text-xs font-medium text-slate-400 uppercase tracking-wider">{stat.label}</span>
+              <span className=" font-medium text-slate-400 uppercase tracking-wider">{stat.label}</span>
               <p className="text-3xl font-bold text-white tracking-tight">{stat.value}</p>
             </div>
             <div className={`${stat.bg} ${stat.color} p-3.5 rounded-xl group-hover:scale-110 transition-transform duration-300`}>
@@ -124,7 +124,7 @@ export default function CompanyDashboard() {
             <h2 className="text-lg font-bold text-white flex items-center gap-2">
               Recruitment pipeline
             </h2>
-            <Link href={"/company/candidates"} className="text-xs text-[#00D07C] font-semibold hover:underline flex items-center gap-1.5">
+            <Link href={"/company/candidates"} className=" text-[#00D07C] font-semibold hover:underline flex items-center gap-1.5">
               Open board <ExternalLink className="h-3.5 w-3.5" />
             </Link>
           </div>
@@ -134,8 +134,8 @@ export default function CompanyDashboard() {
             {pipelineStages.map((stage, idx) => (
               <div key={idx} className="bg-[#0A0F1D]/60 rounded-xl p-3 flex flex-col space-y-3">
                 <div className="flex items-center justify-between border-b border-[#1E293B]/40 pb-2">
-                  <span className="text-xs font-semibold text-slate-300">{stage.title}</span>
-                  <span className="text-[10px] font-bold text-slate-500 bg-[#0F172A] px-2 py-0.5 rounded-full">{stage.count}</span>
+                  <span className=" font-semibold text-slate-300">{stage.title}</span>
+                  <span className="text-[13px] font-bold text-slate-500 bg-[#0F172A] px-2 py-0.5 rounded-full">{stage.count}</span>
                 </div>
 
                 <div className="flex-1 space-y-2 overflow-y-auto">
@@ -144,7 +144,7 @@ export default function CompanyDashboard() {
                       key={candidate.id}
                       className="bg-[#162032] border border-[#2A3C58]/60 rounded-lg p-2.5 hover:border-[#00D07C]/50 transition-all duration-200 cursor-pointer group"
                     ><Link href={`/company/candidates/profile?id=${candidate.id}`} >
-                        <p className="text-xs font-semibold text-slate-200 truncate group-hover:text-white">{candidate.name}</p>
+                        <p className=" font-semibold text-slate-200 truncate group-hover:text-white">{candidate.name}</p>
                         <div className="flex items-center justify-between mt-1.5">
                           <span className="text-[9px] text-slate-500 truncate max-w-[50px]">{candidate.role.split(" ")[0]}</span>
                           <span className="text-[9px] font-semibold text-[#00D07C] flex items-center gap-0.5">
@@ -183,7 +183,7 @@ export default function CompanyDashboard() {
                     </div>
                     <div>
                       <p className="text-sm font-semibold text-slate-200">{match.name}</p>
-                      <p className="text-xs text-slate-500">{match.role}</p>
+                      <p className=" text-slate-500">{match.role}</p>
                     </div>
                   </div>
                   <span className="text-sm font-bold text-[#00D07C] bg-[#00D07C]/10 px-2.5 py-1 rounded-lg">
@@ -203,7 +203,7 @@ export default function CompanyDashboard() {
           <h2 className="text-lg font-bold text-white flex items-center gap-2">
             Open roles
           </h2>
-          <Link href={"company/jobs"} className="text-xs text-slate-400 hover:text-white font-semibold flex items-center gap-1">
+          <Link href={"company/jobs"} className=" text-slate-400 hover:text-white font-semibold flex items-center gap-1">
             Manage
           </Link>
         </div>
@@ -213,7 +213,7 @@ export default function CompanyDashboard() {
             <div key={idx} className="flex flex-col sm:flex-row justify-between items-start sm:items-center py-4.5 first:pt-0 last:pb-0 gap-4 group">
               <div className="space-y-1">
                 <h3 className="text-base font-semibold text-slate-200 group-hover:text-white transition-colors">{role.title}</h3>
-                <div className="flex items-center gap-4 text-xs text-slate-500">
+                <div className="flex items-center gap-4  text-slate-500">
                   <span className="flex items-center gap-1">
                     <MapPin className="h-3.5 w-3.5 text-slate-600" />
                     {role.location}
@@ -225,10 +225,10 @@ export default function CompanyDashboard() {
                 </div>
               </div>
               <div className="flex items-center gap-6 w-full sm:w-auto justify-between sm:justify-end">
-                <span className="text-xs font-medium text-slate-400">
+                <span className=" font-medium text-slate-400">
                   <strong className="text-white font-semibold">{role.applicants}</strong> applicants
                 </span>
-                <Link href={"company/jobs/applicants"} className="border border-[#00D07C]/40 text-[#00D07C] hover:bg-[#00D07C] hover:text-[#080C14] px-4 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200">
+                <Link href={"company/jobs/applicants"} className="border border-[#00D07C]/40 text-[#00D07C] hover:bg-[#00D07C] hover:text-[#080C14] px-4 py-1.5 rounded-lg  font-semibold transition-all duration-200">
                   Open
                 </Link>
               </div>

@@ -1,25 +1,25 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { 
-  ArrowLeft, 
-  Check, 
-  Sparkles, 
-  RotateCcw, 
-  Eye, 
-  ArrowRight, 
-  CheckCircle2, 
-  MapPin, 
-  Clock, 
-  DollarSign, 
-  FileText 
+import {
+  ArrowLeft,
+  Check,
+  Sparkles,
+  RotateCcw,
+  Eye,
+  ArrowRight,
+  CheckCircle2,
+  MapPin,
+  Clock,
+  DollarSign,
+  FileText
 } from "lucide-react";
 import Link from "next/link";
 
 export default function JobDetailPage() {
   // States: 'initial' | 'tailoring' | 'tailored' | 'comparison' | 'success'
   const [rightState, setRightState] = useState<"initial" | "tailoring" | "tailored" | "comparison" | "success">("initial");
-  
+
   // Steps for tailoring animation
   const [tailoringSteps, setTailoringSteps] = useState([
     { id: 1, text: "Extracting keywords from job description", done: false },
@@ -46,7 +46,7 @@ export default function JobDetailPage() {
     const timings = [500, 1200, 2000, 2800, 3600];
     timings.forEach((ms, idx) => {
       setTimeout(() => {
-        setTailoringSteps(prev => 
+        setTailoringSteps(prev =>
           prev.map((step, i) => i === idx ? { ...step, done: true } : step)
         );
         setProgressWidth((idx + 1) * 20);
@@ -62,8 +62,8 @@ export default function JobDetailPage() {
     <div className="p-8 space-y-6 max-w-7xl mx-auto text-white">
       {/* Back button */}
       <div>
-        <Link 
-          href="/candidate" 
+        <Link
+          href="/candidate"
           className="inline-flex items-center gap-2 text-slate-400 hover:text-white text-sm font-semibold transition-colors"
         >
           <ArrowLeft className="h-4 w-4" />
@@ -73,7 +73,7 @@ export default function JobDetailPage() {
 
       {/* Main Grid: Job Details (Left) vs CV Matcher (Right) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-        
+
         {/* Left Column: Job Description (7 cols on lg) */}
         <div className="lg:col-span-7 bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-6 space-y-6">
           {/* Header */}
@@ -83,10 +83,10 @@ export default function JobDetailPage() {
                 ENB
               </div>
               <div>
-                <p className="text-xs text-slate-400 font-semibold">Emirates NBD</p>
+                <p className=" text-slate-400 font-semibold">Emirates NBD</p>
                 <h1 className="text-xl font-bold text-white leading-tight">Senior Product Designer</h1>
-                
-                <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-slate-400 text-[10px] font-semibold mt-1">
+
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-slate-400 text-[13px] font-semibold mt-1">
                   <span className="flex items-center gap-1"><MapPin className="h-3 w-3" />Dubai, UAE</span>
                   <span className="flex items-center gap-1"><Clock className="h-3 w-3" />Full-time</span>
                   <span className="flex items-center gap-1"><DollarSign className="h-3 w-3" />AED 28k-35k</span>
@@ -94,8 +94,8 @@ export default function JobDetailPage() {
                 </div>
               </div>
             </div>
-            
-            <span className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-[#00D07C]/15 border border-[#00D07C]/30 text-[#00D07C] flex-shrink-0">
+
+            <span className="text-[13px] font-bold px-2.5 py-1 rounded-full bg-[#00D07C]/15 border border-[#00D07C]/30 text-[#00D07C] flex-shrink-0">
               78% match
             </span>
           </div>
@@ -103,7 +103,7 @@ export default function JobDetailPage() {
           {/* About the role */}
           <div className="space-y-2">
             <h2 className="text-sm font-bold text-white">About the role</h2>
-            <p className="text-xs text-slate-300 leading-relaxed font-medium">
+            <p className=" text-slate-300 leading-relaxed font-medium">
               Lead end-to-end product design for Emirates NBD's flagship mobile banking experience, serving over 9M customers across the GCC. You'll partner closely with product, engineering, and research to ship measurable improvements to the core banking journey.
             </p>
           </div>
@@ -111,7 +111,7 @@ export default function JobDetailPage() {
           {/* Responsibilities */}
           <div className="space-y-2">
             <h2 className="text-sm font-bold text-white">Responsibilities</h2>
-            <ul className="space-y-2 text-xs text-slate-300 font-medium">
+            <ul className="space-y-2  text-slate-300 font-medium">
               <li className="flex items-start gap-2">
                 <span className="text-[#00D07C] font-extrabold mt-0.5">&gt;</span>
                 <span>Own the design vision for two core squads within retail banking</span>
@@ -134,7 +134,7 @@ export default function JobDetailPage() {
           {/* Required skills */}
           <div className="space-y-2">
             <h2 className="text-sm font-bold text-white">Required skills</h2>
-            <div className="flex flex-wrap gap-2 text-xs text-slate-300 font-semibold">
+            <div className="flex flex-wrap gap-2  text-slate-300 font-semibold">
               <span>Figma</span> • <span>Design systems</span> • <span>UX research</span> • <span>Prototyping</span> • <span>Mobile design</span>
             </div>
           </div>
@@ -142,7 +142,7 @@ export default function JobDetailPage() {
           {/* Preferred skills */}
           <div className="space-y-2">
             <h2 className="text-sm font-bold text-white">Preferred skills</h2>
-            <div className="flex flex-wrap gap-2 text-xs text-slate-300 font-semibold">
+            <div className="flex flex-wrap gap-2  text-slate-300 font-semibold">
               <span>Fintech experience</span> • <span>Arabic localization</span> • <span>Motion design</span> • <span>Accessibility (WCAG)</span>
             </div>
           </div>
@@ -150,7 +150,7 @@ export default function JobDetailPage() {
           {/* Benefits */}
           <div className="space-y-2 border-t border-[#1E293B]/40 pt-4">
             <h2 className="text-sm font-bold text-white">Benefits</h2>
-            <ul className="space-y-1.5 text-xs text-slate-300 font-medium">
+            <ul className="space-y-1.5  text-slate-300 font-medium">
               <li>✓ Full health coverage for you and dependents</li>
               <li>✓ 30 days paid leave plus public holidays</li>
               <li>✓ Annual flight allowance home</li>
@@ -168,10 +168,10 @@ export default function JobDetailPage() {
               {/* CV Match Card */}
               <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-6 space-y-5">
                 <div className="flex justify-between items-center">
-                  <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider">CV match score</h3>
-                  <span className="text-xs font-bold text-slate-500">Current CV</span>
+                  <h3 className=" font-bold text-slate-400 uppercase tracking-wider">CV match score</h3>
+                  <span className=" font-bold text-slate-500">Current CV</span>
                 </div>
-                
+
                 <div className="space-y-1">
                   <div className="text-4xl font-extrabold text-white tracking-tight">78%</div>
                   <div className="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
@@ -181,8 +181,8 @@ export default function JobDetailPage() {
 
                 <div className="space-y-4 pt-2">
                   <div className="space-y-2">
-                    <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block">Matched</span>
-                    <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-slate-300 font-semibold">
+                    <span className="text-[13px] font-bold text-slate-500 uppercase tracking-wider block">Matched</span>
+                    <div className="flex flex-wrap gap-x-3 gap-y-1  text-slate-300 font-semibold">
                       <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-[#00D07C]" />Figma</span>
                       <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-[#00D07C]" />Design systems</span>
                       <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-[#00D07C]" />UX research</span>
@@ -192,13 +192,13 @@ export default function JobDetailPage() {
                   </div>
 
                   <div className="space-y-2">
-                    <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block">Missing</span>
-                    <span className="text-xs text-slate-500 font-bold">—</span>
+                    <span className="text-[13px] font-bold text-slate-500 uppercase tracking-wider block">Missing</span>
+                    <span className=" text-slate-500 font-bold">—</span>
                   </div>
 
                   <div className="space-y-2">
-                    <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block">Recommended</span>
-                    <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-slate-400 font-semibold">
+                    <span className="text-[13px] font-bold text-slate-500 uppercase tracking-wider block">Recommended</span>
+                    <div className="flex flex-wrap gap-x-3 gap-y-1  text-slate-400 font-semibold">
                       <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-slate-700" />Fintech experience</span>
                       <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-slate-700" />Arabic localization</span>
                       <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-slate-700" />Motion design</span>
@@ -206,7 +206,7 @@ export default function JobDetailPage() {
                   </div>
                 </div>
 
-                <button 
+                <button
                   onClick={startTailoring}
                   className="w-full flex items-center justify-center gap-2 bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold py-3 px-5 rounded-xl transition-all shadow-md shadow-[#00D07C]/10 active:scale-[0.98]"
                 >
@@ -225,18 +225,18 @@ export default function JobDetailPage() {
             <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-6 space-y-6">
               <div className="flex items-center gap-2">
                 <span className="h-2.5 w-2.5 rounded-full bg-[#00D07C] animate-ping" />
-                <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider">AI is tailoring your CV...</h3>
+                <h3 className=" font-bold text-slate-400 uppercase tracking-wider">AI is tailoring your CV...</h3>
               </div>
 
               <div className="space-y-4">
                 {tailoringSteps.map((step) => (
-                  <div key={step.id} className="flex items-center gap-3 text-xs font-semibold">
+                  <div key={step.id} className="flex items-center gap-3  font-semibold">
                     {step.done ? (
                       <span className="h-5 w-5 rounded-full bg-[#00D07C]/10 border border-[#00D07C]/20 text-[#00D07C] flex items-center justify-center flex-shrink-0">
                         <Check className="h-3.5 w-3.5" />
                       </span>
                     ) : (
-                      <span className="h-5 w-5 rounded-full border border-slate-700 text-slate-500 flex items-center justify-center flex-shrink-0 text-[10px]">
+                      <span className="h-5 w-5 rounded-full border border-slate-700 text-slate-500 flex items-center justify-center flex-shrink-0 text-[13px]">
                         {step.id}
                       </span>
                     )}
@@ -259,14 +259,14 @@ export default function JobDetailPage() {
               {/* Tailored Results Card */}
               <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-6 space-y-5">
                 <div className="flex justify-between items-center">
-                  <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider">Updated Match</h3>
-                  <span className="text-[10px] font-bold bg-[#00D07C]/15 border border-[#00D07C]/30 text-[#00D07C] px-2 py-0.5 rounded-md">Tailored CV</span>
+                  <h3 className=" font-bold text-slate-400 uppercase tracking-wider">Updated Match</h3>
+                  <span className="text-[13px] font-bold bg-[#00D07C]/15 border border-[#00D07C]/30 text-[#00D07C] px-2 py-0.5 rounded-md">Tailored CV</span>
                 </div>
 
                 <div className="space-y-1">
                   <div className="flex items-baseline gap-2">
                     <span className="text-4xl font-extrabold text-white tracking-tight">96%</span>
-                    <span className="text-[10px] font-bold text-[#00D07C] bg-[#00D07C]/10 border border-[#00D07C]/20 px-2 py-0.5 rounded">
+                    <span className="text-[13px] font-bold text-[#00D07C] bg-[#00D07C]/10 border border-[#00D07C]/20 px-2 py-0.5 rounded">
                       78% +18
                     </span>
                   </div>
@@ -276,8 +276,8 @@ export default function JobDetailPage() {
                 </div>
 
                 <div className="space-y-3 pt-2">
-                  <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block">What changed</span>
-                  <div className="space-y-2 text-xs text-slate-300 font-semibold">
+                  <span className="text-[13px] font-bold text-slate-500 uppercase tracking-wider block">What changed</span>
+                  <div className="space-y-2  text-slate-300 font-semibold">
                     <p className="flex items-start gap-2">
                       <span className="text-[#00D07C] font-bold">+</span>
                       <span>Added keywords: Figma, Design systems, UX research</span>
@@ -294,23 +294,23 @@ export default function JobDetailPage() {
                 </div>
 
                 <div className="grid grid-cols-3 gap-2">
-                  <button 
+                  <button
                     onClick={startTailoring}
-                    className="border border-slate-700/80 hover:bg-slate-800 text-slate-300 py-2.5 rounded-xl text-[11px] font-bold flex items-center justify-center gap-1"
+                    className="border border-slate-700/80 hover:bg-slate-800 text-slate-300 py-2.5 rounded-xl text-[13px] font-bold flex items-center justify-center gap-1"
                   >
                     <RotateCcw className="h-3 w-3" />
                     Regenerate
                   </button>
-                  <button 
+                  <button
                     onClick={() => setRightState("comparison")}
-                    className="border border-slate-700/80 hover:bg-slate-800 text-slate-300 py-2.5 rounded-xl text-[11px] font-bold flex items-center justify-center gap-1"
+                    className="border border-slate-700/80 hover:bg-slate-800 text-slate-300 py-2.5 rounded-xl text-[13px] font-bold flex items-center justify-center gap-1"
                   >
                     <Eye className="h-3 w-3" />
                     Compare versions
                   </button>
-                  <button 
+                  <button
                     onClick={() => setRightState("success")}
-                    className="bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] py-2.5 rounded-xl text-[11px] font-bold flex items-center justify-center gap-1"
+                    className="bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] py-2.5 rounded-xl text-[13px] font-bold flex items-center justify-center gap-1"
                   >
                     Use tailored CV
                     <ArrowRight className="h-3.5 w-3.5" />
@@ -327,10 +327,10 @@ export default function JobDetailPage() {
           {rightState === "comparison" && (
             <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-6 space-y-6">
               <div className="flex justify-between items-center">
-                <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider">Side-by-side comparison</h3>
-                <button 
+                <h3 className=" font-bold text-slate-400 uppercase tracking-wider">Side-by-side comparison</h3>
+                <button
                   onClick={() => setRightState("tailored")}
-                  className="text-xs text-slate-400 hover:text-white font-bold flex items-center gap-1 transition-colors"
+                  className=" text-slate-400 hover:text-white font-bold flex items-center gap-1 transition-colors"
                 >
                   <ArrowLeft className="h-3 w-3" />
                   Back
@@ -340,28 +340,28 @@ export default function JobDetailPage() {
               {/* Two columns stats check */}
               <div className="grid grid-cols-2 gap-4">
                 <div className="p-4 rounded-xl bg-[#0A0F1D]/60 border border-[#1E293B]/40 space-y-3">
-                  <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block">Original</span>
+                  <span className="text-[13px] font-bold text-slate-500 uppercase tracking-wider block">Original</span>
                   <div className="text-3xl font-extrabold text-white">78%</div>
                   <div className="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
                     <div className="bg-slate-500 h-full rounded-full" style={{ width: "78%" }} />
                   </div>
-                  <p className="text-[10px] text-slate-500 font-semibold">Missing: —</p>
+                  <p className="text-[13px] text-slate-500 font-semibold">Missing: —</p>
                 </div>
 
                 <div className="p-4 rounded-xl bg-[#0A0F1D]/60 border border-[#00D07C]/25 space-y-3">
-                  <span className="text-[10px] font-bold text-[#00D07C] uppercase tracking-wider block">Tailored</span>
+                  <span className="text-[13px] font-bold text-[#00D07C] uppercase tracking-wider block">Tailored</span>
                   <div className="text-3xl font-extrabold text-[#00D07C]">96%</div>
                   <div className="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
                     <div className="bg-[#00D07C] h-full rounded-full" style={{ width: "96%" }} />
                   </div>
-                  <p className="text-[10px] text-[#00D07C] font-semibold">All required skills addressed</p>
+                  <p className="text-[13px] text-[#00D07C] font-semibold">All required skills addressed</p>
                 </div>
               </div>
 
               {/* Changes list */}
               <div className="space-y-3">
-                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block">Changes summary</span>
-                <div className="space-y-2 text-xs text-slate-300 font-semibold">
+                <span className="text-[13px] font-bold text-slate-500 uppercase tracking-wider block">Changes summary</span>
+                <div className="space-y-2  text-slate-300 font-semibold">
                   <p className="flex items-start gap-2">
                     <span className="text-[#00D07C] font-bold">+</span>
                     <span>Added keywords aligned with Emirates NBD's job description</span>
@@ -377,7 +377,7 @@ export default function JobDetailPage() {
                 </div>
               </div>
 
-              <button 
+              <button
                 onClick={() => setRightState("success")}
                 className="w-full flex items-center justify-center gap-1.5 bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold py-3 px-5 rounded-xl transition-all shadow-md shadow-[#00D07C]/10 active:scale-[0.98]"
               >
@@ -395,18 +395,18 @@ export default function JobDetailPage() {
               </div>
               <div className="space-y-1">
                 <h3 className="text-base font-extrabold text-white tracking-tight">Application Submitted!</h3>
-                <p className="text-xs text-slate-400 leading-relaxed font-semibold">
+                <p className=" text-slate-400 leading-relaxed font-semibold">
                   Your tailored CV (96% ATS match score) has been sent to Emirates NBD successfully.
                 </p>
               </div>
 
-              <div className="p-4 rounded-xl bg-[#0A0F1D]/60 border border-[#1E293B]/60 text-xs text-slate-400 font-medium leading-relaxed max-w-sm mx-auto">
+              <div className="p-4 rounded-xl bg-[#0A0F1D]/60 border border-[#1E293B]/60  text-slate-400 font-medium leading-relaxed max-w-sm mx-auto">
                 You can track this application in your Applications dashboard or check for recruiter messages in the Inbox.
               </div>
 
-              <button 
-                disabled 
-                className="w-full bg-[#1E293B] text-slate-500 border border-slate-800 font-bold py-3 px-5 rounded-xl text-xs flex items-center justify-center gap-2 cursor-not-allowed"
+              <button
+                disabled
+                className="w-full bg-[#1E293B] text-slate-500 border border-slate-800 font-bold py-3 px-5 rounded-xl  flex items-center justify-center gap-2 cursor-not-allowed"
               >
                 <CheckCircle2 className="h-4 w-4 text-[#00D07C]" />
                 Already Applied
@@ -426,26 +426,26 @@ function CVPreviewComponent({ name, email, tailored = false }: { name: string; e
   return (
     <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl overflow-hidden flex flex-col">
       <div className="p-4 border-b border-[#1E293B]/60 bg-[#0F172A]/80 flex justify-between items-center">
-        <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">CV preview • PDF</span>
+        <span className="text-[13px] font-bold text-slate-500 uppercase tracking-wider">CV preview • PDF</span>
         <div className="flex items-center gap-1.5">
-          <button className="text-[10px] bg-slate-800 hover:bg-slate-700 border border-slate-700/80 px-2 py-0.5 rounded font-bold">-</button>
-          <button className="text-[10px] bg-slate-800 hover:bg-slate-700 border border-slate-700/80 px-2 py-0.5 rounded font-bold">+</button>
+          <button className="text-[13px] bg-slate-800 hover:bg-slate-700 border border-slate-700/80 px-2 py-0.5 rounded font-bold">-</button>
+          <button className="text-[13px] bg-slate-800 hover:bg-slate-700 border border-slate-700/80 px-2 py-0.5 rounded font-bold">+</button>
           <button className="text-[9px] bg-slate-800 hover:bg-slate-700 border border-slate-700/80 px-2.5 py-0.5 rounded font-extrabold uppercase tracking-wider">Fullscreen</button>
         </div>
       </div>
 
-      <div className="p-6 bg-[#080C14] text-left text-xs space-y-4">
+      <div className="p-6 bg-[#080C14] text-left  space-y-4">
         {/* PDF Name */}
         <div>
           <h4 className="text-sm font-extrabold text-white">{name}</h4>
-          <p className="text-[10px] text-slate-400 font-semibold mt-0.5">Product Designer • 6 yrs • Dubai, UAE • {email}</p>
+          <p className="text-[13px] text-slate-400 font-semibold mt-0.5">Product Designer • 6 yrs • Dubai, UAE • {email}</p>
         </div>
 
         {/* PDF Summary */}
         <div className="space-y-1">
           <span className="text-[9px] font-bold text-slate-500 uppercase tracking-wider block">Summary</span>
-          <p className="text-[11px] text-slate-300 leading-relaxed font-semibold">
-            {tailored 
+          <p className="text-[13px] text-slate-300 leading-relaxed font-semibold">
+            {tailored
               ? "Product designer with 6 years across fintech and consumer mobile. Strong systems thinker, comfortable shipping in fast cycles. Recently focused on Figma and Design systems for Emirates NBD-scale products."
               : "UX/UI Designer with 6 years experience in mobile wallet apps, digital banking, and telecom systems. Highly skilled in Figma, workflow systems, and cross-functional team delivery."
             }
@@ -467,7 +467,7 @@ function CVPreviewComponent({ name, email, tailored = false }: { name: string; e
         {/* PDF Experience */}
         <div className="space-y-2">
           <span className="text-[9px] font-bold text-slate-500 uppercase tracking-wider block">Experience</span>
-          <div className="space-y-1.5 text-[10px] font-semibold">
+          <div className="space-y-1.5 text-[13px] font-semibold">
             <div className="flex justify-between items-baseline">
               <span className="text-white">Product Designer - Tabby</span>
               <span className="text-slate-500 text-[9px]">2022 — Present</span>

@@ -45,7 +45,7 @@ export default function SiteHeader() {
   return (
     <>
       <div className="bg-[#FF5C35] text-white">
-        <div className="container mx-auto max-w-7xl flex flex-col sm:flex-row items-center justify-between px-6 sm:px-8 py-2 text-[10px] sm:text-xs font-bold tracking-widest uppercase text-center sm:text-left gap-1 sm:gap-0">
+        <div className="container mx-auto max-w-7xl flex flex-col sm:flex-row items-center justify-between px-6 sm:px-8 py-2 text-[13px] sm: font-bold tracking-widest uppercase text-center sm:text-left gap-1 sm:gap-0">
           <span>FREE SHIPPING ON ORDERS OVER $75</span>
           <span>BACK TO SCHOOL SALE - UP TO 20% OFF!</span>
         </div>

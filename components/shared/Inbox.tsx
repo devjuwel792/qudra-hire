@@ -79,7 +79,7 @@ export default function Inbox({
                 <input
                   type="text"
                   placeholder="Search messages..."
-                  className="w-full bg-[#080C14] border border-[#1E293B]/60 rounded-lg py-1.5 pl-9 pr-4 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-[#00D07C]"
+                  className="w-full bg-[#080C14] border border-[#1E293B]/60 rounded-lg py-1.5 pl-9 pr-4  text-slate-200 placeholder-slate-500 focus:outline-none focus:border-[#00D07C]"
                 />
               </div>
             </div>
@@ -89,23 +89,22 @@ export default function Inbox({
               <div
                 key={chat.id}
                 onClick={() => selectChat(idx)}
-                className={`p-4 lg:p-5 flex gap-3 cursor-pointer transition-colors text-left ${
-                  activeChat === idx ? "bg-[#162032]" : "hover:bg-[#162032]/40"
-                }`}
+                className={`p-4 lg:p-5 flex gap-3 cursor-pointer transition-colors text-left ${activeChat === idx ? "bg-[#162032]" : "hover:bg-[#162032]/40"
+                  }`}
               >
                 <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-[#1E293B] to-[#0F172A] border border-[#2E3C51] flex items-center justify-center font-bold text-slate-300 text-sm flex-shrink-0">
                   {chat.initials ?? chat.name.slice(0, 2).toUpperCase()}
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between">
-                    <p className="text-xs font-semibold text-white truncate">{chat.name}</p>
-                    <span className="text-[10px] text-slate-500 flex-shrink-0 ml-2">{chat.time}</span>
+                    <p className=" font-semibold text-white truncate">{chat.name}</p>
+                    <span className="text-[13px] text-slate-500 flex-shrink-0 ml-2">{chat.time}</span>
                   </div>
-                  <p className="text-[11px] text-[#00D07C] truncate mt-0.5 font-medium">{chat.role}</p>
-                  <p className="text-xs text-slate-400 truncate mt-1">{chat.lastMsg}</p>
+                  <p className="text-[13px] text-[#00D07C] truncate mt-0.5 font-medium">{chat.role}</p>
+                  <p className=" text-slate-400 truncate mt-1">{chat.lastMsg}</p>
                 </div>
                 {chat.unread > 0 && (
-                  <span className="h-5 w-5 rounded-full bg-[#00D07C] flex items-center justify-center text-[10px] font-bold text-white flex-shrink-0 self-center">
+                  <span className="h-5 w-5 rounded-full bg-[#00D07C] flex items-center justify-center text-[13px] font-bold text-white flex-shrink-0 self-center">
                     {chat.unread}
                   </span>
                 )}
@@ -124,13 +123,13 @@ export default function Inbox({
               </div>
               <div>
                 <p className="text-sm font-semibold text-white">{selectedChat.name}</p>
-                <p className="text-xs text-slate-400 font-medium">
+                <p className=" text-slate-400 font-medium">
                   {selectedChat.role}{selectedChat.location ? ` • ${selectedChat.location}` : ""}
                 </p>
               </div>
             </div>
             {showMatchBadge && selectedChat.match && (
-              <span className="text-xs text-[#00D07C] bg-[#00D07C]/10 px-2 py-0.5 rounded-md font-semibold flex items-center gap-1">
+              <span className=" text-[#00D07C] bg-[#00D07C]/10 px-2 py-0.5 rounded-md font-semibold flex items-center gap-1">
                 <Sparkles className="h-3 w-3" />
                 {selectedChat.match}% Match
               </span>
@@ -147,11 +146,10 @@ export default function Inbox({
                   className={`flex flex-col space-y-1 max-w-[70%] ${isMe ? "ml-auto items-end" : "items-start"}`}
                 >
                   <div
-                    className={`px-4 py-3 rounded-2xl text-xs font-medium leading-relaxed ${
-                      isMe
-                        ? "bg-[#00D07C] text-[#080C14] rounded-tr-none"
-                        : "bg-[#1E293B] text-slate-200 rounded-tl-none"
-                    }`}
+                    className={`px-4 py-3 rounded-2xl  font-medium leading-relaxed ${isMe
+                      ? "bg-[#00D07C] text-[#080C14] rounded-tr-none"
+                      : "bg-[#1E293B] text-slate-200 rounded-tl-none"
+                      }`}
                   >
                     {msg.text}
                   </div>
@@ -167,7 +165,7 @@ export default function Inbox({
               placeholder="Write a message..."
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
-              className="flex-1 bg-[#080C14] border border-[#1E293B]/60 rounded-xl px-4 py-3 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-[#00D07C]"
+              className="flex-1 bg-[#080C14] border border-[#1E293B]/60 rounded-xl px-4 py-3  text-slate-200 placeholder-slate-500 focus:outline-none focus:border-[#00D07C]"
             />
             <button
               type="submit"

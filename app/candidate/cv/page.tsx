@@ -36,16 +36,16 @@ export default function CandidateCVPage() {
         </div>
         <div className="space-y-1">
           <h3 className="text-lg font-bold text-white">Drop your CV here</h3>
-          <p className="text-xs text-slate-400">PDF or DOCX, max 10MB. We'll parse skills, projects and experience.</p>
+          <p className=" text-slate-400">PDF or DOCX, max 10MB. We'll parse skills, projects and experience.</p>
         </div>
-        <button className="bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold px-5 py-2.5 rounded-xl text-xs transition-all active:scale-[0.98]">
+        <button className="bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold px-5 py-2.5 rounded-xl  transition-all active:scale-[0.98]">
           Upload CV
         </button>
       </div>
 
       {/* Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        
+
         {/* Left Column (File Info & AI Suggestions) */}
         <div className="lg:col-span-2 bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-6 flex flex-col justify-between space-y-6">
           <div className="space-y-6">
@@ -57,14 +57,14 @@ export default function CandidateCVPage() {
                 </div>
                 <div>
                   <h3 className="text-sm font-bold text-white">Layla_AlMansoori_CV.pdf</h3>
-                  <p className="text-[10px] text-slate-500 mt-0.5">Updated 2d ago</p>
+                  <p className="text-[13px] text-slate-500 mt-0.5">Updated 2d ago</p>
                 </div>
               </div>
             </div>
 
             {/* Progress bar */}
             <div className="space-y-2">
-              <div className="flex justify-between text-xs font-bold">
+              <div className="flex justify-between  font-bold">
                 <span className="text-slate-400">ATS readiness</span>
                 <span className="text-[#00D07C]">88%</span>
               </div>
@@ -75,10 +75,10 @@ export default function CandidateCVPage() {
 
             {/* AI Suggestions list */}
             <div className="space-y-3">
-              <h4 className="text-xs font-bold text-white uppercase tracking-wider">AI suggestions</h4>
+              <h4 className=" font-bold text-white uppercase tracking-wider">AI suggestions</h4>
               <ul className="space-y-2.5">
                 {suggestions.map((s, idx) => (
-                  <li key={idx} className="flex items-start gap-2.5 text-xs text-slate-300 font-medium">
+                  <li key={idx} className="flex items-start gap-2.5  text-slate-300 font-medium">
                     <span className="h-4.5 w-4.5 rounded-full bg-[#00D07C]/10 border border-[#00D07C]/20 text-[#00D07C] flex items-center justify-center flex-shrink-0 mt-0.5">
                       <Check className="h-3 w-3" />
                     </span>
@@ -91,11 +91,11 @@ export default function CandidateCVPage() {
 
           {/* Action buttons */}
           <div className="flex items-center gap-3 pt-4 border-t border-[#1E293B]/40">
-            <button className="flex items-center gap-1.5 bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] px-4 py-2.5 rounded-xl text-xs font-bold transition-all shadow-md shadow-[#00D07C]/10 active:scale-[0.98]">
+            <button className="flex items-center gap-1.5 bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] px-4 py-2.5 rounded-xl  font-bold transition-all shadow-md shadow-[#00D07C]/10 active:scale-[0.98]">
               <Sparkles className="h-3.5 w-3.5" />
               Auto suggest
             </button>
-            <button className="flex items-center gap-1.5 border border-slate-700/80 hover:bg-slate-800 text-slate-300 px-4 py-2.5 rounded-xl text-xs font-bold transition-all">
+            <button className="flex items-center gap-1.5 border border-slate-700/80 hover:bg-slate-800 text-slate-300 px-4 py-2.5 rounded-xl  font-bold transition-all">
               <Download className="h-3.5 w-3.5" />
               Download
             </button>
@@ -104,13 +104,13 @@ export default function CandidateCVPage() {
 
         {/* Right Column (Parsed Skills) */}
         <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-6 space-y-4">
-          <h3 className="text-xs font-bold text-white uppercase tracking-wider">Parsed skills</h3>
-          
+          <h3 className=" font-bold text-white uppercase tracking-wider">Parsed skills</h3>
+
           <div className="flex flex-wrap gap-2">
             {parsedSkills.map((skill) => (
               <span
                 key={skill}
-                className="bg-[#1E293B]/50 border border-slate-700/50 text-slate-300 text-xs px-3 py-1.5 rounded-xl font-medium"
+                className="bg-[#1E293B]/50 border border-slate-700/50 text-slate-300  px-3 py-1.5 rounded-xl font-medium"
               >
                 {skill}
               </span>
