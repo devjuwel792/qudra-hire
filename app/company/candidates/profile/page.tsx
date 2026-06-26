@@ -63,10 +63,10 @@ export default function CandidateProfilePage() {
           </div>
 
           <div className="flex items-center gap-2.5 self-start md:self-center">
-            <button className="flex items-center gap-1.5 border border-slate-700/80 hover:bg-slate-800 text-slate-300 px-4 py-2.5 rounded-xl text-xs font-bold transition-all active:scale-[0.98]">
+            <Link href="/company/inbox?id=1" className="flex items-center gap-1.5 border border-slate-700/80 hover:bg-slate-800 text-slate-300 px-4 py-2.5 rounded-xl text-xs font-bold transition-all active:scale-[0.98]">
               <MessageSquare className="h-4 w-4 text-slate-400" />
               Message
-            </button>
+            </Link>
             <Link href="/company/candidates/interview" className="flex items-center gap-1.5 bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold px-4 py-2.5 rounded-xl text-xs transition-all shadow-md shadow-[#00D07C]/10 active:scale-[0.98]">
               <Video className="h-4 w-4" />
               Set AI interview
@@ -167,9 +167,9 @@ export default function CandidateProfilePage() {
             <p className="text-xs text-slate-400 leading-relaxed font-medium">
               View the candidate's AI interview performance and rubric breakdown.
             </p>
-            <button className="w-full border border-slate-700/80 hover:bg-slate-800 text-slate-300 font-bold py-2.5 rounded-xl text-xs transition-colors">
+            <Link href={'/company/candidates/interview/report?id=1'} className="w-full  flex justify-center border border-slate-700/80 hover:bg-slate-800 text-slate-300 font-bold py-2.5 rounded-xl text-xs transition-colors">
               View report
-            </button>
+            </Link>
           </div>
         </div>
 

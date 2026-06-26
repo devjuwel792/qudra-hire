@@ -42,6 +42,7 @@ export default function CandidatesPage() {
   // Candidates list matching the screenshot
   const initialCandidates = [
     {
+      id:1,
       name: "Layla Al-Mansoori",
       role: "Senior Product Designer",
       initials: "LM",
@@ -52,6 +53,7 @@ export default function CandidatesPage() {
       credits: 10
     },
     {
+      id:2,
       name: "Omar Haddad",
       role: "Full-Stack Engineer",
       initials: "OH",
@@ -62,6 +64,7 @@ export default function CandidatesPage() {
       credits: 10
     },
     {
+      id:3,
       name: "Sara Khan",
       role: "ML Engineer",
       initials: "SK",
@@ -72,6 +75,7 @@ export default function CandidatesPage() {
       credits: 10
     },
     {
+      id:4,
       name: "Khalid Al-Otaibi",
       role: "TA Lead",
       initials: "KO",
@@ -82,6 +86,7 @@ export default function CandidatesPage() {
       credits: 10
     },
     {
+      id:5,
       name: "Noura Bin Saeed",
       role: "Growth Manager",
       initials: "NB",
@@ -267,22 +272,22 @@ export default function CandidatesPage() {
             {/* Footer actions: Lock View profile, Message, Bot, Document */}
             <div className="flex items-center gap-2 pt-1.5">
               <Link 
-                href="/company/candidates/profile" 
+                href={`/company/candidates/profile?id=${candidate.id}`}
                 className="flex-1 bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold py-2.5 px-4 rounded-xl text-xs flex items-center justify-center gap-1.5 transition-all shadow-md shadow-[#00D07C]/5 active:scale-[0.98]"
               >
                 <Lock className="h-3.5 w-3.5" />
                 View profile
               </Link>
               
-              <button className="p-2.5 bg-[#162032] border border-[#2A3C58]/60 text-slate-400 hover:text-white rounded-xl hover:border-[#00D07C]/40 transition-colors">
+              <Link href={`/company/inbox?id=${candidate.id}`} className="p-2.5 bg-[#162032] border border-[#2A3C58]/60 text-slate-400 hover:text-white rounded-xl hover:border-[#00D07C]/40 transition-colors">
                 <MessageSquare className="h-4 w-4" />
-              </button>
+              </Link>
 
-              <button className="p-2.5 bg-[#162032] border border-[#2A3C58]/60 text-slate-400 hover:text-white rounded-xl hover:border-[#00D07C]/40 transition-colors">
+              <Link href={`/company/candidates/interview?id=${candidate.id}`} className="p-2.5 bg-[#162032] border border-[#2A3C58]/60 text-slate-400 hover:text-white rounded-xl hover:border-[#00D07C]/40 transition-colors">
                 <Bot className="h-4 w-4" />
-              </button>
+              </Link>
 
-              <button className="p-2.5 bg-[#162032] border border-[#2A3C58]/60 text-slate-400 hover:text-white rounded-xl hover:border-[#00D07C]/40 transition-colors">
+              <button onClick={() => {}} className="p-2.5 bg-[#162032] border border-[#2A3C58]/60 text-slate-400 hover:text-white rounded-xl hover:border-[#00D07C]/40 transition-colors">
                 <FileText className="h-4 w-4" />
               </button>
             </div>

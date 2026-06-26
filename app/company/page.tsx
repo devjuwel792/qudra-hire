@@ -64,10 +64,10 @@ export default function CompanyDashboard() {
   ];
 
   const aiMatches = [
-    { name: "Layla Al-Mansoori", role: "Senior Product Designer", score: "97%", initials: "LM" },
-    { name: "Omar Haddad", role: "Full-Stack Engineer", score: "94%", initials: "OH" },
-    { name: "Sara Khan", role: "ML Engineer", score: "91%", initials: "SK" },
-    { name: "Khalid Al-Otaibi", role: "TA Lead", score: "88%", initials: "KO" },
+    { name: "Layla Al-Mansoori", role: "Senior Product Designer", score: "97%", initials: "LM", id: 1 },
+    { name: "Omar Haddad", role: "Full-Stack Engineer", score: "94%", initials: "OH", id: 2 },
+    { name: "Sara Khan", role: "ML Engineer", score: "91%", initials: "SK", id: 3 },
+    { name: "Khalid Al-Otaibi", role: "TA Lead", score: "88%", initials: "KO", id: 4 },
   ];
 
   const openRoles = [
@@ -124,9 +124,9 @@ export default function CompanyDashboard() {
             <h2 className="text-lg font-bold text-white flex items-center gap-2">
               Recruitment pipeline
             </h2>
-            <button className="text-xs text-[#00D07C] font-semibold hover:underline flex items-center gap-1.5">
+            <Link href={"/company/candidates"} className="text-xs text-[#00D07C] font-semibold hover:underline flex items-center gap-1.5">
               Open board <ExternalLink className="h-3.5 w-3.5" />
-            </button>
+            </Link>
           </div>
 
           {/* Pipeline stages container */}
@@ -172,23 +172,26 @@ export default function CompanyDashboard() {
 
           <div className="flex-1 flex flex-col justify-between space-y-4">
             {aiMatches.map((match, idx) => (
-              <div
-                key={idx}
-                className="flex items-center justify-between p-3.5 rounded-xl bg-[#0A0F1D]/60 border border-[#1E293B]/30 hover:border-[#00D07C]/30 transition-all duration-300 cursor-pointer"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-[#1E293B] to-[#0F172A] border border-[#2E3C51] flex items-center justify-center font-bold text-slate-300 text-sm shadow-inner">
-                    {match.initials}
+              <Link key={idx} href={`/company/candidates/profile?id=${match?.id}`}>
+                <div
+
+                  className="flex items-center justify-between p-3.5 rounded-xl bg-[#0A0F1D]/60 border border-[#1E293B]/30 hover:border-[#00D07C]/30 transition-all duration-300 cursor-pointer"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-[#1E293B] to-[#0F172A] border border-[#2E3C51] flex items-center justify-center font-bold text-slate-300 text-sm shadow-inner">
+                      {match.initials}
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-slate-200">{match.name}</p>
+                      <p className="text-xs text-slate-500">{match.role}</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-sm font-semibold text-slate-200">{match.name}</p>
-                    <p className="text-xs text-slate-500">{match.role}</p>
-                  </div>
+                  <span className="text-sm font-bold text-[#00D07C] bg-[#00D07C]/10 px-2.5 py-1 rounded-lg">
+                    {match.score}
+                  </span>
                 </div>
-                <span className="text-sm font-bold text-[#00D07C] bg-[#00D07C]/10 px-2.5 py-1 rounded-lg">
-                  {match.score}
-                </span>
-              </div>
+              </Link>
+
             ))}
           </div>
         </div>
@@ -200,9 +203,9 @@ export default function CompanyDashboard() {
           <h2 className="text-lg font-bold text-white flex items-center gap-2">
             Open roles
           </h2>
-          <button className="text-xs text-slate-400 hover:text-white font-semibold flex items-center gap-1">
+          <Link href={"company/jobs"} className="text-xs text-slate-400 hover:text-white font-semibold flex items-center gap-1">
             Manage
-          </button>
+          </Link>
         </div>
 
         <div className="divide-y divide-[#1E293B]/60">
@@ -225,9 +228,9 @@ export default function CompanyDashboard() {
                 <span className="text-xs font-medium text-slate-400">
                   <strong className="text-white font-semibold">{role.applicants}</strong> applicants
                 </span>
-                <button className="border border-[#00D07C]/40 text-[#00D07C] hover:bg-[#00D07C] hover:text-[#080C14] px-4 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200">
+                <Link href={"company/jobs/applicants"} className="border border-[#00D07C]/40 text-[#00D07C] hover:bg-[#00D07C] hover:text-[#080C14] px-4 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200">
                   Open
-                </button>
+                </Link>
               </div>
             </div>
           ))}
