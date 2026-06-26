@@ -15,10 +15,14 @@ import {
   FileText
 } from "lucide-react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
 export default function JobDetailPage() {
+  const params = useSearchParams();
+  const id = params.get("id")
+  const status = params.get("status") as "initial" | "tailoring" | "tailored" | "comparison" | "success" || "initial";
   // States: 'initial' | 'tailoring' | 'tailored' | 'comparison' | 'success'
-  const [rightState, setRightState] = useState<"initial" | "tailoring" | "tailored" | "comparison" | "success">("initial");
+  const [rightState, setRightState] = useState<"initial" | "tailoring" | "tailored" | "comparison" | "success">(status);
 
   // Steps for tailoring animation
   const [tailoringSteps, setTailoringSteps] = useState([

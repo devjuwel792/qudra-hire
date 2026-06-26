@@ -81,7 +81,7 @@ export default function CandidateApplicationsPage() {
                   </td>
                   <td className="py-4 px-6 text-right">
                     <Link
-                      href="/candidate/interview"
+                      href="/candidate/jobs/detail?id=1&status=success"
                       className=" font-bold text-slate-300 hover:text-white hover:underline transition-all"
                     >
                       View
