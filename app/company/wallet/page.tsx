@@ -1,16 +1,24 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { 
   Wallet, 
   ArrowUpRight, 
   ArrowDownLeft, 
   Plus, 
   ShieldCheck, 
-  Sparkles 
+  Sparkles,
+  X
 } from "lucide-react";
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogClose,
+} from "@/components/ui/dialog";
 
 export default function WalletPage() {
+  const [topUpOpen, setTopUpOpen] = useState(false);
   const transactions = [
     { desc: "Top-up • Momentum bundle", method: "Apple Pay", date: "Mar 14", amount: "+150", positive: true },
     { desc: "Auto-apply • Emirates NBD", method: "Credits", date: "Mar 13", amount: "-1", positive: false },

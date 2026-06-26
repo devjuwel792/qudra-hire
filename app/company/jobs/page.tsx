@@ -70,7 +70,7 @@ export default function JobsPage() {
                   {/* Kebab Menu */}
                   <td className="py-5 px-6 text-right">
                     <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
+                      <DropdownMenuTrigger >
                         <button className="inline-flex items-center justify-center border border-slate-700/80 hover:border-slate-600 bg-[#162032] hover:bg-[#1C283F] text-slate-400 hover:text-slate-200 w-9 h-9 rounded-xl transition-all active:scale-[0.98]">
                           <MoreVertical className="h-4 w-4" />
                         </button>
