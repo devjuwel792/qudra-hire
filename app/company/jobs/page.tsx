@@ -1,10 +1,18 @@
 "use client";
 
 import React from "react";
-import { Plus, Users } from "lucide-react";
+import { Plus, MoreVertical, Eye, Pencil, Trash2, Users } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from "@/components/ui/dropdown-menu";
 
 export default function JobsPage() {
+  const router = useRouter();
   const jobs = [
     { role: "Senior Product Designer", location: "Dubai, UAE", applicants: 53, matches: 96, status: "Open" },
     { role: "Full-Stack Engineer (React / Node)", location: "Dubai, UAE • Remote", applicants: 66, matches: 92, status: "Open" },
@@ -59,12 +67,33 @@ export default function JobsPage() {
                       {job.status}
                     </span>
                   </td>
-                  {/* Action Button */}
+                  {/* Kebab Menu */}
                   <td className="py-5 px-6 text-right">
-                    <Link href="/company/jobs/applicants" className="inline-flex items-center gap-1.5 border border-slate-700/80 hover:border-slate-600 bg-[#162032] hover:bg-[#1C283F] text-slate-200 px-3.5 py-2 rounded-xl text-xs font-bold transition-all active:scale-[0.98]">
-                      <Users className="h-3.5 w-3.5 text-slate-400" />
-                      Applicants
-                    </Link>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <button className="inline-flex items-center justify-center border border-slate-700/80 hover:border-slate-600 bg-[#162032] hover:bg-[#1C283F] text-slate-400 hover:text-slate-200 w-9 h-9 rounded-xl transition-all active:scale-[0.98]">
+                          <MoreVertical className="h-4 w-4" />
+                        </button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="end" className="w-40 bg-[#0F172A] border border-[#1E293B]/60 text-slate-200">
+                        <DropdownMenuItem onClick={() => router.push(`/company/jobs/view?id=${idx}`)} className="cursor-pointer gap-2 px-2.5 py-2">
+                          <Eye className="h-4 w-4" />
+                          View
+                        </DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => router.push(`/company/jobs/edit?id=${idx}`)} className="cursor-pointer gap-2 px-2.5 py-2">
+                          <Pencil className="h-4 w-4" />
+                          Edit
+                        </DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => router.push(`/company/jobs/applicants`)} className="cursor-pointer gap-2 px-2.5 py-2">
+                          <Users className="h-3.5 w-3.5 text-slate-400" />
+                          Applicants
+                        </DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => ""} className="cursor-pointer gap-2 px-2.5 py-2 text-red-400 focus:text-red-400">
+                          <Trash2 className="h-4 w-4" />
+                          Delete
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
                   </td>
                 </tr>
               ))}
