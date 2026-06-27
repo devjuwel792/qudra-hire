@@ -37,7 +37,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-[#FDFBF7] text-[#0B2545] pb-16 md:pb-0">
         {children}
-        <MobileBottomNav />
+     
       </body>
     </html>
   );

@@ -1,132 +1,165 @@
 "use client";
-
 import React, { useState } from "react";
 import Link from "next/link";
-import { Eye, EyeOff, Gift } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Upload } from "lucide-react";
 
-export default function SignUpPage() {
-    const [showPassword, setShowPassword] = useState(false);
-    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+export default function SignupPage() {
+  const [accountType, setAccountType] = useState<"candidate" | "company">("candidate");
 
-    return (
-        <main className="flex-1 w-full bg-[#FDFBF7] py-12 min-h-screen flex items-center justify-center">
-            <div className="container mx-auto max-w-6xl px-6 sm:px-8">
-                <div className="bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 grid grid-cols-1 md:grid-cols-2 min-h-[800px]">
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-[#080C14] px-4 py-12">
+      <div className="w-full max-w-[450px] bg-[#0F172A]/50 border border-white/5 rounded-3xl p-8 sm:p-10 shadow-2xl">
+        {/* Logo */}
+        <div className="flex justify-center mb-8">
+          <Link href="/" className="text-2xl font-bold tracking-tight">
+            <span className="text-white">Qudra</span>
+            <span className="text-[#00D07C]">Hire</span>
+          </Link>
+        </div>
 
-                    {/* Left Side - Image & Copy */}
-                    <div className="bg-[#F4F6FB] p-12 sm:flex flex-col justify-between hidden md:flex">
-                        <div className="flex-1 flex items-center justify-center pt-10">
-                            <img src="/images/home/product-bundle.png" alt="PrepED Kit" className="w-[90%] h-auto object-contain drop-shadow-xl" />
-                        </div>
-                        <div className="mt-16">
-                            <h2 className="text-[2.5rem] leading-tight font-serif font-bold text-[#0B2545] mb-4">
-                                Join The Prep<span className="text-[#FF5C35]">ED</span><br />Family
-                            </h2>
-                            <div className="w-12 h-[2px] bg-[#FF5C35] mb-6"></div>
-                            <p className="text-[#4A5D73]  leading-relaxed max-w-sm">
-                                Sign up to enjoy a faster checkout experience and stay updated on our latest offers. Select 85 more words to run humanizer.
-                            </p>
-                        </div>
-                    </div>
+        <h1 className="text-2xl font-bold text-white mb-2">Create your account</h1>
+        <p className="text-slate-400 text-sm mb-6">Start progressing in under a minute.</p>
 
-                    {/* Right Side - Form */}
-                    <div className="p-8 sm:p-12 lg:p-16 flex flex-col justify-center">
-                        <h1 className="text-4xl sm:text-5xl font-serif font-bold text-[#0B2545] mb-4 leading-tight">
-                            Create<br />Your Account
-                        </h1>
-                        <p className=" text-gray-500 mb-10">
-                            Already have an account? <Link href="/login" className="font-bold text-[#FF5C35] hover:underline">Sign In</Link>
-                        </p>
+        {/* Toggle */}
+        <div className="flex bg-[#080C14] border border-white/5 p-1 rounded-2xl mb-8">
+          <button 
+            onClick={() => setAccountType("candidate")}
+            className={`flex-1 py-2.5 text-sm font-medium rounded-xl transition-all ${
+              accountType === "candidate" 
+                ? "bg-[#00D07C] text-[#080C14]" 
+                : "text-slate-400 hover:text-white"
+            }`}
+          >
+            Candidate
+          </button>
+          <button 
+            onClick={() => setAccountType("company")}
+            className={`flex-1 py-2.5 text-sm font-medium rounded-xl transition-all ${
+              accountType === "company" 
+                ? "bg-[#00D07C] text-[#080C14]" 
+                : "text-slate-400 hover:text-white"
+            }`}
+          >
+            Company
+          </button>
+        </div>
 
-                        <form className="space-y-5 mb-8" onSubmit={(e) => e.preventDefault()}>
-                            <div>
-                                <label className="block  font-bold text-[#0B2545] mb-2">Full Name</label>
-                                <Input
-                                    placeholder="Enter your full name"
-                                    className="h-12 bg-[#F4F6FB]/50 border-gray-200 focus:border-[#FF5C35] "
-                                />
-                            </div>
+        {accountType === "candidate" && (
+          <div className="animate-in fade-in slide-in-from-bottom-2 duration-300">
+            <button className="w-full flex items-center justify-center gap-3 bg-[#162032] hover:bg-[#1E293B] border border-white/5 text-white text-sm font-medium py-3 rounded-xl transition-colors mb-6">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+              </svg>
+              Continue with Google
+            </button>
 
-                            <div>
-                                <label className="block  font-bold text-[#0B2545] mb-2">Email Address</label>
-                                <Input
-                                    type="email"
-                                    placeholder="Enter your email address"
-                                    className="h-12 bg-[#F4F6FB]/50 border-gray-200 focus:border-[#FF5C35] "
-                                />
-                            </div>
-
-                            <div className="relative">
-                                <label className="block  font-bold text-[#0B2545] mb-2">Password</label>
-                                <Input
-                                    type={showPassword ? "text" : "password"}
-                                    placeholder="Create Password"
-                                    className="h-12 bg-[#F4F6FB]/50 border-gray-200 focus:border-[#FF5C35]  pr-12"
-                                />
-                                <button
-                                    type="button"
-                                    onClick={() => setShowPassword(!showPassword)}
-                                    className="absolute right-4 top-10 text-gray-400 hover:text-[#0B2545] transition-colors"
-                                >
-                                    {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                                </button>
-                            </div>
-
-                            <div className="relative">
-                                <label className="block  font-bold text-[#0B2545] mb-2">Confirm Password</label>
-                                <Input
-                                    type={showConfirmPassword ? "text" : "password"}
-                                    placeholder="Confirm Password"
-                                    className="h-12 bg-[#F4F6FB]/50 border-gray-200 focus:border-[#FF5C35]  pr-12"
-                                />
-                                <button
-                                    type="button"
-                                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                                    className="absolute right-4 top-10 text-gray-400 hover:text-[#0B2545] transition-colors"
-                                >
-                                    {showConfirmPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                                </button>
-                            </div>
-
-                            <div className="pt-2">
-                                <Button className="w-full bg-[#0B2545] hover:bg-[#134074] text-white h-12 rounded-lg font-medium shadow-sm">
-                                    Create Account
-                                </Button>
-                            </div>
-                        </form>
-
-                        <div className="flex items-center justify-center gap-4 mb-6">
-                            <div className="flex-1 h-[1px] bg-gray-200"></div>
-                            <span className=" font-medium text-gray-400">Or</span>
-                            <div className="flex-1 h-[1px] bg-gray-200"></div>
-                        </div>
-
-                        <div className="mb-8 text-center">
-                            <Button variant="outline" className="w-full h-12 border-gray-300 text-[#0B2545] hover:bg-gray-50 font-medium mb-2">
-                                Continue as Guest
-                            </Button>
-                            <p className=" text-gray-400">You can checkout without creating an account.</p>
-                        </div>
-
-                        {/* Banner */}
-                        <div className="bg-[#FFF0E8]/50 border border-[#FF5C35]/30 rounded-xl p-4 flex items-center gap-4 mb-8">
-                            <div className="text-[#FF5C35] shrink-0">
-                                <Gift className="w-8 h-8" />
-                            </div>
-                            <p className="text-[#0B2545]  font-medium leading-snug">
-                                Create an account and get <span className="font-bold text-[#FF5C35]">10% off</span> your first order!
-                            </p>
-                        </div>
-
-                        <p className=" text-gray-400 text-left max-w-xs leading-relaxed">
-                            By creating an account, you agree to our Terms of Service and <Link href="/privacy" className="text-[#FF5C35] font-semibold hover:underline">Privacy Policy.</Link>
-                        </p>
-
-                    </div>
-                </div>
+            <div className="flex items-center gap-3 mb-6">
+              <div className="h-px flex-1 bg-white/5"></div>
+              <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">OR</span>
+              <div className="h-px flex-1 bg-white/5"></div>
             </div>
-        </main>
-    );
+
+            <form className="space-y-4">
+              <div className="flex gap-4">
+                <div className="flex-1">
+                  <label className="block text-xs font-medium text-white mb-1.5">First name</label>
+                  <input 
+                    type="text" 
+                    placeholder="Enter name" 
+                    className="w-full bg-[#080C14] border border-white/5 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#00D07C]/50 transition-colors"
+                  />
+                </div>
+                <div className="flex-1">
+                  <label className="block text-xs font-medium text-white mb-1.5">Last name</label>
+                  <input 
+                    type="text" 
+                    placeholder="Enter name" 
+                    className="w-full bg-[#080C14] border border-white/5 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#00D07C]/50 transition-colors"
+                  />
+                </div>
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-white mb-1.5">Email</label>
+                <input 
+                  type="email" 
+                  placeholder="Enter email" 
+                  className="w-full bg-[#080C14] border border-white/5 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#00D07C]/50 transition-colors"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-white mb-1.5">Password</label>
+                <input 
+                  type="password" 
+                  placeholder="••••••••" 
+                  className="w-full bg-[#080C14] border border-white/5 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#00D07C]/50 transition-colors"
+                />
+              </div>
+              
+              <div className="mt-6 border border-white/5 border-dashed bg-[#080C14]/50 rounded-xl p-6 text-center hover:bg-[#080C14] transition-colors cursor-pointer">
+                <Upload className="h-5 w-5 text-slate-400 mx-auto mb-2" />
+                <p className="text-xs text-slate-400 leading-relaxed">
+                  Upload CV (PDF / DOC / TXT) — AI parses into a<br/>structured profile
+                </p>
+              </div>
+
+              <button type="button" className="w-full bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold px-6 py-3 rounded-xl transition-all mt-6">
+                Create account & start matching
+              </button>
+            </form>
+          </div>
+        )}
+
+        {accountType === "company" && (
+          <div className="animate-in fade-in slide-in-from-bottom-2 duration-300">
+            <form className="space-y-4">
+              <div>
+                <label className="block text-xs font-medium text-white mb-1.5">Company name</label>
+                <input 
+                  type="text" 
+                  placeholder="Enter name" 
+                  className="w-full bg-[#080C14] border border-white/5 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#00D07C]/50 transition-colors"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-white mb-1.5">Work email</label>
+                <input 
+                  type="email" 
+                  placeholder="Enter email" 
+                  className="w-full bg-[#080C14] border border-white/5 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#00D07C]/50 transition-colors"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-white mb-1.5">Password</label>
+                <input 
+                  type="password" 
+                  placeholder="••••••••" 
+                  className="w-full bg-[#080C14] border border-white/5 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#00D07C]/50 transition-colors"
+                />
+              </div>
+              
+              <div className="mt-6 border border-white/5 border-dashed bg-[#080C14]/50 rounded-xl p-6 text-center hover:bg-[#080C14] transition-colors cursor-pointer">
+                <Upload className="h-5 w-5 text-slate-400 mx-auto mb-2" />
+                <p className="text-xs text-slate-400 leading-relaxed">
+                  Upload trade licence (UAE / KSA / GCC) — AI parses into a<br/>structured profile
+                </p>
+              </div>
+
+              <button type="button" className="w-full bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold px-6 py-3 rounded-xl transition-all mt-6">
+                Create account
+              </button>
+            </form>
+          </div>
+        )}
+
+        <div className="mt-8 text-center">
+          <p className="text-xs text-slate-400">
+            Already a member? <Link href="/login" className="text-[#00D07C] font-semibold hover:underline">Log In</Link>
+          </p>
+        </div>
+      </div>
+    </div>
+  );
 }
