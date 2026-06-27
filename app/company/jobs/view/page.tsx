@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { Suspense } from "react";
 import { ArrowLeft, MapPin, Users, Sparkles, Briefcase, Clock, DollarSign, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
@@ -15,6 +15,14 @@ const jobs = [
 ];
 
 export default function JobViewPage() {
+  return (
+    <Suspense>
+      <JobViewContent />
+    </Suspense>
+  );
+}
+
+function JobViewContent() {
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
   const job = jobs[Number(id)] ?? jobs[0];
