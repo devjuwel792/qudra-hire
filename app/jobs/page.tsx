@@ -80,7 +80,7 @@ export default function JobsPage() {
         <div className="flex-1">
           <Animate className="animate-on-scroll flex items-center justify-between mb-6">
             <span className="text-slate-400 font-medium">6 results</span>
-            <Link href="#" className="text-[#4BC957] font-semibold hover:underline flex items-center gap-1">
+            <Link href="/login" className="text-[#4BC957] font-semibold hover:underline flex items-center gap-1">
               Switch to auto-apply mode &rarr;
             </Link>
           </Animate>
