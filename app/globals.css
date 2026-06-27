@@ -221,3 +221,7 @@
   from { opacity: 0; transform: translateY(28px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+/* utility: apply fadeInUp with fill-mode:both so delay period stays hidden */
+[class*="animate-[fadeInUp"] {
+  animation-fill-mode: both;
+}

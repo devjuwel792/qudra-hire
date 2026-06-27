@@ -2,42 +2,24 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import {
-  Mail,
-  Phone,
-  Clock,
-  MessageSquare,
-  Send,
-  CheckCircle2,
-  ChevronRight,
-  Headphones,
-} from "lucide-react";
+import { Mail, Phone, Clock, MessageSquare, Send, CheckCircle2, ChevronRight, Headphones } from "lucide-react";
 import QudraHeader from "@/components/layout/QudraHeader";
 import QudraFooter from "@/components/layout/QudraFooter";
-
-// ─── Contact Page ───────────────────────────────────────────────────────────
+import { Animate } from "@/components/ui/animate";
 
 export default function ContactPage() {
-  const [formState, setFormState] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    topic: "",
-    message: "",
-  });
+  const [formState, setFormState] = useState({ firstName: "", lastName: "", email: "", topic: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  function handleChange(
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) {
-    setFormState((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+    setFormState(prev => ({ ...prev, [e.target.name]: e.target.value }));
   }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 1200));
+    await new Promise(r => setTimeout(r, 1200));
     setLoading(false);
     setSubmitted(true);
   }
@@ -46,311 +28,147 @@ export default function ContactPage() {
     <div className="min-h-screen flex flex-col bg-[#080C14] text-white">
       <QudraHeader activePage="Contact us" />
 
-      {/* ── Hero ── */}
+      {/* Hero */}
       <section className="relative py-20 sm:py-28 text-center overflow-hidden">
-        {/* Subtle radial glow */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 flex items-start justify-center"
-        >
+        <div aria-hidden className="pointer-events-none absolute inset-0 flex items-start justify-center">
           <div className="w-[600px] h-[300px] bg-[#00D07C]/6 rounded-full blur-[120px] mt-10" />
         </div>
-
-        {/* Faint grid lines */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage:
-              "linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)",
-            backgroundSize: "40px 40px",
-          }}
-        />
-
+        <div aria-hidden className="pointer-events-none absolute inset-0 opacity-[0.03]"
+          style={{ backgroundImage: "linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)", backgroundSize: "40px 40px" }} />
         <div className="relative max-w-2xl mx-auto px-4">
-          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight leading-tight">
-            Get in{" "}
-            <span className="text-[#00D07C]">touch.</span>
+          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight leading-tight
+            animate-[fadeInUp_0.7s_ease_forwards]">
+            Get in <span className="text-[#00D07C]">touch.</span>
           </h1>
-          <p className="mt-5 text-[16px] sm:text-lg text-slate-400 leading-relaxed">
-            Have a question about hiring, partnerships, or your account? Reach
-            out and our GCC team will respond within one business day.
+          <p className="mt-5 text-[16px] sm:text-lg text-slate-400 leading-relaxed
+            animate-[fadeInUp_0.7s_0.2s_ease_forwards] opacity-0">
+            Have a question about hiring, partnerships, or your account? Reach out and our GCC team will respond within one business day.
           </p>
         </div>
       </section>
 
-      {/* ── Content ── */}
+      {/* Content */}
       <section className="flex-1 max-w-7xl mx-auto px-4 sm:px-8 pb-24 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
 
-          {/* Left — Contact Form */}
-          <div className="lg:col-span-3 bg-[#0F172A] border border-white/5 rounded-2xl p-7 sm:p-8 shadow-xl">
-            {!submitted ? (
-              <>
-                <div className="mb-6">
-                  <h2 className="text-lg font-bold text-white flex items-center gap-2">
-                    <MessageSquare className="h-4 w-4 text-[#00D07C]" />
-                    Send a message
-                  </h2>
-                  <p className="text-sm text-slate-500 mt-1">
-                    Fill in the form below and we will get back to you shortly.
-                  </p>
-                </div>
-
-                <form onSubmit={handleSubmit} className="space-y-5">
-                  {/* Name row */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="space-y-1.5">
-                      <label
-                        htmlFor="firstName"
-                        className="text-sm font-medium text-slate-300"
-                      >
-                        First name
-                      </label>
-                      <input
-                        id="firstName"
-                        name="firstName"
-                        type="text"
-                        required
-                        placeholder="Enter name"
-                        value={formState.firstName}
-                        onChange={handleChange}
-                        className="w-full h-11 bg-[#0A0F1D] border border-white/8 text-white placeholder:text-slate-600 rounded-xl px-4 text-sm focus:outline-none focus:border-[#00D07C]/50 focus:ring-1 focus:ring-[#00D07C]/30 transition-all"
-                      />
+          {/* Form */}
+          <Animate className="animate-from-left lg:col-span-3">
+            <div className="bg-[#0F172A] border border-white/5 rounded-2xl p-7 sm:p-8 shadow-xl">
+              {!submitted ? (
+                <>
+                  <div className="mb-6">
+                    <h2 className="text-lg font-bold text-white flex items-center gap-2">
+                      <MessageSquare className="h-4 w-4 text-[#00D07C]" /> Send a message
+                    </h2>
+                    <p className="text-sm text-slate-500 mt-1">Fill in the form below and we will get back to you shortly.</p>
+                  </div>
+                  <form onSubmit={handleSubmit} className="space-y-5">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {[["firstName", "First name", "Enter name"], ["lastName", "Last name", "Enter name"]].map(([name, label, placeholder]) => (
+                        <div key={name} className="space-y-1.5">
+                          <label htmlFor={name} className="text-sm font-medium text-slate-300">{label}</label>
+                          <input id={name} name={name} type="text" required placeholder={placeholder}
+                            value={formState[name as keyof typeof formState]} onChange={handleChange}
+                            className="w-full h-11 bg-[#0A0F1D] border border-white/8 text-white placeholder:text-slate-600 rounded-xl px-4 text-sm focus:outline-none focus:border-[#00D07C]/50 focus:ring-1 focus:ring-[#00D07C]/30 transition-all" />
+                        </div>
+                      ))}
                     </div>
+                    {[["email", "Email", "text", "Enter email"], ["topic", "Topic", "text", "e.g. Partnership, Support, Sales"]].map(([name, label, , placeholder]) => (
+                      <div key={name} className="space-y-1.5">
+                        <label htmlFor={name} className="text-sm font-medium text-slate-300">{label}</label>
+                        <input id={name} name={name} type={name === "email" ? "email" : "text"} required={name === "email"} placeholder={placeholder}
+                          value={formState[name as keyof typeof formState]} onChange={handleChange}
+                          className="w-full h-11 bg-[#0A0F1D] border border-white/8 text-white placeholder:text-slate-600 rounded-xl px-4 text-sm focus:outline-none focus:border-[#00D07C]/50 focus:ring-1 focus:ring-[#00D07C]/30 transition-all" />
+                      </div>
+                    ))}
                     <div className="space-y-1.5">
-                      <label
-                        htmlFor="lastName"
-                        className="text-sm font-medium text-slate-300"
-                      >
-                        Last name
-                      </label>
-                      <input
-                        id="lastName"
-                        name="lastName"
-                        type="text"
-                        required
-                        placeholder="Enter name"
-                        value={formState.lastName}
-                        onChange={handleChange}
-                        className="w-full h-11 bg-[#0A0F1D] border border-white/8 text-white placeholder:text-slate-600 rounded-xl px-4 text-sm focus:outline-none focus:border-[#00D07C]/50 focus:ring-1 focus:ring-[#00D07C]/30 transition-all"
-                      />
+                      <label htmlFor="message" className="text-sm font-medium text-slate-300">Message</label>
+                      <textarea id="message" name="message" required rows={5} placeholder="How can we help you?"
+                        value={formState.message} onChange={handleChange}
+                        className="w-full bg-[#0A0F1D] border border-white/8 text-white placeholder:text-slate-600 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#00D07C]/50 focus:ring-1 focus:ring-[#00D07C]/30 transition-all resize-none" />
                     </div>
+                    <button type="submit" disabled={loading}
+                      className="w-full h-12 bg-[#00D07C] hover:bg-[#00B96E] disabled:opacity-60 text-[#080C14] font-bold rounded-xl text-sm flex items-center justify-center gap-2 transition-all active:scale-[0.98] shadow-lg shadow-[#00D07C]/10">
+                      {loading ? <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" /></svg> : <Send className="h-4 w-4" />}
+                      {loading ? "Sending…" : "Send message"}
+                    </button>
+                  </form>
+                </>
+              ) : (
+                <div className="flex flex-col items-center justify-center py-16 text-center gap-4">
+                  <div className="h-16 w-16 rounded-full bg-[#00D07C]/10 border border-[#00D07C]/20 flex items-center justify-center">
+                    <CheckCircle2 className="h-8 w-8 text-[#00D07C]" />
                   </div>
-
-                  {/* Email */}
-                  <div className="space-y-1.5">
-                    <label
-                      htmlFor="email"
-                      className="text-sm font-medium text-slate-300"
-                    >
-                      Email
-                    </label>
-                    <input
-                      id="email"
-                      name="email"
-                      type="email"
-                      required
-                      placeholder="Enter email"
-                      value={formState.email}
-                      onChange={handleChange}
-                      className="w-full h-11 bg-[#0A0F1D] border border-white/8 text-white placeholder:text-slate-600 rounded-xl px-4 text-sm focus:outline-none focus:border-[#00D07C]/50 focus:ring-1 focus:ring-[#00D07C]/30 transition-all"
-                    />
-                  </div>
-
-                  {/* Topic */}
-                  <div className="space-y-1.5">
-                    <label
-                      htmlFor="topic"
-                      className="text-sm font-medium text-slate-300"
-                    >
-                      Topic
-                    </label>
-                    <input
-                      id="topic"
-                      name="topic"
-                      type="text"
-                      placeholder="e.g. Partnership, Support, Sales"
-                      value={formState.topic}
-                      onChange={handleChange}
-                      className="w-full h-11 bg-[#0A0F1D] border border-white/8 text-white placeholder:text-slate-600 rounded-xl px-4 text-sm focus:outline-none focus:border-[#00D07C]/50 focus:ring-1 focus:ring-[#00D07C]/30 transition-all"
-                    />
-                  </div>
-
-                  {/* Message */}
-                  <div className="space-y-1.5">
-                    <label
-                      htmlFor="message"
-                      className="text-sm font-medium text-slate-300"
-                    >
-                      Message
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      required
-                      rows={5}
-                      placeholder="How can we help you?"
-                      value={formState.message}
-                      onChange={handleChange}
-                      className="w-full bg-[#0A0F1D] border border-white/8 text-white placeholder:text-slate-600 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#00D07C]/50 focus:ring-1 focus:ring-[#00D07C]/30 transition-all resize-none"
-                    />
-                  </div>
-
-                  {/* Submit */}
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="w-full h-12 bg-[#00D07C] hover:bg-[#00B96E] disabled:opacity-60 text-[#080C14] font-bold rounded-xl text-sm flex items-center justify-center gap-2 transition-all active:scale-[0.98] shadow-lg shadow-[#00D07C]/10"
-                  >
-                    {loading ? (
-                      <svg
-                        className="h-4 w-4 animate-spin"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                      >
-                        <circle
-                          className="opacity-25"
-                          cx="12"
-                          cy="12"
-                          r="10"
-                          stroke="currentColor"
-                          strokeWidth="4"
-                        />
-                        <path
-                          className="opacity-75"
-                          fill="currentColor"
-                          d="M4 12a8 8 0 018-8v8z"
-                        />
-                      </svg>
-                    ) : (
-                      <Send className="h-4 w-4" />
-                    )}
-                    {loading ? "Sending\u2026" : "Send message"}
+                  <h2 className="text-xl font-bold text-white">Message sent!</h2>
+                  <p className="text-slate-400 max-w-xs leading-relaxed">Thanks for reaching out. Our team will get back to you within one business day.</p>
+                  <button onClick={() => { setSubmitted(false); setFormState({ firstName: "", lastName: "", email: "", topic: "", message: "" }); }}
+                    className="mt-2 text-sm text-[#00D07C] hover:underline font-medium flex items-center gap-1">
+                    Send another message <ChevronRight className="h-4 w-4" />
                   </button>
-                </form>
-              </>
-            ) : (
-              /* Success state */
-              <div className="flex flex-col items-center justify-center py-16 text-center gap-4">
-                <div className="h-16 w-16 rounded-full bg-[#00D07C]/10 border border-[#00D07C]/20 flex items-center justify-center">
-                  <CheckCircle2 className="h-8 w-8 text-[#00D07C]" />
                 </div>
-                <h2 className="text-xl font-bold text-white">Message sent!</h2>
-                <p className="text-slate-400 max-w-xs leading-relaxed">
-                  Thanks for reaching out. Our team will get back to you within
-                  one business day.
-                </p>
-                <button
-                  onClick={() => {
-                    setSubmitted(false);
-                    setFormState({
-                      firstName: "",
-                      lastName: "",
-                      email: "",
-                      topic: "",
-                      message: "",
-                    });
-                  }}
-                  className="mt-2 text-sm text-[#00D07C] hover:underline font-medium flex items-center gap-1"
-                >
-                  Send another message <ChevronRight className="h-4 w-4" />
-                </button>
-              </div>
-            )}
-          </div>
+              )}
+            </div>
+          </Animate>
 
-          {/* Right — Info Cards */}
+          {/* Info Cards */}
           <div className="lg:col-span-2 flex flex-col gap-5">
-
-            {/* General Inquiries */}
-            <div className="bg-[#0F172A] border border-white/5 rounded-2xl p-6 space-y-4 shadow-xl">
-              <h3 className="text-base font-bold text-white">
-                General inquiries
-              </h3>
-              <ul className="space-y-3">
-                <li className="flex items-center gap-3 text-sm text-slate-400">
-                  <span className="h-7 w-7 rounded-lg bg-[#00D07C]/10 border border-[#00D07C]/20 flex items-center justify-center flex-shrink-0">
-                    <Mail className="h-3.5 w-3.5 text-[#00D07C]" />
-                  </span>
-                  <a
-                    href="mailto:hello@qudrahire.com"
-                    className="hover:text-white transition-colors"
-                  >
-                    hello@qudrahire.com
-                  </a>
-                </li>
-                <li className="flex items-center gap-3 text-sm text-slate-400">
-                  <span className="h-7 w-7 rounded-lg bg-[#00D07C]/10 border border-[#00D07C]/20 flex items-center justify-center flex-shrink-0">
-                    <Phone className="h-3.5 w-3.5 text-[#00D07C]" />
-                  </span>
-                  <a
-                    href="tel:+97145550199"
-                    className="hover:text-white transition-colors"
-                  >
-                    +971 4 555 0199
-                  </a>
-                </li>
-                <li className="flex items-center gap-3 text-sm text-slate-400">
-                  <span className="h-7 w-7 rounded-lg bg-[#00D07C]/10 border border-[#00D07C]/20 flex items-center justify-center flex-shrink-0">
-                    <Clock className="h-3.5 w-3.5 text-[#00D07C]" />
-                  </span>
-                  <span>Sun &ndash; Thu, 9:00 &ndash; 18:00 GST</span>
-                </li>
-              </ul>
-            </div>
-
-            {/* Support */}
-            <div className="bg-[#0F172A] border border-white/5 rounded-2xl p-6 space-y-4 shadow-xl">
-              <h3 className="text-base font-bold text-white flex items-center gap-2">
-                <Headphones className="h-4 w-4 text-slate-400" />
-                Support
-              </h3>
-              <ul className="space-y-3">
-                <li className="flex items-center gap-3 text-sm text-slate-400">
-                  <span className="h-7 w-7 rounded-lg bg-[#00D07C]/10 border border-[#00D07C]/20 flex items-center justify-center flex-shrink-0">
-                    <Mail className="h-3.5 w-3.5 text-[#00D07C]" />
-                  </span>
-                  <a
-                    href="mailto:support@qudrahire.com"
-                    className="hover:text-white transition-colors"
-                  >
-                    support@qudrahire.com
-                  </a>
-                </li>
-                <li className="flex items-center gap-3 text-sm text-slate-400">
-                  <span className="h-7 w-7 rounded-lg bg-[#00D07C]/10 border border-[#00D07C]/20 flex items-center justify-center flex-shrink-0">
-                    <Phone className="h-3.5 w-3.5 text-[#00D07C]" />
-                  </span>
-                  <span>WhatsApp Business: +971 4 555 0199</span>
-                </li>
-              </ul>
-              <p className="text-xs text-slate-600 leading-relaxed border-t border-white/5 pt-4">
-                For fastest resolution, include your account email and a
-                screenshot if applicable.
-              </p>
-            </div>
-
-            {/* Quick links */}
-            <div className="bg-[#0F172A] border border-white/5 rounded-2xl p-6 space-y-3 shadow-xl">
-              <h3 className="text-sm font-bold text-slate-300">Quick links</h3>
-              <div className="flex flex-col gap-2">
-                {[
-                  { label: "Help Center", href: "/" },
-                  { label: "Pricing Plans", href: "/pricing" },
-                  { label: "About QudraHire", href: "/about" },
-                ].map((link) => (
-                  <Link
-                    key={link.label}
-                    href={link.href}
-                    className="flex items-center justify-between text-sm text-slate-500 hover:text-[#00D07C] transition-colors group"
-                  >
-                    <span>{link.label}</span>
-                    <ChevronRight className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </Link>
-                ))}
+            <Animate className="animate-from-right" delay="anim-delay-100">
+              <div className="bg-[#0F172A] border border-white/5 rounded-2xl p-6 space-y-4 shadow-xl">
+                <h3 className="text-base font-bold text-white">General inquiries</h3>
+                <ul className="space-y-3">
+                  {[[Mail, "hello@qudrahire.com"], [Phone, "+971 4 555 0199"], [Clock, "Sun – Thu, 9:00 – 18:00 GST"]].map(([Icon, text], i) => {
+                    const I = Icon as React.ElementType;
+                    return (
+                      <li key={i} className="flex items-center gap-3 text-sm text-slate-400">
+                        <span className="h-7 w-7 rounded-lg bg-[#00D07C]/10 border border-[#00D07C]/20 flex items-center justify-center flex-shrink-0">
+                          <I className="h-3.5 w-3.5 text-[#00D07C]" />
+                        </span>
+                        {text as string}
+                      </li>
+                    );
+                  })}
+                </ul>
               </div>
-            </div>
+            </Animate>
+
+            <Animate className="animate-from-right" delay="anim-delay-200">
+              <div className="bg-[#0F172A] border border-white/5 rounded-2xl p-6 space-y-4 shadow-xl">
+                <h3 className="text-base font-bold text-white flex items-center gap-2">
+                  <Headphones className="h-4 w-4 text-slate-400" /> Support
+                </h3>
+                <ul className="space-y-3">
+                  {[[Mail, "support@qudrahire.com"], [Phone, "WhatsApp Business: +971 4 555 0199"]].map(([Icon, text], i) => {
+                    const I = Icon as React.ElementType;
+                    return (
+                      <li key={i} className="flex items-center gap-3 text-sm text-slate-400">
+                        <span className="h-7 w-7 rounded-lg bg-[#00D07C]/10 border border-[#00D07C]/20 flex items-center justify-center flex-shrink-0">
+                          <I className="h-3.5 w-3.5 text-[#00D07C]" />
+                        </span>
+                        {text as string}
+                      </li>
+                    );
+                  })}
+                </ul>
+                <p className="text-xs text-slate-600 leading-relaxed border-t border-white/5 pt-4">
+                  For fastest resolution, include your account email and a screenshot if applicable.
+                </p>
+              </div>
+            </Animate>
+
+            <Animate className="animate-from-right" delay="anim-delay-300">
+              <div className="bg-[#0F172A] border border-white/5 rounded-2xl p-6 space-y-3 shadow-xl">
+                <h3 className="text-sm font-bold text-slate-300">Quick links</h3>
+                <div className="flex flex-col gap-2">
+                  {[{ label: "Help Center", href: "/" }, { label: "Pricing Plans", href: "/pricing" }, { label: "About QudraHire", href: "/about" }].map(link => (
+                    <Link key={link.label} href={link.href}
+                      className="flex items-center justify-between text-sm text-slate-500 hover:text-[#00D07C] transition-colors group">
+                      <span>{link.label}</span>
+                      <ChevronRight className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </Animate>
           </div>
         </div>
       </section>

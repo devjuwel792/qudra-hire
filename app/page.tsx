@@ -27,34 +27,11 @@ import {
   CarouselPrevious,
   useCarousel,
 } from "@/components/ui/carousel";
-import { useInView } from "@/hooks/use-in-view";
-
-/* ── Animate wrapper ── */
-function Animate({
-  children,
-  className = "animate-on-scroll",
-  delay = "",
-  as: Tag = "div",
-}: {
-  children: React.ReactNode;
-  className?: string;
-  delay?: string;
-  as?: React.ElementType;
-}) {
-  const { ref, inView } = useInView();
-  return (
-    <Tag
-      ref={ref}
-      className={`${className} ${delay} ${inView ? "in-view" : ""}`}
-    >
-      {children}
-    </Tag>
-  );
-}
+import { Animate } from "@/components/ui/animate";
 
 /* ── Job data ── */
 const jobs = [
-  { abbr: "ENB", company: "Emirates NBD", title: "Senior Product Designer", location: "Dubai, UAE", type: "Full-time", salary: "AED 28k-35k", match: "96%", ago: "2d ago", tags: ["Figma", "Design system", "Ux research", "Fintech", "Emiratization"], visa: true },
+  { abbr: "ENB", company: "Emirates NBD", title: "Senior Product Designer", location: "Dubai, UAE", type: "Full-time", salary: "AED 28k-35k", match: "96%", ago: "2d ago", tags: ["Figma", "Design system", "Ux research", "Fintech"], visa: true },
   { abbr: "CAR", company: "Careem", title: "Backend Engineer", location: "Dubai, UAE", type: "Full-time", salary: "AED 22k-30k", match: "91%", ago: "1d ago", tags: ["Node.js", "Microservices", "AWS"], visa: true },
   { abbr: "STC", company: "STC Pay", title: "Product Manager", location: "Riyadh, KSA", type: "Full-time", salary: "SAR 30k-40k", match: "88%", ago: "3d ago", tags: ["Fintech", "Agile", "Saudization"], visa: false },
   { abbr: "ADN", company: "ADNOC", title: "Data Analyst", location: "Abu Dhabi, UAE", type: "Contract", salary: "AED 18k-24k", match: "84%", ago: "5d ago", tags: ["Python", "Power BI", "SQL"], visa: false },
@@ -188,11 +165,11 @@ export default function HomePage() {
             Start <span className="text-[#00D07C]">progressing.</span>
           </h1>
           <p className="mt-6 text-lg text-slate-400 leading-relaxed max-w-2xl mx-auto
-            animate-[fadeInUp_0.7s_0.2s_ease_forwards] opacity-0">
+            animate-[fadeInUp_0.7s_0.2s_ease_forwards]">
             QudraHire matches candidates and companies with AI precision, visa sponsorship, Emiratization and Saudization filters included. Bilingual. Mobile-first. Built for momentum.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4
-            animate-[fadeInUp_0.7s_0.35s_ease_forwards] opacity-0">
+            animate-[fadeInUp_0.7s_0.35s_ease_forwards]">
             <Link href="/jobs" className="w-full sm:w-auto bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold px-8 py-3.5 rounded-xl transition-all active:scale-[0.98]">
               Find your next role
             </Link>
@@ -203,7 +180,7 @@ export default function HomePage() {
 
           {/* Hero Stats */}
           <div className="mt-16 flex flex-wrap justify-center gap-12 text-center pt-10
-            animate-[fadeInUp_0.7s_0.5s_ease_forwards] opacity-0">
+            animate-[fadeInUp_0.7s_0.5s_ease_forwards]">
             {[["12K+", "Active roles"], ["94%", "Match accuracy"], ["3.2d", "Avg. time-to-shortlist"]].map(([val, label]) => (
               <div key={label}>
                 <h3 className="text-3xl font-bold text-[#00D07C] mb-1">{val}</h3>
