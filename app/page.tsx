@@ -42,15 +42,15 @@ function JobCard({ job, active }: { job: typeof jobs[0]; active: boolean }) {
   return (
     <div className={`group w-full rounded-2xl p-6 border transition-all duration-300 relative
       ${active
-        ? "bg-[#0F1F14] border-[#00D07C]/30 shadow-lg shadow-[#00D07C]/5"
-        : "bg-[#080C14] border-white/5 opacity-60 scale-95 hover:opacity-100 hover:scale-100 hover:bg-[#0F1F14] hover:border-[#00D07C]/30 hover:shadow-lg hover:shadow-[#00D07C]/5"
+        ? "bg-[#0F1F14] border-[#4BC957]/30 shadow-lg shadow-[#4BC957]/5"
+        : "bg-[#080C14] border-white/5 opacity-60 scale-95 hover:opacity-100 hover:scale-100 hover:bg-[#0F1F14] hover:border-[#4BC957]/30 hover:shadow-lg hover:shadow-[#4BC957]/5"
       }`}>
-      {active && <div className="absolute inset-0 bg-[#00D07C]/5 rounded-2xl pointer-events-none" />}
+      {active && <div className="absolute inset-0 bg-[#4BC957]/5 rounded-2xl pointer-events-none" />}
       <div className="relative z-10">
         <div className="flex justify-between items-start mb-4">
           <div className="flex items-center gap-3">
             <div className={`rounded-xl bg-[#162032] flex items-center justify-center font-bold text-white border
-              ${active ? "h-12 w-12 text-sm border-[#00D07C]/30" : "h-10 w-10 text-xs border-white/5 group-hover:border-[#00D07C]/30"}`}>
+              ${active ? "h-12 w-12 text-sm border-[#4BC957]/30" : "h-10 w-10 text-xs border-white/5 group-hover:border-[#4BC957]/30"}`}>
               {job.abbr}
             </div>
             <div>
@@ -59,8 +59,8 @@ function JobCard({ job, active }: { job: typeof jobs[0]; active: boolean }) {
             </div>
           </div>
           <div className="flex flex-col items-end gap-1">
-            <span className={`text-[#00D07C] border text-[10px] font-bold px-2 py-0.5 rounded-full
-              ${active ? "bg-[#00D07C]/20 border-[#00D07C]/30" : "bg-[#00D07C]/10 border-[#00D07C]/20 group-hover:bg-[#00D07C]/20 group-hover:border-[#00D07C]/30"}`}>
+            <span className={`text-[#4BC957] border text-[10px] font-bold px-2 py-0.5 rounded-full
+              ${active ? "bg-[#4BC957]/20 border-[#4BC957]/30" : "bg-[#4BC957]/10 border-[#4BC957]/20 group-hover:bg-[#4BC957]/20 group-hover:border-[#4BC957]/30"}`}>
               {job.match} match
             </span>
             <span className="text-[10px] text-slate-500 font-medium">{job.ago}</span>
@@ -70,7 +70,7 @@ function JobCard({ job, active }: { job: typeof jobs[0]; active: boolean }) {
           <span className="flex items-center gap-1"><MapPin className="h-3 w-3" />{job.location}</span>
           <span className="flex items-center gap-1"><Clock className="h-3 w-3" />{job.type}</span>
           <span className="flex items-center gap-1"><DollarSign className="h-3 w-3" />{job.salary}</span>
-          {job.visa && <span className="text-[#00D07C]">✈ Visa</span>}
+          {job.visa && <span className="text-[#4BC957]">✈ Visa</span>}
         </div>
         <div className="flex flex-wrap gap-1.5">
           {job.tags.map(t => (
@@ -112,7 +112,7 @@ function JobCardsCarousel() {
         <Carousel opts={{ loop: true, align: "center" }} className="relative">
           <JobCarouselInner />
           <CarouselPrevious className="left-0 h-10 w-10 bg-transparent border border-white/20 text-slate-400 hover:bg-white/5 hover:text-white" />
-          <CarouselNext className="right-0 h-10 w-10 bg-transparent border border-[#00D07C]/40 text-[#00D07C] hover:bg-[#00D07C]/10" />
+          <CarouselNext className="right-0 h-10 w-10 bg-transparent border border-[#4BC957]/40 text-[#4BC957] hover:bg-[#4BC957]/10" />
         </Carousel>
       </Animate>
     </section>
@@ -138,22 +138,22 @@ export default function HomePage() {
       {/* 1. Hero */}
       <section className="relative pt-24 pb-16 text-center overflow-hidden">
         <div aria-hidden className="pointer-events-none absolute inset-0 flex items-start justify-center">
-          <div className="w-[800px] h-[400px] bg-[#00D07C]/10 rounded-full blur-[150px] mt-10" />
+          <div className="w-[800px] h-[400px] bg-[#4BC957]/10 rounded-full blur-[150px] mt-10" />
         </div>
         <div aria-hidden className="pointer-events-none absolute inset-0 opacity-[0.03]"
           style={{ backgroundImage: "linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)", backgroundSize: "40px 40px" }} />
 
         {/* Floating icons with bob animation */}
-        <div className="absolute top-20 left-[15%] text-[#00D07C]/40 hidden md:block icon-bob" style={{ "--rot": "-15deg" } as React.CSSProperties}>
+        <div className="absolute top-20 left-[15%] text-[#4BC957]/40 hidden md:block icon-bob" style={{ "--rot": "-15deg" } as React.CSSProperties}>
           <Briefcase className="w-12 h-12" />
         </div>
-        <div className="absolute top-40 right-[15%] text-[#00D07C]/40 hidden md:block icon-bob" style={{ "--rot": "15deg", animationDelay: "0.8s" } as React.CSSProperties}>
+        <div className="absolute top-40 right-[15%] text-[#4BC957]/40 hidden md:block icon-bob" style={{ "--rot": "15deg", animationDelay: "0.8s" } as React.CSSProperties}>
           <FileText className="w-10 h-10" />
         </div>
-        <div className="absolute bottom-32 left-[20%] text-[#00D07C]/40 hidden md:block icon-bob" style={{ "--rot": "-10deg", animationDelay: "1.4s" } as React.CSSProperties}>
+        <div className="absolute bottom-32 left-[20%] text-[#4BC957]/40 hidden md:block icon-bob" style={{ "--rot": "-10deg", animationDelay: "1.4s" } as React.CSSProperties}>
           <FileText className="w-8 h-8" />
         </div>
-        <div className="absolute bottom-20 right-[20%] text-[#00D07C]/40 hidden md:block icon-bob" style={{ "--rot": "20deg", animationDelay: "0.4s" } as React.CSSProperties}>
+        <div className="absolute bottom-20 right-[20%] text-[#4BC957]/40 hidden md:block icon-bob" style={{ "--rot": "20deg", animationDelay: "0.4s" } as React.CSSProperties}>
           <Briefcase className="w-10 h-10" />
         </div>
 
@@ -162,7 +162,7 @@ export default function HomePage() {
           <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight leading-tight
             animate-[fadeInUp_0.7s_ease_forwards]">
             Stop searching.<br />
-            Start <span className="text-[#00D07C]">progressing.</span>
+            Start <span className="text-[#4BC957] text-shadow-2xs text-shadow-[#4BC957]">progressing.</span>
           </h1>
           <p className="mt-6 text-lg text-slate-400 leading-relaxed max-w-2xl mx-auto
             animate-[fadeInUp_0.7s_0.2s_ease_forwards]">
@@ -170,10 +170,10 @@ export default function HomePage() {
           </p>
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4
             animate-[fadeInUp_0.7s_0.35s_ease_forwards]">
-            <Link href="/jobs" className="w-full sm:w-auto bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold px-8 py-3.5 rounded-xl transition-all active:scale-[0.98]">
+            <Link href="/jobs" className="w-full sm:w-auto bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold px-8 py-3.5 rounded-xl transition-all active:scale-[0.98]">
               Find your next role
             </Link>
-            <Link href="/pricing" className="w-full sm:w-auto bg-transparent border border-[#00D07C]/30 hover:border-[#00D07C]/50 text-white font-bold px-8 py-3.5 rounded-xl transition-all">
+            <Link href="/pricing" className="w-full sm:w-auto bg-transparent border border-[#4BC957]/30 hover:border-[#4BC957]/50 text-white font-bold px-8 py-3.5 rounded-xl transition-all">
               Find your next candidate
             </Link>
           </div>
@@ -183,7 +183,7 @@ export default function HomePage() {
             animate-[fadeInUp_0.7s_0.5s_ease_forwards]">
             {[["12K+", "Active roles"], ["94%", "Match accuracy"], ["3.2d", "Avg. time-to-shortlist"]].map(([val, label]) => (
               <div key={label}>
-                <h3 className="text-3xl font-bold text-[#00D07C] mb-1">{val}</h3>
+                <h3 className="text-3xl font-bold text-[#4BC957] mb-1">{val}</h3>
                 <p className="text-sm text-slate-400 font-medium">{label}</p>
               </div>
             ))}
@@ -216,7 +216,7 @@ export default function HomePage() {
                   <CarouselItem key={f.title} className="basis-full md:basis-1/4">
                     <Animate className="animate-on-scroll" delay={delays[i % 5]}>
                       <div className="w-64 bg-[#0F172A] border hover:bg-green-600/30 transition-colors border-white/5 rounded-3xl p-6 flex flex-col items-center justify-center text-center scale-95 shrink-0">
-                        <div className="h-10 w-10 rounded-full bg-[#00D07C]/10 border border-[#00D07C]/20 flex items-center justify-center mb-4 text-[#00D07C]">
+                        <div className="h-10 w-10 rounded-full bg-[#4BC957]/10 border border-[#4BC957]/20 flex items-center justify-center mb-4 text-[#4BC957]">
                           <Icon className="h-4 w-4" />
                         </div>
                         <h4 className="font-bold text-white mb-2">{f.title}</h4>
@@ -228,7 +228,7 @@ export default function HomePage() {
               })}
             </CarouselContent>
             <CarouselPrevious className="absolute touch-manipulation rounded-full hover:text-green-700 text-white top-1/2 -left-6 -translate-y-1/2 h-10 w-10 bg-transparent border border-white/20 hover:bg-white/5 transition-colors" variant="outline" size="icon-sm" />
-            <CarouselNext className="absolute touch-manipulation rounded-full hover:text-green-700 text-white top-1/2 -right-6 -translate-y-1/2 h-10 w-10 bg-transparent border border-[#00D07C]/40 hover:bg-[#00D07C]/10 transition-colors" variant="outline" size="icon-sm" />
+            <CarouselNext className="absolute touch-manipulation rounded-full hover:text-green-700 text-white top-1/2 -right-6 -translate-y-1/2 h-10 w-10 bg-transparent border border-[#4BC957]/40 hover:bg-[#4BC957]/10 transition-colors" variant="outline" size="icon-sm" />
           </Carousel>
         </div>
       </section>
@@ -239,7 +239,7 @@ export default function HomePage() {
           <Animate className="animate-from-left">
             <div className="relative bg-gradient-to-br from-[#0F1F14] to-[#0A0F1D] border border-white/10 rounded-3xl p-8 sm:p-10 overflow-hidden group h-full">
               <div className="relative z-10 h-full flex flex-col">
-                <div className="h-12 w-12 rounded-xl bg-[#00D07C]/20 flex items-center justify-center mb-6 border border-[#00D07C]/30 text-[#00D07C]">
+                <div className="h-12 w-12 rounded-xl bg-[#4BC957]/20 flex items-center justify-center mb-6 border border-[#4BC957]/30 text-[#4BC957]">
                   <Briefcase className="h-6 w-6" />
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-3">For Candidates</h3>
@@ -247,11 +247,11 @@ export default function HomePage() {
                 <ul className="space-y-4 mb-10 flex-1">
                   {["Auto-apply", "ATS tracking", "Application tracking", "Direct messaging", "Credit wallet"].map(item => (
                     <li key={item} className="flex items-center gap-3 text-sm text-slate-300 font-medium">
-                      <CheckCircle2 className="h-4 w-4 text-[#00D07C]" />{item}
+                      <CheckCircle2 className="h-4 w-4 text-[#4BC957]" />{item}
                     </li>
                   ))}
                 </ul>
-                <Link href="/candidate" className="inline-flex items-center justify-center gap-2 bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold px-6 py-3 rounded-xl transition-all w-max">
+                <Link href="/candidate" className="inline-flex items-center justify-center gap-2 bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold px-6 py-3 rounded-xl transition-all w-max">
                   Get candidate workspace <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
@@ -261,7 +261,7 @@ export default function HomePage() {
           <Animate className="animate-from-right" delay="anim-delay-200">
             <div className="relative bg-gradient-to-br from-[#0F1F14] to-[#0A0F1D] border border-white/10 rounded-3xl p-8 sm:p-10 overflow-hidden group h-full">
               <div className="relative z-10 h-full flex flex-col">
-                <div className="h-12 w-12 rounded-xl bg-[#00D07C]/20 flex items-center justify-center mb-6 border border-[#00D07C]/30 text-[#00D07C]">
+                <div className="h-12 w-12 rounded-xl bg-[#4BC957]/20 flex items-center justify-center mb-6 border border-[#4BC957]/30 text-[#4BC957]">
                   <FileText className="h-6 w-6" />
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-3">For Companies</h3>
@@ -269,11 +269,11 @@ export default function HomePage() {
                 <ul className="space-y-4 mb-10 flex-1">
                   {["AI candidate ranking", "Instant shortlists", "Top candidate Unlock by credits", "Pipeline overview", "Bilingual posts"].map(item => (
                     <li key={item} className="flex items-center gap-3 text-sm text-slate-300 font-medium">
-                      <CheckCircle2 className="h-4 w-4 text-[#00D07C]" />{item}
+                      <CheckCircle2 className="h-4 w-4 text-[#4BC957]" />{item}
                     </li>
                   ))}
                 </ul>
-                <Link href="/company" className="inline-flex items-center justify-center gap-2 bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold px-6 py-3 rounded-xl transition-all w-max">
+                <Link href="/company" className="inline-flex items-center justify-center gap-2 bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold px-6 py-3 rounded-xl transition-all w-max">
                   Get company workspace <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
@@ -303,7 +303,7 @@ export default function HomePage() {
                 const I = Icon as React.ElementType;
                 return (
                   <li key={i} className="flex items-center gap-3 text-sm text-slate-300">
-                    <span className="h-8 w-8 rounded-lg bg-[#00D07C]/10 border border-[#00D07C]/20 flex items-center justify-center text-[#00D07C]">
+                    <span className="h-8 w-8 rounded-lg bg-[#4BC957]/10 border border-[#4BC957]/20 flex items-center justify-center text-[#4BC957]">
                       <I className="h-4 w-4" />
                     </span>
                     {text as string}
@@ -311,7 +311,7 @@ export default function HomePage() {
                 );
               })}
             </ul>
-            <Link href="/contact" className="inline-flex items-center justify-center gap-2 bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold px-6 py-3 rounded-xl transition-all">
+            <Link href="/contact" className="inline-flex items-center justify-center gap-2 bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold px-6 py-3 rounded-xl transition-all">
               Go to contact page <ArrowRight className="h-4 w-4" />
             </Link>
           </Animate>
@@ -322,10 +322,10 @@ export default function HomePage() {
               <p className="text-xs text-slate-500 mb-6">We usually reply within a few hours.</p>
               <form className="space-y-4">
                 <input type="email" placeholder="Your email"
-                  className="w-full bg-[#0A0F1D] border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#00D07C]/50 transition-colors" />
+                  className="w-full bg-[#0A0F1D] border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#4BC957]/50 transition-colors" />
                 <textarea placeholder="How can we help?" rows={4}
-                  className="w-full bg-[#0A0F1D] border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#00D07C]/50 transition-colors resize-none" />
-                <button type="button" className="w-full bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold px-6 py-3 rounded-xl transition-all">
+                  className="w-full bg-[#0A0F1D] border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#4BC957]/50 transition-colors resize-none" />
+                <button type="button" className="w-full bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold px-6 py-3 rounded-xl transition-all">
                   Send message
                 </button>
               </form>
@@ -337,16 +337,16 @@ export default function HomePage() {
       {/* 7. Bottom CTA */}
       <section className="max-w-5xl mx-auto px-4 sm:px-8 pb-24 w-full">
         <Animate className="animate-scale">
-          <div className="bg-[#0F172A] border border-white/10 rounded-3xl p-12 text-center relative overflow-hidden shadow-2xl shadow-[#00D07C]/5">
+          <div className="bg-[#0F172A] border border-white/10 rounded-3xl p-12 text-center relative overflow-hidden shadow-2xl shadow-[#4BC957]/5">
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="w-[300px] h-[300px] bg-[#00D07C]/10 rounded-full blur-[100px]" />
+              <div className="w-[300px] h-[300px] bg-[#4BC957]/10 rounded-full blur-[100px]" />
             </div>
             <h2 className="relative text-3xl sm:text-5xl font-extrabold text-white mb-4">Your next move starts here.</h2>
             <p className="relative text-slate-400 mb-8 max-w-lg mx-auto">
               Join thousands of professionals and companies hiring smarter across the region.
             </p>
             <div className="relative flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link href="/signup" className="w-full sm:w-auto bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold px-8 py-3 rounded-xl transition-all">
+              <Link href="/signup" className="w-full sm:w-auto bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold px-8 py-3 rounded-xl transition-all">
                 Create free account
               </Link>
               <Link href="/pricing" className="w-full sm:w-auto bg-transparent border border-white/20 hover:border-white/40 text-white font-medium px-8 py-3 rounded-xl transition-all">
