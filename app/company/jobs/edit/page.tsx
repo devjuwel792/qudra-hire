@@ -28,7 +28,7 @@ export default function EditJobPage() {
             <h1 className="text-3xl font-extrabold text-white tracking-tight">Edit job listing</h1>
             <p className="text-sm text-slate-400 mt-1">Update your requirements and refresh candidates matches.</p>
           </div>
-          <span className="bg-[#00D07C]/10 text-[#00D07C] border border-[#00D07C]/20 px-3 py-1.5 rounded-full  font-semibold flex items-center gap-1.5">
+          <span className="bg-[#4BC957]/10 text-[#4BC957] border border-[#4BC957]/20 px-3 py-1.5 rounded-full  font-semibold flex items-center gap-1.5">
             <ShieldCheck className="h-4 w-4" />
             Trade-licence verified
           </span>
@@ -46,7 +46,7 @@ export default function EditJobPage() {
               type="text"
               defaultValue="Senior Product Designer"
               placeholder="e.g. Lead Developer"
-              className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#00D07C] text-slate-200 placeholder-slate-500 rounded-xl px-4 py-3 text-sm focus:outline-none transition-colors"
+              className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#4BC957] text-slate-200 placeholder-slate-500 rounded-xl px-4 py-3 text-sm focus:outline-none transition-colors"
             />
           </div>
 
@@ -57,7 +57,7 @@ export default function EditJobPage() {
               type="text"
               defaultValue="Figma, React, TypeScript, Design Systems"
               placeholder="Enter Skills"
-              className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#00D07C] text-slate-200 placeholder-slate-500 rounded-xl px-4 py-3 text-sm focus:outline-none transition-colors"
+              className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#4BC957] text-slate-200 placeholder-slate-500 rounded-xl px-4 py-3 text-sm focus:outline-none transition-colors"
             />
           </div>
 
@@ -69,7 +69,7 @@ export default function EditJobPage() {
                 type="text"
                 defaultValue="Dubai, UAE"
                 placeholder="e.g. Riyadh, KSA"
-                className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#00D07C] text-slate-200 placeholder-slate-500 rounded-xl px-4 py-3 text-sm focus:outline-none transition-colors"
+                className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#4BC957] text-slate-200 placeholder-slate-500 rounded-xl px-4 py-3 text-sm focus:outline-none transition-colors"
               />
             </div>
             <div className="space-y-2">
@@ -78,7 +78,7 @@ export default function EditJobPage() {
                 type="text"
                 defaultValue="Full-time"
                 placeholder="e.g. Contract, Part-time"
-                className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#00D07C] text-slate-200 placeholder-slate-500 rounded-xl px-4 py-3 text-sm focus:outline-none transition-colors"
+                className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#4BC957] text-slate-200 placeholder-slate-500 rounded-xl px-4 py-3 text-sm focus:outline-none transition-colors"
               />
             </div>
           </div>
@@ -91,7 +91,7 @@ export default function EditJobPage() {
                 type="text"
                 defaultValue="AED"
                 placeholder="e.g. SAR, USD"
-                className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#00D07C] text-slate-200 placeholder-slate-500 rounded-xl px-4 py-3 text-sm focus:outline-none transition-colors"
+                className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#4BC957] text-slate-200 placeholder-slate-500 rounded-xl px-4 py-3 text-sm focus:outline-none transition-colors"
               />
             </div>
             <div className="space-y-2">
@@ -100,7 +100,7 @@ export default function EditJobPage() {
                 type="text"
                 defaultValue="28,000 — 36,000 / month"
                 placeholder="e.g. 15,000 - 20,000"
-                className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#00D07C] text-slate-200 placeholder-slate-500 rounded-xl px-4 py-3 text-sm focus:outline-none transition-colors"
+                className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#4BC957] text-slate-200 placeholder-slate-500 rounded-xl px-4 py-3 text-sm focus:outline-none transition-colors"
               />
             </div>
           </div>
@@ -111,7 +111,7 @@ export default function EditJobPage() {
             <textarea
               rows={4}
               defaultValue="Own end-to-end design of our flagship banking app..."
-              className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#00D07C] text-slate-200 placeholder-slate-500 rounded-xl p-4 text-sm focus:outline-none transition-colors resize-none"
+              className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#4BC957] text-slate-200 placeholder-slate-500 rounded-xl p-4 text-sm focus:outline-none transition-colors resize-none"
             />
           </div>
 
@@ -121,7 +121,7 @@ export default function EditJobPage() {
             <textarea
               rows={4}
               defaultValue={"6+ years product design\nFintech experience\nFluent English; Arabic a plus"}
-              className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#00D07C] text-slate-200 placeholder-slate-500 rounded-xl p-4 text-sm focus:outline-none transition-colors resize-none"
+              className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#4BC957] text-slate-200 placeholder-slate-500 rounded-xl p-4 text-sm focus:outline-none transition-colors resize-none"
             />
           </div>
 
@@ -135,7 +135,7 @@ export default function EditJobPage() {
               <Switch
                 checked={visaSp}
                 onCheckedChange={setVisaSp}
-                className="data-checked:bg-[#00D07C]!"
+                className="data-checked:bg-[#4BC957]!"
               />
             </div>
 
@@ -145,7 +145,7 @@ export default function EditJobPage() {
               <Switch
                 checked={emiratization}
                 onCheckedChange={setEmiratization}
-                className="data-checked:bg-[#00D07C]!"
+                className="data-checked:bg-[#4BC957]!"
               />
             </div>
 
@@ -155,7 +155,7 @@ export default function EditJobPage() {
               <Switch
                 checked={saudization}
                 onCheckedChange={setSaudization}
-                className="data-checked:bg-[#00D07C]!"
+                className="data-checked:bg-[#4BC957]!"
               />
             </div>
 
@@ -165,7 +165,7 @@ export default function EditJobPage() {
               <Switch
                 checked={remote}
                 onCheckedChange={setRemote}
-                className="data-checked:bg-[#00D07C]!"
+                className="data-checked:bg-[#4BC957]!"
               />
             </div>
           </div>
@@ -178,7 +178,7 @@ export default function EditJobPage() {
             >
               Cancel
             </Link>
-            <button className="bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold px-6 py-2.5 rounded-xl text-sm transition-all shadow-md shadow-[#00D07C]/10 active:scale-[0.98]">
+            <button className="bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold px-6 py-2.5 rounded-xl text-sm transition-all shadow-md shadow-[#4BC957]/10 active:scale-[0.98]">
               Save Changes
             </button>
           </div>
@@ -191,7 +191,7 @@ export default function EditJobPage() {
           {/* What happens next */}
           <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-6 space-y-4">
             <h3 className="text-sm font-bold text-white flex items-center gap-1.5">
-              <Sparkles className="h-4.5 w-4.5 text-[#00D07C]" />
+              <Sparkles className="h-4.5 w-4.5 text-[#4BC957]" />
               What happens next
             </h3>
             <ol className="space-y-3.5  text-slate-400 list-decimal pl-4 leading-relaxed font-medium">
@@ -211,13 +211,13 @@ export default function EditJobPage() {
                 <span>Update listing</span>
                 <span className="text-white">Free</span>
               </div>
-              <div className="flex justify-between items-center text-[#00D07C]">
+              <div className="flex justify-between items-center text-[#4BC957]">
                 <span>Top 10 shortlist</span>
                 <span>Updated Free</span>
               </div>
             </div>
 
-            <div className="border-t border-[#1E293B]/60 pt-4  font-bold text-[#00D07C]">
+            <div className="border-t border-[#1E293B]/60 pt-4  font-bold text-[#4BC957]">
               Balance: 1,240 credits
             </div>
           </div>

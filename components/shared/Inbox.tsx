@@ -79,7 +79,7 @@ export default function Inbox({
                 <input
                   type="text"
                   placeholder="Search messages..."
-                  className="w-full bg-[#080C14] border border-[#1E293B]/60 rounded-lg py-1.5 pl-9 pr-4  text-slate-200 placeholder-slate-500 focus:outline-none focus:border-[#00D07C]"
+                  className="w-full bg-[#080C14] border border-[#1E293B]/60 rounded-lg py-1.5 pl-9 pr-4  text-slate-200 placeholder-slate-500 focus:outline-none focus:border-[#4BC957]"
                 />
               </div>
             </div>
@@ -100,11 +100,11 @@ export default function Inbox({
                     <p className=" font-semibold text-white truncate">{chat.name}</p>
                     <span className="text-[13px] text-slate-500 flex-shrink-0 ml-2">{chat.time}</span>
                   </div>
-                  <p className="text-[13px] text-[#00D07C] truncate mt-0.5 font-medium">{chat.role}</p>
+                  <p className="text-[13px] text-[#4BC957] truncate mt-0.5 font-medium">{chat.role}</p>
                   <p className=" text-slate-400 truncate mt-1">{chat.lastMsg}</p>
                 </div>
                 {chat.unread > 0 && (
-                  <span className="h-5 w-5 rounded-full bg-[#00D07C] flex items-center justify-center text-[13px] font-bold text-white flex-shrink-0 self-center">
+                  <span className="h-5 w-5 rounded-full bg-[#4BC957] flex items-center justify-center text-[13px] font-bold text-white flex-shrink-0 self-center">
                     {chat.unread}
                   </span>
                 )}
@@ -129,7 +129,7 @@ export default function Inbox({
               </div>
             </div>
             {showMatchBadge && selectedChat.match && (
-              <span className=" text-[#00D07C] bg-[#00D07C]/10 px-2 py-0.5 rounded-md font-semibold flex items-center gap-1">
+              <span className=" text-[#4BC957] bg-[#4BC957]/10 px-2 py-0.5 rounded-md font-semibold flex items-center gap-1">
                 <Sparkles className="h-3 w-3" />
                 {selectedChat.match}% Match
               </span>
@@ -147,7 +147,7 @@ export default function Inbox({
                 >
                   <div
                     className={`px-4 py-3 rounded-2xl  font-medium leading-relaxed ${isMe
-                      ? "bg-[#00D07C] text-[#080C14] rounded-tr-none"
+                      ? "bg-[#4BC957] text-[#080C14] rounded-tr-none"
                       : "bg-[#1E293B] text-slate-200 rounded-tl-none"
                       }`}
                   >
@@ -165,11 +165,11 @@ export default function Inbox({
               placeholder="Write a message..."
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
-              className="flex-1 bg-[#080C14] border border-[#1E293B]/60 rounded-xl px-4 py-3  text-slate-200 placeholder-slate-500 focus:outline-none focus:border-[#00D07C]"
+              className="flex-1 bg-[#080C14] border border-[#1E293B]/60 rounded-xl px-4 py-3  text-slate-200 placeholder-slate-500 focus:outline-none focus:border-[#4BC957]"
             />
             <button
               type="submit"
-              className="bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] p-3 rounded-xl transition-all duration-200 shadow-md shadow-[#00D07C]/10 flex-shrink-0"
+              className="bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] p-3 rounded-xl transition-all duration-200 shadow-md shadow-[#4BC957]/10 flex-shrink-0"
             >
               <Send className="h-4 w-4" />
             </button>

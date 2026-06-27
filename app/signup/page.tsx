@@ -15,7 +15,7 @@ export default function SignupPage() {
         <div className="flex justify-center mb-8">
           <Link href="/" className="text-2xl font-bold tracking-tight">
             <span className="text-white">Qudra</span>
-            <span className="text-[#00D07C]">Hire</span>
+            <span className="text-[#4BC957]">Hire</span>
           </Link>
         </div>
 
@@ -28,7 +28,7 @@ export default function SignupPage() {
             onClick={() => setAccountType("candidate")}
             className={`flex-1 py-2.5 text-sm font-medium rounded-xl transition-all ${
               accountType === "candidate" 
-                ? "bg-[#00D07C] text-[#080C14]" 
+                ? "bg-[#4BC957] text-[#080C14]" 
                 : "text-slate-400 hover:text-white"
             }`}
           >
@@ -38,7 +38,7 @@ export default function SignupPage() {
             onClick={() => setAccountType("company")}
             className={`flex-1 py-2.5 text-sm font-medium rounded-xl transition-all ${
               accountType === "company" 
-                ? "bg-[#00D07C] text-[#080C14]" 
+                ? "bg-[#4BC957] text-[#080C14]" 
                 : "text-slate-400 hover:text-white"
             }`}
           >
@@ -71,7 +71,7 @@ export default function SignupPage() {
                   <input 
                     type="text" 
                     placeholder="Enter name" 
-                    className="w-full bg-[#080C14] border border-white/5 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#00D07C]/50 transition-colors"
+                    className="w-full bg-[#080C14] border border-white/5 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#4BC957]/50 transition-colors"
                   />
                 </div>
                 <div className="flex-1">
@@ -79,7 +79,7 @@ export default function SignupPage() {
                   <input 
                     type="text" 
                     placeholder="Enter name" 
-                    className="w-full bg-[#080C14] border border-white/5 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#00D07C]/50 transition-colors"
+                    className="w-full bg-[#080C14] border border-white/5 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#4BC957]/50 transition-colors"
                   />
                 </div>
               </div>
@@ -88,7 +88,7 @@ export default function SignupPage() {
                 <input 
                   type="email" 
                   placeholder="Enter email" 
-                  className="w-full bg-[#080C14] border border-white/5 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#00D07C]/50 transition-colors"
+                  className="w-full bg-[#080C14] border border-white/5 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#4BC957]/50 transition-colors"
                 />
               </div>
               <div>
@@ -96,7 +96,7 @@ export default function SignupPage() {
                 <input 
                   type="password" 
                   placeholder="••••••••" 
-                  className="w-full bg-[#080C14] border border-white/5 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#00D07C]/50 transition-colors"
+                  className="w-full bg-[#080C14] border border-white/5 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#4BC957]/50 transition-colors"
                 />
               </div>
               
@@ -107,7 +107,7 @@ export default function SignupPage() {
                 </p>
               </div>
 
-              <button type="button" onClick={() => router.push("/candidate")} className="w-full bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold px-6 py-3 rounded-xl transition-all mt-6">
+              <button type="button" onClick={() => router.push("/candidate")} className="w-full bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold px-6 py-3 rounded-xl transition-all mt-6">
                 Create account & start matching
               </button>
             </form>
@@ -122,7 +122,7 @@ export default function SignupPage() {
                 <input 
                   type="text" 
                   placeholder="Enter name" 
-                  className="w-full bg-[#080C14] border border-white/5 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#00D07C]/50 transition-colors"
+                  className="w-full bg-[#080C14] border border-white/5 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#4BC957]/50 transition-colors"
                 />
               </div>
               <div>
@@ -130,7 +130,7 @@ export default function SignupPage() {
                 <input 
                   type="email" 
                   placeholder="Enter email" 
-                  className="w-full bg-[#080C14] border border-white/5 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#00D07C]/50 transition-colors"
+                  className="w-full bg-[#080C14] border border-white/5 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#4BC957]/50 transition-colors"
                 />
               </div>
               <div>
@@ -138,7 +138,7 @@ export default function SignupPage() {
                 <input 
                   type="password" 
                   placeholder="••••••••" 
-                  className="w-full bg-[#080C14] border border-white/5 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#00D07C]/50 transition-colors"
+                  className="w-full bg-[#080C14] border border-white/5 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#4BC957]/50 transition-colors"
                 />
               </div>
               
@@ -149,7 +149,7 @@ export default function SignupPage() {
                 </p>
               </div>
 
-              <button type="button" onClick={() => router.push("/company")} className="w-full bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold px-6 py-3 rounded-xl transition-all mt-6">
+              <button type="button" onClick={() => router.push("/company")} className="w-full bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold px-6 py-3 rounded-xl transition-all mt-6">
                 Create account
               </button>
             </form>
@@ -158,7 +158,7 @@ export default function SignupPage() {
 
         <div className="mt-8 text-center">
           <p className="text-xs text-slate-400">
-            Already a member? <Link href="/login" className="text-[#00D07C] font-semibold hover:underline">Log In</Link>
+            Already a member? <Link href="/login" className="text-[#4BC957] font-semibold hover:underline">Log In</Link>
           </p>
         </div>
       </div>

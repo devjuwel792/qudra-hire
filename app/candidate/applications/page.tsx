@@ -72,7 +72,7 @@ export default function CandidateApplicationsPage() {
                     {app.role}
                   </td>
                   <td className="py-4 px-6 text-slate-400 font-medium">{app.company}</td>
-                  <td className="py-4 px-6 text-[#00D07C] font-extrabold">{app.ats}</td>
+                  <td className="py-4 px-6 text-[#4BC957] font-extrabold">{app.ats}</td>
                   <td className="py-4 px-6 text-slate-400 font-medium">{app.applied}</td>
                   <td className="py-4 px-6">
                     <span className="text-[13px] font-bold border border-slate-700/60 bg-[#1E293B]/40 text-slate-300 px-3 py-1 rounded-full">

@@ -30,7 +30,7 @@ export default function JobsPage() {
           <h1 className="text-3xl font-extrabold text-white tracking-tight">Manage jobs</h1>
           <p className="text-sm text-slate-400 mt-1">Post, monitor and close listings.</p>
         </div>
-        <Link href="/company/jobs/create" className="inline-flex items-center gap-2 bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold px-5 py-3 rounded-xl transition-all duration-200 shadow-lg shadow-[#00D07C]/10 active:scale-[0.98]">
+        <Link href="/company/jobs/create" className="inline-flex items-center gap-2 bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold px-5 py-3 rounded-xl transition-all duration-200 shadow-lg shadow-[#4BC957]/10 active:scale-[0.98]">
           <Plus className="h-5 w-5" />
           Post a job
         </Link>
@@ -60,10 +60,10 @@ export default function JobsPage() {
                   {/* Applicants Count */}
                   <td className="py-5 px-6 font-extrabold text-white">{job.applicants}</td>
                   {/* AI Matches Score in Qudra Green */}
-                  <td className="py-5 px-6 font-bold text-[#00D07C]">{job.matches}</td>
+                  <td className="py-5 px-6 font-bold text-[#4BC957]">{job.matches}</td>
                   {/* Status Badge */}
                   <td className="py-5 px-6">
-                    <span className="inline-flex items-center bg-[#00D07C]/10 text-[#00D07C] border border-[#00D07C]/20 px-2.5 py-0.5 rounded-full  font-semibold">
+                    <span className="inline-flex items-center bg-[#4BC957]/10 text-[#4BC957] border border-[#4BC957]/20 px-2.5 py-0.5 rounded-full  font-semibold">
                       {job.status}
                     </span>
                   </td>

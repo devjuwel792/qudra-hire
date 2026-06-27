@@ -155,14 +155,14 @@ export default function CandidatesPage() {
                   value={roleFilter}
                   onChange={(e) => setRoleFilter(e.target.value)}
                   placeholder="Search by role (e.g. Senior Designer)"
-                  className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#00D07C] text-slate-200 placeholder-slate-500 rounded-xl px-4 py-3 text-sm focus:outline-none transition-colors"
+                  className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#4BC957] text-slate-200 placeholder-slate-500 rounded-xl px-4 py-3 text-sm focus:outline-none transition-colors"
                 />
               </div>
 
               {/* Skills Filter with Tag Input */}
               <div className="space-y-2">
                 <label className=" font-semibold text-slate-400 uppercase tracking-wider">Skills</label>
-                <div className="flex flex-wrap gap-2 items-center w-full bg-[#131926] border border-[#2A3C58]/60 focus-within:border-[#00D07C] rounded-xl p-2.5 transition-colors">
+                <div className="flex flex-wrap gap-2 items-center w-full bg-[#131926] border border-[#2A3C58]/60 focus-within:border-[#4BC957] rounded-xl p-2.5 transition-colors">
                   {skills.map((skill, idx) => (
                     <Badge
                       key={idx}
@@ -191,7 +191,7 @@ export default function CandidatesPage() {
               <div className="space-y-2">
                 <label className=" font-semibold text-slate-400 uppercase tracking-wider">Experience Level</label>
                 <Select value={experienceLevel} onValueChange={(val) => setExperienceLevel(val || "All Levels")}>
-                  <SelectTrigger className="w-full bg-[#131926] border-[#2A3C58]/60 text-slate-200 rounded-xl px-4 py-6 text-sm focus:border-[#00D07C] focus:ring-0! transition-colors">
+                  <SelectTrigger className="w-full bg-[#131926] border-[#2A3C58]/60 text-slate-200 rounded-xl px-4 py-6 text-sm focus:border-[#4BC957] focus:ring-0! transition-colors">
                     <SelectValue placeholder="Select level" />
                   </SelectTrigger>
                   <SelectContent className="bg-[#0B0F19] border-[#2A3C58]/60 text-slate-200 rounded-xl overflow-hidden shadow-xl">
@@ -216,7 +216,7 @@ export default function CandidatesPage() {
               />
               <button
                 onClick={() => setIsFiltersOpen(false)}
-                className="bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold px-6 py-2.5 rounded-xl text-sm transition-all shadow-md shadow-[#00D07C]/10 active:scale-[0.98]"
+                className="bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold px-6 py-2.5 rounded-xl text-sm transition-all shadow-md shadow-[#4BC957]/10 active:scale-[0.98]"
               >
                 Apply Filters
               </button>
@@ -245,7 +245,7 @@ export default function CandidatesPage() {
               </div>
 
               {/* Match percentage badge with star */}
-              <span className=" font-semibold text-[#00D07C] bg-[#00D07C]/10 border border-[#00D07C]/20 px-2.5 py-0.5 rounded-lg flex items-center gap-1">
+              <span className=" font-semibold text-[#4BC957] bg-[#4BC957]/10 border border-[#4BC957]/20 px-2.5 py-0.5 rounded-lg flex items-center gap-1">
                 <Sparkles className="h-3 w-3" />
                 {candidate.match}
               </span>
@@ -273,21 +273,21 @@ export default function CandidatesPage() {
             <div className="flex items-center gap-2 pt-1.5">
               <Link
                 href={`/company/candidates/profile?id=${candidate.id}`}
-                className="flex-1 bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold py-2.5 px-4 rounded-xl  flex items-center justify-center gap-1.5 transition-all shadow-md shadow-[#00D07C]/5 active:scale-[0.98]"
+                className="flex-1 bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold py-2.5 px-4 rounded-xl  flex items-center justify-center gap-1.5 transition-all shadow-md shadow-[#4BC957]/5 active:scale-[0.98]"
               >
                 <Lock className="h-3.5 w-3.5" />
                 View profile
               </Link>
 
-              <Link href={`/company/inbox?id=${candidate.id}`} className="p-2.5 bg-[#162032] border border-[#2A3C58]/60 text-slate-400 hover:text-white rounded-xl hover:border-[#00D07C]/40 transition-colors">
+              <Link href={`/company/inbox?id=${candidate.id}`} className="p-2.5 bg-[#162032] border border-[#2A3C58]/60 text-slate-400 hover:text-white rounded-xl hover:border-[#4BC957]/40 transition-colors">
                 <MessageSquare className="h-4 w-4" />
               </Link>
 
-              <Link href={`/company/candidates/interview?id=${candidate.id}`} className="p-2.5 bg-[#162032] border border-[#2A3C58]/60 text-slate-400 hover:text-white rounded-xl hover:border-[#00D07C]/40 transition-colors">
+              <Link href={`/company/candidates/interview?id=${candidate.id}`} className="p-2.5 bg-[#162032] border border-[#2A3C58]/60 text-slate-400 hover:text-white rounded-xl hover:border-[#4BC957]/40 transition-colors">
                 <Bot className="h-4 w-4" />
               </Link>
 
-              <button onClick={() => { }} className="p-2.5 bg-[#162032] border border-[#2A3C58]/60 text-slate-400 hover:text-white rounded-xl hover:border-[#00D07C]/40 transition-colors">
+              <button onClick={() => { }} className="p-2.5 bg-[#162032] border border-[#2A3C58]/60 text-slate-400 hover:text-white rounded-xl hover:border-[#4BC957]/40 transition-colors">
                 <FileText className="h-4 w-4" />
               </button>
             </div>

@@ -83,7 +83,7 @@ export default function Wallet({
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Balance Card (2/3 width) */}
         <div className="lg:col-span-2 bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-6 flex flex-col justify-between space-y-6">
-          <div className="flex items-center gap-2 text-sm font-bold text-[#00D07C]">
+          <div className="flex items-center gap-2 text-sm font-bold text-[#4BC957]">
             <WalletIcon className="h-4.5 w-4.5" />
             Balance
           </div>
@@ -109,7 +109,7 @@ export default function Wallet({
           <Dialog open={topUpOpen} onOpenChange={setTopUpOpen}>
             <DialogTrigger
               render={
-                <button className="flex items-center justify-center gap-2 bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold py-3 px-5 rounded-xl w-32 transition-all duration-200 active:scale-[0.98]">
+                <button className="flex items-center justify-center gap-2 bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold py-3 px-5 rounded-xl w-32 transition-all duration-200 active:scale-[0.98]">
                   <Plus className="h-4 w-4" />
                   Top up
                 </button>
@@ -121,7 +121,7 @@ export default function Wallet({
                 <div className="flex justify-between items-center">
                   <h2 className="text-lg font-bold text-white">Quick top-up</h2>
                   <span className="text-[13px] text-slate-500 flex items-center gap-1 font-bold uppercase tracking-wider">
-                    <ShieldCheck className="h-3.5 w-3.5 text-[#00D07C]" />
+                    <ShieldCheck className="h-3.5 w-3.5 text-[#4BC957]" />
                     Secure
                   </span>
                 </div>
@@ -133,7 +133,7 @@ export default function Wallet({
                     <div
                       key={idx}
                       className={`p-4 rounded-xl border flex items-center justify-between transition-all ${pkg.active
-                        ? "bg-[#162032] border-[#00D07C]/50 shadow-[0_0_15px_-3px_rgba(0,208,124,0.15)]"
+                        ? "bg-[#162032] border-[#4BC957]/50 shadow-[0_0_15px_-3px_rgba(0,208,124,0.15)]"
                         : "bg-[#0A0F1D]/60 border-[#1E293B]/60 hover:border-slate-700"
                         }`}
                     >
@@ -143,7 +143,7 @@ export default function Wallet({
                       </div>
                       <div className="flex items-center gap-3">
                         <span className=" font-bold text-white">{pkg.price}</span>
-                        <button className="bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14]  font-bold px-3 py-1.5 rounded-lg transition-colors">
+                        <button className="bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14]  font-bold px-3 py-1.5 rounded-lg transition-colors">
                           Buy
                         </button>
                       </div>
@@ -160,7 +160,7 @@ export default function Wallet({
           <div className="flex justify-between items-center">
             <span className="text-sm font-bold text-white">Quick top-up</span>
             <span className="text-[13px] text-slate-500 flex items-center gap-1 font-bold uppercase tracking-wider">
-              <ShieldCheck className="h-3.5 w-3.5 text-[#00D07C]" />
+              <ShieldCheck className="h-3.5 w-3.5 text-[#4BC957]" />
               Secure
             </span>
           </div>
@@ -170,7 +170,7 @@ export default function Wallet({
               <div
                 key={idx}
                 className={`p-4 rounded-xl border flex items-center justify-between transition-all ${pkg.active
-                  ? "bg-[#162032] border-[#00D07C]/50 shadow-[0_0_15px_-3px_rgba(0,208,124,0.15)]"
+                  ? "bg-[#162032] border-[#4BC957]/50 shadow-[0_0_15px_-3px_rgba(0,208,124,0.15)]"
                   : "bg-[#0A0F1D]/60 border-[#1E293B]/60 hover:border-slate-700"
                   }`}
               >
@@ -180,7 +180,7 @@ export default function Wallet({
                 </div>
                 <div className="flex items-center gap-3">
                   <span className=" font-bold text-white">{pkg.price}</span>
-                  <button className="bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14]  font-bold px-3 py-1.5 rounded-lg transition-colors">
+                  <button className="bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14]  font-bold px-3 py-1.5 rounded-lg transition-colors">
                     Buy
                   </button>
                 </div>
@@ -194,7 +194,7 @@ export default function Wallet({
       <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-6 space-y-5">
         <div className="flex justify-between items-center">
           <h2 className="text-lg font-bold text-white">{activityTitle}</h2>
-          <span className="text-[13px] text-[#00D07C] bg-[#00D07C]/10 border border-[#00D07C]/20 px-2 py-0.5 rounded-full flex items-center gap-1 font-semibold">
+          <span className="text-[13px] text-[#4BC957] bg-[#4BC957]/10 border border-[#4BC957]/20 px-2 py-0.5 rounded-full flex items-center gap-1 font-semibold">
             <Sparkles className="h-3 w-3" />
             Auto-tracked
           </span>
@@ -216,7 +216,7 @@ export default function Wallet({
                   <td className="py-4 px-6 flex items-center gap-3 font-semibold text-white">
                     <div
                       className={`p-1.5 rounded-lg border ${t.positive
-                        ? "bg-[#00D07C]/10 border-[#00D07C]/20 text-[#00D07C]"
+                        ? "bg-[#4BC957]/10 border-[#4BC957]/20 text-[#4BC957]"
                         : "bg-slate-800/40 border-slate-700/60 text-slate-400"
                         }`}
                     >
@@ -231,7 +231,7 @@ export default function Wallet({
                   <td className="py-4 px-6 text-slate-400 font-medium">{t.method}</td>
                   <td className="py-4 px-6 text-slate-400 font-medium">{t.date}</td>
                   <td
-                    className={`py-4 px-6 text-right font-bold ${t.positive ? "text-[#00D07C]" : "text-white"}`}
+                    className={`py-4 px-6 text-right font-bold ${t.positive ? "text-[#4BC957]" : "text-white"}`}
                   >
                     {t.amount}
                   </td>

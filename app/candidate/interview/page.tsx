@@ -66,7 +66,7 @@ export default function CandidateInterviewPage() {
     return (
       <div className="p-8 max-w-xl mx-auto min-h-[calc(100vh-4rem)] flex flex-col justify-center text-white">
         <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-3xl p-8 md:p-10 text-center space-y-6 shadow-2xl">
-          <div className="h-16 w-16 bg-[#00D07C]/10 border border-[#00D07C]/20 rounded-full flex items-center justify-center mx-auto text-[#00D07C] shadow-lg shadow-[#00D07C]/10">
+          <div className="h-16 w-16 bg-[#4BC957]/10 border border-[#4BC957]/20 rounded-full flex items-center justify-center mx-auto text-[#4BC957] shadow-lg shadow-[#4BC957]/10">
             <CheckCircle2 className="h-8 w-8" />
           </div>
           <div className="space-y-2">
@@ -81,7 +81,7 @@ export default function CandidateInterviewPage() {
           <div className="pt-4">
             <Link 
               href="/candidate" 
-              className="inline-block bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold px-6 py-3 rounded-2xl transition-all shadow-md shadow-[#00D07C]/10 active:scale-[0.98]"
+              className="inline-block bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold px-6 py-3 rounded-2xl transition-all shadow-md shadow-[#4BC957]/10 active:scale-[0.98]"
             >
               Return to dashboard
             </Link>
@@ -125,7 +125,7 @@ export default function CandidateInterviewPage() {
               }}
               className={`flex-1 text-center py-2.5 rounded-xl text-xs font-bold transition-all ${
                 mode === "text"
-                  ? "bg-[#00D07C] text-[#080C14] shadow"
+                  ? "bg-[#4BC957] text-[#080C14] shadow"
                   : "text-slate-400 hover:text-slate-200"
               }`}
             >
@@ -138,7 +138,7 @@ export default function CandidateInterviewPage() {
               }}
               className={`flex-1 text-center py-2.5 rounded-xl text-xs font-bold transition-all ${
                 mode === "voice"
-                  ? "bg-[#00D07C] text-[#080C14] shadow"
+                  ? "bg-[#4BC957] text-[#080C14] shadow"
                   : "text-slate-400 hover:text-slate-200"
               }`}
             >
@@ -152,7 +152,7 @@ export default function CandidateInterviewPage() {
             {/* Chat Messages */}
             <div className="space-y-4">
               <div className="flex gap-3 items-start">
-                <div className="h-8 w-8 rounded-lg bg-[#00D07C]/10 border border-[#00D07C]/20 flex items-center justify-center text-[#00D07C] flex-shrink-0 mt-0.5">
+                <div className="h-8 w-8 rounded-lg bg-[#4BC957]/10 border border-[#4BC957]/20 flex items-center justify-center text-[#4BC957] flex-shrink-0 mt-0.5">
                   <Bot className="h-4.5 w-4.5" />
                 </div>
                 <div className="bg-[#1E293B] text-slate-200 px-4 py-3 rounded-2xl rounded-tl-none text-xs font-semibold leading-relaxed max-w-[80%]">
@@ -163,7 +163,7 @@ export default function CandidateInterviewPage() {
               {/* Show transcribed text when available in Voice Mode */}
               {mode === "voice" && response && (
                 <div className="flex gap-3 items-start justify-end">
-                  <div className="bg-[#00D07C] text-[#080C14] px-4 py-3 rounded-2xl rounded-tr-none text-xs font-semibold leading-relaxed max-w-[80%]">
+                  <div className="bg-[#4BC957] text-[#080C14] px-4 py-3 rounded-2xl rounded-tr-none text-xs font-semibold leading-relaxed max-w-[80%]">
                     {response}
                   </div>
                 </div>
@@ -181,12 +181,12 @@ export default function CandidateInterviewPage() {
                     value={response}
                     onChange={(e) => setResponse(e.target.value)}
                     placeholder="Type your answer..."
-                    className="flex-1 bg-[#080C14] border border-[#1E293B]/60 rounded-xl px-4 py-3 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-[#00D07C]"
+                    className="flex-1 bg-[#080C14] border border-[#1E293B]/60 rounded-xl px-4 py-3 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-[#4BC957]"
                   />
                   <button
                     type="submit"
                     disabled={!response.trim()}
-                    className="bg-[#00D07C] hover:bg-[#00B96E] disabled:bg-slate-800 disabled:text-slate-600 disabled:cursor-not-allowed text-[#080C14] p-3 rounded-xl transition-all shadow-md shadow-[#00D07C]/10 flex-shrink-0"
+                    className="bg-[#4BC957] hover:bg-[#00B96E] disabled:bg-slate-800 disabled:text-slate-600 disabled:cursor-not-allowed text-[#080C14] p-3 rounded-xl transition-all shadow-md shadow-[#4BC957]/10 flex-shrink-0"
                   >
                     <Send className="h-4 w-4" />
                   </button>
@@ -202,7 +202,7 @@ export default function CandidateInterviewPage() {
                       <>
                         <button
                           onClick={handleVoiceToggle}
-                          className="h-12 w-12 rounded-full bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] flex items-center justify-center transition-all shadow shadow-[#00D07C]/10"
+                          className="h-12 w-12 rounded-full bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] flex items-center justify-center transition-all shadow shadow-[#4BC957]/10"
                         >
                           <Mic className="h-5 w-5" />
                         </button>
@@ -231,7 +231,7 @@ export default function CandidateInterviewPage() {
                     {voiceState === "transcribing" && (
                       <div className="flex items-center gap-3">
                         <div className="h-12 w-12 rounded-full bg-[#1E293B] border border-slate-700/60 flex items-center justify-center text-slate-400">
-                          {transcribingLoader ? <Loader2 className="h-5 w-5 animate-spin" /> : <CheckCircle2 className="h-5 w-5 text-[#00D07C]" />}
+                          {transcribingLoader ? <Loader2 className="h-5 w-5 animate-spin" /> : <CheckCircle2 className="h-5 w-5 text-[#4BC957]" />}
                         </div>
                         <div className="text-left">
                           <p className="text-xs font-bold text-white">{transcribingLoader ? "Transcribing with AI..." : "Transcribed Successfully"}</p>
@@ -244,7 +244,7 @@ export default function CandidateInterviewPage() {
                   {mode === "voice" && response && !transcribingLoader && (
                     <button
                       onClick={handleVoiceSubmit}
-                      className="bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] px-4 py-2.5 rounded-xl text-xs font-bold transition-all shadow-md shadow-[#00D07C]/10 active:scale-[0.98]"
+                      className="bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] px-4 py-2.5 rounded-xl text-xs font-bold transition-all shadow-md shadow-[#4BC957]/10 active:scale-[0.98]"
                     >
                       Submit answer
                     </button>
@@ -261,8 +261,8 @@ export default function CandidateInterviewPage() {
           
           {/* Interviewer intro card */}
           <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-5 space-y-3">
-            <div className="flex items-center gap-1.5 text-xs font-bold text-[#00D07C]">
-              <Star className="h-4 w-4 fill-[#00D07C]" />
+            <div className="flex items-center gap-1.5 text-xs font-bold text-[#4BC957]">
+              <Star className="h-4 w-4 fill-[#4BC957]" />
               AI interviewer
             </div>
             <p className="text-xs text-slate-400 leading-relaxed font-semibold">
@@ -276,7 +276,7 @@ export default function CandidateInterviewPage() {
             
             <div className="w-full bg-slate-800 h-1 rounded-full overflow-hidden">
               <div 
-                className="bg-[#00D07C] h-full transition-all duration-300" 
+                className="bg-[#4BC957] h-full transition-all duration-300" 
                 style={{ width: `${((currentQuestionIdx) / questions.length) * 100}%` }} 
               />
             </div>
@@ -289,7 +289,7 @@ export default function CandidateInterviewPage() {
                   <div key={idx} className="flex items-center gap-3 text-xs font-semibold">
                     <span className={`h-5 w-5 rounded-full flex items-center justify-center flex-shrink-0 text-[10px] ${
                       isPassed 
-                        ? "bg-[#00D07C]/10 border border-[#00D07C]/20 text-[#00D07C]" 
+                        ? "bg-[#4BC957]/10 border border-[#4BC957]/20 text-[#4BC957]" 
                         : isActive 
                         ? "bg-white text-[#080C14]" 
                         : "border border-slate-700 text-slate-500"

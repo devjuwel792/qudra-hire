@@ -47,7 +47,7 @@ export default function InterviewReportPage() {
             <Download className="h-4 w-4 text-slate-400" />
             Export PDF
           </button>
-          <Link href={'/company/inbox?id=2'} className="flex justify-center items-center gap-2 bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold px-4 py-2.5 rounded-xl  transition-all shadow-md shadow-[#00D07C]/10 active:scale-[0.98]">
+          <Link href={'/company/inbox?id=2'} className="flex justify-center items-center gap-2 bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold px-4 py-2.5 rounded-xl  transition-all shadow-md shadow-[#4BC957]/10 active:scale-[0.98]">
             <MessageSquare className="h-4 w-4" />
             Message Candidate
           </Link>
@@ -56,7 +56,7 @@ export default function InterviewReportPage() {
 
       {/* AI Overall Score Card */}
       <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-8 space-y-6">
-        <div className="flex items-center gap-2  text-[#00D07C] font-bold uppercase tracking-wider">
+        <div className="flex items-center gap-2  text-[#4BC957] font-bold uppercase tracking-wider">
           <Sparkles className="h-4 w-4" />
           AI overall score
         </div>
@@ -71,7 +71,7 @@ export default function InterviewReportPage() {
         </p>
 
         <div>
-          <span className="inline-flex items-center gap-1.5 border border-[#00D07C]/30 text-[#00D07C]  font-bold px-3 py-1.5 rounded-full bg-[#00D07C]/10">
+          <span className="inline-flex items-center gap-1.5 border border-[#4BC957]/30 text-[#4BC957]  font-bold px-3 py-1.5 rounded-full bg-[#4BC957]/10">
             <CheckCircle2 className="h-3.5 w-3.5" />
             Recommended: Move to onsite
           </span>
@@ -93,19 +93,19 @@ export default function InterviewReportPage() {
             >
               <div className="flex items-start justify-between gap-4">
                 <p className="text-sm font-bold text-white leading-snug">{item.q}</p>
-                <span className=" font-bold text-[#00D07C] bg-[#00D07C]/10 border border-[#00D07C]/20 px-2.5 py-1 rounded-lg flex-shrink-0">
+                <span className=" font-bold text-[#4BC957] bg-[#4BC957]/10 border border-[#4BC957]/20 px-2.5 py-1 rounded-lg flex-shrink-0">
                   {item.score}/100
                 </span>
               </div>
               <div className="flex items-start gap-2">
-                <Mic className="h-3.5 w-3.5 text-[#00D07C] mt-0.5 flex-shrink-0" />
-                <p className=" text-[#00D07C] font-medium leading-relaxed">{item.answer}</p>
+                <Mic className="h-3.5 w-3.5 text-[#4BC957] mt-0.5 flex-shrink-0" />
+                <p className=" text-[#4BC957] font-medium leading-relaxed">{item.answer}</p>
               </div>
 
               {/* Per-question progress bar */}
               <div className="w-full bg-slate-800/60 h-1 rounded-full overflow-hidden mt-2">
                 <div
-                  className="bg-[#00D07C] h-full rounded-full transition-all duration-500"
+                  className="bg-[#4BC957] h-full rounded-full transition-all duration-500"
                   style={{ width: `${item.score}%` }}
                 />
               </div>

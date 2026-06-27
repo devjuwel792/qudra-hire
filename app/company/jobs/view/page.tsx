@@ -45,7 +45,7 @@ function JobViewContent() {
         <div className="space-y-2">
           <div className="flex items-center gap-3">
             <h1 className="text-3xl font-extrabold text-white tracking-tight">{job.role}</h1>
-            <span className="bg-[#00D07C]/10 text-[#00D07C] border border-[#00D07C]/20 px-3 py-0.5 rounded-full  font-semibold">
+            <span className="bg-[#4BC957]/10 text-[#4BC957] border border-[#4BC957]/20 px-3 py-0.5 rounded-full  font-semibold">
               {job.status}
             </span>
           </div>
@@ -77,7 +77,7 @@ function JobViewContent() {
           </Link>
           <Link
             href="/company/jobs/applicants"
-            className="bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold px-4 py-2.5 rounded-xl text-sm transition-all shadow-md shadow-[#00D07C]/10 active:scale-[0.98] inline-flex items-center gap-1.5"
+            className="bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold px-4 py-2.5 rounded-xl text-sm transition-all shadow-md shadow-[#4BC957]/10 active:scale-[0.98] inline-flex items-center gap-1.5"
           >
             <Users className="h-4 w-4" />
             View applicants
@@ -94,13 +94,13 @@ function JobViewContent() {
         </div>
         <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-5 space-y-1">
           <p className=" font-semibold text-slate-500 uppercase tracking-wider">AI Match Score</p>
-          <p className="text-3xl font-extrabold text-[#00D07C]">{job.matches}%</p>
+          <p className="text-3xl font-extrabold text-[#4BC957]">{job.matches}%</p>
           <p className=" text-slate-500">Average match across applicants</p>
         </div>
         <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-5 space-y-1">
           <p className=" font-semibold text-slate-500 uppercase tracking-wider">Status</p>
           <p className="text-3xl font-extrabold text-white flex items-center gap-2">
-            <span className="h-3 w-3 rounded-full bg-[#00D07C] inline-block" />
+            <span className="h-3 w-3 rounded-full bg-[#4BC957] inline-block" />
             {job.status}
           </p>
           <p className=" text-slate-500">Listing is active and visible</p>
@@ -122,7 +122,7 @@ function JobViewContent() {
             <ul className="space-y-2">
               {job.requirements.map((req, i) => (
                 <li key={i} className="flex items-start gap-2 text-sm text-slate-300">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#00D07C] mt-2 flex-shrink-0" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#4BC957] mt-2 flex-shrink-0" />
                   {req}
                 </li>
               ))}
@@ -135,7 +135,7 @@ function JobViewContent() {
           {/* Skills */}
           <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-6 space-y-3">
             <h3 className="text-sm font-bold text-white flex items-center gap-1.5">
-              <Sparkles className="h-4 w-4 text-[#00D07C]" />
+              <Sparkles className="h-4 w-4 text-[#4BC957]" />
               Skills
             </h3>
             <div className="flex flex-wrap gap-2">
@@ -151,7 +151,7 @@ function JobViewContent() {
           <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-6 space-y-3">
             <h3 className="text-sm font-bold text-white">Verification</h3>
             <div className="flex items-center gap-2  text-slate-400">
-              <ShieldCheck className="h-4 w-4 text-[#00D07C]" />
+              <ShieldCheck className="h-4 w-4 text-[#4BC957]" />
               Trade-licence verified
             </div>
           </div>
@@ -169,7 +169,7 @@ function JobViewContent() {
                 <span className="text-white">Free</span>
               </div>
             </div>
-            <div className="border-t border-[#1E293B]/60 pt-4  font-bold text-[#00D07C]">
+            <div className="border-t border-[#1E293B]/60 pt-4  font-bold text-[#4BC957]">
               Balance: 1,240 credits
             </div>
           </div>

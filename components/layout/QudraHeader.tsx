@@ -24,7 +24,7 @@ export default function QudraHeader({ activePage }: QudraHeaderProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-8 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-1">
           <span className="text-xl font-extrabold text-white tracking-tight">
-            Qudra<span className="text-[#00D07C]">Hire</span>
+            Qudra<span className="text-[#4BC957]">Hire</span>
           </span>
         </Link>
 
@@ -57,7 +57,7 @@ export default function QudraHeader({ activePage }: QudraHeaderProps) {
           </Link>
           <Link
             href="/signup"
-            className="text-sm bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold px-4 py-2 rounded-lg transition-all active:scale-[0.97]"
+            className="text-sm bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold px-4 py-2 rounded-lg transition-all active:scale-[0.97]"
           >
             Get started
           </Link>

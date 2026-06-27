@@ -29,7 +29,7 @@ export default function CandidateSidebar() {
       {/* Brand */}
       <div className="flex items-center gap-1.5 border-b border-[#1E293B]/40 px-6 py-5 font-sans text-xl font-bold tracking-tight">
         <span className="text-white">Qudra</span>
-        <span className="text-[#00D07C]">Hire</span>
+        <span className="text-[#4BC957]">Hire</span>
       </div>
 
       {/* Nav */}
@@ -53,7 +53,7 @@ export default function CandidateSidebar() {
               <Icon
                 className={cn(
                   "h-5 w-5 transition-colors",
-                  isActive ? "text-[#00D07C]" : "text-slate-400 group-hover:text-slate-200"
+                  isActive ? "text-[#4BC957]" : "text-slate-400 group-hover:text-slate-200"
                 )}
               />
               <span>{label}</span>
@@ -65,7 +65,7 @@ export default function CandidateSidebar() {
       {/* Profile */}
       <div className="border-t border-[#1E293B]/40 p-4 bg-[#080C14]">
         <div className="flex items-center gap-3 rounded-xl p-2 hover:bg-[#111827]/50 transition-colors cursor-pointer">
-          <div className="h-9 w-9 rounded-full bg-gradient-to-tr from-[#00D07C] to-[#059669] flex items-center justify-center font-bold text-white text-sm shadow-md">
+          <div className="h-9 w-9 rounded-full bg-gradient-to-tr from-[#4BC957] to-[#059669] flex items-center justify-center font-bold text-white text-sm shadow-md">
             LM
           </div>
           <div className="flex-1 min-w-0">

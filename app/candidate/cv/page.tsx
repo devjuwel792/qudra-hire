@@ -30,15 +30,15 @@ export default function CandidateCVPage() {
       </div>
 
       {/* Upload Dropzone */}
-      <div className="border-2 border-dashed border-[#00D07C]/40 bg-[#0F172A]/30 rounded-2xl p-10 flex flex-col items-center justify-center text-center space-y-4 hover:border-[#00D07C]/70 transition-all cursor-pointer">
-        <div className="h-12 w-12 rounded-full bg-[#00D07C]/10 flex items-center justify-center text-[#00D07C]">
+      <div className="border-2 border-dashed border-[#4BC957]/40 bg-[#0F172A]/30 rounded-2xl p-10 flex flex-col items-center justify-center text-center space-y-4 hover:border-[#4BC957]/70 transition-all cursor-pointer">
+        <div className="h-12 w-12 rounded-full bg-[#4BC957]/10 flex items-center justify-center text-[#4BC957]">
           <Upload className="h-6 w-6" />
         </div>
         <div className="space-y-1">
           <h3 className="text-lg font-bold text-white">Drop your CV here</h3>
           <p className=" text-slate-400">PDF or DOCX, max 10MB. We'll parse skills, projects and experience.</p>
         </div>
-        <button className="bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold px-5 py-2.5 rounded-xl  transition-all active:scale-[0.98]">
+        <button className="bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold px-5 py-2.5 rounded-xl  transition-all active:scale-[0.98]">
           Upload CV
         </button>
       </div>
@@ -52,7 +52,7 @@ export default function CandidateCVPage() {
             {/* File info header */}
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="p-2.5 bg-[#00D07C]/10 border border-[#00D07C]/20 rounded-xl text-[#00D07C]">
+                <div className="p-2.5 bg-[#4BC957]/10 border border-[#4BC957]/20 rounded-xl text-[#4BC957]">
                   <FileText className="h-5 w-5" />
                 </div>
                 <div>
@@ -66,10 +66,10 @@ export default function CandidateCVPage() {
             <div className="space-y-2">
               <div className="flex justify-between  font-bold">
                 <span className="text-slate-400">ATS readiness</span>
-                <span className="text-[#00D07C]">88%</span>
+                <span className="text-[#4BC957]">88%</span>
               </div>
               <div className="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
-                <div className="bg-[#00D07C] h-full rounded-full" style={{ width: "88%" }} />
+                <div className="bg-[#4BC957] h-full rounded-full" style={{ width: "88%" }} />
               </div>
             </div>
 
@@ -79,7 +79,7 @@ export default function CandidateCVPage() {
               <ul className="space-y-2.5">
                 {suggestions.map((s, idx) => (
                   <li key={idx} className="flex items-start gap-2.5  text-slate-300 font-medium">
-                    <span className="h-4.5 w-4.5 rounded-full bg-[#00D07C]/10 border border-[#00D07C]/20 text-[#00D07C] flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <span className="h-4.5 w-4.5 rounded-full bg-[#4BC957]/10 border border-[#4BC957]/20 text-[#4BC957] flex items-center justify-center flex-shrink-0 mt-0.5">
                       <Check className="h-3 w-3" />
                     </span>
                     <span>{s}</span>
@@ -91,7 +91,7 @@ export default function CandidateCVPage() {
 
           {/* Action buttons */}
           <div className="flex items-center gap-3 pt-4 border-t border-[#1E293B]/40">
-            <button className="flex items-center gap-1.5 bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] px-4 py-2.5 rounded-xl  font-bold transition-all shadow-md shadow-[#00D07C]/10 active:scale-[0.98]">
+            <button className="flex items-center gap-1.5 bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] px-4 py-2.5 rounded-xl  font-bold transition-all shadow-md shadow-[#4BC957]/10 active:scale-[0.98]">
               <Sparkles className="h-3.5 w-3.5" />
               Auto suggest
             </button>

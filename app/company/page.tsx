@@ -84,10 +84,10 @@ export default function CompanyDashboard() {
         <div>
           <h1 className="text-sm font-medium text-slate-400 uppercase tracking-widest">Hiring workspace</h1>
           <p className="text-3xl font-extrabold text-white mt-1 tracking-tight">
-            Emirates NBD <span className="text-[#00D07C] font-normal">•</span> Talent
+            Emirates NBD <span className="text-[#4BC957] font-normal">•</span> Talent
           </p>
         </div>
-        <Link href="/company/jobs/create" className="flex items-center gap-2 bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold px-5 py-3 rounded-xl transition-all duration-200 shadow-lg shadow-[#00D07C]/10 active:scale-[0.98]">
+        <Link href="/company/jobs/create" className="flex items-center gap-2 bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold px-5 py-3 rounded-xl transition-all duration-200 shadow-lg shadow-[#4BC957]/10 active:scale-[0.98]">
           <Plus className="h-5 w-5" />
           Post a job
         </Link>
@@ -96,7 +96,7 @@ export default function CompanyDashboard() {
       {/* Stats Cards grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         {[
-          { label: "Active jobs", value: activeJobs, icon: Briefcase, color: "text-[#00D07C]", bg: "bg-[#00D07C]/10", href: "/company/jobs" },
+          { label: "Active jobs", value: activeJobs, icon: Briefcase, color: "text-[#4BC957]", bg: "bg-[#4BC957]/10", href: "/company/jobs" },
           { label: "Shortlisted", value: shortlistedCount, icon: Users, color: "text-blue-400", bg: "bg-blue-400/10", href: "/company/candidates" },
           { label: "Messaged", value: 12, icon: MessageSquare, color: "text-purple-400", bg: "bg-purple-400/10", href: "/company/inbox" },
           { label: "Credits", value: "1,240", icon: Wallet, color: "text-amber-400", bg: "bg-amber-400/10", href: "/company/wallet" },
@@ -125,7 +125,7 @@ export default function CompanyDashboard() {
             <h2 className="text-lg font-bold text-white flex items-center gap-2">
               Recruitment pipeline
             </h2>
-            <Link href={"/company/candidates"} className=" text-[#00D07C] font-semibold hover:underline flex items-center gap-1.5">
+            <Link href={"/company/candidates"} className=" text-[#4BC957] font-semibold hover:underline flex items-center gap-1.5">
               Open board <ExternalLink className="h-3.5 w-3.5" />
             </Link>
           </div>
@@ -143,12 +143,12 @@ export default function CompanyDashboard() {
                   {stage.candidates.map((candidate) => (
                     <div
                       key={candidate.id}
-                      className="bg-[#162032] border border-[#2A3C58]/60 rounded-lg p-2.5 hover:border-[#00D07C]/50 transition-all duration-200 cursor-pointer group"
+                      className="bg-[#162032] border border-[#2A3C58]/60 rounded-lg p-2.5 hover:border-[#4BC957]/50 transition-all duration-200 cursor-pointer group"
                     ><Link href={`/company/candidates/profile?id=${candidate.id}`} >
                         <p className=" font-semibold text-slate-200 truncate group-hover:text-white">{candidate.name}</p>
                         <div className="flex items-center justify-between mt-1.5">
                           <span className="text-[9px] text-slate-500 truncate max-w-[50px]">{candidate.role.split(" ")[0]}</span>
-                          <span className="text-[9px] font-semibold text-[#00D07C] flex items-center gap-0.5">
+                          <span className="text-[9px] font-semibold text-[#4BC957] flex items-center gap-0.5">
                             <Sparkles className="h-2 w-2" />
                             {candidate.match}
                           </span>
@@ -166,7 +166,7 @@ export default function CompanyDashboard() {
         <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-6 flex flex-col space-y-5">
           <div>
             <h2 className="text-lg font-bold text-white flex items-center gap-2">
-              <Sparkles className="h-4.5 w-4.5 text-[#00D07C]" />
+              <Sparkles className="h-4.5 w-4.5 text-[#4BC957]" />
               Top AI matches
             </h2>
           </div>
@@ -176,7 +176,7 @@ export default function CompanyDashboard() {
               <Link key={idx} href={`/company/candidates/profile?id=${match?.id}`}>
                 <div
 
-                  className="flex items-center justify-between p-3.5 rounded-xl bg-[#0A0F1D]/60 border border-[#1E293B]/30 hover:border-[#00D07C]/30 transition-all duration-300 cursor-pointer"
+                  className="flex items-center justify-between p-3.5 rounded-xl bg-[#0A0F1D]/60 border border-[#1E293B]/30 hover:border-[#4BC957]/30 transition-all duration-300 cursor-pointer"
                 >
                   <div className="flex items-center gap-3">
                     <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-[#1E293B] to-[#0F172A] border border-[#2E3C51] flex items-center justify-center font-bold text-slate-300 text-sm shadow-inner">
@@ -187,7 +187,7 @@ export default function CompanyDashboard() {
                       <p className=" text-slate-500">{match.role}</p>
                     </div>
                   </div>
-                  <span className="text-sm font-bold text-[#00D07C] bg-[#00D07C]/10 px-2.5 py-1 rounded-lg">
+                  <span className="text-sm font-bold text-[#4BC957] bg-[#4BC957]/10 px-2.5 py-1 rounded-lg">
                     {match.score}
                   </span>
                 </div>
@@ -229,7 +229,7 @@ export default function CompanyDashboard() {
                 <span className=" font-medium text-slate-400">
                   <strong className="text-white font-semibold">{role.applicants}</strong> applicants
                 </span>
-                <Link href={"/company/jobs/applicants"} className="border border-[#00D07C]/40 text-[#00D07C] hover:bg-[#00D07C] hover:text-[#080C14] px-4 py-1.5 rounded-lg  font-semibold transition-all duration-200">
+                <Link href={"/company/jobs/applicants"} className="border border-[#4BC957]/40 text-[#4BC957] hover:bg-[#4BC957] hover:text-[#080C14] px-4 py-1.5 rounded-lg  font-semibold transition-all duration-200">
                   Open
                 </Link>
               </div>

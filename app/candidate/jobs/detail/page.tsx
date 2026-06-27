@@ -93,12 +93,12 @@ function JobDetailContent() {
                   <span className="flex items-center gap-1"><MapPin className="h-3 w-3" />Dubai, UAE</span>
                   <span className="flex items-center gap-1"><Clock className="h-3 w-3" />Full-time</span>
                   <span className="flex items-center gap-1"><DollarSign className="h-3 w-3" />AED 28k-35k</span>
-                  <span className="text-[#00D07C]">✓ Visa</span>
+                  <span className="text-[#4BC957]">✓ Visa</span>
                 </div>
               </div>
             </div>
 
-            <span className="text-[13px] font-bold px-2.5 py-1 rounded-full bg-[#00D07C]/15 border border-[#00D07C]/30 text-[#00D07C] flex-shrink-0">
+            <span className="text-[13px] font-bold px-2.5 py-1 rounded-full bg-[#4BC957]/15 border border-[#4BC957]/30 text-[#4BC957] flex-shrink-0">
               78% match
             </span>
           </div>
@@ -116,19 +116,19 @@ function JobDetailContent() {
             <h2 className="text-sm font-bold text-white">Responsibilities</h2>
             <ul className="space-y-2  text-slate-300 font-medium">
               <li className="flex items-start gap-2">
-                <span className="text-[#00D07C] font-extrabold mt-0.5">&gt;</span>
+                <span className="text-[#4BC957] font-extrabold mt-0.5">&gt;</span>
                 <span>Own the design vision for two core squads within retail banking</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-[#00D07C] font-extrabold mt-0.5">&gt;</span>
+                <span className="text-[#4BC957] font-extrabold mt-0.5">&gt;</span>
                 <span>Run discovery, ideation, prototyping and validation cycles</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-[#00D07C] font-extrabold mt-0.5">&gt;</span>
+                <span className="text-[#4BC957] font-extrabold mt-0.5">&gt;</span>
                 <span>Mentor mid-level designers and contribute to the design system</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-[#00D07C] font-extrabold mt-0.5">&gt;</span>
+                <span className="text-[#4BC957] font-extrabold mt-0.5">&gt;</span>
                 <span>Present work to senior leadership and align cross-functional partners</span>
               </li>
             </ul>
@@ -178,7 +178,7 @@ function JobDetailContent() {
                 <div className="space-y-1">
                   <div className="text-4xl font-extrabold text-white tracking-tight">78%</div>
                   <div className="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
-                    <div className="bg-[#00D07C] h-full rounded-full" style={{ width: "78%" }} />
+                    <div className="bg-[#4BC957] h-full rounded-full" style={{ width: "78%" }} />
                   </div>
                 </div>
 
@@ -186,11 +186,11 @@ function JobDetailContent() {
                   <div className="space-y-2">
                     <span className="text-[13px] font-bold text-slate-500 uppercase tracking-wider block">Matched</span>
                     <div className="flex flex-wrap gap-x-3 gap-y-1  text-slate-300 font-semibold">
-                      <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-[#00D07C]" />Figma</span>
-                      <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-[#00D07C]" />Design systems</span>
-                      <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-[#00D07C]" />UX research</span>
-                      <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-[#00D07C]" />Prototyping</span>
-                      <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-[#00D07C]" />Mobile design</span>
+                      <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-[#4BC957]" />Figma</span>
+                      <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-[#4BC957]" />Design systems</span>
+                      <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-[#4BC957]" />UX research</span>
+                      <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-[#4BC957]" />Prototyping</span>
+                      <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-[#4BC957]" />Mobile design</span>
                     </div>
                   </div>
 
@@ -211,7 +211,7 @@ function JobDetailContent() {
 
                 <button
                   onClick={startTailoring}
-                  className="w-full flex items-center justify-center gap-2 bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold py-3 px-5 rounded-xl transition-all shadow-md shadow-[#00D07C]/10 active:scale-[0.98]"
+                  className="w-full flex items-center justify-center gap-2 bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold py-3 px-5 rounded-xl transition-all shadow-md shadow-[#4BC957]/10 active:scale-[0.98]"
                 >
                   <Sparkles className="h-4 w-4" />
                   Tailor my CV for this role
@@ -227,7 +227,7 @@ function JobDetailContent() {
           {rightState === "tailoring" && (
             <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-6 space-y-6">
               <div className="flex items-center gap-2">
-                <span className="h-2.5 w-2.5 rounded-full bg-[#00D07C] animate-ping" />
+                <span className="h-2.5 w-2.5 rounded-full bg-[#4BC957] animate-ping" />
                 <h3 className=" font-bold text-slate-400 uppercase tracking-wider">AI is tailoring your CV...</h3>
               </div>
 
@@ -235,7 +235,7 @@ function JobDetailContent() {
                 {tailoringSteps.map((step) => (
                   <div key={step.id} className="flex items-center gap-3  font-semibold">
                     {step.done ? (
-                      <span className="h-5 w-5 rounded-full bg-[#00D07C]/10 border border-[#00D07C]/20 text-[#00D07C] flex items-center justify-center flex-shrink-0">
+                      <span className="h-5 w-5 rounded-full bg-[#4BC957]/10 border border-[#4BC957]/20 text-[#4BC957] flex items-center justify-center flex-shrink-0">
                         <Check className="h-3.5 w-3.5" />
                       </span>
                     ) : (
@@ -251,7 +251,7 @@ function JobDetailContent() {
               </div>
 
               <div className="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
-                <div className="bg-[#00D07C] h-full rounded-full transition-all duration-300" style={{ width: `${progressWidth}%` }} />
+                <div className="bg-[#4BC957] h-full rounded-full transition-all duration-300" style={{ width: `${progressWidth}%` }} />
               </div>
             </div>
           )}
@@ -263,18 +263,18 @@ function JobDetailContent() {
               <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-6 space-y-5">
                 <div className="flex justify-between items-center">
                   <h3 className=" font-bold text-slate-400 uppercase tracking-wider">Updated Match</h3>
-                  <span className="text-[13px] font-bold bg-[#00D07C]/15 border border-[#00D07C]/30 text-[#00D07C] px-2 py-0.5 rounded-md">Tailored CV</span>
+                  <span className="text-[13px] font-bold bg-[#4BC957]/15 border border-[#4BC957]/30 text-[#4BC957] px-2 py-0.5 rounded-md">Tailored CV</span>
                 </div>
 
                 <div className="space-y-1">
                   <div className="flex items-baseline gap-2">
                     <span className="text-4xl font-extrabold text-white tracking-tight">96%</span>
-                    <span className="text-[13px] font-bold text-[#00D07C] bg-[#00D07C]/10 border border-[#00D07C]/20 px-2 py-0.5 rounded">
+                    <span className="text-[13px] font-bold text-[#4BC957] bg-[#4BC957]/10 border border-[#4BC957]/20 px-2 py-0.5 rounded">
                       78% +18
                     </span>
                   </div>
                   <div className="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
-                    <div className="bg-[#00D07C] h-full rounded-full" style={{ width: "96%" }} />
+                    <div className="bg-[#4BC957] h-full rounded-full" style={{ width: "96%" }} />
                   </div>
                 </div>
 
@@ -282,15 +282,15 @@ function JobDetailContent() {
                   <span className="text-[13px] font-bold text-slate-500 uppercase tracking-wider block">What changed</span>
                   <div className="space-y-2  text-slate-300 font-semibold">
                     <p className="flex items-start gap-2">
-                      <span className="text-[#00D07C] font-bold">+</span>
+                      <span className="text-[#4BC957] font-bold">+</span>
                       <span>Added keywords: Figma, Design systems, UX research</span>
                     </p>
                     <p className="flex items-start gap-2">
-                      <span className="text-[#00D07C] font-bold">+</span>
+                      <span className="text-[#4BC957] font-bold">+</span>
                       <span>Optimised skills section for Emirates NBD</span>
                     </p>
                     <p className="flex items-start gap-2">
-                      <span className="text-[#00D07C] font-bold">+</span>
+                      <span className="text-[#4BC957] font-bold">+</span>
                       <span>Enhanced 3 experience descriptions</span>
                     </p>
                   </div>
@@ -313,7 +313,7 @@ function JobDetailContent() {
                   </button>
                   <button
                     onClick={() => setRightState("success")}
-                    className="bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] py-2.5 rounded-xl text-[13px] font-bold flex items-center justify-center gap-1"
+                    className="bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] py-2.5 rounded-xl text-[13px] font-bold flex items-center justify-center gap-1"
                   >
                     Use tailored CV
                     <ArrowRight className="h-3.5 w-3.5" />
@@ -351,13 +351,13 @@ function JobDetailContent() {
                   <p className="text-[13px] text-slate-500 font-semibold">Missing: —</p>
                 </div>
 
-                <div className="p-4 rounded-xl bg-[#0A0F1D]/60 border border-[#00D07C]/25 space-y-3">
-                  <span className="text-[13px] font-bold text-[#00D07C] uppercase tracking-wider block">Tailored</span>
-                  <div className="text-3xl font-extrabold text-[#00D07C]">96%</div>
+                <div className="p-4 rounded-xl bg-[#0A0F1D]/60 border border-[#4BC957]/25 space-y-3">
+                  <span className="text-[13px] font-bold text-[#4BC957] uppercase tracking-wider block">Tailored</span>
+                  <div className="text-3xl font-extrabold text-[#4BC957]">96%</div>
                   <div className="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
-                    <div className="bg-[#00D07C] h-full rounded-full" style={{ width: "96%" }} />
+                    <div className="bg-[#4BC957] h-full rounded-full" style={{ width: "96%" }} />
                   </div>
-                  <p className="text-[13px] text-[#00D07C] font-semibold">All required skills addressed</p>
+                  <p className="text-[13px] text-[#4BC957] font-semibold">All required skills addressed</p>
                 </div>
               </div>
 
@@ -366,15 +366,15 @@ function JobDetailContent() {
                 <span className="text-[13px] font-bold text-slate-500 uppercase tracking-wider block">Changes summary</span>
                 <div className="space-y-2  text-slate-300 font-semibold">
                   <p className="flex items-start gap-2">
-                    <span className="text-[#00D07C] font-bold">+</span>
+                    <span className="text-[#4BC957] font-bold">+</span>
                     <span>Added keywords aligned with Emirates NBD's job description</span>
                   </p>
                   <p className="flex items-start gap-2">
-                    <span className="text-[#00D07C] font-bold">+</span>
+                    <span className="text-[#4BC957] font-bold">+</span>
                     <span>Re-ordered skills to lead with Figma</span>
                   </p>
                   <p className="flex items-start gap-2">
-                    <span className="text-[#00D07C] font-bold">+</span>
+                    <span className="text-[#4BC957] font-bold">+</span>
                     <span>Re-wrote summary for the Senior Product Designer role</span>
                   </p>
                 </div>
@@ -382,7 +382,7 @@ function JobDetailContent() {
 
               <button
                 onClick={() => setRightState("success")}
-                className="w-full flex items-center justify-center gap-1.5 bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold py-3 px-5 rounded-xl transition-all shadow-md shadow-[#00D07C]/10 active:scale-[0.98]"
+                className="w-full flex items-center justify-center gap-1.5 bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold py-3 px-5 rounded-xl transition-all shadow-md shadow-[#4BC957]/10 active:scale-[0.98]"
               >
                 Use tailored CV
                 <ArrowRight className="h-4 w-4" />
@@ -393,7 +393,7 @@ function JobDetailContent() {
           {/* STATE 5: SUCCESS / ALREADY APPLIED SCREEN */}
           {rightState === "success" && (
             <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-6 text-center space-y-6">
-              <div className="h-12 w-12 bg-[#00D07C]/10 border border-[#00D07C]/20 rounded-full flex items-center justify-center mx-auto text-[#00D07C] shadow-lg shadow-[#00D07C]/10 animate-bounce">
+              <div className="h-12 w-12 bg-[#4BC957]/10 border border-[#4BC957]/20 rounded-full flex items-center justify-center mx-auto text-[#4BC957] shadow-lg shadow-[#4BC957]/10 animate-bounce">
                 <CheckCircle2 className="h-6 w-6" />
               </div>
               <div className="space-y-1">
@@ -411,7 +411,7 @@ function JobDetailContent() {
                 disabled
                 className="w-full bg-[#1E293B] text-slate-500 border border-slate-800 font-bold py-3 px-5 rounded-xl  flex items-center justify-center gap-2 cursor-not-allowed"
               >
-                <CheckCircle2 className="h-4 w-4 text-[#00D07C]" />
+                <CheckCircle2 className="h-4 w-4 text-[#4BC957]" />
                 Already Applied
               </button>
             </div>

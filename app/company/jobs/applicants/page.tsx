@@ -204,7 +204,7 @@ export default function JobApplicantsPage() {
                         type="checkbox"
                         checked={tempFilters.stages.includes(stage)}
                         onChange={() => toggleStage(stage)}
-                        className="w-4 h-4 rounded border-slate-600 bg-[#131926] text-[#00D07C] focus:ring-[#00D07C] focus:ring-offset-0 cursor-pointer accent-[#00D07C]"
+                        className="w-4 h-4 rounded border-slate-600 bg-[#131926] text-[#4BC957] focus:ring-[#4BC957] focus:ring-offset-0 cursor-pointer accent-[#4BC957]"
                       />
                       <span className="text-sm text-slate-300 group-hover:text-white transition-colors">{stage}</span>
                     </label>
@@ -221,7 +221,7 @@ export default function JobApplicantsPage() {
                     placeholder="Min"
                     value={tempFilters.matchMin}
                     onChange={(e) => setTempFilters((prev) => ({ ...prev, matchMin: e.target.value }))}
-                    className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#00D07C] text-slate-200 placeholder-slate-500 rounded-xl px-3 py-2 text-sm focus:outline-none transition-colors"
+                    className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#4BC957] text-slate-200 placeholder-slate-500 rounded-xl px-3 py-2 text-sm focus:outline-none transition-colors"
                   />
                   <span className="text-slate-500 ">—</span>
                   <input
@@ -229,7 +229,7 @@ export default function JobApplicantsPage() {
                     placeholder="Max"
                     value={tempFilters.matchMax}
                     onChange={(e) => setTempFilters((prev) => ({ ...prev, matchMax: e.target.value }))}
-                    className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#00D07C] text-slate-200 placeholder-slate-500 rounded-xl px-3 py-2 text-sm focus:outline-none transition-colors"
+                    className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#4BC957] text-slate-200 placeholder-slate-500 rounded-xl px-3 py-2 text-sm focus:outline-none transition-colors"
                   />
                 </div>
               </div>
@@ -244,7 +244,7 @@ export default function JobApplicantsPage() {
                     placeholder="Search location..."
                     value={tempFilters.location}
                     onChange={(e) => setTempFilters((prev) => ({ ...prev, location: e.target.value }))}
-                    className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#00D07C] text-slate-200 placeholder-slate-500 rounded-xl pl-9 pr-3 py-2 text-sm focus:outline-none transition-colors"
+                    className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#4BC957] text-slate-200 placeholder-slate-500 rounded-xl pl-9 pr-3 py-2 text-sm focus:outline-none transition-colors"
                   />
                 </div>
               </div>
@@ -258,7 +258,7 @@ export default function JobApplicantsPage() {
                     placeholder="Min"
                     value={tempFilters.expMin}
                     onChange={(e) => setTempFilters((prev) => ({ ...prev, expMin: e.target.value }))}
-                    className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#00D07C] text-slate-200 placeholder-slate-500 rounded-xl px-3 py-2 text-sm focus:outline-none transition-colors"
+                    className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#4BC957] text-slate-200 placeholder-slate-500 rounded-xl px-3 py-2 text-sm focus:outline-none transition-colors"
                   />
                   <span className="text-slate-500 ">—</span>
                   <input
@@ -266,7 +266,7 @@ export default function JobApplicantsPage() {
                     placeholder="Max"
                     value={tempFilters.expMax}
                     onChange={(e) => setTempFilters((prev) => ({ ...prev, expMax: e.target.value }))}
-                    className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#00D07C] text-slate-200 placeholder-slate-500 rounded-xl px-3 py-2 text-sm focus:outline-none transition-colors"
+                    className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#4BC957] text-slate-200 placeholder-slate-500 rounded-xl px-3 py-2 text-sm focus:outline-none transition-colors"
                   />
                 </div>
               </div>
@@ -281,7 +281,7 @@ export default function JobApplicantsPage() {
                         type="checkbox"
                         checked={tempFilters.interviewStatus.includes(status)}
                         onChange={() => toggleInterviewStatus(status)}
-                        className="w-4 h-4 rounded border-slate-600 bg-[#131926] text-[#00D07C] focus:ring-[#00D07C] focus:ring-offset-0 cursor-pointer accent-[#00D07C]"
+                        className="w-4 h-4 rounded border-slate-600 bg-[#131926] text-[#4BC957] focus:ring-[#4BC957] focus:ring-offset-0 cursor-pointer accent-[#4BC957]"
                       />
                       <span className="text-sm text-slate-300 group-hover:text-white transition-colors">{status}</span>
                     </label>
@@ -295,7 +295,7 @@ export default function JobApplicantsPage() {
                 <select
                   value={tempFilters.sort}
                   onChange={(e) => setTempFilters((prev) => ({ ...prev, sort: e.target.value }))}
-                  className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#00D07C] text-slate-200 rounded-xl px-3 py-2 text-sm focus:outline-none transition-colors"
+                  className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#4BC957] text-slate-200 rounded-xl px-3 py-2 text-sm focus:outline-none transition-colors"
                 >
                   <option value="match">Match Score</option>
                   <option value="exp">Experience</option>
@@ -315,7 +315,7 @@ export default function JobApplicantsPage() {
                 </button>
                 <button
                   onClick={applyFilters}
-                  className="bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold px-4 py-2.5 rounded-xl text-sm transition-all shadow-md shadow-[#00D07C]/10 active:scale-[0.98] w-full"
+                  className="bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold px-4 py-2.5 rounded-xl text-sm transition-all shadow-md shadow-[#4BC957]/10 active:scale-[0.98] w-full"
                 >
                   Apply
                 </button>
@@ -334,7 +334,7 @@ export default function JobApplicantsPage() {
               key={tab}
               onClick={() => setFilter(tab)}
               className={` font-bold px-4.5 py-2 rounded-full border transition-all ${isActive
-                ? "bg-[#00D07C] border-[#00D07C] text-[#080C14]"
+                ? "bg-[#4BC957] border-[#4BC957] text-[#080C14]"
                 : "border-slate-800 text-slate-400 hover:border-slate-700 hover:text-white"
                 }`}
             >
@@ -348,7 +348,7 @@ export default function JobApplicantsPage() {
       {filtered.length === 0 ? (
         <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-12 text-center">
           <p className="text-slate-500 text-sm font-medium">No applicants match your filters.</p>
-          <button onClick={resetFilters} className="mt-3 text-[#00D07C]  font-semibold hover:underline">
+          <button onClick={resetFilters} className="mt-3 text-[#4BC957]  font-semibold hover:underline">
             Reset filters
           </button>
         </div>
@@ -371,7 +371,7 @@ export default function JobApplicantsPage() {
                   {candidate.initials}
                 </div>
                 <div>
-                  <h3 className="text-base font-bold text-white tracking-tight group-hover:text-[#00D07C] transition-colors">{candidate.name}</h3>
+                  <h3 className="text-base font-bold text-white tracking-tight group-hover:text-[#4BC957] transition-colors">{candidate.name}</h3>
                   <p className=" text-slate-500 font-semibold mt-0.5">
                     {candidate.role} <span className="text-slate-600">•</span> {candidate.location} <span className="text-slate-600">•</span> {candidate.exp}
                   </p>
@@ -380,7 +380,7 @@ export default function JobApplicantsPage() {
 
               {/* Match and Stage Badges */}
               <div className="flex items-center gap-2">
-                <span className=" font-semibold text-[#00D07C] bg-[#00D07C]/10 border border-[#00D07C]/20 px-2.5 py-0.5 rounded-lg flex items-center gap-1">
+                <span className=" font-semibold text-[#4BC957] bg-[#4BC957]/10 border border-[#4BC957]/20 px-2.5 py-0.5 rounded-lg flex items-center gap-1">
                   <Sparkles className="h-3 w-3" />
                   {candidate.match} match
                 </span>
@@ -410,7 +410,7 @@ export default function JobApplicantsPage() {
                   )}
                   {candidate.interviewStatus === "Completed" && (
                     <div className="flex items-center gap-3">
-                      <span className="text-[#00D07C] flex items-center gap-1 text-[13px]">
+                      <span className="text-[#4BC957] flex items-center gap-1 text-[13px]">
                         <CheckCircle2 className="h-3.5 w-3.5" />
                         Completed
                       </span>
@@ -430,7 +430,7 @@ export default function JobApplicantsPage() {
                 {/* Progress bar or description */}
                 {candidate.interviewStatus === "Completed" && candidate.progress ? (
                   <div className="w-full max-w-md bg-slate-800 h-1.5 rounded-full overflow-hidden">
-                    <div className="bg-[#00D07C] h-full rounded-full" style={{ width: `${candidate.progress}%` }} />
+                    <div className="bg-[#4BC957] h-full rounded-full" style={{ width: `${candidate.progress}%` }} />
                   </div>
                 ) : (
                   <p className=" text-slate-500 leading-relaxed font-medium">{candidate.interviewDesc}</p>
@@ -451,7 +451,7 @@ export default function JobApplicantsPage() {
                 <button onClick={(e) => {
                   e.stopPropagation();
                   router.push(`/company/candidates/${candidate.id}/interview`);
-                }} className="flex items-center gap-1.5 bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold px-4 py-2 rounded-xl  transition-all shadow-md shadow-[#00D07C]/10 active:scale-[0.98]">
+                }} className="flex items-center gap-1.5 bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold px-4 py-2 rounded-xl  transition-all shadow-md shadow-[#4BC957]/10 active:scale-[0.98]">
                   <Video className="h-3.5 w-3.5" />
                   Set AI interview
                 </button>

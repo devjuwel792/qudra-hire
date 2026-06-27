@@ -39,10 +39,10 @@ export default function JobsPage() {
                 <Search className="h-5 w-5 text-slate-500" />
               </div>
               <input type="text"
-                className="w-full bg-[#080C14] border border-white/10 rounded-xl py-3.5 pl-11 pr-4 text-white placeholder:text-slate-500 focus:outline-none focus:border-[#00D07C]/50 transition-colors"
+                className="w-full bg-[#080C14] border border-white/10 rounded-xl py-3.5 pl-11 pr-4 text-white placeholder:text-slate-500 focus:outline-none focus:border-[#4BC957]/50 transition-colors"
                 placeholder="Search roles, skills, companies..." />
             </div>
-            <button className="bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold px-8 py-3.5 rounded-xl transition-all active:scale-[0.98] whitespace-nowrap">
+            <button className="bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold px-8 py-3.5 rounded-xl transition-all active:scale-[0.98] whitespace-nowrap">
               Search
             </button>
           </div>
@@ -67,7 +67,7 @@ export default function JobsPage() {
               <div className="space-y-3">
                 {items.map(item => (
                   <label key={item} className="flex items-center gap-3 cursor-pointer group">
-                    <div className="w-5 h-5 rounded-full border border-slate-600 group-hover:border-[#00D07C] flex items-center justify-center transition-colors" />
+                    <div className="w-5 h-5 rounded-full border border-slate-600 group-hover:border-[#4BC957] flex items-center justify-center transition-colors" />
                     <span className="text-sm text-slate-400 group-hover:text-slate-300">{item}</span>
                   </label>
                 ))}
@@ -80,7 +80,7 @@ export default function JobsPage() {
         <div className="flex-1">
           <Animate className="animate-on-scroll flex items-center justify-between mb-6">
             <span className="text-slate-400 font-medium">6 results</span>
-            <Link href="#" className="text-[#00D07C] font-semibold hover:underline flex items-center gap-1">
+            <Link href="#" className="text-[#4BC957] font-semibold hover:underline flex items-center gap-1">
               Switch to auto-apply mode &rarr;
             </Link>
           </Animate>
@@ -95,11 +95,11 @@ export default function JobsPage() {
                       </div>
                       <div>
                         <p className="text-sm text-slate-400 font-medium">{job.company}</p>
-                        <h3 className="font-bold text-white text-lg group-hover:text-[#00D07C] transition-colors leading-tight">{job.role}</h3>
+                        <h3 className="font-bold text-white text-lg group-hover:text-[#4BC957] transition-colors leading-tight">{job.role}</h3>
                       </div>
                     </div>
                     <div className="flex flex-col items-end gap-1 shrink-0">
-                      <span className="bg-[#00D07C]/10 text-[#00D07C] border border-[#00D07C]/20 text-xs font-bold px-2.5 py-1 rounded-full">{job.match}</span>
+                      <span className="bg-[#4BC957]/10 text-[#4BC957] border border-[#4BC957]/20 text-xs font-bold px-2.5 py-1 rounded-full">{job.match}</span>
                       <span className="text-xs text-slate-500 font-medium">{job.time}</span>
                     </div>
                   </div>
@@ -107,7 +107,7 @@ export default function JobsPage() {
                     <span className="flex items-center gap-1.5"><MapPin className="h-3.5 w-3.5" />{job.location}</span>
                     <span className="flex items-center gap-1.5"><Clock className="h-3.5 w-3.5" />{job.type}</span>
                     <span className="flex items-center gap-1.5"><DollarSign className="h-3.5 w-3.5" />{job.salary}</span>
-                    {job.visa && <span className="text-[#00D07C]">✈ Visa</span>}
+                    {job.visa && <span className="text-[#4BC957]">✈ Visa</span>}
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {job.tags.map((tag: string) => (

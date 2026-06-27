@@ -19,8 +19,8 @@ export default function InterviewSentPage() {
 
       <div className="flex flex-col items-center justify-center min-h-[60vh] text-center space-y-6">
         {/* Icon */}
-        <div className="h-20 w-20 rounded-full bg-[#00D07C]/15 border border-[#00D07C]/30 flex items-center justify-center shadow-[0_0_40px_-8px_rgba(0,208,124,0.4)]">
-          <Send className="h-9 w-9 text-[#00D07C]" />
+        <div className="h-20 w-20 rounded-full bg-[#4BC957]/15 border border-[#4BC957]/30 flex items-center justify-center shadow-[0_0_40px_-8px_rgba(0,208,124,0.4)]">
+          <Send className="h-9 w-9 text-[#4BC957]" />
         </div>
 
         {/* Title */}
@@ -41,7 +41,7 @@ export default function InterviewSentPage() {
           </Link>
           <Link
             href="/company/candidates/interview/report"
-            className="bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold px-6 py-3 rounded-xl text-sm transition-all shadow-md shadow-[#00D07C]/10 active:scale-[0.98]"
+            className="bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold px-6 py-3 rounded-xl text-sm transition-all shadow-md shadow-[#4BC957]/10 active:scale-[0.98]"
           >
             Preview report
           </Link>

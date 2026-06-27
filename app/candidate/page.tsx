@@ -21,7 +21,7 @@ import Link from "next/link";
 
 export default function CandidateDashboard() {
   const stats = [
-    { label: "Profile match strength", value: "92%", icon: Target, color: "text-[#00D07C]", bg: "bg-[#00D07C]/10" },
+    { label: "Profile match strength", value: "92%", icon: Target, color: "text-[#4BC957]", bg: "bg-[#4BC957]/10" },
     { label: "Active applications", value: "4", icon: Briefcase, color: "text-blue-400", bg: "bg-blue-400/10" },
     { label: "New matches today", value: "8", icon: Bell, color: "text-purple-400", bg: "bg-purple-400/10" },
     { label: "Credit wallet", value: "1,240", icon: Wallet, color: "text-amber-400", bg: "bg-amber-400/10" },
@@ -38,14 +38,14 @@ export default function CandidateDashboard() {
 
   const applications = [
     { role: "Senior Product Designer", company: "Emirates NBD", applied: "Applied Mar 12", ats: 92, stage: "Interview", stageColor: "bg-blue-500/20 text-blue-300 border-blue-500/30" },
-    { role: "Full-Stack Engineer (React / Node)", company: "Careem", applied: "Applied Mar 10", ats: 88, stage: "Shortlisted", stageColor: "bg-[#00D07C]/10 text-[#00D07C] border-[#00D07C]/20" },
+    { role: "Full-Stack Engineer (React / Node)", company: "Careem", applied: "Applied Mar 10", ats: 88, stage: "Shortlisted", stageColor: "bg-[#4BC957]/10 text-[#4BC957] border-[#4BC957]/20" },
     { role: "AI / ML Engineer", company: "STC Pay", applied: "Applied Mar 8", ats: 81, stage: "Applied", stageColor: "bg-slate-700/40 text-slate-300 border-slate-600/30" },
     { role: "Growth Marketing Manager", company: "Tarabot", applied: "Applied Feb 28", ats: 64, stage: "Rejected", stageColor: "bg-red-900/20 text-red-400 border-red-800/30" },
   ];
 
   const matchColor = (m: string) => {
     const n = parseInt(m);
-    if (n >= 80) return "text-[#00D07C] bg-[#00D07C]/10 border-[#00D07C]/20";
+    if (n >= 80) return "text-[#4BC957] bg-[#4BC957]/10 border-[#4BC957]/20";
     if (n >= 65) return "text-amber-400 bg-amber-400/10 border-amber-400/20";
     return "text-slate-400 bg-slate-700/30 border-slate-600/30";
   };
@@ -75,7 +75,7 @@ export default function CandidateDashboard() {
       {/* AI Interview Invite Banner */}
       <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div className="flex items-center gap-4">
-          <div className="p-3 bg-[#00D07C]/10 border border-[#00D07C]/20 rounded-xl text-[#00D07C]">
+          <div className="p-3 bg-[#4BC957]/10 border border-[#4BC957]/20 rounded-xl text-[#4BC957]">
             <Bot className="h-5 w-5" />
           </div>
           <div>
@@ -85,7 +85,7 @@ export default function CandidateDashboard() {
         </div>
         <div className="flex items-center gap-3 self-start sm:self-center flex-shrink-0">
           <span className=" font-bold text-slate-300 border border-slate-700 px-3 py-1.5 rounded-xl">Emirates interview</span>
-          <Link href="/candidate/interview" className="flex items-center gap-1.5 bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold px-4 py-2 rounded-xl  transition-all shadow-md shadow-[#00D07C]/10 active:scale-[0.98]">
+          <Link href="/candidate/interview" className="flex items-center gap-1.5 bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold px-4 py-2 rounded-xl  transition-all shadow-md shadow-[#4BC957]/10 active:scale-[0.98]">
             <Play className="h-3.5 w-3.5" />
             Start
           </Link>
@@ -100,7 +100,7 @@ export default function CandidateDashboard() {
           <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-6 space-y-4">
             <div className="flex justify-between items-center">
               <h2 className="text-base font-bold text-white">Daily AI recommendations</h2>
-              <button className=" text-[#00D07C] font-semibold hover:underline">View all</button>
+              <button className=" text-[#4BC957] font-semibold hover:underline">View all</button>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {recommendations.map((job, idx) => (
@@ -113,7 +113,7 @@ export default function CandidateDashboard() {
                         </div>
                         <div>
                           <p className="text-[13px] text-slate-500 font-semibold">{job.company}</p>
-                          <p className=" font-bold text-white leading-tight group-hover:text-[#00D07C] transition-colors">{job.role}</p>
+                          <p className=" font-bold text-white leading-tight group-hover:text-[#4BC957] transition-colors">{job.role}</p>
                         </div>
                       </div>
                       <span className={`text-[13px] font-bold px-2 py-0.5 rounded-md border flex-shrink-0 ${matchColor(job.match)}`}>
@@ -124,7 +124,7 @@ export default function CandidateDashboard() {
                       <span className="flex items-center gap-0.5"><MapPin className="h-3 w-3" />{job.location}</span>
                       <span className="flex items-center gap-0.5"><Clock className="h-3 w-3" />{job.type}</span>
                       <span className="flex items-center gap-0.5"><DollarSign className="h-3 w-3" />{job.salary}</span>
-                      <span className="text-[#00D07C]">✓ Visa</span>
+                      <span className="text-[#4BC957]">✓ Visa</span>
                     </div>
                     <div className="flex flex-wrap gap-1">
                       {job.tags.map((t, ti) => (
@@ -152,7 +152,7 @@ export default function CandidateDashboard() {
                     <span className="text-[13px] font-bold text-slate-400">ATS <span className="text-white">{app.ats}</span></span>
                     <span className={`text-[13px] font-bold border px-2.5 py-1 rounded-full ${app.stageColor}`}>{app.stage}</span>
                     <Link href="/candidate/interview" className="flex items-center gap-1 border border-slate-700/80 hover:bg-slate-800 text-slate-300 px-3 py-1.5 rounded-lg text-[13px] font-bold transition-all">
-                      <Bot className="h-3 w-3 text-[#00D07C]" />
+                      <Bot className="h-3 w-3 text-[#4BC957]" />
                       AI Interview
                     </Link>
                   </div>
@@ -166,7 +166,7 @@ export default function CandidateDashboard() {
         <div className="space-y-4">
           {/* Auto-apply Mode */}
           <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-5 space-y-4">
-            <div className="flex items-center gap-2  font-bold text-[#00D07C]">
+            <div className="flex items-center gap-2  font-bold text-[#4BC957]">
               <Sparkles className="h-4 w-4" />
               Auto-apply mode
             </div>
@@ -176,10 +176,10 @@ export default function CandidateDashboard() {
             <div className="space-y-2">
               <div className="flex justify-between items-center  font-bold">
                 <span className="text-slate-400">Today</span>
-                <span className="text-[#00D07C]">Enabled</span>
+                <span className="text-[#4BC957]">Enabled</span>
               </div>
               <div className="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
-                <div className="bg-[#00D07C] h-full rounded-full" style={{ width: "62.5%" }} />
+                <div className="bg-[#4BC957] h-full rounded-full" style={{ width: "62.5%" }} />
               </div>
               <p className="text-[13px] text-slate-500 font-medium text-right">5/8 sent</p>
             </div>
@@ -191,17 +191,17 @@ export default function CandidateDashboard() {
             <div className="space-y-2">
               <div className="flex justify-between  font-bold">
                 <span className="text-slate-400">Today</span>
-                <span className="text-[#00D07C]">88%</span>
+                <span className="text-[#4BC957]">88%</span>
               </div>
               <div className="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
-                <div className="bg-[#00D07C] h-full rounded-full" style={{ width: "88%" }} />
+                <div className="bg-[#4BC957] h-full rounded-full" style={{ width: "88%" }} />
               </div>
             </div>
             <div className="space-y-2  text-slate-400 font-medium">
-              <p className="flex items-center gap-2"><span className="text-[#00D07C]">📄</span> Add a portfolio link</p>
-              <p className="flex items-center gap-2"><span className="text-[#00D07C]">📊</span> Quantify 2 more results</p>
+              <p className="flex items-center gap-2"><span className="text-[#4BC957]">📄</span> Add a portfolio link</p>
+              <p className="flex items-center gap-2"><span className="text-[#4BC957]">📊</span> Quantify 2 more results</p>
             </div>
-            <Link href="/candidate/cv" className="w-full block text-center bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold py-2.5 rounded-xl  transition-all active:scale-[0.98]">
+            <Link href="/candidate/cv" className="w-full block text-center bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold py-2.5 rounded-xl  transition-all active:scale-[0.98]">
               Improve CV
             </Link>
           </div>

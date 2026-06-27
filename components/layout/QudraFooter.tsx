@@ -7,7 +7,7 @@ export default function QudraFooter() {
         <div className="space-y-3">
           <Link href="/" className="flex items-center gap-1">
             <span className="text-lg font-extrabold text-white">
-              Qudra<span className="text-[#00D07C]">Hire</span>
+              Qudra<span className="text-[#4BC957]">Hire</span>
             </span>
           </Link>
           <p className="leading-relaxed text-slate-500">

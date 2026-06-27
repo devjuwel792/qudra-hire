@@ -49,7 +49,7 @@ export default function CandidateProfilePage() {
             <div className="space-y-1.5">
               <div className="flex flex-wrap items-center gap-3">
                 <h1 className="text-2xl font-extrabold text-white tracking-tight">Layla Al-Mansoori</h1>
-                <span className=" font-semibold text-[#00D07C] bg-[#00D07C]/10 border border-[#00D07C]/20 px-2.5 py-0.5 rounded-lg flex items-center gap-1">
+                <span className=" font-semibold text-[#4BC957] bg-[#4BC957]/10 border border-[#4BC957]/20 px-2.5 py-0.5 rounded-lg flex items-center gap-1">
                   <Sparkles className="h-3.5 w-3.5" />
                   97% match
                 </span>
@@ -67,7 +67,7 @@ export default function CandidateProfilePage() {
               <MessageSquare className="h-4 w-4 text-slate-400" />
               Message
             </Link>
-            <Link href="/company/candidates/interview" className="flex items-center gap-1.5 bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold px-4 py-2.5 rounded-xl  transition-all shadow-md shadow-[#00D07C]/10 active:scale-[0.98]">
+            <Link href="/company/candidates/interview" className="flex items-center gap-1.5 bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold px-4 py-2.5 rounded-xl  transition-all shadow-md shadow-[#4BC957]/10 active:scale-[0.98]">
               <Video className="h-4 w-4" />
               Set AI interview
             </Link>
@@ -87,7 +87,7 @@ export default function CandidateProfilePage() {
                 key={btn.label}
                 onClick={() => setStatus(btn.label)}
                 className={` font-bold px-4 py-2 rounded-xl border transition-all ${btn.active
-                    ? "bg-[#162032] border-[#00D07C] text-[#00D07C]"
+                    ? "bg-[#162032] border-[#4BC957] text-[#4BC957]"
                     : "border-slate-800 text-slate-400 hover:border-slate-700 hover:text-white"
                   }`}
               >
@@ -186,7 +186,7 @@ export default function CandidateProfilePage() {
 
         <div className="flex items-center justify-between bg-[#0A0F1D]/60 border border-[#1E293B]/30 rounded-xl p-4">
           <div className="flex items-center gap-3">
-            <div className="p-3 bg-[#00D07C]/10 text-[#00D07C] border border-[#00D07C]/20 rounded-xl">
+            <div className="p-3 bg-[#4BC957]/10 text-[#4BC957] border border-[#4BC957]/20 rounded-xl">
               <FileText className="h-6 w-6" />
             </div>
             <div>
@@ -194,7 +194,7 @@ export default function CandidateProfilePage() {
               <p className=" text-slate-500 mt-0.5">Uploaded Mar 12 • 248 KB • Parsed by AI</p>
             </div>
           </div>
-          <button className=" font-bold text-[#00D07C] hover:underline px-3 py-1.5">
+          <button className=" font-bold text-[#4BC957] hover:underline px-3 py-1.5">
             View
           </button>
         </div>
@@ -210,11 +210,11 @@ export default function CandidateProfilePage() {
             { role: "Product Designer", company: "Noon", period: "2019 — 2022", desc: "Owned checkout and onboarding flows for 4M+ users." }
           ].map((exp, idx) => (
             <div key={idx} className="relative space-y-1.5">
-              <div className="absolute -left-[23px] top-1.5 h-3 w-3 rounded-full bg-[#00D07C] border-2 border-[#0F172A]" />
+              <div className="absolute -left-[23px] top-1.5 h-3 w-3 rounded-full bg-[#4BC957] border-2 border-[#0F172A]" />
               <h3 className="text-base font-bold text-white tracking-tight">
-                {exp.role} <span className="text-[#00D07C] font-normal">•</span> {exp.company}
+                {exp.role} <span className="text-[#4BC957] font-normal">•</span> {exp.company}
               </h3>
-              <p className=" text-[#00D07C] font-semibold">{exp.period}</p>
+              <p className=" text-[#4BC957] font-semibold">{exp.period}</p>
               <p className=" text-slate-400 font-medium leading-relaxed mt-1">{exp.desc}</p>
             </div>
           ))}

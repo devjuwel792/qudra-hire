@@ -13,7 +13,7 @@ export default function LoginPage() {
         <div className="flex justify-center mb-8">
           <Link href="/" className="text-2xl font-bold tracking-tight">
             <span className="text-white">Qudra</span>
-            <span className="text-[#00D07C]">Hire</span>
+            <span className="text-[#4BC957]">Hire</span>
           </Link>
         </div>
 
@@ -24,13 +24,13 @@ export default function LoginPage() {
         <div className="flex bg-[#080C14] border border-white/5 p-1 rounded-2xl mb-6">
           <button
             onClick={() => setAccountType("candidate")}
-            className={`flex-1 py-2.5 text-sm font-medium rounded-xl transition-all ${accountType === "candidate" ? "bg-[#00D07C] text-[#080C14]" : "text-slate-400 hover:text-white"}`}
+            className={`flex-1 py-2.5 text-sm font-medium rounded-xl transition-all ${accountType === "candidate" ? "bg-[#4BC957] text-[#080C14]" : "text-slate-400 hover:text-white"}`}
           >
             Candidate
           </button>
           <button
             onClick={() => setAccountType("company")}
-            className={`flex-1 py-2.5 text-sm font-medium rounded-xl transition-all ${accountType === "company" ? "bg-[#00D07C] text-[#080C14]" : "text-slate-400 hover:text-white"}`}
+            className={`flex-1 py-2.5 text-sm font-medium rounded-xl transition-all ${accountType === "company" ? "bg-[#4BC957] text-[#080C14]" : "text-slate-400 hover:text-white"}`}
           >
             Company
           </button>
@@ -55,20 +55,20 @@ export default function LoginPage() {
         <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); router.push(accountType === "candidate" ? "/candidate" : "/company"); }}>
           <div>
             <label className="block text-xs font-medium text-white mb-1.5">Email</label>
-            <input type="email" placeholder="you@work.com" className="w-full bg-[#080C14] border border-white/5 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#00D07C]/50 transition-colors" />
+            <input type="email" placeholder="you@work.com" className="w-full bg-[#080C14] border border-white/5 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#4BC957]/50 transition-colors" />
           </div>
           <div>
             <label className="block text-xs font-medium text-white mb-1.5">Password</label>
-            <input type="password" placeholder="••••••••" className="w-full bg-[#080C14] border border-white/5 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#00D07C]/50 transition-colors" />
+            <input type="password" placeholder="••••••••" className="w-full bg-[#080C14] border border-white/5 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#4BC957]/50 transition-colors" />
           </div>
-          <button type="submit" className="w-full bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold px-6 py-3 rounded-xl transition-all mt-2">
+          <button type="submit" className="w-full bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold px-6 py-3 rounded-xl transition-all mt-2">
             Log in
           </button>
         </form>
 
         <div className="mt-8 text-center">
           <p className="text-xs text-slate-400">
-            No account? <Link href="/signup" className="text-[#00D07C] font-semibold hover:underline">Sign up</Link>
+            No account? <Link href="/signup" className="text-[#4BC957] font-semibold hover:underline">Sign up</Link>
           </p>
         </div>
       </div>
