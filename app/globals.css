@@ -143,3 +143,75 @@
     @apply font-sans;
   }
 }
+
+/* ── Scroll-triggered animation base states ── */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.animate-on-scroll.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* delay helpers */
+.anim-delay-100 { transition-delay: 100ms; }
+.anim-delay-200 { transition-delay: 200ms; }
+.anim-delay-300 { transition-delay: 300ms; }
+.anim-delay-400 { transition-delay: 400ms; }
+.anim-delay-500 { transition-delay: 500ms; }
+
+/* fade from left */
+.animate-from-left {
+  opacity: 0;
+  transform: translateX(-32px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.animate-from-left.in-view {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* fade from right */
+.animate-from-right {
+  opacity: 0;
+  transform: translateX(32px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.animate-from-right.in-view {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* scale-up */
+.animate-scale {
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.animate-scale.in-view {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* logo ticker scroll */
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.ticker-track {
+  animation: ticker 22s linear infinite;
+}
+.ticker-track:hover {
+  animation-play-state: paused;
+}
+
+/* floating icon bob */
+@keyframes bob {
+  0%, 100% { transform: translateY(0px) rotate(var(--rot, 0deg)); }
+  50%       { transform: translateY(-10px) rotate(var(--rot, 0deg)); }
+}
+.icon-bob {
+  animation: bob 4s ease-in-out infinite;
+}

@@ -11,8 +11,6 @@ import {
   Languages,
   CheckCircle2,
   ArrowRight,
-  ChevronLeft,
-  ChevronRight,
   Mail,
   Phone,
   MapPin,
@@ -27,8 +25,100 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  useCarousel,
+  type CarouselApi,
 } from "@/components/ui/carousel";
 
+
+const jobs = [
+  { abbr: "ENB", company: "Emirates NBD", title: "Senior Product Designer", location: "Dubai, UAE", type: "Full-time", salary: "AED 28k-35k", match: "96%", ago: "2d ago", tags: ["Figma", "Design system", "Ux research", "Fintech", "Emiratization"], visa: true },
+  { abbr: "CAR", company: "Careem", title: "Backend Engineer", location: "Dubai, UAE", type: "Full-time", salary: "AED 22k-30k", match: "91%", ago: "1d ago", tags: ["Node.js", "Microservices", "AWS"], visa: true },
+  { abbr: "STC", company: "STC Pay", title: "Product Manager", location: "Riyadh, KSA", type: "Full-time", salary: "SAR 30k-40k", match: "88%", ago: "3d ago", tags: ["Fintech", "Agile", "Saudization"], visa: false },
+  { abbr: "ADN", company: "ADNOC", title: "Data Analyst", location: "Abu Dhabi, UAE", type: "Contract", salary: "AED 18k-24k", match: "84%", ago: "5d ago", tags: ["Python", "Power BI", "SQL"], visa: false },
+  { abbr: "TAL", company: "Talabat", title: "UX Researcher", location: "Dubai, UAE", type: "Full-time", salary: "AED 15k-20k", match: "80%", ago: "4d ago", tags: ["User testing", "Figma", "GCC market"], visa: true },
+];
+
+function JobCard({ job, active }: { job: typeof jobs[0]; active: boolean }) {
+  return (
+    <div className={`group w-full rounded-2xl p-6 border transition-all duration-300 relative
+      ${active
+        ? "bg-[#0F1F14] border-[#00D07C]/30 shadow-lg shadow-[#00D07C]/5"
+        : "bg-[#080C14] border-white/5 opacity-60 scale-95 hover:opacity-100 hover:scale-100 hover:bg-[#0F1F14] hover:border-[#00D07C]/30 hover:shadow-lg hover:shadow-[#00D07C]/5"
+      }`}>
+      {active && <div className="absolute inset-0 bg-[#00D07C]/5 rounded-2xl pointer-events-none" />}
+      <div className="group-hover:[&_.green-overlay]:block hidden absolute inset-0 bg-[#00D07C]/5 rounded-2xl pointer-events-none green-overlay" />
+      <div className="relative z-10">
+        <div className="flex justify-between items-start mb-4">
+          <div className="flex items-center gap-3">
+            <div className={`rounded-xl bg-[#162032] flex items-center justify-center font-bold text-white border
+              ${active ? "h-12 w-12 text-sm border-[#00D07C]/30" : "h-10 w-10 text-xs border-white/5 group-hover:border-[#00D07C]/30"}`}>
+              {job.abbr}
+            </div>
+            <div>
+              <p className="text-xs text-slate-400 font-medium">{job.company}</p>
+              <h3 className={`font-bold text-white leading-tight ${active ? "text-base" : "text-sm"}`}>{job.title}</h3>
+            </div>
+          </div>
+          <div className="flex flex-col items-end gap-1">
+            <span className={`text-[#00D07C] border text-[10px] font-bold px-2 py-0.5 rounded-full
+              ${active ? "bg-[#00D07C]/20 border-[#00D07C]/30" : "bg-[#00D07C]/10 border-[#00D07C]/20 group-hover:bg-[#00D07C]/20 group-hover:border-[#00D07C]/30"}`}>
+              {job.match} match
+            </span>
+            <span className="text-[10px] text-slate-500 font-medium">{job.ago}</span>
+          </div>
+        </div>
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs font-medium text-slate-400 mb-4">
+          <span className="flex items-center gap-1"><MapPin className="h-3 w-3" />{job.location}</span>
+          <span className="flex items-center gap-1"><Clock className="h-3 w-3" />{job.type}</span>
+          <span className="flex items-center gap-1"><DollarSign className="h-3 w-3" />{job.salary}</span>
+          {job.visa && <span className="text-[#00D07C]">✈ Visa</span>}
+        </div>
+        <div className="flex flex-wrap gap-1.5">
+          {job.tags.map(t => (
+            <span key={t} className="bg-[#162032] border border-white/5 text-slate-400 text-[10px] font-medium px-2 py-1 rounded">
+              {t}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function JobCarouselInner() {
+  const { api } = useCarousel();
+  const [current, setCurrent] = React.useState(0);
+
+  React.useEffect(() => {
+    if (!api) return;
+    setCurrent(api.selectedScrollSnap());
+    api.on("select", () => setCurrent(api.selectedScrollSnap()));
+  }, [api]);
+
+  return (
+    <CarouselContent className="-ml-4">
+      {jobs.map((job, i) => (
+        <CarouselItem key={job.abbr + i} className="pl-4 basis-[85%] sm:basis-[60%] md:basis-[40%] lg:basis-[30%]">
+          <JobCard job={job} active={i === current} />
+        </CarouselItem>
+      ))}
+    </CarouselContent>
+  );
+}
+
+function JobCardsCarousel() {
+  return (
+    <section className="py-16 max-w-7xl mx-auto px-4 sm:px-8 w-full">
+      <h2 className="text-3xl font-bold text-white mb-2 text-center">Top matches for you</h2>
+      <p className="text-slate-400 mb-10 text-center">AI-ranked roles based on your profile.</p>
+      <Carousel opts={{ loop: true, align: "center" }} className="relative">
+        <JobCarouselInner />
+        <CarouselPrevious className="left-0 h-10 w-10 bg-transparent border border-white/20 text-slate-400 hover:bg-white/5 hover:text-white" />
+        <CarouselNext className="right-0 h-10 w-10 bg-transparent border border-[#00D07C]/40 text-[#00D07C] hover:bg-[#00D07C]/10" />
+      </Carousel>
+    </section>
+  );
+}
 
 export default function HomePage() {
   return (
@@ -256,116 +346,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      <section>
-        <div>
-          <div className="flex gap-5 justify-center">
-            {/* Job Card (Partial view for left item) */}
-            <div className="w-80 bg-[#080C14] border border-white/5 rounded-2xl p-6 opacity-50 scale-95 shrink-0 hidden lg:block">
-              <div className="flex justify-between items-start mb-4">
-                <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-xl bg-[#162032] border border-white/5 flex items-center justify-center text-xs font-bold text-white">
-                    ENB
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-white leading-tight text-sm">Senior Product Designer</h3>
-                  </div>
-                </div>
-                <div className="flex flex-col items-end gap-1">
-                  <span className="bg-[#00D07C]/10 text-[#00D07C] border border-[#00D07C]/20 text-[10px] font-bold px-2 py-0.5 rounded-full">
-                    96% match
-                  </span>
-                  <span className="text-[10px] text-slate-500 font-medium">2d ago</span>
-                </div>
-              </div>
-              <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[11px] font-medium text-slate-400 mb-4">
-                <span className="flex items-center gap-1"><MapPin className="h-3 w-3" /> Dubai, UAE</span>
-              </div>
-            </div>
-
-            {/* Main Job Card */}
-            <div className="w-80 sm:w-96 bg-[#0F1F14] border border-[#00D07C]/30 rounded-2xl p-6 shrink-0 shadow-lg shadow-[#00D07C]/5 relative">
-              <div className="absolute inset-0 bg-[#00D07C]/5 rounded-2xl pointer-events-none" />
-              <div className="relative z-10">
-                <div className="flex justify-between items-start mb-4">
-                  <div className="flex items-center gap-3">
-                    <div className="h-12 w-12 rounded-xl bg-[#162032] border border-[#00D07C]/30 flex items-center justify-center text-sm font-bold text-white">
-                      ENB
-                    </div>
-                    <div>
-                      <p className="text-xs text-slate-400 font-medium">Emirates NBD</p>
-                      <h3 className="font-bold text-white leading-tight text-base">Senior Product Designer</h3>
-                    </div>
-                  </div>
-                  <div className="flex flex-col items-end gap-1">
-                    <span className="bg-[#00D07C]/20 text-[#00D07C] border border-[#00D07C]/30 text-[10px] font-bold px-2 py-0.5 rounded-full">
-                      96% match
-                    </span>
-                    <span className="text-[10px] text-slate-400 font-medium">2d ago</span>
-                  </div>
-                </div>
-
-                <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs font-medium text-slate-300 mb-5">
-                  <span className="flex items-center gap-1"><MapPin className="h-3.5 w-3.5 text-slate-500" />Dubai, UAE</span>
-                  <span className="flex items-center gap-1"><Clock className="h-3.5 w-3.5 text-slate-500" />Full-time</span>
-                  <span className="flex items-center gap-1"><DollarSign className="h-3.5 w-3.5 text-slate-500" />AED 28k-35k</span>
-                  <span className="flex items-center gap-1 text-[#00D07C]">✈ Visa</span>
-                </div>
-
-                <div className="flex flex-wrap gap-1.5">
-                  {["Figma", "Design system", "Ux research", "Fintech", "Emiratization"].map(t => (
-                    <span key={t} className="bg-[#080C14] border border-white/5 text-slate-400 text-[10px] font-medium px-2 py-1 rounded">
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Right Job Card */}
-            <div className="w-80 bg-[#080C14] border border-white/5 rounded-2xl p-6 opacity-50 scale-95 shrink-0 hidden md:block">
-              <div className="flex justify-between items-start mb-4">
-                <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-xl bg-[#162032] border border-white/5 flex items-center justify-center text-xs font-bold text-white">
-                    ENB
-                  </div>
-                  <div>
-                    <p className="text-xs text-slate-400 font-medium">Emirates NBD</p>
-                    <h3 className="font-bold text-white leading-tight text-sm">Senior Product Designer</h3>
-                  </div>
-                </div>
-                <div className="flex flex-col items-end gap-1">
-                  <span className="bg-[#00D07C]/10 text-[#00D07C] border border-[#00D07C]/20 text-[10px] font-bold px-2 py-0.5 rounded-full">
-                    96% match
-                  </span>
-                  <span className="text-[10px] text-slate-500 font-medium">2d ago</span>
-                </div>
-              </div>
-              <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[11px] font-medium text-slate-400 mb-4">
-                <span className="flex items-center gap-1"><MapPin className="h-3 w-3" /> Dubai, UAE</span>
-                <span className="flex items-center gap-1"><Clock className="h-3.5 w-3.5" />Full-time</span>
-                <span className="flex items-center gap-1"><DollarSign className="h-3.5 w-3.5" />AED 28k-35k</span>
-                <span className="flex items-center gap-1 text-[#00D07C]">✈ Visa</span>
-              </div>
-              <div className="flex flex-wrap gap-1.5">
-                {["Figma", "Design system", "Ux research"].map(t => (
-                  <span key={t} className="bg-[#162032] border border-white/5 text-slate-400 text-[10px] font-medium px-2 py-1 rounded">
-                    {t}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-8 flex justify-center gap-3">
-            <button className="h-10 w-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/5 transition-colors">
-              <ChevronLeft className="h-4 w-4 text-slate-400" />
-            </button>
-            <button className="h-10 w-10 rounded-full border border-[#00D07C]/40 flex items-center justify-center hover:bg-[#00D07C]/10 transition-colors">
-              <ChevronRight className="h-4 w-4 text-[#00D07C]" />
-            </button>
-          </div>
-        </div>
-      </section >
+      {/* 5. Job Cards Carousel */}
+      <JobCardsCarousel />
 
 
       {/* 6. Contact Us / Quick Message */}
