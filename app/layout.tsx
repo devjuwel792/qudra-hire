@@ -21,8 +21,8 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Prep-Ed | Customized School Supply Boxes",
-  description: "Everything Your Child Needs. One Box. Zero Stress. Get school ready with Prep-Ed's personalized supply kits.",
+  title: "Qudra Hire - Find your next role",
+  description: " Qudra Hire is a job portal that connects job seekers with curated openings across the GCC. Find your next role and take the next step in your career.",
 };
 
 export default function RootLayout({

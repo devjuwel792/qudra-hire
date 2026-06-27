@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, Suspense } from "react";
 import {
   ArrowLeft,
   Check,
@@ -12,12 +12,11 @@ import {
   MapPin,
   Clock,
   DollarSign,
-  FileText
 } from "lucide-react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
-export default function JobDetailPage() {
+function JobDetailContent() {
   const params = useSearchParams();
   const id = params.get("id")
   const status = params.get("status") as "initial" | "tailoring" | "tailored" | "comparison" | "success" || "initial";
@@ -422,6 +421,14 @@ export default function JobDetailPage() {
 
       </div>
     </div>
+  );
+}
+
+export default function JobDetailPage() {
+  return (
+    <Suspense>
+      <JobDetailContent />
+    </Suspense>
   );
 }
 
