@@ -21,6 +21,14 @@ import {
 } from "lucide-react";
 import QudraHeader from "@/components/layout/QudraHeader";
 import QudraFooter from "@/components/layout/QudraFooter";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+
 
 export default function HomePage() {
   return (
@@ -67,7 +75,7 @@ export default function HomePage() {
               Find your next candidate
             </Link>
           </div>
-          
+
           {/* Hero Stats */}
           <div className="mt-16 flex flex-wrap justify-center gap-12 text-center pt-10">
             <div>
@@ -103,57 +111,96 @@ export default function HomePage() {
       <section className="py-24 max-w-7xl mx-auto px-4 sm:px-8 w-full text-center">
         <h2 className="text-3xl font-bold text-white mb-3">Built for the way the GCC hires.</h2>
         <p className="text-slate-400 mb-12">Every feature is designed around outcomes &mdash; not vanity activity.</p>
-        
-        <div className="flex gap-4 overflow-hidden justify-center items-stretch h-56">
-          <div className="w-64 bg-[#0F172A] border border-white/5 rounded-3xl p-6 flex flex-col items-center justify-center text-center opacity-50 scale-95 shrink-0 hidden md:flex">
-            <div className="h-10 w-10 rounded-full bg-[#00D07C]/10 border border-[#00D07C]/20 flex items-center justify-center mb-4 text-[#00D07C]">
-              <FileText className="h-4 w-4" />
-            </div>
-            <h4 className="font-bold text-white mb-2">CV parsing</h4>
-            <p className="text-xs text-slate-400">Extracts skills, experience, and history instantly.</p>
-          </div>
-          
-          <div className="w-64 bg-[#0F1F14] border border-[#00D07C]/40 rounded-3xl p-6 flex flex-col items-center justify-center text-center shadow-2xl shadow-[#00D07C]/10 shrink-0 relative">
-            <div className="absolute inset-0 bg-[#00D07C]/5 rounded-3xl pointer-events-none" />
-            <div className="h-10 w-10 rounded-full bg-[#00D07C] flex items-center justify-center mb-4 text-[#080C14]">
-              <Zap className="h-4 w-4 fill-current" />
-            </div>
-            <h4 className="font-bold text-white mb-2 relative z-10">Smart matching</h4>
-            <p className="text-xs text-[#00D07C]/80 relative z-10">Daily AI-ranked recommendations with explainable match scores.</p>
-          </div>
 
-          <div className="w-64 bg-[#0F172A] border border-white/5 rounded-3xl p-6 flex flex-col items-center justify-center text-center opacity-70 shrink-0 hidden sm:flex">
-            <div className="h-10 w-10 rounded-full bg-[#00D07C]/10 border border-[#00D07C]/20 flex items-center justify-center mb-4 text-[#00D07C]">
-              <Search className="h-4 w-4" />
-            </div>
-            <h4 className="font-bold text-white mb-2">Auto-apply mode</h4>
-            <p className="text-xs text-slate-400">Let QudraHire send tailored applications while you focus on prep.</p>
-          </div>
+        <div className="mt-8">
+          {/** Features Carousel data-driven rendering */}
+          {(() => {
+            const features = [
+              {
+                title: "CV parsing",
+                description:
+                  "Extracts skills, experience, and history instantly.",
+                Icon: FileText,
 
-          <div className="w-64 bg-[#0F172A] border border-white/5 rounded-3xl p-6 flex flex-col items-center justify-center text-center opacity-50 scale-95 shrink-0 hidden lg:flex">
-            <div className="h-10 w-10 rounded-full bg-[#00D07C]/10 border border-[#00D07C]/20 flex items-center justify-center mb-4 text-[#00D07C]">
-              <Globe className="h-4 w-4" />
-            </div>
-            <h4 className="font-bold text-white mb-2">Visa & nationalization</h4>
-            <p className="text-xs text-slate-400">Filter for sponsorship, Emiratization, and Saudization out of the box.</p>
-          </div>
-          
-          <div className="w-64 bg-[#0F172A] border border-white/5 rounded-3xl p-6 flex flex-col items-center justify-center text-center opacity-30 scale-90 shrink-0 hidden xl:flex">
-            <div className="h-10 w-10 rounded-full bg-[#00D07C]/10 border border-[#00D07C]/20 flex items-center justify-center mb-4 text-[#00D07C]">
-              <Languages className="h-4 w-4" />
-            </div>
-            <h4 className="font-bold text-white mb-2">Bilingual</h4>
-            <p className="text-xs text-slate-400">Full Arabic and English support across the entire UI.</p>
-          </div>
-        </div>
+              },
+              {
+                title: "Smart matching",
+                description:
+                  "Daily AI-ranked recommendations with explainable match scores.",
 
-        <div className="mt-8 flex justify-center gap-3">
-          <button className="h-10 w-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/5 transition-colors">
-            <ChevronLeft className="h-4 w-4 text-slate-400" />
-          </button>
-          <button className="h-10 w-10 rounded-full border border-[#00D07C]/40 flex items-center justify-center hover:bg-[#00D07C]/10 transition-colors">
-            <ChevronRight className="h-4 w-4 text-[#00D07C]" />
-          </button>
+
+                Icon: Zap,
+
+              },
+              {
+                title: "Auto-apply mode",
+                description:
+                  "Let QudraHire send tailored applications while you focus on prep.",
+                Icon: Search,
+
+              },
+              {
+
+
+                title: "Visa & nationalization",
+                description:
+                  "Filter for sponsorship, Emiratization, and Saudization out of the box.",
+                Icon: Globe,
+
+              },
+              {
+                title: "Bilingual",
+                description:
+                  "Full Arabic and English support across the entire UI.",
+                Icon: Languages,
+
+              },
+            ] as const
+
+            return (
+              <Carousel opts={{ loop: true }} className="relative">
+                <CarouselContent>
+                  {features.map((f) => {
+                    const Icon = f.Icon
+                    return (
+                      <CarouselItem
+                        key={f.title}
+                        className="basis-full md:basis-1/4"
+                      >
+                        <div className={"w-64 bg-[#0F172A] border hover:bg-green-600/30 transition-colors border-white/5 rounded-3xl p-6 flex flex-col items-center justify-center text-center  scale-95 shrink-0"}>
+                          <div className={"h-10 w-10 rounded-full bg-[#00D07C]/10 border border-[#00D07C]/20 flex items-center justify-center mb-4 text-[#00D07C]"}>
+                            <Icon className={"h-4 w-4"} />
+                          </div>
+
+                          <h4 className={"font-bold text-white mb-2"}>
+                            {f.title}
+                          </h4>
+                          <p
+                            className={
+                              "text-xs text-slate-400"
+                            }
+                          >
+                            {f.description}
+                          </p>
+                        </div>
+                      </CarouselItem>
+                    )
+                  })}
+                </CarouselContent>
+
+                <CarouselPrevious
+                  className="absolute touch-manipulation rounded-full hover:text-green-700 text-white top-1/2 -left-6 -translate-y-1/2 h-10 w-10 bg-transparent border border-white/20 hover:bg-white/5 transition-colors"
+                  variant="outline"
+                  size="icon-sm"
+                />
+                <CarouselNext
+                  className="absolute touch-manipulation rounded-full hover:text-green-700 text-white top-1/2 -right-6 -translate-y-1/2 h-10 w-10 bg-transparent border border-[#00D07C]/40 hover:bg-[#00D07C]/10 transition-colors"
+                  variant="outline"
+                  size="icon-sm"
+                />
+              </Carousel>
+            )
+          })()}
         </div>
       </section>
 
@@ -209,20 +256,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* 5. Featured Roles */}
-      <section className="py-20 bg-[#0A0F1D] border-y border-white/5 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8">
-          <div className="flex justify-between items-end mb-10">
-            <div>
-              <h2 className="text-2xl font-bold text-white mb-1">Featured roles this week</h2>
-              <p className="text-slate-400 text-sm">AI-ranked</p>
-            </div>
-            <Link href="/jobs" className="text-sm font-semibold text-slate-300 hover:text-white flex items-center gap-1 transition-colors">
-              See all <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-
+      <section>
+        <div>
           <div className="flex gap-5 justify-center">
             {/* Job Card (Partial view for left item) */}
             <div className="w-80 bg-[#080C14] border border-white/5 rounded-2xl p-6 opacity-50 scale-95 shrink-0 hidden lg:block">
@@ -243,7 +278,7 @@ export default function HomePage() {
                 </div>
               </div>
               <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[11px] font-medium text-slate-400 mb-4">
-                 <span className="flex items-center gap-1"><MapPin className="h-3 w-3" /> Dubai, UAE</span>
+                <span className="flex items-center gap-1"><MapPin className="h-3 w-3" /> Dubai, UAE</span>
               </div>
             </div>
 
@@ -285,10 +320,10 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-            
+
             {/* Right Job Card */}
             <div className="w-80 bg-[#080C14] border border-white/5 rounded-2xl p-6 opacity-50 scale-95 shrink-0 hidden md:block">
-               <div className="flex justify-between items-start mb-4">
+              <div className="flex justify-between items-start mb-4">
                 <div className="flex items-center gap-3">
                   <div className="h-10 w-10 rounded-xl bg-[#162032] border border-white/5 flex items-center justify-center text-xs font-bold text-white">
                     ENB
@@ -306,21 +341,21 @@ export default function HomePage() {
                 </div>
               </div>
               <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[11px] font-medium text-slate-400 mb-4">
-                 <span className="flex items-center gap-1"><MapPin className="h-3 w-3" /> Dubai, UAE</span>
-                 <span className="flex items-center gap-1"><Clock className="h-3.5 w-3.5" />Full-time</span>
-                 <span className="flex items-center gap-1"><DollarSign className="h-3.5 w-3.5" />AED 28k-35k</span>
-                 <span className="flex items-center gap-1 text-[#00D07C]">✈ Visa</span>
+                <span className="flex items-center gap-1"><MapPin className="h-3 w-3" /> Dubai, UAE</span>
+                <span className="flex items-center gap-1"><Clock className="h-3.5 w-3.5" />Full-time</span>
+                <span className="flex items-center gap-1"><DollarSign className="h-3.5 w-3.5" />AED 28k-35k</span>
+                <span className="flex items-center gap-1 text-[#00D07C]">✈ Visa</span>
               </div>
               <div className="flex flex-wrap gap-1.5">
-                  {["Figma", "Design system", "Ux research"].map(t => (
-                    <span key={t} className="bg-[#162032] border border-white/5 text-slate-400 text-[10px] font-medium px-2 py-1 rounded">
-                      {t}
-                    </span>
-                  ))}
-                </div>
+                {["Figma", "Design system", "Ux research"].map(t => (
+                  <span key={t} className="bg-[#162032] border border-white/5 text-slate-400 text-[10px] font-medium px-2 py-1 rounded">
+                    {t}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
-          
+
           <div className="mt-8 flex justify-center gap-3">
             <button className="h-10 w-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/5 transition-colors">
               <ChevronLeft className="h-4 w-4 text-slate-400" />
@@ -330,10 +365,11 @@ export default function HomePage() {
             </button>
           </div>
         </div>
-      </section>
+      </section >
+
 
       {/* 6. Contact Us / Quick Message */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-8 py-24 w-full">
+      < section className="max-w-6xl mx-auto px-4 sm:px-8 py-24 w-full" >
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Info */}
           <div>
@@ -371,19 +407,19 @@ export default function HomePage() {
               Go to contact page <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
-          
+
           {/* Quick Message Form */}
           <div className="bg-[#0F172A] border border-white/5 rounded-3xl p-8">
             <h3 className="text-lg font-bold text-white mb-1">Quick message</h3>
             <p className="text-xs text-slate-500 mb-6">We usually reply within a few hours.</p>
             <form className="space-y-4">
-              <input 
-                type="email" 
-                placeholder="Your email" 
+              <input
+                type="email"
+                placeholder="Your email"
                 className="w-full bg-[#0A0F1D] border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#00D07C]/50 transition-colors"
               />
-              <textarea 
-                placeholder="How can we help?" 
+              <textarea
+                placeholder="How can we help?"
                 rows={4}
                 className="w-full bg-[#0A0F1D] border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#00D07C]/50 transition-colors resize-none"
               />
@@ -393,13 +429,13 @@ export default function HomePage() {
             </form>
           </div>
         </div>
-      </section>
+      </section >
 
       {/* 7. Bottom CTA */}
-      <section className="max-w-5xl mx-auto px-4 sm:px-8 pb-24 w-full">
+      < section className="max-w-5xl mx-auto px-4 sm:px-8 pb-24 w-full" >
         <div className="bg-[#0F172A] border border-white/10 rounded-3xl p-12 text-center relative overflow-hidden shadow-2xl shadow-[#00D07C]/5">
-           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-             <div className="w-[300px] h-[300px] bg-[#00D07C]/10 rounded-full blur-[100px]" />
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div className="w-[300px] h-[300px] bg-[#00D07C]/10 rounded-full blur-[100px]" />
           </div>
           <h2 className="relative text-3xl sm:text-5xl font-extrabold text-white mb-4">
             Your next move starts here.
@@ -416,9 +452,9 @@ export default function HomePage() {
             </Link>
           </div>
         </div>
-      </section>
+      </section >
 
       <QudraFooter />
-    </div>
+    </div >
   );
 }
