@@ -96,13 +96,14 @@ export default function CompanyDashboard() {
       {/* Stats Cards grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         {[
-          { label: "Active jobs", value: activeJobs, icon: Briefcase, color: "text-[#00D07C]", bg: "bg-[#00D07C]/10" },
-          { label: "Shortlisted", value: shortlistedCount, icon: Users, color: "text-blue-400", bg: "bg-blue-400/10" },
-          { label: "Messaged", value: 12, icon: MessageSquare, color: "text-purple-400", bg: "bg-purple-400/10" },
-          { label: "Credits", value: "1,240", icon: Wallet, color: "text-amber-400", bg: "bg-amber-400/10" },
+          { label: "Active jobs", value: activeJobs, icon: Briefcase, color: "text-[#00D07C]", bg: "bg-[#00D07C]/10", href: "/company/jobs" },
+          { label: "Shortlisted", value: shortlistedCount, icon: Users, color: "text-blue-400", bg: "bg-blue-400/10", href: "/company/candidates" },
+          { label: "Messaged", value: 12, icon: MessageSquare, color: "text-purple-400", bg: "bg-purple-400/10", href: "/company/inbox" },
+          { label: "Credits", value: "1,240", icon: Wallet, color: "text-amber-400", bg: "bg-amber-400/10", href: "/company/wallet" },
         ].map((stat, idx) => (
-          <div
+          <Link
             key={idx}
+            href={stat.href}
             className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-5 flex items-center justify-between hover:border-[#334155] transition-all duration-300 group cursor-pointer"
           >
             <div className="space-y-1">
@@ -112,7 +113,7 @@ export default function CompanyDashboard() {
             <div className={`${stat.bg} ${stat.color} p-3.5 rounded-xl group-hover:scale-110 transition-transform duration-300`}>
               <stat.icon className="h-5 w-5" />
             </div>
-          </div>
+          </Link>
         ))}
       </div>
 
@@ -203,7 +204,7 @@ export default function CompanyDashboard() {
           <h2 className="text-lg font-bold text-white flex items-center gap-2">
             Open roles
           </h2>
-          <Link href={"company/jobs"} className=" text-slate-400 hover:text-white font-semibold flex items-center gap-1">
+          <Link href={"/company/jobs"} className=" text-slate-400 hover:text-white font-semibold flex items-center gap-1">
             Manage
           </Link>
         </div>
@@ -228,7 +229,7 @@ export default function CompanyDashboard() {
                 <span className=" font-medium text-slate-400">
                   <strong className="text-white font-semibold">{role.applicants}</strong> applicants
                 </span>
-                <Link href={"company/jobs/applicants"} className="border border-[#00D07C]/40 text-[#00D07C] hover:bg-[#00D07C] hover:text-[#080C14] px-4 py-1.5 rounded-lg  font-semibold transition-all duration-200">
+                <Link href={"/company/jobs/applicants"} className="border border-[#00D07C]/40 text-[#00D07C] hover:bg-[#00D07C] hover:text-[#080C14] px-4 py-1.5 rounded-lg  font-semibold transition-all duration-200">
                   Open
                 </Link>
               </div>

@@ -2,9 +2,11 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { Upload } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function SignupPage() {
   const [accountType, setAccountType] = useState<"candidate" | "company">("candidate");
+  const router = useRouter();
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#080C14] px-4 py-12">
@@ -105,7 +107,7 @@ export default function SignupPage() {
                 </p>
               </div>
 
-              <button type="button" className="w-full bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold px-6 py-3 rounded-xl transition-all mt-6">
+              <button type="button" onClick={() => router.push("/candidate")} className="w-full bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold px-6 py-3 rounded-xl transition-all mt-6">
                 Create account & start matching
               </button>
             </form>
@@ -147,7 +149,7 @@ export default function SignupPage() {
                 </p>
               </div>
 
-              <button type="button" className="w-full bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold px-6 py-3 rounded-xl transition-all mt-6">
+              <button type="button" onClick={() => router.push("/company")} className="w-full bg-[#00D07C] hover:bg-[#00B96E] text-[#080C14] font-bold px-6 py-3 rounded-xl transition-all mt-6">
                 Create account
               </button>
             </form>
