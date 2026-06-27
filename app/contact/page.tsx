@@ -44,7 +44,7 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#080C14] text-white">
-      <QudraHeader />
+      <QudraHeader activePage="Contact us" />
 
       {/* ── Hero ── */}
       <section className="relative py-20 sm:py-28 text-center overflow-hidden">

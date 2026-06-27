@@ -9,10 +9,14 @@ const navLinks = [
   { href: "/jobs", label: "Find jobs" },
   { href: "/about", label: "About us" },
   { href: "/pricing", label: "Pricing" },
-  { href: "/contact", label: "Contact us", active: true },
+  { href: "/contact", label: "Contact us" },
 ];
 
-export default function QudraHeader() {
+interface QudraHeaderProps {
+  activePage?: string; // matches a navLink label, e.g. "Pricing" or "Contact us"
+}
+
+export default function QudraHeader({ activePage }: QudraHeaderProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
@@ -30,7 +34,7 @@ export default function QudraHeader() {
               key={l.href}
               href={l.href}
               className={
-                l.active
+                l.label === activePage
                   ? "text-white font-semibold"
                   : "hover:text-white transition-colors"
               }
@@ -94,7 +98,7 @@ export default function QudraHeader() {
             <Link
               key={l.href}
               href={l.href}
-              className={l.active ? "text-white font-semibold" : "hover:text-white transition-colors"}
+              className={l.label === activePage ? "text-white font-semibold" : "hover:text-white transition-colors"}
               onClick={() => setMobileOpen(false)}
             >
               {l.label}
