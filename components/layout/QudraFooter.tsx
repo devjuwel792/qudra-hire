@@ -7,7 +7,7 @@ export default function QudraFooter() {
         <div className="space-y-3">
           <Link href="/" className="flex items-center gap-1">
             <span className="text-lg font-extrabold text-white">
-              Qudra<span className="text-[#4BC957]">Hire</span>
+              CareerSprint
             </span>
           </Link>
           <p className="leading-relaxed text-slate-500">
@@ -49,7 +49,7 @@ export default function QudraFooter() {
       </div>
 
       <div className="border-t border-white/5 max-w-7xl mx-auto px-4 sm:px-8 py-5 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-slate-600">
-        <span>© 2026 QudraHire. All rights reserved.</span>
+        <span>© 2026 CareerSprint. All rights reserved.</span>
         <span className="flex items-center gap-2">
           Built for the GCC
           <span className="mx-1 text-slate-700">•</span>
@@ -61,3 +61,4 @@ export default function QudraFooter() {
     </footer>
   );
 }
+

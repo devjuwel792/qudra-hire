@@ -28,8 +28,7 @@ export default function CandidateSidebar() {
     <aside className="flex h-screen w-64 flex-shrink-0 flex-col border-r border-[#1E293B]/40 bg-[#0B0F19] text-white">
       {/* Brand */}
       <div className="flex items-center gap-1.5 border-b border-[#1E293B]/40 px-6 py-5 font-sans text-xl font-bold tracking-tight">
-        <span className="text-white">Qudra</span>
-        <span className="text-[#4BC957]">Hire</span>
+        <span className="text-white">Career</span><span className="text-[#4BC957]">Sprint</span>
       </div>
 
       {/* Nav */}
@@ -78,3 +77,4 @@ export default function CandidateSidebar() {
     </aside>
   );
 }
+

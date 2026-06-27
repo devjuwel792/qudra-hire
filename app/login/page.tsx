@@ -12,8 +12,7 @@ export default function LoginPage() {
       <div className="w-full max-w-[400px] bg-[#0F172A]/50 border border-white/5 rounded-3xl p-8 sm:p-10 shadow-2xl">
         <div className="flex justify-center mb-8">
           <Link href="/" className="text-2xl font-bold tracking-tight">
-            <span className="text-white">Qudra</span>
-            <span className="text-[#4BC957]">Hire</span>
+            <span className="text-white">Career</span><span className="text-[#4BC957]">Sprint</span>
           </Link>
         </div>
 
@@ -75,3 +74,4 @@ export default function LoginPage() {
     </div>
   );
 }
+

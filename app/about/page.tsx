@@ -29,7 +29,7 @@ export default function AboutPage() {
           </h1>
           <p className="mt-6 text-lg sm:text-xl text-slate-400 leading-relaxed max-w-3xl mx-auto
             animate-[fadeInUp_0.7s_0.2s_ease_forwards] opacity-0">
-            QudraHire was born from frustration with slow processes, mismatched candidates,
+            CareerSprint was born from frustration with slow processes, mismatched candidates,
             and opaque recruitment. We set out to build the GCC's most trusted AI hiring platform.
           </p>
         </div>
@@ -95,7 +95,7 @@ export default function AboutPage() {
                 <h3 className="text-xl font-bold text-white mb-1">{f.name}</h3>
                 <p className="text-[#4BC957] text-sm font-semibold mb-4">{f.role}</p>
                 <p className="text-slate-400 text-sm leading-relaxed mb-6">
-                  Former Head of Talent at Emirates NBD. Spent 12 years watching great candidates get lost in broken ATS systems. Built QudraHire to fix that.
+                  Former Head of Talent at Emirates NBD. Spent 12 years watching great candidates get lost in broken ATS systems. Built CareerSprint to fix that.
                 </p>
                 <div className="mt-auto flex items-center justify-center gap-4 text-xs text-slate-500">
                   <span className="flex items-center gap-1.5"><MapPin className="h-3.5 w-3.5" />{f.location}</span>
@@ -141,7 +141,7 @@ export default function AboutPage() {
             </div>
             <h2 className="relative text-3xl sm:text-4xl font-extrabold text-white mb-4">Join the movement.</h2>
             <p className="relative text-slate-400 mb-8 max-w-lg mx-auto">
-              Whether you are hiring or searching, QudraHire is built to move you forward.
+              Whether you are hiring or searching, CareerSprint is built to move you forward.
             </p>
             <div className="relative flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link href="/signup" className="w-full sm:w-auto bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold px-8 py-3 rounded-xl transition-all active:scale-[0.98]">
@@ -159,3 +159,4 @@ export default function AboutPage() {
     </div>
   );
 }
+

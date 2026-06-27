@@ -171,7 +171,7 @@ export default function CandidateDashboard() {
               Auto-apply mode
             </div>
             <p className=" text-slate-400 leading-relaxed font-medium">
-              QudraHire AI submits tailored applications to your top matches every day. Daily cap 8.
+              CareerSprint AI submits tailored applications to your top matches every day. Daily cap 8.
             </p>
             <div className="space-y-2">
               <div className="flex justify-between items-center  font-bold">
@@ -225,3 +225,4 @@ export default function CandidateDashboard() {
     </div>
   );
 }
+

@@ -24,7 +24,7 @@ export default function QudraHeader({ activePage }: QudraHeaderProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-8 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-1">
           <span className="text-xl font-extrabold text-white tracking-tight">
-            Qudra<span className="text-[#4BC957]">Hire</span>
+            CareerSprint
           </span>
         </Link>
 
@@ -109,3 +109,4 @@ export default function QudraHeader({ activePage }: QudraHeaderProps) {
     </header>
   );
 }
+

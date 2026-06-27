@@ -28,7 +28,7 @@ export default function WalletPage() {
 
   return (
     <Wallet
-      subtitle="Credits never expire. Use them anywhere on QudraHire."
+      subtitle="Credits never expire. Use them anywhere on CareerSprint."
       balance="1,240"
       balanceValue="≈ AED 1,860 value • enough for ~1,240 auto-applies or ~248 AI interviews."
       infoRows={infoRows}
@@ -46,3 +46,4 @@ export default function WalletPage() {
     />
   );
 }
+

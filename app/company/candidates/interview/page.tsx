@@ -192,7 +192,7 @@ export default function SetAIInterviewPage() {
             </span>
 
             <p className=" text-slate-400 leading-relaxed font-medium">
-              Qudra AI will conduct a 5-question interview, transcribe voice, and score answers on clarity, depth and rubric fit.
+              CareerSprint AI will conduct a 5-question interview, transcribe voice, and score answers on clarity, depth and rubric fit.
             </p>
 
             <div className="space-y-3.5  font-semibold pt-2">
@@ -228,3 +228,4 @@ export default function SetAIInterviewPage() {
     </div>
   );
 }
+

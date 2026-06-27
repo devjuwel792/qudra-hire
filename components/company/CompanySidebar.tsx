@@ -50,8 +50,7 @@ export default function CompanySidebar() {
       {/* Brand logo */}
       <div className="flex items-center gap-2 border-b border-[#1E293B]/40 px-6 py-5">
         <div className="flex items-center gap-1.5 font-sans text-xl font-bold tracking-tight">
-          <span className="text-white">Qudra</span>
-          <span className="text-[#4BC957]">Hire</span>
+          <span className="text-white">Career</span><span className="text-[#4BC957]">Sprint</span>
         </div>
       </div>
 
@@ -102,3 +101,4 @@ export default function CompanySidebar() {
     </aside>
   );
 }
+

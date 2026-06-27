@@ -116,7 +116,7 @@ export default function ContactPage() {
               <div className="bg-[#0F172A] border border-white/5 rounded-2xl p-6 space-y-4 shadow-xl">
                 <h3 className="text-base font-bold text-white">General inquiries</h3>
                 <ul className="space-y-3">
-                  {[[Mail, "hello@qudrahire.com"], [Phone, "+971 4 555 0199"], [Clock, "Sun – Thu, 9:00 – 18:00 GST"]].map(([Icon, text], i) => {
+                  {[[Mail, "hello@CareerSprint.com"], [Phone, "+971 4 555 0199"], [Clock, "Sun – Thu, 9:00 – 18:00 GST"]].map(([Icon, text], i) => {
                     const I = Icon as React.ElementType;
                     return (
                       <li key={i} className="flex items-center gap-3 text-sm text-slate-400">
@@ -137,7 +137,7 @@ export default function ContactPage() {
                   <Headphones className="h-4 w-4 text-slate-400" /> Support
                 </h3>
                 <ul className="space-y-3">
-                  {[[Mail, "support@qudrahire.com"], [Phone, "WhatsApp Business: +971 4 555 0199"]].map(([Icon, text], i) => {
+                  {[[Mail, "support@CareerSprint.com"], [Phone, "WhatsApp Business: +971 4 555 0199"]].map(([Icon, text], i) => {
                     const I = Icon as React.ElementType;
                     return (
                       <li key={i} className="flex items-center gap-3 text-sm text-slate-400">
@@ -159,7 +159,7 @@ export default function ContactPage() {
               <div className="bg-[#0F172A] border border-white/5 rounded-2xl p-6 space-y-3 shadow-xl">
                 <h3 className="text-sm font-bold text-slate-300">Quick links</h3>
                 <div className="flex flex-col gap-2">
-                  {[{ label: "Help Center", href: "/" }, { label: "Pricing Plans", href: "/pricing" }, { label: "About QudraHire", href: "/about" }].map(link => (
+                  {[{ label: "Help Center", href: "/" }, { label: "Pricing Plans", href: "/pricing" }, { label: "About CareerSprint", href: "/about" }].map(link => (
                     <Link key={link.label} href={link.href}
                       className="flex items-center justify-between text-sm text-slate-500 hover:text-[#4BC957] transition-colors group">
                       <span>{link.label}</span>
@@ -177,3 +177,4 @@ export default function ContactPage() {
     </div>
   );
 }
+

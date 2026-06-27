@@ -266,7 +266,7 @@ export default function CandidateInterviewPage() {
               AI interviewer
             </div>
             <p className="text-xs text-slate-400 leading-relaxed font-semibold">
-              Hi, I'm Qudra — your AI interviewer trained on Emirates NBD's rubric. Answer naturally; I'll score for clarity, depth, and relevance.
+              Hi, I'm CareerSprint — your AI interviewer trained on Emirates NBD's rubric. Answer naturally; I'll score for clarity, depth, and relevance.
             </p>
           </div>
 
@@ -311,3 +311,4 @@ export default function CandidateInterviewPage() {
     </div>
   );
 }
+

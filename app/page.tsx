@@ -123,7 +123,7 @@ function JobCardsCarousel() {
 const features = [
   { title: "CV parsing", description: "Extracts skills, experience, and history instantly.", Icon: FileText },
   { title: "Smart matching", description: "Daily AI-ranked recommendations with explainable match scores.", Icon: Zap },
-  { title: "Auto-apply mode", description: "Let QudraHire send tailored applications while you focus on prep.", Icon: Search },
+  { title: "Auto-apply mode", description: "Let CareerSprint send tailored applications while you focus on prep.", Icon: Search },
   { title: "Visa & nationalization", description: "Filter for sponsorship, Emiratization, and Saudization out of the box.", Icon: Globe },
   { title: "Bilingual", description: "Full Arabic and English support across the entire UI.", Icon: Languages },
 ] as const;
@@ -162,11 +162,11 @@ export default function HomePage() {
           <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight leading-tight
             animate-[fadeInUp_0.7s_ease_forwards]">
             Stop searching.<br />
-            Start <span className="text-[#4BC957] text-shadow-2xs text-shadow-[#4BC957]">progressing.</span>
+            Start <span className="text-[#4BC957]  text-shadow-[#4BC957] [text-shadow:0_0_32px_#4BC957]">progressing.</span>
           </h1>
           <p className="mt-6 text-lg text-slate-400 leading-relaxed max-w-2xl mx-auto
             animate-[fadeInUp_0.7s_0.2s_ease_forwards]">
-            QudraHire matches candidates and companies with AI precision, visa sponsorship, Emiratization and Saudization filters included. Bilingual. Mobile-first. Built for momentum.
+            CareerSprint matches candidates and companies with AI precision, visa sponsorship, Emiratization and Saudization filters included. Bilingual. Mobile-first. Built for momentum.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4
             animate-[fadeInUp_0.7s_0.35s_ease_forwards]">
@@ -295,7 +295,7 @@ export default function HomePage() {
             </p>
             <ul className="space-y-4 mb-10">
               {[
-                [Mail, "hello@qudrahire.com"],
+                [Mail, "hello@CareerSprint.com"],
                 [Phone, "+971 4 555 0199"],
                 [MapPin, "Business Bay, Dubai, UAE"],
                 [Clock, "Sun-Thu, 9:00 - 18:00 GST"],
@@ -361,3 +361,4 @@ export default function HomePage() {
     </div>
   );
 }
+
