@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { Rocket, Eye, MapPin, Linkedin, Users, Lightbulb, Zap, Heart, ArrowRight } from "lucide-react";
+import { Rocket, Eye, MapPin, Users, Lightbulb, Zap, Heart, ArrowRight } from "lucide-react";
 import QudraHeader from "@/components/layout/QudraHeader";
 import QudraFooter from "@/components/layout/QudraFooter";
 
@@ -30,7 +30,7 @@ export default function AboutPage() {
             backgroundSize: "40px 40px",
           }}
         />
-        
+
         <div className="relative max-w-4xl mx-auto px-4">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
             We believe hiring should
@@ -97,7 +97,7 @@ export default function AboutPage() {
       <section className="max-w-7xl mx-auto px-4 sm:px-8 py-20 w-full text-center">
         <h2 className="text-3xl font-bold text-white mb-3">Meet the founders</h2>
         <p className="text-slate-400 mb-12">Builders, believers, and GCC natives.</p>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
           {/* Founder 1 */}
           <div className="bg-[#0F172A] border border-white/5 rounded-2xl p-8 hover:border-white/10 transition-colors flex flex-col items-center text-center">
@@ -111,7 +111,7 @@ export default function AboutPage() {
             </p>
             <div className="mt-auto flex items-center justify-center gap-4 text-xs text-slate-500">
               <span className="flex items-center gap-1.5"><MapPin className="h-3.5 w-3.5" /> Dubai, UAE</span>
-              <a href="#" className="flex items-center gap-1.5 hover:text-white transition-colors"><Linkedin className="h-3.5 w-3.5" /> LinkedIn</a>
+              <a href="#" className="flex items-center gap-1.5 hover:text-white transition-colors"> LinkedIn</a>
             </div>
           </div>
 
@@ -127,7 +127,7 @@ export default function AboutPage() {
             </p>
             <div className="mt-auto flex items-center justify-center gap-4 text-xs text-slate-500">
               <span className="flex items-center gap-1.5"><MapPin className="h-3.5 w-3.5" /> Riyadh, KSA</span>
-              <a href="#" className="flex items-center gap-1.5 hover:text-white transition-colors"><Linkedin className="h-3.5 w-3.5" /> LinkedIn</a>
+              <a href="#" className="flex items-center gap-1.5 hover:text-white transition-colors">LinkedIn</a>
             </div>
           </div>
 
@@ -143,7 +143,7 @@ export default function AboutPage() {
             </p>
             <div className="mt-auto flex items-center justify-center gap-4 text-xs text-slate-500">
               <span className="flex items-center gap-1.5"><MapPin className="h-3.5 w-3.5" /> Abu Dhabi, UAE</span>
-              <a href="#" className="flex items-center gap-1.5 hover:text-white transition-colors"><Linkedin className="h-3.5 w-3.5" /> LinkedIn</a>
+              <a href="#" className="flex items-center gap-1.5 hover:text-white transition-colors"> LinkedIn</a>
             </div>
           </div>
         </div>
@@ -187,9 +187,9 @@ export default function AboutPage() {
       {/* CTA Section */}
       <section className="max-w-5xl mx-auto px-4 sm:px-8 pb-24 w-full">
         <div className="bg-[#0F172A] border border-white/10 rounded-3xl p-10 sm:p-16 text-center relative overflow-hidden shadow-2xl shadow-[#00D07C]/5">
-           {/* Glow */}
+          {/* Glow */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-             <div className="w-[300px] h-[300px] bg-[#00D07C]/10 rounded-full blur-[100px]" />
+            <div className="w-[300px] h-[300px] bg-[#00D07C]/10 rounded-full blur-[100px]" />
           </div>
           <h2 className="relative text-3xl sm:text-4xl font-extrabold text-white mb-4">
             Join the movement.
