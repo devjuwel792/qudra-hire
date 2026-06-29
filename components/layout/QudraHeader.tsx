@@ -25,8 +25,8 @@ export default function QudraHeader({ activePage }: QudraHeaderProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-8 h-16 flex items-center justify-between">
          {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            <Image src="/logo.png" alt="" width={180} height={60} className="hidden md:block h-12 w-auto object-contain" />
-            <Image src="/mobile-logo.png" alt="" width={180} height={60} className="block md:hidden h-12 w-auto object-contain" />
+            <Image src="/logo.png" alt="" width={180} height={60} className="block h-12 w-auto object-contain" />
+       
           </Link>
 
         <nav className="hidden md:flex items-center gap-7 text-[14px] font-medium text-slate-400">
