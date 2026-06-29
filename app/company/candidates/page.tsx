@@ -43,7 +43,7 @@ export default function CandidatesPage() {
   const initialCandidates = [
     {
       id: 1,
-      name: "Layla Al-Mansoori",
+      name: "Majid Al-Mansoori",
       role: "Senior Product Designer",
       initials: "LM",
       match: "97%",

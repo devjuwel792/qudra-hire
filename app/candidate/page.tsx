@@ -54,7 +54,7 @@ export default function CandidateDashboard() {
     <div className="p-8 space-y-8 max-w-7xl mx-auto">
       {/* Welcome Header */}
       <div>
-        <h1 className="text-3xl font-extrabold text-white tracking-tight">Layla Al-Mansoori</h1>
+        <h1 className="text-3xl font-extrabold text-white tracking-tight">Majid Al-Mansoori</h1>
       </div>
 
       {/* Stats row */}

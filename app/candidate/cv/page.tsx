@@ -56,7 +56,7 @@ export default function CandidateCVPage() {
                   <FileText className="h-5 w-5" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-bold text-white">Layla_AlMansoori_CV.pdf</h3>
+                  <h3 className="text-sm font-bold text-white">Majid_AlMansoori_CV.pdf</h3>
                   <p className="text-[13px] text-slate-500 mt-0.5">Updated 2d ago</p>
                 </div>
               </div>

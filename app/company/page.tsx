@@ -27,7 +27,7 @@ export default function CompanyDashboard() {
       title: "Applied",
       count: 28,
       candidates: [
-        { id: 1, name: "Layla Al-M.", role: "Senior Product Designer", match: "97%" },
+        { id: 1, name: "Majid Al-M.", role: "Senior Product Designer", match: "97%" },
         { id: 2, name: "Omar H.", role: "Full-Stack Engineer", match: "94%" },
         { id: 3, name: "Yousef A.", role: "AI / ML Engineer", match: "85%" },
       ]
@@ -64,7 +64,7 @@ export default function CompanyDashboard() {
   ];
 
   const aiMatches = [
-    { name: "Layla Al-Mansoori", role: "Senior Product Designer", score: "97%", initials: "LM", id: 1 },
+    { name: "Majid Al-Mansoori", role: "Senior Product Designer", score: "97%", initials: "LM", id: 1 },
     { name: "Omar Haddad", role: "Full-Stack Engineer", score: "94%", initials: "OH", id: 2 },
     { name: "Sara Khan", role: "ML Engineer", score: "91%", initials: "SK", id: 3 },
     { name: "Khalid Al-Otaibi", role: "TA Lead", score: "88%", initials: "KO", id: 4 },

@@ -48,7 +48,7 @@ export default function CandidateProfilePage() {
             </div>
             <div className="space-y-1.5">
               <div className="flex flex-wrap items-center gap-3">
-                <h1 className="text-2xl font-extrabold text-white tracking-tight">Layla Al-Mansoori</h1>
+                <h1 className="text-2xl font-extrabold text-white tracking-tight">Majid Al-Mansoori</h1>
                 <span className=" font-semibold text-[#4BC957] bg-[#4BC957]/10 border border-[#4BC957]/20 px-2.5 py-0.5 rounded-lg flex items-center gap-1">
                   <Sparkles className="h-3.5 w-3.5" />
                   97% match
@@ -136,7 +136,7 @@ export default function CandidateProfilePage() {
             <div className="space-y-3.5 text-sm font-semibold text-slate-300">
               <div className="flex items-center gap-3">
                 <Mail className="h-4.5 w-4.5 text-slate-500" />
-                <span className="truncate">layla@example.com</span>
+                <span className="truncate">Majid@example.com</span>
               </div>
               <div className="flex items-center gap-3">
                 <Phone className="h-4.5 w-4.5 text-slate-500" />
@@ -190,7 +190,7 @@ export default function CandidateProfilePage() {
               <FileText className="h-6 w-6" />
             </div>
             <div>
-              <p className="text-sm font-bold text-slate-200">Layla_Al-Mansoori_CV.pdf</p>
+              <p className="text-sm font-bold text-slate-200">Majid_Al-Mansoori_CV.pdf</p>
               <p className=" text-slate-500 mt-0.5">Uploaded Mar 12 • 248 KB • Parsed by AI</p>
             </div>
           </div>

@@ -67,7 +67,7 @@ export default function SetAIInterviewPage() {
           LM
         </div>
         <div>
-          <h1 className="text-2xl font-extrabold text-white tracking-tight">AI interview for Layla Al-Mansoori</h1>
+          <h1 className="text-2xl font-extrabold text-white tracking-tight">AI interview for Majid Al-Mansoori</h1>
           <p className=" text-slate-400 font-semibold mt-1">Senior Product Designer • Dubai</p>
         </div>
       </div>

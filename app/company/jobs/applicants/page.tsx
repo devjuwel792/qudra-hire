@@ -47,7 +47,7 @@ export default function JobApplicantsPage() {
   const applicants = [
     {
       id: 1,
-      name: "Layla Al-Mansoori",
+      name: "Majid Al-Mansoori",
       initials: "LM",
       role: "Senior Product Designer",
       location: "Dubai",

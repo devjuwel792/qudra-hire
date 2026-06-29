@@ -14,7 +14,7 @@ export default function CandidateInboxPage() {
       lastMsg: "Great, can you do Tue 11am?",
       unread: 1,
       messages: [
-        { sender: "them" as const, text: "Hi Layla! Loved your portfolio. Are you free this week for a 30-min intro?" },
+        { sender: "them" as const, text: "Hi Majid! Loved your portfolio. Are you free this week for a 30-min intro?" },
         { sender: "me" as const, text: "Absolutely. Tuesday or Wednesday afternoon work for me." },
         { sender: "them" as const, text: "Great, can you do Tue 11am?" },
       ],
@@ -28,7 +28,7 @@ export default function CandidateInboxPage() {
       lastMsg: "We'd love to share a take-home.",
       unread: 0,
       messages: [
-        { sender: "them" as const, text: "Hi Layla, we saw your application. We'd love to share a take-home." },
+        { sender: "them" as const, text: "Hi Majid, we saw your application. We'd love to share a take-home." },
       ],
     },
     {

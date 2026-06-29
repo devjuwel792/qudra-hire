@@ -72,7 +72,7 @@ export default function CandidateInterviewPage() {
           <div className="space-y-2">
             <h2 className="text-2xl font-extrabold text-white tracking-tight">Interview Completed!</h2>
             <p className="text-sm text-slate-400 max-w-md mx-auto leading-relaxed">
-              Well done, Layla! Your responses have been submitted successfully to Emirates NBD.
+              Well done, Majid! Your responses have been submitted successfully to Emirates NBD.
             </p>
           </div>
           <div className="bg-[#0A0F1D]/50 border border-[#1E293B]/40 rounded-2xl p-4 text-xs text-slate-400 leading-relaxed max-w-sm mx-auto">

@@ -68,8 +68,8 @@ export default function CandidateSidebar() {
             LM
           </div>
           <div className="flex-1 min-w-0">
-            <p className=" font-semibold text-slate-200 truncate">Layla Al-Mansoori</p>
-            <p className="text-[13px] text-slate-500 truncate">layla@example.com</p>
+            <p className=" font-semibold text-slate-200 truncate">Majid Al-Mansoori</p>
+            <p className="text-[13px] text-slate-500 truncate">Majid@example.com</p>
           </div>
           <ChevronRight className="h-4 w-4 text-slate-500" />
         </div>

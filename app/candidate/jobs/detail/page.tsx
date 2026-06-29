@@ -219,7 +219,7 @@ function JobDetailContent() {
               </div>
 
               {/* CV Preview */}
-              <CVPreviewComponent name="Layla Al-Mansoori" email="layla.mansoori@gmail.com" />
+              <CVPreviewComponent name="Majid Al-Mansoori" email="Majid.mansoori@gmail.com" />
             </div>
           )}
 
@@ -322,7 +322,7 @@ function JobDetailContent() {
               </div>
 
               {/* CV Preview with tailored layout */}
-              <CVPreviewComponent name="Layla Al-Mansoori" email="layla.mansoori@gmail.com" tailored />
+              <CVPreviewComponent name="Majid Al-Mansoori" email="Majid.mansoori@gmail.com" tailored />
             </div>
           )}
 

@@ -7,7 +7,7 @@ export default function CompanyInboxPage() {
   const chats = [
     {
       id: 0,
-      name: "Layla Al-Mansoori",
+      name: "Majid Al-Mansoori",
       initials: "LM",
       role: "Senior Product Designer",
       time: "10:24 AM",
@@ -16,7 +16,7 @@ export default function CompanyInboxPage() {
       match: 97,
       messages: [
         { sender: "them" as const, text: "Hi, thanks for reaching out. I reviewed your job description for the Senior Product Designer role and would love to schedule our initial interview call." },
-        { sender: "me" as const, text: "Hello Layla, absolutely! I will send over a calendly link so you can select the time slot that works best for you. Looking forward to speaking!" },
+        { sender: "me" as const, text: "Hello Majid, absolutely! I will send over a calendly link so you can select the time slot that works best for you. Looking forward to speaking!" },
         { sender: "them" as const, text: "Thank you for the update! I am excited about the next steps." },
       ],
     },
