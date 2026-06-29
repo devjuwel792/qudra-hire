@@ -12,7 +12,7 @@ export default function PostJobPage() {
   const [remote, setRemote] = useState(false);
 
   return (
-    <div className="p-8 space-y-8 max-w-7xl mx-auto">
+    <div className="p-4 md:p-8 space-y-6 md:space-y-8 max-w-7xl mx-auto">
       {/* Top Navigation Back / Title */}
       <div className="space-y-3">
         <Link

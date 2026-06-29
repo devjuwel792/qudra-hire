@@ -22,7 +22,7 @@ export default function AboutPage() {
         <div aria-hidden className="pointer-events-none absolute inset-0 opacity-[0.03]"
           style={{ backgroundImage: "linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)", backgroundSize: "40px 40px" }} />
         <div className="relative max-w-4xl mx-auto px-4">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight
             animate-[fadeInUp_0.7s_ease_forwards]">
             We believe hiring should<br />
             <span className="text-[#4BC957]">feel effortless.</span>
@@ -65,7 +65,7 @@ export default function AboutPage() {
 
       {/* Stats */}
       <section className="border-y border-white/5 bg-[#0A0F1D]">
-        <div className="max-w-6xl mx-auto px-4 sm:px-8 py-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div className="max-w-6xl mx-auto px-4 sm:px-8 py-12 md:py-16 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 text-center">
           {[["800+", "Companies"], ["150K+", "Candidates"], ["12K+", "Active roles"], ["94%", "Match accuracy"]].map(([val, label], i) => (
             <Animate key={label} className="animate-on-scroll" delay={delays[i]}>
               <h4 className="text-3xl sm:text-4xl font-extrabold text-[#4BC957] mb-2">{val}</h4>

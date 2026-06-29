@@ -51,14 +51,14 @@ export default function CandidateDashboard() {
   };
 
   return (
-    <div className="p-8 space-y-8 max-w-7xl mx-auto">
+    <div className="p-4 md:p-8 space-y-6 md:space-y-8 max-w-7xl mx-auto">
       {/* Welcome Header */}
       <div>
-        <h1 className="text-3xl font-extrabold text-white tracking-tight">Majid Al-Mansoori</h1>
+        <h1 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight">Majid Al-Mansoori</h1>
       </div>
 
       {/* Stats row */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
         {stats.map((s, i) => (
           <div key={i} className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-5 flex items-center justify-between hover:border-[#334155] transition-all duration-300 group cursor-pointer">
             <div className="space-y-1">

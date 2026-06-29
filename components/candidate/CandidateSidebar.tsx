@@ -10,6 +10,7 @@ import {
   LogOut,
   ChevronRight
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -28,7 +29,11 @@ export default function CandidateSidebar() {
     <aside className="flex h-screen w-64 flex-shrink-0 flex-col border-r border-[#1E293B]/40 bg-[#0B0F19] text-white">
       {/* Brand */}
       <div className="flex items-center gap-1.5 border-b border-[#1E293B]/40 px-6 py-5 font-sans text-xl font-bold tracking-tight">
-        <Link href="/"><span className="text-white">Career</span><span className="text-[#4BC957]">Sprint</span></Link>
+  {/* Logo */}
+          <Link href="/" className="flex items-center gap-2 group">
+            <Image src="/logo.png" alt="" width={180} height={60} className="block h-12 w-auto object-contain" />
+          
+          </Link>
       </div>
 
       {/* Nav */}

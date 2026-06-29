@@ -44,16 +44,44 @@ export default function CandidateApplicationsPage() {
   ];
 
   return (
-    <div className="p-8 space-y-8 max-w-7xl mx-auto text-white">
+    <div className="p-4 md:p-8 space-y-6 md:space-y-8 max-w-7xl mx-auto text-white">
       {/* Title */}
       <div>
-        <h1 className="text-3xl font-extrabold text-white tracking-tight">My applications</h1>
+        <h1 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight">My applications</h1>
         <p className="text-sm text-slate-400 mt-1">Track every step from apply to offer.</p>
       </div>
 
-      {/* Applications Table Card */}
+      {/* Applications Table Card - Desktop */}
       <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl overflow-hidden">
-        <div className="overflow-x-auto">
+        {/* Mobile card view */}
+        <div className="block md:hidden divide-y divide-[#1E293B]/40">
+          {applications.map((app, idx) => (
+            <div key={idx} className="p-4 space-y-2 hover:bg-[#162032]/35 transition-colors">
+              <div className="flex justify-between items-start gap-2">
+                <h3 className="font-bold text-white text-sm leading-tight">{app.role}</h3>
+                <span className="text-xs font-bold border border-slate-700/60 bg-[#1E293B]/40 text-slate-300 px-2.5 py-0.5 rounded-full whitespace-nowrap">
+                  {app.stage}
+                </span>
+              </div>
+              <p className="text-sm text-slate-400">{app.company}</p>
+              <div className="flex items-center justify-between text-sm">
+                <span className="text-slate-400">ATS <strong className="text-[#4BC957]">{app.ats}</strong></span>
+                <span className="text-slate-400">{app.applied}</span>
+              </div>
+              <div className="pt-1">
+                <Link
+                  href="/candidate/jobs/detail?id=1&status=success"
+                  className="text-sm font-bold text-slate-300 hover:text-white transition-colors"
+                >
+                  View &rarr;
+                </Link>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Desktop table */}
+        <div className="hidden md:block overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="border-b border-[#1E293B]/60 text-slate-400  font-semibold uppercase tracking-wider bg-[#0A0F1D]/25">
@@ -95,14 +123,14 @@ export default function CandidateApplicationsPage() {
       </div>
 
       {/* Stats Cards Row */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4">
         {stats.map((s, idx) => (
           <div
             key={idx}
-            className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-5 space-y-1 hover:border-[#2A3C58] transition-all"
+            className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-4 md:p-5 space-y-1 hover:border-[#2A3C58] transition-all"
           >
             <span className=" font-semibold text-slate-500">{s.label}</span>
-            <p className="text-3xl font-extrabold text-white">{s.count}</p>
+            <p className="text-2xl md:text-3xl font-extrabold text-white">{s.count}</p>
           </div>
         ))}
       </div>

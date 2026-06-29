@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Search, Send, Sparkles } from "lucide-react";
+import { Search, Send, Sparkles, ChevronLeft } from "lucide-react";
 
 interface Message {
   sender: "me" | "them";
@@ -39,6 +39,7 @@ export default function Inbox({
   const [activeChat, setActiveChat] = useState(0);
   const [inputText, setInputText] = useState("");
   const [currentChats, setCurrentChats] = useState(initialChats);
+  const [showChatDetail, setShowChatDetail] = useState(false);
 
   const handleSendMessage = (e: React.FormEvent) => {
     e.preventDefault();
@@ -58,20 +59,21 @@ export default function Inbox({
       updated[idx].unread = 0;
       setCurrentChats(updated);
     }
+    setShowChatDetail(true);
   };
 
   const selectedChat = currentChats[activeChat];
 
   return (
-    <div className="p-8 max-w-7xl mx-auto h-[calc(100vh-2rem)] flex flex-col space-y-6">
+    <div className="p-4 md:p-8 max-w-7xl mx-auto h-[calc(100vh-2rem)] flex flex-col space-y-4 md:space-y-6">
       <div>
         <h1 className="text-sm font-medium text-slate-400 uppercase tracking-widest">{title}</h1>
-        <p className="text-3xl font-extrabold text-white mt-1 tracking-tight">{subtitle}</p>
+        <p className="text-2xl md:text-3xl font-extrabold text-white mt-1 tracking-tight">{subtitle}</p>
       </div>
 
       <div className="flex-1 bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl overflow-hidden flex flex-row min-h-0">
-        {/* Chat List Sidebar */}
-        <div className="w-80 lg:w-[380px] border-r border-[#1E293B]/60 flex flex-col flex-shrink-0">
+        {/* Chat List Sidebar - hidden on mobile when chat is open */}
+        <div className={`${showChatDetail ? "hidden" : "flex"} md:flex w-full md:w-80 lg:w-[380px] border-r border-[#1E293B]/60 flex-col flex-shrink-0`}>
           {showSearch && (
             <div className="p-4 border-b border-[#1E293B]/60">
               <div className="relative">
@@ -89,7 +91,7 @@ export default function Inbox({
               <div
                 key={chat.id}
                 onClick={() => selectChat(idx)}
-                className={`p-4 lg:p-5 flex gap-3 cursor-pointer transition-colors text-left ${activeChat === idx ? "bg-[#162032]" : "hover:bg-[#162032]/40"
+                className={`p-4 lg:p-5 flex gap-3 cursor-pointer transition-colors text-left ${activeChat === idx && showChatDetail ? "bg-[#162032]" : "hover:bg-[#162032]/40"
                   }`}
               >
                 <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-[#1E293B] to-[#0F172A] border border-[#2E3C51] flex items-center justify-center font-bold text-slate-300 text-sm flex-shrink-0">
@@ -114,10 +116,16 @@ export default function Inbox({
         </div>
 
         {/* Chat Area */}
-        <div className="flex-1 flex flex-col bg-[#0A0F1D]/25">
+        <div className={`${!showChatDetail ? "hidden" : "flex"} md:flex flex-1 flex-col bg-[#0A0F1D]/25`}>
           {/* Chat Header */}
           <div className="p-4 lg:p-5 border-b border-[#1E293B]/60 bg-[#0F172A]/80 flex items-center justify-between">
             <div className="flex items-center gap-3">
+              <button
+                onClick={() => setShowChatDetail(false)}
+                className="md:hidden text-slate-400 hover:text-white transition-colors p-1"
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </button>
               <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-[#1E293B] to-[#0F172A] border border-[#2E3C51] flex items-center justify-center font-bold text-slate-300 text-sm flex-shrink-0">
                 {selectedChat.initials ?? selectedChat.name.slice(0, 2).toUpperCase()}
               </div>
@@ -137,13 +145,13 @@ export default function Inbox({
           </div>
 
           {/* Messages */}
-          <div className="flex-1 p-6 overflow-y-auto space-y-4">
+          <div className="flex-1 p-4 md:p-6 overflow-y-auto space-y-4">
             {selectedChat.messages.map((msg, idx) => {
               const isMe = msg.sender === "me";
               return (
                 <div
                   key={idx}
-                  className={`flex flex-col space-y-1 max-w-[70%] ${isMe ? "ml-auto items-end" : "items-start"}`}
+                  className={`flex flex-col space-y-1 max-w-[85%] md:max-w-[70%] ${isMe ? "ml-auto items-end" : "items-start"}`}
                 >
                   <div
                     className={`px-4 py-3 rounded-2xl  font-medium leading-relaxed ${isMe

@@ -78,7 +78,7 @@ export default function CompanyDashboard() {
   ];
 
   return (
-    <div className="p-8 space-y-8 max-w-7xl mx-auto">
+    <div className="p-4 md:p-8 space-y-6 md:space-y-8 max-w-7xl mx-auto">
       {/* Top Welcome / Header Row */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
@@ -131,9 +131,9 @@ export default function CompanyDashboard() {
           </div>
 
           {/* Pipeline stages container */}
-          <div className="grid grid-cols-5 gap-3 h-full min-h-[220px]">
+          <div className="flex md:grid md:grid-cols-5 gap-3 h-full min-h-[220px] overflow-x-auto pb-2 md:pb-0">
             {pipelineStages.map((stage, idx) => (
-              <div key={idx} className="bg-[#0A0F1D]/60 rounded-xl p-3 flex flex-col space-y-3">
+              <div key={idx} className="bg-[#0A0F1D]/60 rounded-xl p-3 flex flex-col space-y-3 min-w-[160px] md:min-w-0">
                 <div className="flex items-center justify-between border-b border-[#1E293B]/40 pb-2">
                   <span className=" font-semibold text-slate-300">{stage.title}</span>
                   <span className="text-[13px] font-bold text-slate-500 bg-[#0F172A] px-2 py-0.5 rounded-full">{stage.count}</span>

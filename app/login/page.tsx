@@ -9,14 +9,14 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#080C14] px-4 py-12">
-      <div className="w-full max-w-[400px] bg-[#0F172A]/50 border border-white/5 rounded-3xl p-8 sm:p-10 shadow-2xl">
+      <div className="w-full max-w-[400px] bg-[#0F172A]/50 border border-white/5 rounded-3xl p-6 sm:p-10 shadow-2xl">
         <div className="flex justify-center mb-8">
           <Link href="/" className="text-2xl font-bold tracking-tight">
             <span className="text-white">Career</span><span className="text-[#4BC957]">Sprint</span>
           </Link>
         </div>
 
-        <h1 className="text-2xl font-bold text-white mb-2">Welcome back</h1>
+        <h1 className="text-xl sm:text-2xl font-bold text-white mb-2">Welcome back</h1>
         <p className="text-slate-400 text-sm mb-6">Log in to continue progressing.</p>
 
         {/* Account type toggle */}

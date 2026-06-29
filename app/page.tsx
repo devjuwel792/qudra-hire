@@ -159,7 +159,7 @@ export default function HomePage() {
 
         <div className="relative max-w-4xl mx-auto px-4 z-10">
           {/* Hero title — fade up on mount (CSS only, no observer needed) */}
-          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight leading-tight
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight leading-tight
             animate-[fadeInUp_0.7s_ease_forwards]">
             Stop searching.<br />
             Start <span className="text-[#4BC957]  text-shadow-[#4BC957] [text-shadow:0_0_32px_#4BC957]">progressing.</span>

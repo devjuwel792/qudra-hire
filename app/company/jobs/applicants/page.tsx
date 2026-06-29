@@ -159,7 +159,7 @@ export default function JobApplicantsPage() {
   };
 
   return (
-    <div className="p-8 space-y-6 max-w-7xl mx-auto">
+    <div className="p-4 md:p-8 space-y-6 max-w-7xl mx-auto">
       {/* Top Navigation Back */}
       <div>
         <Link
@@ -172,9 +172,9 @@ export default function JobApplicantsPage() {
       </div>
 
       {/* Header section matching the screenshot */}
-      <div className="flex justify-between items-end">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
         <div>
-          <h1 className="text-3xl font-extrabold text-white tracking-tight">Senior Product Designer</h1>
+          <h1 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight">Senior Product Designer</h1>
           <p className="text-sm text-slate-400 mt-1">{filtered.length} applicant{filtered.length !== 1 ? "s" : ""} • Dubai, UAE</p>
         </div>
         <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>

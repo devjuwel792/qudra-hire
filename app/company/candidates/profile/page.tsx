@@ -27,7 +27,7 @@ export default function CandidateProfilePage() {
   const [status, setStatus] = useState("New");
 
   return (
-    <div className="p-8 space-y-8 max-w-7xl mx-auto">
+    <div className="p-4 md:p-8 space-y-6 md:space-y-8 max-w-7xl mx-auto">
       {/* Back button */}
       <div>
         <Link
@@ -40,7 +40,7 @@ export default function CandidateProfilePage() {
       </div>
 
       {/* Profile Header Card */}
-      <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-6 space-y-6">
+      <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-4 md:p-6 space-y-6">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="flex items-center gap-5">
             <div className="h-20 w-20 rounded-full bg-gradient-to-tr from-[#1E293B] to-[#0F172A] border-2 border-[#2E3C51] flex items-center justify-center font-extrabold text-white text-3xl shadow-lg">

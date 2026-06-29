@@ -114,11 +114,11 @@ export default function CandidatesPage() {
   };
 
   return (
-    <div className="p-8 space-y-8 max-w-7xl mx-auto">
+    <div className="p-4 md:p-8 space-y-6 md:space-y-8 max-w-7xl mx-auto">
       {/* Header section matching the screenshot */}
-      <div className="flex justify-between items-end">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-white tracking-tight">AI-ranked candidates</h1>
+          <h1 className="text-xl md:text-2xl font-bold text-white tracking-tight">AI-ranked candidates</h1>
           <p className="text-sm text-slate-400 mt-1">Unlock full profiles using credits.</p>
         </div>
 
@@ -226,7 +226,7 @@ export default function CandidatesPage() {
       </div>
 
       {/* Candidates Cards Grid matching the second screenshot */}
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6">
         {initialCandidates.map((candidate, idx) => (
           <div
             key={idx}
@@ -264,13 +264,13 @@ export default function CandidatesPage() {
             </div>
 
             {/* Experience, Location & Credit cost */}
-            <div className="flex items-center justify-between  text-slate-500 font-medium border-t border-[#1E293B]/40 pt-3">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1 text-slate-500 font-medium border-t border-[#1E293B]/40 pt-3">
               <span>{candidate.exp} • {candidate.location}</span>
-              <span>{candidate.credits} credits to unlock</span>
+              <span className="text-sm">{candidate.credits} credits to unlock</span>
             </div>
 
             {/* Footer actions: Lock View profile, Message, Bot, Document */}
-            <div className="flex items-center gap-2 pt-1.5">
+            <div className="flex items-center gap-2 pt-1.5 flex-wrap">
               <Link
                 href={`/company/candidates/profile?id=${candidate.id}`}
                 className="flex-1 bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold py-2.5 px-4 rounded-xl  flex items-center justify-center gap-1.5 transition-all shadow-md shadow-[#4BC957]/5 active:scale-[0.98]"

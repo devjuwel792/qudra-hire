@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { Globe } from "lucide-react";
+import Image from "next/image";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -22,11 +23,11 @@ export default function QudraHeader({ activePage }: QudraHeaderProps) {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-white/5 bg-[#080C14]/80 backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-8 h-16 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-1">
-          <span className="text-xl font-extrabold text-white tracking-tight">
-            CareerSprint
-          </span>
-        </Link>
+         {/* Logo */}
+          <Link href="/" className="flex items-center gap-2 group">
+            <Image src="/logo.png" alt="" width={180} height={60} className="hidden md:block h-12 w-auto object-contain" />
+            <Image src="/mobile-logo.png" alt="" width={180} height={60} className="block md:hidden h-12 w-auto object-contain" />
+          </Link>
 
         <nav className="hidden md:flex items-center gap-7 text-[14px] font-medium text-slate-400">
           {navLinks.map((l) => (

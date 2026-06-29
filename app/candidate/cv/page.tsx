@@ -22,10 +22,10 @@ export default function CandidateCVPage() {
   ];
 
   return (
-    <div className="p-8 space-y-8 max-w-7xl mx-auto text-white">
+    <div className="p-4 md:p-8 space-y-6 md:space-y-8 max-w-7xl mx-auto text-white">
       {/* Title */}
       <div>
-        <h1 className="text-3xl font-extrabold text-white tracking-tight">CV & ATS optimization</h1>
+        <h1 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight">CV & ATS optimization</h1>
         <p className="text-sm text-slate-400 mt-1">Upload once. Tailor for every role with AI.</p>
       </div>
 

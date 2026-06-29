@@ -77,7 +77,7 @@ export default function PricingPage() {
         <div aria-hidden className="pointer-events-none absolute inset-0 opacity-[0.03]"
           style={{ backgroundImage: "linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)", backgroundSize: "40px 40px" }} />
         <div className="relative max-w-3xl mx-auto px-4">
-          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight leading-tight
+          <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight
             animate-[fadeInUp_0.7s_ease_forwards]">
             Credit bundles that reward{" "}
             <span className="text-[#4BC957]">momentum.</span>

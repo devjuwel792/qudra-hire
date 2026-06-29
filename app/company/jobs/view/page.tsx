@@ -28,7 +28,7 @@ function JobViewContent() {
   const job = jobs[Number(id)] ?? jobs[0];
 
   return (
-    <div className="p-8 space-y-8 max-w-7xl mx-auto">
+    <div className="p-4 md:p-8 space-y-6 md:space-y-8 max-w-7xl mx-auto">
       {/* Back */}
       <div>
         <Link
@@ -86,7 +86,7 @@ function JobViewContent() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4">
         <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-5 space-y-1">
           <p className=" font-semibold text-slate-500 uppercase tracking-wider">Applicants</p>
           <p className="text-3xl font-extrabold text-white">{job.applicants}</p>

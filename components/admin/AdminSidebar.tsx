@@ -71,8 +71,8 @@ export default function AdminSidebar() {
     <aside className="flex h-screen w-[130px] flex-shrink-0 flex-col bg-[#0B2545] text-white">
       {/* Logo / Brand */}
       <div className="flex flex-col items-center justify-center border-b border-white/10 py-6 px-3">
-        <Image src="/logo.png" alt="PrepED Logo" width={120} height={40} className="hidden md:block h-8 w-auto object-contain" />
-        <Image src="/mobile-logo.png" alt="PrepED Logo" width={120} height={40} className="block md:hidden h-8 w-auto object-contain" />
+        <Image src="/logo.png" alt="" width={120} height={40} className="hidden md:block h-8 w-auto object-contain" />
+        <Image src="/mobile-logo.png" alt="" width={120} height={40} className="block md:hidden h-8 w-auto object-contain" />
         <span className="text-[13px] font-normal text-white/60 tracking-widest uppercase mt-2">
           Admin
         </span>

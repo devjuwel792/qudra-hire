@@ -65,15 +65,15 @@ export default function Wallet({
   const [topUpOpen, setTopUpOpen] = useState(false);
 
   return (
-    <div className="p-8 space-y-8 max-w-7xl mx-auto">
+    <div className="p-4 md:p-8 space-y-6 md:space-y-8 max-w-7xl mx-auto">
       {/* Top Header */}
-      <div className="flex justify-between items-end">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
         <div>
-          <h1 className="text-3xl font-extrabold text-white tracking-tight">{title}</h1>
+          <h1 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight">{title}</h1>
           <p className="text-sm text-slate-400 mt-1">{subtitle}</p>
         </div>
         {bundlesLink ?? (
-          <button className="border border-slate-700/80 hover:bg-slate-800 text-slate-300 px-4 py-2 rounded-xl text-sm font-semibold transition-all">
+          <button className="w-full sm:w-auto border border-slate-700/80 hover:bg-slate-800 text-slate-300 px-4 py-2 rounded-xl text-sm font-semibold transition-all">
             View all bundles
           </button>
         )}
@@ -90,18 +90,18 @@ export default function Wallet({
 
           <div className="space-y-1">
             <div className="flex items-baseline gap-2">
-              <span className="text-5xl font-extrabold text-white tracking-tight">{balance}</span>
+              <span className="text-4xl md:text-5xl font-extrabold text-white tracking-tight">{balance}</span>
               <span className="text-base text-slate-400 font-semibold">{balanceLabel}</span>
             </div>
             <p className=" text-slate-500 font-medium">{balanceValue}</p>
           </div>
 
           {/* Core Info Grid */}
-          <div className="grid grid-cols-3 gap-4 border-t border-b border-[#1E293B]/60 py-4">
+          <div className="grid grid-cols-3 gap-2 md:gap-4 border-t border-b border-[#1E293B]/60 py-4">
             {infoRows.map((row, idx) => (
               <div key={idx}>
-                <span className="text-[13px] font-bold text-slate-500 uppercase tracking-wider">{row.label}</span>
-                <p className="text-lg font-bold text-white mt-1">{row.value}</p>
+                <span className="text-[11px] md:text-[13px] font-bold text-slate-500 uppercase tracking-wider">{row.label}</span>
+                <p className="text-base md:text-lg font-bold text-white mt-1">{row.value}</p>
               </div>
             ))}
           </div>
@@ -200,7 +200,26 @@ export default function Wallet({
           </span>
         </div>
 
-        <div className="overflow-x-auto">
+        {/* Mobile card view */}
+        <div className="block md:hidden divide-y divide-[#1E293B]/40">
+          {transactions.map((t, idx) => (
+            <div key={idx} className="py-3 space-y-1.5">
+              <div className="flex items-center gap-2">
+                <div className={`p-1 rounded-lg border ${t.positive ? "bg-[#4BC957]/10 border-[#4BC957]/20 text-[#4BC957]" : "bg-slate-800/40 border-slate-700/60 text-slate-400"}`}>
+                  {t.positive ? <ArrowDownLeft className="h-3 w-3" /> : <ArrowUpRight className="h-3 w-3" />}
+                </div>
+                <span className="text-sm font-semibold text-white">{t.desc}</span>
+              </div>
+              <div className="flex items-center justify-between text-sm text-slate-400 ml-7">
+                <span>{t.method} • {t.date}</span>
+                <span className={`font-bold ${t.positive ? "text-[#4BC957]" : "text-white"}`}>{t.amount}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Desktop table */}
+        <div className="hidden md:block overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="border-b border-[#1E293B]/60 text-slate-400  font-semibold uppercase tracking-wider bg-[#0A0F1D]/40">

@@ -26,7 +26,7 @@ export default function JobsPage() {
       {/* Header */}
       <section className="border-b border-white/5 bg-[#0A0F1D] py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-8">
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-white mb-2 tracking-tight
+          <h1 className="text-2xl sm:text-4xl font-extrabold text-white mb-2 tracking-tight
             animate-[fadeInUp_0.7s_ease_forwards]">
             Find your next role
           </h1>

@@ -10,7 +10,7 @@ export default function SignupPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#080C14] px-4 py-12">
-      <div className="w-full max-w-[450px] bg-[#0F172A]/50 border border-white/5 rounded-3xl p-8 sm:p-10 shadow-2xl">
+      <div className="w-full max-w-[450px] bg-[#0F172A]/50 border border-white/5 rounded-3xl p-6 sm:p-10 shadow-2xl">
         {/* Logo */}
         <div className="flex justify-center mb-8">
           <Link href="/" className="text-2xl font-bold tracking-tight">
@@ -18,7 +18,7 @@ export default function SignupPage() {
           </Link>
         </div>
 
-        <h1 className="text-2xl font-bold text-white mb-2">Create your account</h1>
+        <h1 className="text-xl sm:text-2xl font-bold text-white mb-2">Create your account</h1>
         <p className="text-slate-400 text-sm mb-6">Start progressing in under a minute.</p>
 
         {/* Toggle */}
@@ -64,7 +64,7 @@ export default function SignupPage() {
             </div>
 
             <form className="space-y-4">
-              <div className="flex gap-4">
+              <div className="flex flex-col sm:flex-row gap-4">
                 <div className="flex-1">
                   <label className="block text-xs font-medium text-white mb-1.5">First name</label>
                   <input 

@@ -45,17 +45,17 @@ export default function SiteHeader() {
   return (
     <>
       <div className="bg-[#FF5C35] text-white">
-        <div className="container mx-auto max-w-7xl flex flex-col sm:flex-row items-center justify-between px-6 sm:px-8 py-2 text-[13px] sm: font-bold tracking-widest uppercase text-center sm:text-left gap-1 sm:gap-0">
+        <div className="container mx-auto max-w-7xl flex flex-col sm:flex-row items-center justify-between px-4 sm:px-8 py-2 text-[11px] sm:text-[13px] font-bold tracking-widest uppercase text-center sm:text-left gap-1 sm:gap-0">
           <span>FREE SHIPPING ON ORDERS OVER $75</span>
-          <span>BACK TO SCHOOL SALE - UP TO 20% OFF!</span>
+          <span className="hidden xs:inline sm:inline">BACK TO SCHOOL SALE - UP TO 20% OFF!</span>
         </div>
       </div>
       <header className="sticky top-0 z-50 w-full border-b border-orange-100/50 bg-[#FDFBF7]/90 backdrop-blur-md transition-all">
         <div className="container mx-auto flex h-20 max-w-7xl items-center justify-between px-6 sm:px-8">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            <Image src="/logo.png" alt="PrepED Logo" width={180} height={60} className="hidden md:block h-12 w-auto object-contain" />
-            <Image src="/mobile-logo.png" alt="PrepED Logo" width={180} height={60} className="block md:hidden h-12 w-auto object-contain" />
+            <Image src="/logo.png" alt="" width={180} height={60} className="hidden md:block h-12 w-auto object-contain" />
+            <Image src="/mobile-logo.png" alt="" width={180} height={60} className="block md:hidden h-12 w-auto object-contain" />
           </Link>
 
           {/* Nav Links - Desktop */}
