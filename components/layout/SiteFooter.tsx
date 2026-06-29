@@ -13,7 +13,8 @@ export default function SiteFooter() {
           <div className="md:col-span-4 space-y-6">
             <Link href="/" className="flex items-center gap-2 group">
               <div className="flex flex-col">
-                <Image src="/logo.png" alt="PrepED Logo" width={280} height={150} className="h-24 w-auto object-contain mb-1" />
+                <Image src="/logo.png" alt="PrepED Logo" width={280} height={150} className="hidden md:block h-24 w-auto object-contain mb-1" />
+                <Image src="/mobile-logo.png" alt="PrepED Logo" width={280} height={150} className="block md:hidden h-24 w-auto object-contain mb-1" />
                
               </div>
             </Link>

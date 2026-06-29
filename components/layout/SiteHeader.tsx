@@ -54,7 +54,8 @@ export default function SiteHeader() {
         <div className="container mx-auto flex h-20 max-w-7xl items-center justify-between px-6 sm:px-8">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            <Image src="/logo.png" alt="PrepED Logo" width={180} height={60} className="h-12 w-auto object-contain" />
+            <Image src="/logo.png" alt="PrepED Logo" width={180} height={60} className="hidden md:block h-12 w-auto object-contain" />
+            <Image src="/mobile-logo.png" alt="PrepED Logo" width={180} height={60} className="block md:hidden h-12 w-auto object-contain" />
           </Link>
 
           {/* Nav Links - Desktop */}
