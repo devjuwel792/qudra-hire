@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { ArrowLeft, ShieldCheck, Sparkles, AlertCircle } from "lucide-react";
+import { ArrowLeft, ShieldCheck, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { Switch } from "@/components/ui/switch";
 
@@ -17,7 +17,7 @@ export default function PostJobPage() {
       <div className="space-y-3">
         <Link
           href="/company/jobs"
-          className="inline-flex items-center gap-2  font-semibold text-slate-400 hover:text-white transition-colors"
+          className="inline-flex items-center gap-2 font-semibold text-on-surface-muted hover:text-on-surface transition-colors"
         >
           <ArrowLeft className="h-4 w-4" />
           Back
@@ -25,10 +25,10 @@ export default function PostJobPage() {
 
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
-            <h1 className="text-3xl font-extrabold text-white tracking-tight">Post a new job</h1>
-            <p className="text-sm text-slate-400 mt-1">AI will shortlist your top 10 matches within minutes.</p>
+            <h1 className="text-3xl font-extrabold text-on-surface tracking-tight">Post a new job</h1>
+            <p className="text-sm text-on-surface-muted mt-1">AI will shortlist your top 10 matches within minutes.</p>
           </div>
-          <span className="bg-[#4BC957]/10 text-[#4BC957] border border-[#4BC957]/20 px-3 py-1.5 rounded-full  font-semibold flex items-center gap-1.5">
+          <span className="bg-[#4BC957]/10 text-[#4BC957] border border-[#4BC957]/20 px-3 py-1.5 rounded-full font-semibold flex items-center gap-1.5">
             <ShieldCheck className="h-4 w-4" />
             Trade-licence verified
           </span>
@@ -37,47 +37,47 @@ export default function PostJobPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
         {/* Main Form (2/3 width) */}
-        <div className="lg:col-span-2 bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-6 space-y-6">
+        <div className="lg:col-span-2 bg-surface-card border border-surface rounded-2xl p-6 space-y-6">
 
           {/* Job Title */}
           <div className="space-y-2">
-            <label className=" font-bold text-slate-400 uppercase tracking-wider">Job title</label>
+            <label className=" font-bold text-on-surface-muted uppercase tracking-wider">Job title</label>
             <input
               type="text"
               defaultValue="Senior Product Designer"
               placeholder="e.g. Lead Developer"
-              className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#4BC957] text-slate-200 placeholder-slate-500 rounded-xl px-4 py-3 text-sm focus:outline-none transition-colors"
+              className="w-full bg-surface-deep border border-surface focus:border-[#4BC957] text-on-surface placeholder:text-on-surface-subtle rounded-xl px-4 py-3 text-sm focus:outline-none transition-colors"
             />
           </div>
 
           {/* Skills Tag input */}
           <div className="space-y-2">
-            <label className=" font-bold text-slate-400 uppercase tracking-wider">Skills</label>
+            <label className=" font-bold text-on-surface-muted uppercase tracking-wider">Skills</label>
             <input
               type="text"
               placeholder="Enter Skills"
-              className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#4BC957] text-slate-200 placeholder-slate-500 rounded-xl px-4 py-3 text-sm focus:outline-none transition-colors"
+              className="w-full bg-surface-deep border border-surface focus:border-[#4BC957] text-on-surface placeholder:text-on-surface-subtle rounded-xl px-4 py-3 text-sm focus:outline-none transition-colors"
             />
           </div>
 
           {/* Location & Employment Type (2 Columns) */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <label className=" font-bold text-slate-400 uppercase tracking-wider">Location</label>
+              <label className=" font-bold text-on-surface-muted uppercase tracking-wider">Location</label>
               <input
                 type="text"
                 defaultValue="Dubai, UAE"
                 placeholder="e.g. Riyadh, KSA"
-                className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#4BC957] text-slate-200 placeholder-slate-500 rounded-xl px-4 py-3 text-sm focus:outline-none transition-colors"
+                className="w-full bg-surface-deep border border-surface focus:border-[#4BC957] text-on-surface placeholder:text-on-surface-subtle rounded-xl px-4 py-3 text-sm focus:outline-none transition-colors"
               />
             </div>
             <div className="space-y-2">
-              <label className=" font-bold text-slate-400 uppercase tracking-wider">Employment type</label>
+              <label className=" font-bold text-on-surface-muted uppercase tracking-wider">Employment type</label>
               <input
                 type="text"
                 defaultValue="Full-time"
                 placeholder="e.g. Contract, Part-time"
-                className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#4BC957] text-slate-200 placeholder-slate-500 rounded-xl px-4 py-3 text-sm focus:outline-none transition-colors"
+                className="w-full bg-surface-deep border border-surface focus:border-[#4BC957] text-on-surface placeholder:text-on-surface-subtle rounded-xl px-4 py-3 text-sm focus:outline-none transition-colors"
               />
             </div>
           </div>
@@ -85,52 +85,52 @@ export default function PostJobPage() {
           {/* Currency & Salary Range (2 Columns) */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <label className=" font-bold text-slate-400 uppercase tracking-wider">Currency</label>
+              <label className=" font-bold text-on-surface-muted uppercase tracking-wider">Currency</label>
               <input
                 type="text"
                 defaultValue="AED"
                 placeholder="e.g. SAR, USD"
-                className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#4BC957] text-slate-200 placeholder-slate-500 rounded-xl px-4 py-3 text-sm focus:outline-none transition-colors"
+                className="w-full bg-surface-deep border border-surface focus:border-[#4BC957] text-on-surface placeholder:text-on-surface-subtle rounded-xl px-4 py-3 text-sm focus:outline-none transition-colors"
               />
             </div>
             <div className="space-y-2">
-              <label className=" font-bold text-slate-400 uppercase tracking-wider">Salary range</label>
+              <label className=" font-bold text-on-surface-muted uppercase tracking-wider">Salary range</label>
               <input
                 type="text"
                 defaultValue="28,000 — 36,000 / month"
                 placeholder="e.g. 15,000 - 20,000"
-                className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#4BC957] text-slate-200 placeholder-slate-500 rounded-xl px-4 py-3 text-sm focus:outline-none transition-colors"
+                className="w-full bg-surface-deep border border-surface focus:border-[#4BC957] text-on-surface placeholder:text-on-surface-subtle rounded-xl px-4 py-3 text-sm focus:outline-none transition-colors"
               />
             </div>
           </div>
 
           {/* Job Description */}
           <div className="space-y-2">
-            <label className=" font-bold text-slate-400 uppercase tracking-wider">Job description</label>
+            <label className=" font-bold text-on-surface-muted uppercase tracking-wider">Job description</label>
             <textarea
               rows={4}
               defaultValue="Own end-to-end design of our flagship banking app..."
-              className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#4BC957] text-slate-200 placeholder-slate-500 rounded-xl p-4 text-sm focus:outline-none transition-colors resize-none"
+              className="w-full bg-surface-deep border border-surface focus:border-[#4BC957] text-on-surface placeholder:text-on-surface-subtle rounded-xl p-4 text-sm focus:outline-none transition-colors resize-none"
             />
           </div>
 
           {/* Requirements */}
           <div className="space-y-2">
-            <label className=" font-bold text-slate-400 uppercase tracking-wider">Requirements (one per line)</label>
+            <label className=" font-bold text-on-surface-muted uppercase tracking-wider">Requirements (one per line)</label>
             <textarea
               rows={4}
               defaultValue={"6+ years product design\nFintech experience\nFluent English; Arabic a plus"}
-              className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#4BC957] text-slate-200 placeholder-slate-500 rounded-xl p-4 text-sm focus:outline-none transition-colors resize-none"
+              className="w-full bg-surface-deep border border-surface focus:border-[#4BC957] text-on-surface placeholder:text-on-surface-subtle rounded-xl p-4 text-sm focus:outline-none transition-colors resize-none"
             />
           </div>
 
           {/* GCC Flags Switches Group */}
-          <div className="border border-[#1E293B]/60 rounded-xl p-5 space-y-4">
-            <h3 className=" font-bold text-slate-400 uppercase tracking-wider mb-2">GCC flags</h3>
+          <div className="border border-surface rounded-xl p-5 space-y-4">
+            <h3 className=" font-bold text-on-surface-muted uppercase tracking-wider mb-2">GCC flags</h3>
 
             {/* Visa */}
             <div className="flex items-center justify-between">
-              <span className=" font-semibold text-slate-300">Visa sponsorship offered</span>
+              <span className=" font-semibold text-on-surface">Visa sponsorship offered</span>
               <Switch
                 checked={visaSp}
                 onCheckedChange={setVisaSp}
@@ -140,7 +140,7 @@ export default function PostJobPage() {
 
             {/* Emiratization */}
             <div className="flex items-center justify-between">
-              <span className=" font-semibold text-slate-300">Emiratization (UAE national priority)</span>
+              <span className=" font-semibold text-on-surface">Emiratization (UAE national priority)</span>
               <Switch
                 checked={emiratization}
                 onCheckedChange={setEmiratization}
@@ -150,7 +150,7 @@ export default function PostJobPage() {
 
             {/* Saudization */}
             <div className="flex items-center justify-between">
-              <span className=" font-semibold text-slate-300">Saudization (Nitaqat-aligned)</span>
+              <span className=" font-semibold text-on-surface">Saudization (Nitaqat-aligned)</span>
               <Switch
                 checked={saudization}
                 onCheckedChange={setSaudization}
@@ -160,7 +160,7 @@ export default function PostJobPage() {
 
             {/* Remote */}
             <div className="flex items-center justify-between">
-              <span className=" font-semibold text-slate-300">Open to remote</span>
+              <span className=" font-semibold text-on-surface">Open to remote</span>
               <Switch
                 checked={remote}
                 onCheckedChange={setRemote}
@@ -170,10 +170,10 @@ export default function PostJobPage() {
           </div>
 
           {/* Action buttons */}
-          <div className="flex justify-start gap-3 border-t border-[#1E293B]/60 pt-6">
+          <div className="flex justify-start gap-3 border-t border-surface pt-6">
             <Link
               href="/company/jobs"
-              className="border border-slate-700/80 hover:bg-slate-800/60 text-slate-300 font-semibold px-6 py-2.5 rounded-xl text-sm transition-colors text-center"
+              className="border border-surface hover:bg-surface-item text-on-surface font-semibold px-6 py-2.5 rounded-xl text-sm transition-colors text-center"
             >
               Cancel
             </Link>
@@ -188,12 +188,12 @@ export default function PostJobPage() {
         <div className="space-y-6">
 
           {/* What happens next */}
-          <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-6 space-y-4">
-            <h3 className="text-sm font-bold text-white flex items-center gap-1.5">
+          <div className="bg-surface-card border border-surface rounded-2xl p-6 space-y-4">
+            <h3 className="text-sm font-bold text-on-surface flex items-center gap-1.5">
               <Sparkles className="h-4.5 w-4.5 text-[#4BC957]" />
               What happens next
             </h3>
-            <ol className="space-y-3.5  text-slate-400 list-decimal pl-4 leading-relaxed font-medium">
+            <ol className="space-y-3.5 text-on-surface-muted list-decimal pl-4 leading-relaxed font-medium">
               <li>AI scans 50,000+ candidate profiles</li>
               <li>Top 10 ranked shortlist within minutes</li>
               <li>Candidates appear anonymised — unlock with credits</li>
@@ -202,25 +202,25 @@ export default function PostJobPage() {
           </div>
 
           {/* Cost breakdown */}
-          <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-6 space-y-5">
-            <h3 className="text-sm font-bold text-white">Cost</h3>
+          <div className="bg-surface-card border border-surface rounded-2xl p-6 space-y-5">
+            <h3 className="text-sm font-bold text-on-surface">Cost</h3>
 
-            <div className="space-y-3.5  font-semibold">
-              <div className="flex justify-between items-center text-slate-400">
+            <div className="space-y-3.5 font-semibold">
+              <div className="flex justify-between items-center text-on-surface-muted">
                 <span>Job post</span>
-                <span className="text-white">5 credits</span>
+                <span className="text-on-surface">5 credits</span>
               </div>
-              <div className="flex justify-between items-center text-slate-400">
+              <div className="flex justify-between items-center text-on-surface-muted">
                 <span>Top 10 shortlist</span>
-                <span className="text-white">Free</span>
+                <span className="text-on-surface">Free</span>
               </div>
-              <div className="flex justify-between items-center text-slate-400">
+              <div className="flex justify-between items-center text-on-surface-muted">
                 <span>Per unlock</span>
-                <span className="text-white">2 credits</span>
+                <span className="text-on-surface">2 credits</span>
               </div>
             </div>
 
-            <div className="border-t border-[#1E293B]/60 pt-4  font-bold text-[#4BC957]">
+            <div className="border-t border-surface pt-4 font-bold text-[#4BC957]">
               Balance: 1,240 credits
             </div>
           </div>

@@ -18,7 +18,6 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 export default function CompanyDashboard() {
-  // Simple state for demonstration / interactions
   const [activeJobs, setActiveJobs] = useState(12);
   const [shortlistedCount, setShortlistedCount] = useState(20);
 
@@ -82,8 +81,8 @@ export default function CompanyDashboard() {
       {/* Top Welcome / Header Row */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
-          <h1 className="text-sm font-medium text-slate-400 uppercase tracking-widest">Hiring workspace</h1>
-          <p className="text-3xl font-extrabold text-white mt-1 tracking-tight">
+          <h1 className="text-sm font-medium text-on-surface-muted uppercase tracking-widest">Hiring workspace</h1>
+          <p className="text-3xl font-extrabold text-on-surface mt-1 tracking-tight">
             Emirates NBD <span className="text-[#4BC957] font-normal">•</span> Talent
           </p>
         </div>
@@ -97,18 +96,18 @@ export default function CompanyDashboard() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         {[
           { label: "Active jobs", value: activeJobs, icon: Briefcase, color: "text-[#4BC957]", bg: "bg-[#4BC957]/10", href: "/company/jobs" },
-          { label: "Shortlisted", value: shortlistedCount, icon: Users, color: "text-blue-400", bg: "bg-blue-400/10", href: "/company/candidates" },
-          { label: "Messaged", value: 12, icon: MessageSquare, color: "text-purple-400", bg: "bg-purple-400/10", href: "/company/inbox" },
-          { label: "Credits", value: "1,240", icon: Wallet, color: "text-amber-400", bg: "bg-amber-400/10", href: "/company/wallet" },
+          { label: "Shortlisted", value: shortlistedCount, icon: Users, color: "text-blue-500", bg: "bg-blue-500/10", href: "/company/candidates" },
+          { label: "Messaged", value: 12, icon: MessageSquare, color: "text-purple-500", bg: "bg-purple-500/10", href: "/company/inbox" },
+          { label: "Credits", value: "1,240", icon: Wallet, color: "text-amber-500", bg: "bg-amber-500/10", href: "/company/wallet" },
         ].map((stat, idx) => (
           <Link
             key={idx}
             href={stat.href}
-            className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-5 flex items-center justify-between hover:border-[#334155] transition-all duration-300 group cursor-pointer"
+            className="bg-surface-card border border-surface rounded-2xl p-5 flex items-center justify-between hover:border-inner transition-all duration-300 group cursor-pointer"
           >
             <div className="space-y-1">
-              <span className=" font-medium text-slate-400 uppercase tracking-wider">{stat.label}</span>
-              <p className="text-3xl font-bold text-white tracking-tight">{stat.value}</p>
+              <span className=" font-medium text-on-surface-muted uppercase tracking-wider">{stat.label}</span>
+              <p className="text-3xl font-bold text-on-surface tracking-tight">{stat.value}</p>
             </div>
             <div className={`${stat.bg} ${stat.color} p-3.5 rounded-xl group-hover:scale-110 transition-transform duration-300`}>
               <stat.icon className="h-5 w-5" />
@@ -120,9 +119,9 @@ export default function CompanyDashboard() {
       {/* Pipeline & AI Matches Row */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Recruitment Pipeline Column (2/3 width) */}
-        <div className="lg:col-span-2 bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-6 flex flex-col space-y-5">
+        <div className="lg:col-span-2 bg-surface-card border border-surface rounded-2xl p-6 flex flex-col space-y-5">
           <div className="flex justify-between items-center">
-            <h2 className="text-lg font-bold text-white flex items-center gap-2">
+            <h2 className="text-lg font-bold text-on-surface flex items-center gap-2">
               Recruitment pipeline
             </h2>
             <Link href={"/company/candidates"} className=" text-[#4BC957] font-semibold hover:underline flex items-center gap-1.5">
@@ -133,21 +132,22 @@ export default function CompanyDashboard() {
           {/* Pipeline stages container */}
           <div className="flex md:grid md:grid-cols-5 gap-3 h-full min-h-[220px] overflow-x-auto pb-2 md:pb-0">
             {pipelineStages.map((stage, idx) => (
-              <div key={idx} className="bg-[#0A0F1D]/60 rounded-xl p-3 flex flex-col space-y-3 min-w-[160px] md:min-w-0">
-                <div className="flex items-center justify-between border-b border-[#1E293B]/40 pb-2">
-                  <span className=" font-semibold text-slate-300">{stage.title}</span>
-                  <span className="text-[13px] font-bold text-slate-500 bg-[#0F172A] px-2 py-0.5 rounded-full">{stage.count}</span>
+              <div key={idx} className="bg-surface-deep rounded-xl p-3 flex flex-col space-y-3 min-w-[160px] md:min-w-0">
+                <div className="flex items-center justify-between border-b border-surface pb-2">
+                  <span className=" font-semibold text-on-surface-muted">{stage.title}</span>
+                  <span className="text-[13px] font-bold text-on-surface-subtle bg-surface-card px-2 py-0.5 rounded-full border border-surface">{stage.count}</span>
                 </div>
 
                 <div className="flex-1 space-y-2 overflow-y-auto">
                   {stage.candidates.map((candidate) => (
                     <div
                       key={candidate.id}
-                      className="bg-[#162032] border border-[#2A3C58]/60 rounded-lg p-2.5 hover:border-[#4BC957]/50 transition-all duration-200 cursor-pointer group"
-                    ><Link href={`/company/candidates/profile?id=${candidate.id}`} >
-                        <p className=" font-semibold text-slate-200 truncate group-hover:text-white">{candidate.name}</p>
+                      className="bg-surface-item border border-surface rounded-lg p-2.5 hover:border-[#4BC957]/50 transition-all duration-200 cursor-pointer group"
+                    >
+                      <Link href={`/company/candidates/profile?id=${candidate.id}`} >
+                        <p className=" font-semibold text-on-surface truncate group-hover:text-[#4BC957] transition-colors">{candidate.name}</p>
                         <div className="flex items-center justify-between mt-1.5">
-                          <span className="text-[9px] text-slate-500 truncate max-w-[50px]">{candidate.role.split(" ")[0]}</span>
+                          <span className="text-[9px] text-on-surface-subtle truncate max-w-[50px]">{candidate.role.split(" ")[0]}</span>
                           <span className="text-[9px] font-semibold text-[#4BC957] flex items-center gap-0.5">
                             <Sparkles className="h-2 w-2" />
                             {candidate.match}
@@ -163,9 +163,9 @@ export default function CompanyDashboard() {
         </div>
 
         {/* Top AI Matches Column (1/3 width) */}
-        <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-6 flex flex-col space-y-5">
+        <div className="bg-surface-card border border-surface rounded-2xl p-6 flex flex-col space-y-5">
           <div>
-            <h2 className="text-lg font-bold text-white flex items-center gap-2">
+            <h2 className="text-lg font-bold text-on-surface flex items-center gap-2">
               <Sparkles className="h-4.5 w-4.5 text-[#4BC957]" />
               Top AI matches
             </h2>
@@ -175,16 +175,15 @@ export default function CompanyDashboard() {
             {aiMatches.map((match, idx) => (
               <Link key={idx} href={`/company/candidates/profile?id=${match?.id}`}>
                 <div
-
-                  className="flex items-center justify-between p-3.5 rounded-xl bg-[#0A0F1D]/60 border border-[#1E293B]/30 hover:border-[#4BC957]/30 transition-all duration-300 cursor-pointer"
+                  className="flex items-center justify-between p-3.5 rounded-xl bg-surface-deep border border-surface hover:border-[#4BC957]/30 transition-all duration-300 cursor-pointer group"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-[#1E293B] to-[#0F172A] border border-[#2E3C51] flex items-center justify-center font-bold text-slate-300 text-sm shadow-inner">
+                    <div className="h-10 w-10 rounded-xl bg-surface-item border border-surface flex items-center justify-center font-bold text-on-surface text-sm">
                       {match.initials}
                     </div>
                     <div>
-                      <p className="text-sm font-semibold text-slate-200">{match.name}</p>
-                      <p className=" text-slate-500">{match.role}</p>
+                      <p className="text-sm font-semibold text-on-surface group-hover:text-[#4BC957] transition-colors">{match.name}</p>
+                      <p className=" text-on-surface-muted text-xs">{match.role}</p>
                     </div>
                   </div>
                   <span className="text-sm font-bold text-[#4BC957] bg-[#4BC957]/10 px-2.5 py-1 rounded-lg">
@@ -192,44 +191,43 @@ export default function CompanyDashboard() {
                   </span>
                 </div>
               </Link>
-
             ))}
           </div>
         </div>
       </div>
 
       {/* Open Roles Table / List */}
-      <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-6 space-y-5">
+      <div className="bg-surface-card border border-surface rounded-2xl p-6 space-y-5">
         <div className="flex justify-between items-center">
-          <h2 className="text-lg font-bold text-white flex items-center gap-2">
+          <h2 className="text-lg font-bold text-on-surface flex items-center gap-2">
             Open roles
           </h2>
-          <Link href={"/company/jobs"} className=" text-slate-400 hover:text-white font-semibold flex items-center gap-1">
+          <Link href={"/company/jobs"} className=" text-on-surface-muted hover:text-on-surface font-semibold flex items-center gap-1 transition-colors">
             Manage
           </Link>
         </div>
 
-        <div className="divide-y divide-[#1E293B]/60">
+        <div className="divide-y divide-surface">
           {openRoles.map((role, idx) => (
             <div key={idx} className="flex flex-col sm:flex-row justify-between items-start sm:items-center py-4.5 first:pt-0 last:pb-0 gap-4 group">
               <div className="space-y-1">
-                <h3 className="text-base font-semibold text-slate-200 group-hover:text-white transition-colors">{role.title}</h3>
-                <div className="flex items-center gap-4  text-slate-500">
+                <h3 className="text-base font-semibold text-on-surface group-hover:text-[#4BC957] transition-colors">{role.title}</h3>
+                <div className="flex items-center gap-4 text-on-surface-muted text-sm">
                   <span className="flex items-center gap-1">
-                    <MapPin className="h-3.5 w-3.5 text-slate-600" />
+                    <MapPin className="h-3.5 w-3.5 text-on-surface-subtle" />
                     {role.location}
                   </span>
                   <span className="flex items-center gap-1">
-                    <Clock className="h-3.5 w-3.5 text-slate-600" />
+                    <Clock className="h-3.5 w-3.5 text-on-surface-subtle" />
                     {role.type}
                   </span>
                 </div>
               </div>
               <div className="flex items-center gap-6 w-full sm:w-auto justify-between sm:justify-end">
-                <span className=" font-medium text-slate-400">
-                  <strong className="text-white font-semibold">{role.applicants}</strong> applicants
+                <span className="font-medium text-on-surface-muted text-sm">
+                  <strong className="text-on-surface font-semibold">{role.applicants}</strong> applicants
                 </span>
-                <Link href={"/company/jobs/applicants"} className="border border-[#4BC957]/40 text-[#4BC957] hover:bg-[#4BC957] hover:text-[#080C14] px-4 py-1.5 rounded-lg  font-semibold transition-all duration-200">
+                <Link href={"/company/jobs/applicants"} className="border border-[#4BC957]/40 text-[#4BC957] hover:bg-[#4BC957] hover:text-[#080C14] px-4 py-1.5 rounded-lg font-semibold transition-all duration-200">
                   Open
                 </Link>
               </div>

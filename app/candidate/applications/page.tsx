@@ -44,34 +44,34 @@ export default function CandidateApplicationsPage() {
   ];
 
   return (
-    <div className="p-4 md:p-8 space-y-6 md:space-y-8 max-w-7xl mx-auto text-white">
+    <div className="p-4 md:p-8 space-y-6 md:space-y-8 max-w-7xl mx-auto">
       {/* Title */}
       <div>
-        <h1 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight">My applications</h1>
-        <p className="text-sm text-slate-400 mt-1">Track every step from apply to offer.</p>
+        <h1 className="text-2xl md:text-3xl font-extrabold text-on-surface tracking-tight">My applications</h1>
+        <p className="text-sm text-on-surface-muted mt-1">Track every step from apply to offer.</p>
       </div>
 
       {/* Applications Table Card - Desktop */}
-      <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl overflow-hidden">
+      <div className="bg-surface-card border border-surface rounded-2xl overflow-hidden">
         {/* Mobile card view */}
-        <div className="block md:hidden divide-y divide-[#1E293B]/40">
+        <div className="block md:hidden divide-y divide-surface">
           {applications.map((app, idx) => (
-            <div key={idx} className="p-4 space-y-2 hover:bg-[#162032]/35 transition-colors">
+            <div key={idx} className="p-4 space-y-2 hover:bg-surface-item/50 transition-colors">
               <div className="flex justify-between items-start gap-2">
-                <h3 className="font-bold text-white text-sm leading-tight">{app.role}</h3>
-                <span className="text-xs font-bold border border-slate-700/60 bg-[#1E293B]/40 text-slate-300 px-2.5 py-0.5 rounded-full whitespace-nowrap">
+                <h3 className="font-bold text-on-surface text-sm leading-tight">{app.role}</h3>
+                <span className="text-xs font-bold border border-surface bg-surface-deep text-on-surface-muted px-2.5 py-0.5 rounded-full whitespace-nowrap">
                   {app.stage}
                 </span>
               </div>
-              <p className="text-sm text-slate-400">{app.company}</p>
+              <p className="text-sm text-on-surface-muted">{app.company}</p>
               <div className="flex items-center justify-between text-sm">
-                <span className="text-slate-400">ATS <strong className="text-[#4BC957]">{app.ats}</strong></span>
-                <span className="text-slate-400">{app.applied}</span>
+                <span className="text-on-surface-muted">ATS <strong className="text-[#4BC957]">{app.ats}</strong></span>
+                <span className="text-on-surface-muted">{app.applied}</span>
               </div>
               <div className="pt-1">
                 <Link
                   href="/candidate/jobs/detail?id=1&status=success"
-                  className="text-sm font-bold text-slate-300 hover:text-white transition-colors"
+                  className="text-sm font-bold text-on-surface-muted hover:text-on-surface transition-colors"
                 >
                   View &rarr;
                 </Link>
@@ -84,33 +84,33 @@ export default function CandidateApplicationsPage() {
         <div className="hidden md:block overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="border-b border-[#1E293B]/60 text-slate-400  font-semibold uppercase tracking-wider bg-[#0A0F1D]/25">
-                <th className="py-4 px-6 font-medium text-slate-400">Role</th>
-                <th className="py-4 px-6 font-medium text-slate-400">Company</th>
-                <th className="py-4 px-6 font-medium text-slate-400">Ats</th>
-                <th className="py-4 px-6 font-medium text-slate-400">Applied</th>
-                <th className="py-4 px-6 font-medium text-slate-400">Stage</th>
-                <th className="py-4 px-6 font-medium text-slate-400 text-right"></th>
+              <tr className="border-b border-surface text-on-surface-muted font-semibold uppercase tracking-wider bg-surface-deep">
+                <th className="py-4 px-6 font-medium">Role</th>
+                <th className="py-4 px-6 font-medium">Company</th>
+                <th className="py-4 px-6 font-medium">Ats</th>
+                <th className="py-4 px-6 font-medium">Applied</th>
+                <th className="py-4 px-6 font-medium">Stage</th>
+                <th className="py-4 px-6 font-medium text-right"></th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#1E293B]/40 text-slate-200 text-sm">
+            <tbody className="divide-y divide-surface text-on-surface text-sm">
               {applications.map((app, idx) => (
-                <tr key={idx} className="hover:bg-[#162032]/35 transition-colors group">
-                  <td className="py-4 px-6 font-bold text-white max-w-[280px] truncate">
+                <tr key={idx} className="hover:bg-surface-item/50 transition-colors group">
+                  <td className="py-4 px-6 font-bold max-w-[280px] truncate">
                     {app.role}
                   </td>
-                  <td className="py-4 px-6 text-slate-400 font-medium">{app.company}</td>
+                  <td className="py-4 px-6 text-on-surface-muted font-medium">{app.company}</td>
                   <td className="py-4 px-6 text-[#4BC957] font-extrabold">{app.ats}</td>
-                  <td className="py-4 px-6 text-slate-400 font-medium">{app.applied}</td>
+                  <td className="py-4 px-6 text-on-surface-muted font-medium">{app.applied}</td>
                   <td className="py-4 px-6">
-                    <span className="text-[13px] font-bold border border-slate-700/60 bg-[#1E293B]/40 text-slate-300 px-3 py-1 rounded-full">
+                    <span className="text-[13px] font-bold border border-surface bg-surface-deep text-on-surface-muted px-3 py-1 rounded-full">
                       {app.stage}
                     </span>
                   </td>
                   <td className="py-4 px-6 text-right">
                     <Link
                       href="/candidate/jobs/detail?id=1&status=success"
-                      className=" font-bold text-slate-300 hover:text-white hover:underline transition-all"
+                      className="font-bold text-on-surface-muted hover:text-on-surface hover:underline transition-all"
                     >
                       View
                     </Link>
@@ -127,10 +127,10 @@ export default function CandidateApplicationsPage() {
         {stats.map((s, idx) => (
           <div
             key={idx}
-            className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-4 md:p-5 space-y-1 hover:border-[#2A3C58] transition-all"
+            className="bg-surface-card border border-surface rounded-2xl p-4 md:p-5 space-y-1 hover:border-inner transition-all"
           >
-            <span className=" font-semibold text-slate-500">{s.label}</span>
-            <p className="text-2xl md:text-3xl font-extrabold text-white">{s.count}</p>
+            <span className=" font-semibold text-on-surface-muted">{s.label}</span>
+            <p className="text-2xl md:text-3xl font-extrabold text-on-surface">{s.count}</p>
           </div>
         ))}
       </div>
