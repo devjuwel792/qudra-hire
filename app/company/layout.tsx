@@ -2,7 +2,8 @@
 
 import CompanySidebar from "@/components/company/CompanySidebar";
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu } from "lucide-react";
+import { ThemeToggle } from "@/components/layout/ThemeToggle";
 
 export default function CompanyLayout({
   children,
@@ -12,7 +13,7 @@ export default function CompanyLayout({
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="dark min-h-screen w-full bg-[#080C14] text-slate-100 flex flex-row overflow-hidden font-sans">
+    <div className="min-h-screen w-full bg-background text-foreground flex flex-row overflow-hidden font-sans">
       {/* Desktop sidebar */}
       <div className="hidden md:block">
         <CompanySidebar />
@@ -28,16 +29,17 @@ export default function CompanyLayout({
         </div>
       )}
 
-      <main className="flex-1 h-screen overflow-y-auto bg-[#080C14]">
+      <main className="flex-1 h-screen overflow-y-auto bg-background">
         {/* Mobile header */}
-        <div className="sticky top-0 z-40 flex items-center justify-between border-b border-[#1E293B]/40 bg-[#080C14]/90 backdrop-blur-md px-4 py-3 md:hidden">
+        <div className="sticky top-0 z-40 flex items-center justify-between border-b border-border bg-background/90 backdrop-blur-md px-4 py-3 md:hidden">
           <button
             onClick={() => setSidebarOpen(true)}
-            className="text-slate-400 hover:text-white transition-colors"
+            className="text-muted-foreground hover:text-foreground transition-colors"
           >
             <Menu className="h-6 w-6" />
           </button>
-          <span className="text-lg font-bold text-white">CareerSprint</span>
+          <span className="text-lg font-bold text-foreground">CareerSprint</span>
+          <ThemeToggle />
           <div className="w-6" />
         </div>
         {children}

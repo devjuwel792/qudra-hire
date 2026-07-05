@@ -29,7 +29,7 @@ export default function MobileBottomNav() {
     <div
       className={cn(
         "fixed inset-x-0 bottom-0 z-50 md:hidden",
-        "bg-[#FDFBF7]/90 backdrop-blur-md border-t border-orange-100/60",
+        "bg-background/90 backdrop-blur-md border-t border-border",
         "px-3 py-2"
       )}
     >
@@ -44,8 +44,8 @@ export default function MobileBottomNav() {
                   "text-[13px] font-semibold",
                   "transition-colors",
                   isActive(pathname, item.href)
-                    ? "bg-[#FF5C35] text-white hover:bg-[#FF5C35]"
-                    : "text-[#4A5D73] hover:bg-orange-50"
+                    ? "bg-primary text-primary-foreground hover:bg-primary"
+                    : "text-muted-foreground hover:bg-muted"
                 )}
               >
                 <span>{item.label}</span>

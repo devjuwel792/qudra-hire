@@ -3,6 +3,7 @@
 import CandidateSidebar from "@/components/candidate/CandidateSidebar";
 import { useState } from "react";
 import { Menu } from "lucide-react";
+import { ThemeToggle } from "@/components/layout/ThemeToggle";
 
 export default function CandidateLayout({
   children,
@@ -12,7 +13,7 @@ export default function CandidateLayout({
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="dark min-h-screen w-full bg-[#080C14] text-slate-100 flex flex-row overflow-hidden font-sans">
+    <div className="min-h-screen w-full bg-background text-foreground flex flex-row overflow-hidden font-sans">
       {/* Desktop sidebar */}
       <div className="hidden md:block">
         <CandidateSidebar />
@@ -28,16 +29,19 @@ export default function CandidateLayout({
         </div>
       )}
 
-      <main className="flex-1 h-screen flex flex-col bg-[#080C14] overflow-hidden">
+      <main className="flex-1 h-screen flex flex-col bg-background overflow-hidden">
         {/* Header Bar */}
-        <header className="h-16 border-b border-[#1E293B]/40 flex items-center px-4 md:px-8 flex-shrink-0 gap-3">
+        <header className="h-16 border-b border-border flex items-center px-4 md:px-8 flex-shrink-0 gap-3">
           <button
             onClick={() => setSidebarOpen(true)}
-            className="md:hidden text-slate-400 hover:text-white transition-colors p-1"
+            className="md:hidden text-muted-foreground hover:text-foreground transition-colors p-1"
           >
             <Menu className="h-5 w-5" />
           </button>
-          <h1 className="text-xl font-bold text-white">Welcome</h1>
+          <h1 className="text-xl font-bold text-foreground">Welcome</h1>
+          <div className="ml-auto md:hidden">
+            <ThemeToggle />
+          </div>
         </header>
         <div className="flex-1 overflow-y-auto">
           {children}
