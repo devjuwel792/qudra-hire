@@ -9,26 +9,26 @@ export default function SignupPage() {
   const router = useRouter();
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#080C14] px-4 py-12">
-      <div className="w-full max-w-[450px] bg-[#0F172A]/50 border border-white/5 rounded-3xl p-6 sm:p-10 shadow-2xl">
+    <div className="min-h-screen flex items-center justify-center bg-surface px-4 py-12 text-on-surface">
+      <div className="w-full max-w-[450px] bg-surface-card border border-surface rounded-3xl p-6 sm:p-10 shadow-2xl">
         {/* Logo */}
         <div className="flex justify-center mb-8">
           <Link href="/" className="text-2xl font-bold tracking-tight">
-            <span className="text-white">Career</span><span className="text-[#4BC957]">Sprint</span>
+            <span className="text-on-surface">Career</span><span className="text-[#4BC957]">Sprint</span>
           </Link>
         </div>
 
-        <h1 className="text-xl sm:text-2xl font-bold text-white mb-2">Create your account</h1>
-        <p className="text-slate-400 text-sm mb-6">Start progressing in under a minute.</p>
+        <h1 className="text-xl sm:text-2xl font-bold text-on-surface mb-2">Create your account</h1>
+        <p className="text-on-surface-muted text-sm mb-6">Start progressing in under a minute.</p>
 
         {/* Toggle */}
-        <div className="flex bg-[#080C14] border border-white/5 p-1 rounded-2xl mb-8">
+        <div className="flex bg-surface-deep border border-surface p-1 rounded-2xl mb-8">
           <button 
             onClick={() => setAccountType("candidate")}
             className={`flex-1 py-2.5 text-sm font-medium rounded-xl transition-all ${
               accountType === "candidate" 
                 ? "bg-[#4BC957] text-[#080C14]" 
-                : "text-slate-400 hover:text-white"
+                : "text-on-surface-muted hover:text-on-surface"
             }`}
           >
             Candidate
@@ -38,7 +38,7 @@ export default function SignupPage() {
             className={`flex-1 py-2.5 text-sm font-medium rounded-xl transition-all ${
               accountType === "company" 
                 ? "bg-[#4BC957] text-[#080C14]" 
-                : "text-slate-400 hover:text-white"
+                : "text-on-surface-muted hover:text-on-surface"
             }`}
           >
             Company
@@ -47,7 +47,7 @@ export default function SignupPage() {
 
         {accountType === "candidate" && (
           <div className="animate-in fade-in slide-in-from-bottom-2 duration-300">
-            <button className="w-full flex items-center justify-center gap-3 bg-[#162032] hover:bg-[#1E293B] border border-white/5 text-white text-sm font-medium py-3 rounded-xl transition-colors mb-6">
+            <button className="w-full flex items-center justify-center gap-3 bg-surface-item hover:bg-surface-deep border border-surface text-on-surface text-sm font-medium py-3 rounded-xl transition-colors mb-6">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
                 <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
@@ -58,50 +58,50 @@ export default function SignupPage() {
             </button>
 
             <div className="flex items-center gap-3 mb-6">
-              <div className="h-px flex-1 bg-white/5"></div>
-              <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">OR</span>
-              <div className="h-px flex-1 bg-white/5"></div>
+              <div className="h-px flex-1 bg-surface-deep"></div>
+              <span className="text-[10px] text-on-surface-subtle font-bold uppercase tracking-wider">OR</span>
+              <div className="h-px flex-1 bg-surface-deep"></div>
             </div>
 
             <form className="space-y-4">
               <div className="flex flex-col sm:flex-row gap-4">
                 <div className="flex-1">
-                  <label className="block text-xs font-medium text-white mb-1.5">First name</label>
+                  <label className="block text-xs font-medium text-on-surface mb-1.5">First name</label>
                   <input 
                     type="text" 
                     placeholder="Enter name" 
-                    className="w-full bg-[#080C14] border border-white/5 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#4BC957]/50 transition-colors"
+                    className="w-full bg-surface-deep border border-surface rounded-xl px-4 py-3 text-sm text-on-surface placeholder:text-on-surface-subtle focus:outline-none focus:border-[#4BC957]/50 transition-colors"
                   />
                 </div>
                 <div className="flex-1">
-                  <label className="block text-xs font-medium text-white mb-1.5">Last name</label>
+                  <label className="block text-xs font-medium text-on-surface mb-1.5">Last name</label>
                   <input 
                     type="text" 
                     placeholder="Enter name" 
-                    className="w-full bg-[#080C14] border border-white/5 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#4BC957]/50 transition-colors"
+                    className="w-full bg-surface-deep border border-surface rounded-xl px-4 py-3 text-sm text-on-surface placeholder:text-on-surface-subtle focus:outline-none focus:border-[#4BC957]/50 transition-colors"
                   />
                 </div>
               </div>
               <div>
-                <label className="block text-xs font-medium text-white mb-1.5">Email</label>
+                <label className="block text-xs font-medium text-on-surface mb-1.5">Email</label>
                 <input 
                   type="email" 
                   placeholder="Enter email" 
-                  className="w-full bg-[#080C14] border border-white/5 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#4BC957]/50 transition-colors"
+                  className="w-full bg-surface-deep border border-surface rounded-xl px-4 py-3 text-sm text-on-surface placeholder:text-on-surface-subtle focus:outline-none focus:border-[#4BC957]/50 transition-colors"
                 />
               </div>
               <div>
-                <label className="block text-xs font-medium text-white mb-1.5">Password</label>
+                <label className="block text-xs font-medium text-on-surface mb-1.5">Password</label>
                 <input 
                   type="password" 
                   placeholder="••••••••" 
-                  className="w-full bg-[#080C14] border border-white/5 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#4BC957]/50 transition-colors"
+                  className="w-full bg-surface-deep border border-surface rounded-xl px-4 py-3 text-sm text-on-surface placeholder:text-on-surface-subtle focus:outline-none focus:border-[#4BC957]/50 transition-colors"
                 />
               </div>
               
-              <div className="mt-6 border border-white/5 border-dashed bg-[#080C14]/50 rounded-xl p-6 text-center hover:bg-[#080C14] transition-colors cursor-pointer">
-                <Upload className="h-5 w-5 text-slate-400 mx-auto mb-2" />
-                <p className="text-xs text-slate-400 leading-relaxed">
+              <div className="mt-6 border border-surface border-dashed bg-surface-deep/50 rounded-xl p-6 text-center hover:bg-surface-deep transition-colors cursor-pointer">
+                <Upload className="h-5 w-5 text-on-surface-muted mx-auto mb-2" />
+                <p className="text-xs text-on-surface-muted leading-relaxed">
                   Upload CV (PDF / DOC / TXT) — AI parses into a<br/>structured profile
                 </p>
               </div>
@@ -117,33 +117,33 @@ export default function SignupPage() {
           <div className="animate-in fade-in slide-in-from-bottom-2 duration-300">
             <form className="space-y-4">
               <div>
-                <label className="block text-xs font-medium text-white mb-1.5">Company name</label>
+                <label className="block text-xs font-medium text-on-surface mb-1.5">Company name</label>
                 <input 
                   type="text" 
                   placeholder="Enter name" 
-                  className="w-full bg-[#080C14] border border-white/5 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#4BC957]/50 transition-colors"
+                  className="w-full bg-surface-deep border border-surface rounded-xl px-4 py-3 text-sm text-on-surface placeholder:text-on-surface-subtle focus:outline-none focus:border-[#4BC957]/50 transition-colors"
                 />
               </div>
               <div>
-                <label className="block text-xs font-medium text-white mb-1.5">Work email</label>
+                <label className="block text-xs font-medium text-on-surface mb-1.5">Work email</label>
                 <input 
                   type="email" 
                   placeholder="Enter email" 
-                  className="w-full bg-[#080C14] border border-white/5 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#4BC957]/50 transition-colors"
+                  className="w-full bg-surface-deep border border-surface rounded-xl px-4 py-3 text-sm text-on-surface placeholder:text-on-surface-subtle focus:outline-none focus:border-[#4BC957]/50 transition-colors"
                 />
               </div>
               <div>
-                <label className="block text-xs font-medium text-white mb-1.5">Password</label>
+                <label className="block text-xs font-medium text-on-surface mb-1.5">Password</label>
                 <input 
                   type="password" 
                   placeholder="••••••••" 
-                  className="w-full bg-[#080C14] border border-white/5 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#4BC957]/50 transition-colors"
+                  className="w-full bg-surface-deep border border-surface rounded-xl px-4 py-3 text-sm text-on-surface placeholder:text-on-surface-subtle focus:outline-none focus:border-[#4BC957]/50 transition-colors"
                 />
               </div>
               
-              <div className="mt-6 border border-white/5 border-dashed bg-[#080C14]/50 rounded-xl p-6 text-center hover:bg-[#080C14] transition-colors cursor-pointer">
-                <Upload className="h-5 w-5 text-slate-400 mx-auto mb-2" />
-                <p className="text-xs text-slate-400 leading-relaxed">
+              <div className="mt-6 border border-surface border-dashed bg-surface-deep/50 rounded-xl p-6 text-center hover:bg-surface-deep transition-colors cursor-pointer">
+                <Upload className="h-5 w-5 text-on-surface-muted mx-auto mb-2" />
+                <p className="text-xs text-on-surface-muted leading-relaxed">
                   Upload trade licence (UAE / KSA / GCC) — AI parses into a<br/>structured profile
                 </p>
               </div>
@@ -156,7 +156,7 @@ export default function SignupPage() {
         )}
 
         <div className="mt-8 text-center">
-          <p className="text-xs text-slate-400">
+          <p className="text-xs text-on-surface-muted">
             Already a member? <Link href="/login" className="text-[#4BC957] font-semibold hover:underline">Log In</Link>
           </p>
         </div>
@@ -164,4 +164,3 @@ export default function SignupPage() {
     </div>
   );
 }
-

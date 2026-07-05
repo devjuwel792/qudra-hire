@@ -63,6 +63,7 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+/* ── Shadcn Design Token Layer ── */
 :root {
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -97,6 +98,26 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
   color-scheme: light;
+
+  /* ── Brand Semantic Tokens (Light Mode) ── */
+  --surface:            #F5F7FA;
+  --surface-card:       #FFFFFF;
+  --surface-deep:       #EEF1F6;
+  --surface-item:       #E2E8F0;
+  --on-surface:         #0B2545;
+  --on-surface-muted:   #4A5568;
+  --on-surface-subtle:  #718096;
+  --border-surface:     rgba(0, 0, 0, 0.08);
+  --border-inner:       #CBD5E1;
+  --header-bg:          rgba(255, 255, 255, 0.92);
+  --ticker-bg:          #EEF1F6;
+
+  /* Brand Accent (same both modes) */
+  --brand-accent:        #4BC957;
+  --brand-accent-hover:  #00B96E;
+  --brand-accent-text:   #080C14;
+  --brand-accent-bg:     rgba(75, 201, 87, 0.12);
+  --brand-accent-border: rgba(75, 201, 87, 0.3);
 }
 
 .dark {
@@ -132,6 +153,19 @@
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
   color-scheme: dark;
+
+  /* ── Brand Semantic Tokens (Dark Mode) ── */
+  --surface:            #080C14;
+  --surface-card:       #0F172A;
+  --surface-deep:       #0A0F1D;
+  --surface-item:       #162032;
+  --on-surface:         #FFFFFF;
+  --on-surface-muted:   #94A3B8;
+  --on-surface-subtle:  #64748B;
+  --border-surface:     rgba(255, 255, 255, 0.05);
+  --border-inner:       #1E293B;
+  --header-bg:          rgba(8, 12, 20, 0.85);
+  --ticker-bg:          #0A0F1D;
 }
 
 @layer base {
@@ -148,13 +182,91 @@
   body {
     @apply transition-colors duration-300;
   }
+
+  /* Smooth theme transitions on key elements */
+  *,
+  *::before,
+  *::after {
+    transition-property: background-color, border-color, color, fill, stroke, box-shadow;
+    transition-duration: 200ms;
+    transition-timing-function: ease;
+  }
+
+  /* Override for elements that should use their own transitions */
+  [class*="animate-"],
+  [class*="transition-"],
+  .ticker-track,
+  .icon-bob {
+    transition-property: none;
+  }
+
+  /* Re-enable only color transitions for animated elements */
+  [class*="animate-"] {
+    transition-property: background-color, border-color, color;
+    transition-duration: 200ms;
+  }
+}
+
+/* ── Semantic Utility Classes ── */
+@layer utilities {
+  /* Backgrounds */
+  .bg-surface         { background-color: var(--surface); }
+  .bg-surface-card    { background-color: var(--surface-card); }
+  .bg-surface-deep    { background-color: var(--surface-deep); }
+  .bg-surface-item    { background-color: var(--surface-item); }
+  .bg-header          { background-color: var(--header-bg); }
+  .bg-ticker          { background-color: var(--ticker-bg); }
+  .bg-accent-tint     { background-color: var(--brand-accent-bg); }
+
+  /* Text */
+  .text-on-surface        { color: var(--on-surface); }
+  .text-on-surface-muted  { color: var(--on-surface-muted); }
+  .text-on-surface-subtle { color: var(--on-surface-subtle); }
+  .text-accent            { color: var(--brand-accent); }
+
+  /* Borders */
+  .border-surface   { border-color: var(--border-surface); }
+  .border-inner     { border-color: var(--border-inner); }
+  .border-accent    { border-color: var(--brand-accent-border); }
+
+  /* Form fields */
+  .field-base {
+    background-color: var(--surface-deep);
+    border: 1px solid var(--border-surface);
+    color: var(--on-surface);
+  }
+  .field-base::placeholder {
+    color: var(--on-surface-subtle);
+  }
+  .field-base:focus {
+    outline: none;
+    border-color: rgba(75, 201, 87, 0.5);
+    box-shadow: 0 0 0 1px rgba(75, 201, 87, 0.3);
+  }
+
+  /* Pipeline item cards */
+  .pipeline-card {
+    background-color: var(--surface-item);
+    border: 1px solid var(--border-inner);
+  }
+  .pipeline-card:hover {
+    border-color: rgba(75, 201, 87, 0.5);
+  }
+
+  /* Glass header */
+  .header-glass {
+    background-color: var(--header-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-surface);
+  }
 }
 
 /* ── Scroll-triggered animation base states ── */
 .animate-on-scroll {
   opacity: 0;
   transform: translateY(24px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition: opacity 0.6s ease, transform 0.6s ease !important;
 }
 .animate-on-scroll.in-view {
   opacity: 1;
@@ -172,7 +284,7 @@
 .animate-from-left {
   opacity: 0;
   transform: translateX(-32px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition: opacity 0.6s ease, transform 0.6s ease !important;
 }
 .animate-from-left.in-view {
   opacity: 1;
@@ -183,7 +295,7 @@
 .animate-from-right {
   opacity: 0;
   transform: translateX(32px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition: opacity 0.6s ease, transform 0.6s ease !important;
 }
 .animate-from-right.in-view {
   opacity: 1;
@@ -194,7 +306,7 @@
 .animate-scale {
   opacity: 0;
   transform: scale(0.92);
-  transition: opacity 0.55s ease, transform 0.55s ease;
+  transition: opacity 0.55s ease, transform 0.55s ease !important;
 }
 .animate-scale.in-view {
   opacity: 1;
@@ -208,6 +320,7 @@
 }
 .ticker-track {
   animation: ticker 22s linear infinite;
+  transition: none !important;
 }
 .ticker-track:hover {
   animation-play-state: paused;
@@ -220,6 +333,7 @@
 }
 .icon-bob {
   animation: bob 4s ease-in-out infinite;
+  transition: none !important;
 }
 
 /* hero fade-in-up (CSS-only, fires on mount) */
@@ -230,4 +344,13 @@
 /* utility: apply fadeInUp with fill-mode:both so delay period stays hidden */
 [class*="animate-[fadeInUp"] {
   animation-fill-mode: both;
+}
+
+/* ── Theme Toggle smooth icon swap ── */
+.theme-icon-enter {
+  animation: iconIn 200ms ease forwards;
+}
+@keyframes iconIn {
+  from { opacity: 0; transform: rotate(-30deg) scale(0.8); }
+  to   { opacity: 1; transform: rotate(0deg) scale(1); }
 }

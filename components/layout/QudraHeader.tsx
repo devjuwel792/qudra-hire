@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { Globe } from "lucide-react";
 import Image from "next/image";
+import { ThemeToggle } from "@/components/layout/ThemeToggle";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -21,23 +22,22 @@ export default function QudraHeader({ activePage }: QudraHeaderProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-white/5 bg-[#080C14]/80 backdrop-blur-md">
+    <header className="sticky top-0 z-50 w-full border-b border-surface header-glass">
       <div className="max-w-7xl mx-auto px-4 sm:px-8 h-16 flex items-center justify-between">
-         {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
-            <Image src="/logo.png" alt="" width={180} height={60} className="block h-12 w-auto object-contain" />
-       
-          </Link>
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-2 group">
+          <Image src="/logo.png" alt="CareerSprint" width={180} height={60} className="block h-12 w-auto object-contain" />
+        </Link>
 
-        <nav className="hidden md:flex items-center gap-7 text-[14px] font-medium text-slate-400">
+        <nav className="hidden md:flex items-center gap-7 text-[14px] font-medium text-on-surface-muted">
           {navLinks.map((l) => (
             <Link
               key={l.href}
               href={l.href}
               className={
                 l.label === activePage
-                  ? "text-white font-semibold"
-                  : "hover:text-white transition-colors"
+                  ? "text-on-surface font-semibold"
+                  : "hover:text-on-surface transition-colors"
               }
             >
               {l.label}
@@ -46,13 +46,13 @@ export default function QudraHeader({ activePage }: QudraHeaderProps) {
         </nav>
 
         <div className="flex items-center gap-3">
-          <button className="hidden md:flex items-center gap-1.5 text-sm text-slate-400 border border-white/10 px-3 py-1.5 rounded-lg hover:border-white/20 transition-colors">
+          <button className="hidden md:flex items-center gap-1.5 text-sm text-on-surface-muted border border-surface px-3 py-1.5 rounded-lg hover:border-inner transition-colors">
             <Globe className="h-3.5 w-3.5" />
             English
           </button>
           <Link
             href="/login"
-            className="text-sm text-slate-300 font-medium hover:text-white transition-colors"
+            className="text-sm text-on-surface-muted font-medium hover:text-on-surface transition-colors"
           >
             Log in
           </Link>
@@ -62,8 +62,12 @@ export default function QudraHeader({ activePage }: QudraHeaderProps) {
           >
             Get started
           </Link>
+          {/* Theme Toggle — desktop */}
+          <div className="hidden md:block">
+            <ThemeToggle />
+          </div>
           <button
-            className="md:hidden text-slate-400 hover:text-white transition-colors p-1"
+            className="md:hidden text-on-surface-muted hover:text-on-surface transition-colors p-1"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
           >
@@ -94,20 +98,24 @@ export default function QudraHeader({ activePage }: QudraHeaderProps) {
       </div>
 
       {mobileOpen && (
-        <div className="md:hidden bg-[#0A0F1D] border-t border-white/5 px-4 py-4 flex flex-col gap-4 text-[15px] font-medium text-slate-300">
+        <div className="md:hidden bg-surface-deep border-t border-surface px-4 py-4 flex flex-col gap-4 text-[15px] font-medium text-on-surface-muted">
           {navLinks.map((l) => (
             <Link
               key={l.href}
               href={l.href}
-              className={l.label === activePage ? "text-white font-semibold" : "hover:text-white transition-colors"}
+              className={l.label === activePage ? "text-on-surface font-semibold" : "hover:text-on-surface transition-colors"}
               onClick={() => setMobileOpen(false)}
             >
               {l.label}
             </Link>
           ))}
+          {/* Theme Toggle — mobile menu */}
+          <div className="flex items-center gap-2 pt-2 border-t border-surface">
+            <span className="text-sm text-on-surface-muted">Theme</span>
+            <ThemeToggle />
+          </div>
         </div>
       )}
     </header>
   );
 }
-

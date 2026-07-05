@@ -12,7 +12,7 @@ export function ThemeToggle() {
       <Button
         variant="ghost"
         size="icon"
-        className="h-10 w-10 rounded-full border border-border bg-background/80 shadow-sm backdrop-blur"
+        className="h-9 w-9 rounded-full border border-border bg-background/80 shadow-sm backdrop-blur"
         aria-hidden="true"
       >
         <span className="h-4 w-4" />
@@ -26,16 +26,18 @@ export function ThemeToggle() {
     <Button
       variant="ghost"
       size="icon"
-      className="h-10 w-10 rounded-full border border-border bg-background/80 text-foreground shadow-sm backdrop-blur transition-colors hover:bg-muted"
+      className="h-9 w-9 rounded-full border border-border bg-background/80 text-foreground shadow-sm backdrop-blur transition-colors hover:bg-muted"
       onClick={() => setTheme(isDark ? "light" : "dark")}
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       title={isDark ? "Switch to light mode" : "Switch to dark mode"}
     >
-      {isDark ? (
-        <Sun className="h-4 w-4" />
-      ) : (
-        <Moon className="h-4 w-4" />
-      )}
+      <span key={resolvedTheme} className="theme-icon-enter">
+        {isDark ? (
+          <Sun className="h-4 w-4" />
+        ) : (
+          <Moon className="h-4 w-4" />
+        )}
+      </span>
     </Button>
   );
 }

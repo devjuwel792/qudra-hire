@@ -3,7 +3,6 @@ import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import MobileBottomNav from "@/components/layout/MobileBottomNav";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
-import { ThemeToggle } from "@/components/layout/ThemeToggle";
 
 const geistSans = Geist({
 
@@ -38,11 +37,13 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-background text-foreground pb-16 md:pb-0 transition-colors duration-300">
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <div className="fixed right-4 top-4 z-[60] md:right-6 md:top-6">
-            <ThemeToggle />
-          </div>
+      <body className="min-h-full flex flex-col bg-background text-foreground pb-16 md:pb-0">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          storageKey="careersprint-theme"
+        >
           {children}
           <MobileBottomNav />
         </ThemeProvider>
@@ -50,4 +51,3 @@ export default function RootLayout({
     </html>
   );
 }
-
