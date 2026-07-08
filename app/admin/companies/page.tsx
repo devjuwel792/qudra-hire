@@ -2,127 +2,491 @@
 
 import { useState } from "react";
 import {
-  Search,
-  Filter,
-  ArrowUpDown,
-  Eye,
-  Pencil,
-  Trash2,
-  Globe,
-  ChevronLeft,
-  ChevronRight,
-  X,
-  Lock,
-  Key,
-  CreditCard,
-  CheckCircle,
+  Search, Eye, Pencil, Trash2, Globe,
+  ChevronLeft, ChevronRight, Loader2,
+  CheckCircle, XCircle, Key, AlertTriangle, Copy, Check,
 } from "lucide-react";
 import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
+  Dialog, DialogContent, DialogHeader, DialogTitle,
 } from "@/components/ui/dialog";
+import {
+  useGetAdminCompaniesQuery,
+  useGetAdminCompanyByIdQuery,
+  usePatchAdminCompanyMutation,
+  useDeleteAdminCompanyMutation,
+  useApproveAdminCompanyMutation,
+  useRejectAdminCompanyMutation,
+  useResetAdminCompanyPasswordMutation,
+  type AdminCompanyListItem,
+} from "@/store/authApi";
 
-// ── Types ─────────────────────────────────────────────────────────────────────
-type Subscription = "Pro" | "Basic" | "Enterprise";
-type Status = "Verified" | "Pending" | "Rejected";
+// ── Helpers ────────────────────────────────────────────────────────────────────
 
-interface Company {
-  id: string;
-  initials: string;
-  name: string;
-  email: string;
-  country: string;
-  jobs: number;
-  credits: number;
-  subscription: Subscription;
-  status: Status;
-  color: string;
-  contactPerson: string;
-  phone: string;
-  since: string;
+function getInitials(name: string) {
+  return name.split(" ").map((w) => w[0]).slice(0, 2).join("").toUpperCase();
 }
 
-// ── Data ──────────────────────────────────────────────────────────────────────
-const ALL_COMPANIES: Company[] = [
-  {
-    id: "1", initials: "TT", name: "Talabat Technologies", email: "hr@talabat.com",
-    country: "UAE", jobs: 18, credits: 240, subscription: "Enterprise", status: "Verified",
-    color: "#6366f1", contactPerson: "Reem Al-Kuwari", phone: "+971 4 555 0100", since: "2024-04-10",
-  },
-  {
-    id: "2", initials: "AG", name: "ADNOC Group", email: "careers@adnoc.ae",
-    country: "UAE", jobs: 42, credits: 560, subscription: "Enterprise", status: "Verified",
-    color: "#8b5cf6", contactPerson: "Ahmed Sultan", phone: "+971 2 666 1234", since: "2023-11-20",
-  },
-  {
-    id: "3", initials: "CN", name: "Careem Networks", email: "talents@careem.com",
-    country: "UAE", jobs: 7, credits: 120, subscription: "Pro", status: "Pending",
-    color: "#3b82f6", contactPerson: "Sarah Johnson", phone: "+971 4 444 8888", since: "2024-06-15",
-  },
-  {
-    id: "4", initials: "NE", name: "Noon E-Commerce", email: "jobs@noon.com",
-    country: "UAE", jobs: 14, credits: 80, subscription: "Pro", status: "Verified",
-    color: "#10b981", contactPerson: "Omar Khaled", phone: "+971 4 222 9999", since: "2024-02-05",
-  },
-  {
-    id: "5", initials: "SG", name: "stc Group", email: "hr@stc.com.sa",
-    country: "KSA", jobs: 29, credits: 310, subscription: "Enterprise", status: "Verified",
-    color: "#f59e0b", contactPerson: "Faisal Al-Dosari", phone: "+966 11 456 7890", since: "2023-09-12",
-  },
-  {
-    id: "6", initials: "GA", name: "Gulf Air", email: "careers@gulfair.com",
-    country: "Bahrain", jobs: 0, credits: 45, subscription: "Basic", status: "Rejected",
-    color: "#ec4899", contactPerson: "Hassan Ali", phone: "+973 17 333 444", since: "2024-07-01",
-  },
-];
-
-// ── Badge helpers ──────────────────────────────────────────────────────────────
-const subscriptionStyles: Record<Subscription, string> = {
-  Pro: "bg-[#6366f1]/20 text-[#818cf8]",
-  Basic: "bg-[#3b82f6]/20 text-[#60a5fa]",
-  Enterprise: "bg-[#f59e0b]/20 text-[#fbbf24]",
-};
-
-const statusStyles: Record<Status, string> = {
-  Verified: "bg-[#00E5A0]/15 text-[#00E5A0]",
-  Pending: "bg-amber-500/15 text-amber-400",
-  Rejected: "bg-red-500/15 text-red-400",
-};
-
-function SubscriptionBadge({ type }: { type: Subscription }) {
-  return (
-    <span className={`px-2.5 py-0.5 rounded text-[11px] font-semibold ${subscriptionStyles[type]}`}>
-      {type}
-    </span>
-  );
+function avatarColor(id: number) {
+  const colors = ["#6366f1","#8b5cf6","#10b981","#f59e0b","#ec4899","#3b82f6","#14b8a6","#f97316"];
+  return colors[id % colors.length];
 }
 
-function StatusBadge({ status }: { status: Status }) {
+function formatDate(iso: string) {
+  return new Date(iso).toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" });
+}
+
+// ── Badges ─────────────────────────────────────────────────────────────────────
+
+function ApprovalBadge({ status }: { status: string }) {
+  const map: Record<string, string> = {
+    APPROVED: "bg-[#00E5A0]/15 text-[#00E5A0]",
+    PENDING:  "bg-amber-500/15 text-amber-400",
+    REJECTED: "bg-red-500/15 text-red-400",
+  };
   return (
-    <span className={`px-2.5 py-0.5 rounded text-[11px] font-semibold ${statusStyles[status]}`}>
+    <span className={`px-2.5 py-0.5 rounded text-[11px] font-semibold ${map[status] ?? "bg-white/10 text-white/50"}`}>
       {status}
     </span>
   );
 }
 
-// ── Page ──────────────────────────────────────────────────────────────────────
-export default function CompanyManagementPage() {
-  const [search, setSearch] = useState("");
-  const [selectedCompany, setSelectedCompany] = useState<Company | null>(null);
-  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
-  const [isEditOpen, setIsEditOpen] = useState(false);
+function SuspendedBadge({ suspended }: { suspended: boolean }) {
+  return suspended ? (
+    <span className="px-2.5 py-0.5 rounded text-[11px] font-semibold bg-red-500/15 text-red-400">Suspended</span>
+  ) : (
+    <span className="px-2.5 py-0.5 rounded text-[11px] font-semibold bg-[#00E5A0]/15 text-[#00E5A0]">Active</span>
+  );
+}
 
-  const filtered = ALL_COMPANIES.filter(
-    (c) =>
-      c.name.toLowerCase().includes(search.toLowerCase()) ||
-      c.email.toLowerCase().includes(search.toLowerCase())
+// ── Skeleton row ───────────────────────────────────────────────────────────────
+
+function SkeletonRow() {
+  return (
+    <tr className="border-b border-white/5">
+      {[140, 160, 60, 60, 70, 80, 80, 60].map((w, i) => (
+        <td key={i} className="px-5 py-4">
+          <div className="h-3 rounded bg-white/5 animate-pulse" style={{ width: w }} />
+        </td>
+      ))}
+    </tr>
+  );
+}
+
+
+// ── Detail Panel ───────────────────────────────────────────────────────────────
+
+function DetailPanel({
+  id,
+  onEdit,
+  onDelete,
+  onApprove,
+  onReject,
+  onResetPwd,
+}: {
+  id: number;
+  onEdit: () => void;
+  onDelete: () => void;
+  onApprove: () => void;
+  onReject: () => void;
+  onResetPwd: () => void;
+}) {
+  const { data, isLoading, isError } = useGetAdminCompanyByIdQuery(id);
+  const c = data?.data;
+
+  if (isLoading) return (
+    <div className="flex items-center justify-center py-16">
+      <Loader2 className="h-6 w-6 animate-spin text-white/30" />
+    </div>
+  );
+  if (isError || !c) return (
+    <p className="text-sm text-red-400 py-8 text-center">Failed to load company.</p>
   );
 
   return (
+    <>
+      {/* Header row */}
+      <div className="flex items-center gap-4 pb-5 border-b border-white/5">
+        <div
+          className="w-12 h-12 rounded-lg flex items-center justify-center text-sm font-bold text-white shrink-0"
+          style={{ background: avatarColor(c.id) }}
+        >
+          {getInitials(c.company_name)}
+        </div>
+        <div className="flex-1 min-w-0">
+          <p className="text-base font-bold text-white truncate">{c.company_name}</p>
+          <p className="text-xs text-white/40">{c.email}</p>
+        </div>
+        <div className="flex flex-col gap-1 items-end shrink-0">
+          <ApprovalBadge status={c.approval_status} />
+          <SuspendedBadge suspended={c.is_suspended} />
+        </div>
+      </div>
+
+      {/* Details grid */}
+      <div className="grid grid-cols-2 gap-y-5 gap-x-4 py-5 border-b border-white/5">
+        {[
+          ["Contact Person",    c.contact_person   || "—"],
+          ["Phone",             c.phone            || "—"],
+          ["Country",           c.country          || "—"],
+          ["Credits",           String(c.credits)],
+          ["Active Jobs",       String(c.active_jobs)],
+          ["Plan",              c.current_plan     || "Free"],
+          ["Licence No.",       c.licence_number   || "—"],
+          ["Licence Verified",  c.is_licence_verified ? "Yes" : "No"],
+          ["Since",             formatDate(c.since)],
+          ...(c.rejection_reason ? [["Rejection Reason", c.rejection_reason]] : []),
+        ].map(([label, val]) => (
+          <div key={label}>
+            <p className="text-[11px] text-white/40 mb-1">{label}</p>
+            <p className="text-sm font-medium text-white/90 break-words">{val}</p>
+          </div>
+        ))}
+        {c.about && (
+          <div className="col-span-2">
+            <p className="text-[11px] text-white/40 mb-1">About</p>
+            <p className="text-sm text-white/70 leading-relaxed">{c.about}</p>
+          </div>
+        )}
+      </div>
+
+      {/* Action buttons */}
+      <div className="flex flex-wrap gap-2 pt-4">
+        <button onClick={onEdit}
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/10 hover:bg-white/5 text-white/70 text-xs font-medium transition-colors">
+          <Pencil className="w-3.5 h-3.5" /> Edit
+        </button>
+        {c.approval_status === "PENDING" && (
+          <>
+            <button onClick={onApprove}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#00E5A0]/20 hover:bg-[#00E5A0]/10 text-[#00E5A0] text-xs font-medium transition-colors">
+              <CheckCircle className="w-3.5 h-3.5" /> Approve
+            </button>
+            <button onClick={onReject}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-amber-500/20 hover:bg-amber-500/10 text-amber-400 text-xs font-medium transition-colors">
+              <XCircle className="w-3.5 h-3.5" /> Reject
+            </button>
+          </>
+        )}
+        <button onClick={onResetPwd}
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/10 hover:bg-white/5 text-white/70 text-xs font-medium transition-colors">
+          <Key className="w-3.5 h-3.5" /> Reset Password
+        </button>
+        <button onClick={onDelete}
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-red-500/20 hover:bg-red-500/10 text-red-400 text-xs font-medium transition-colors ml-auto">
+          <Trash2 className="w-3.5 h-3.5" /> Delete
+        </button>
+      </div>
+    </>
+  );
+}
+
+
+// ── Edit Form ──────────────────────────────────────────────────────────────────
+
+function EditForm({ company, onClose }: { company: AdminCompanyListItem; onClose: () => void }) {
+  const [patch, { isLoading }] = usePatchAdminCompanyMutation();
+  const [form, setForm] = useState({
+    company_name:   company.company_name,
+    email:          company.email,
+    contact_person: "",
+    phone:          "",
+    country:        company.country ?? "",
+    plan_id:        "",
+  });
+  const [error,   setError]   = useState("");
+  const [success, setSuccess] = useState(false);
+
+  const set = (k: string, v: string) => setForm((p) => ({ ...p, [k]: v }));
+
+  async function handleSave() {
+    setError("");
+    try {
+      await patch({
+        id: company.id,
+        company_name:   form.company_name   || undefined,
+        email:          form.email          || undefined,
+        contact_person: form.contact_person || undefined,
+        phone:          form.phone          || undefined,
+        country:        form.country        || undefined,
+        plan_id:        form.plan_id        || undefined,
+      }).unwrap();
+      setSuccess(true);
+      setTimeout(onClose, 900);
+    } catch (err: unknown) {
+      setError((err as { data?: { details?: string } })?.data?.details ?? "Save failed.");
+    }
+  }
+
+  const inp = "w-full bg-[#1A202C] border border-white/5 rounded-lg px-3 py-2 text-sm text-white outline-none focus:border-[#6366f1]/50 transition-colors placeholder:text-white/20";
+
+  return (
+    <div className="py-4 space-y-4">
+      {error   && <p className="text-xs text-red-400 bg-red-500/10 border border-red-500/20 px-3 py-2 rounded-lg">{error}</p>}
+      {success && <p className="text-xs text-[#00E5A0] bg-[#00E5A0]/10 border border-[#00E5A0]/20 px-3 py-2 rounded-lg">Saved!</p>}
+      <div>
+        <label className="text-xs text-white/40 mb-1.5 block">Company Name</label>
+        <input className={inp} value={form.company_name} onChange={(e) => set("company_name", e.target.value)} />
+      </div>
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <label className="text-xs text-white/40 mb-1.5 block">Email</label>
+          <input type="email" className={inp} value={form.email} onChange={(e) => set("email", e.target.value)} />
+        </div>
+        <div>
+          <label className="text-xs text-white/40 mb-1.5 block">Contact Person</label>
+          <input className={inp} placeholder="Full name" value={form.contact_person} onChange={(e) => set("contact_person", e.target.value)} />
+        </div>
+      </div>
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <label className="text-xs text-white/40 mb-1.5 block">Phone</label>
+          <input className={inp} placeholder="+971 50 000 0000" value={form.phone} onChange={(e) => set("phone", e.target.value)} />
+        </div>
+        <div>
+          <label className="text-xs text-white/40 mb-1.5 block">Country</label>
+          <input className={inp} placeholder="UAE" value={form.country} onChange={(e) => set("country", e.target.value)} />
+        </div>
+      </div>
+      <div>
+        <label className="text-xs text-white/40 mb-1.5 block">Plan ID</label>
+        <input className={inp} placeholder="UUID" value={form.plan_id} onChange={(e) => set("plan_id", e.target.value)} />
+      </div>
+      <div className="flex justify-end gap-3 pt-4 border-t border-white/5">
+        <button onClick={onClose} className="px-4 py-2 rounded-lg border border-white/10 text-white/70 hover:bg-white/5 text-sm font-medium transition-colors">Cancel</button>
+        <button onClick={handleSave} disabled={isLoading || success}
+          className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#6366f1] hover:bg-[#6366f1]/90 disabled:opacity-60 text-white text-sm font-medium transition-colors">
+          {isLoading && <Loader2 className="h-3.5 w-3.5 animate-spin" />}
+          {isLoading ? "Saving…" : "Save Changes"}
+        </button>
+      </div>
+    </div>
+  );
+}
+
+// ── Reject Form ────────────────────────────────────────────────────────────────
+
+function RejectForm({ company, onClose }: { company: AdminCompanyListItem; onClose: () => void }) {
+  const [reject, { isLoading }] = useRejectAdminCompanyMutation();
+  const [reason, setReason] = useState("");
+  const [error,  setError]  = useState("");
+
+  async function handleReject() {
+    if (!reason.trim()) { setError("Please provide a reason."); return; }
+    setError("");
+    try {
+      await reject({ id: company.id, reason }).unwrap();
+      onClose();
+    } catch (err: unknown) {
+      setError((err as { data?: { details?: string } })?.data?.details ?? "Rejection failed.");
+    }
+  }
+
+  return (
+    <div className="py-4 space-y-4">
+      <p className="text-sm text-white/60">
+        Rejecting <span className="font-semibold text-white">{company.company_name}</span>. Please state the reason.
+      </p>
+      {error && <p className="text-xs text-red-400 bg-red-500/10 border border-red-500/20 px-3 py-2 rounded-lg">{error}</p>}
+      <div>
+        <label className="text-xs text-white/40 mb-1.5 block">Reason</label>
+        <textarea
+          rows={3}
+          value={reason}
+          onChange={(e) => setReason(e.target.value)}
+          placeholder="e.g. Invalid trade licence…"
+          className="w-full bg-[#1A202C] border border-white/5 rounded-lg px-3 py-2 text-sm text-white outline-none focus:border-amber-500/40 transition-colors resize-none placeholder:text-white/20"
+        />
+      </div>
+      <div className="flex justify-end gap-3 pt-2 border-t border-white/5">
+        <button onClick={onClose} className="px-4 py-2 rounded-lg border border-white/10 text-white/70 hover:bg-white/5 text-sm font-medium transition-colors">Cancel</button>
+        <button onClick={handleReject} disabled={isLoading}
+          className="flex items-center gap-2 px-4 py-2 rounded-lg bg-amber-600 hover:bg-amber-500 disabled:opacity-60 text-white text-sm font-medium transition-colors">
+          {isLoading && <Loader2 className="h-3.5 w-3.5 animate-spin" />}
+          {isLoading ? "Rejecting…" : "Reject Company"}
+        </button>
+      </div>
+    </div>
+  );
+}
+
+// ── Delete Confirm ─────────────────────────────────────────────────────────────
+
+function DeleteConfirm({ company, onClose }: { company: AdminCompanyListItem; onClose: () => void }) {
+  const [deleteCompany, { isLoading }] = useDeleteAdminCompanyMutation();
+  const [error, setError] = useState("");
+
+  async function handleDelete() {
+    setError("");
+    try {
+      await deleteCompany(company.id).unwrap();
+      onClose();
+    } catch (err: unknown) {
+      setError((err as { data?: { details?: string } })?.data?.details ?? "Delete failed.");
+    }
+  }
+
+  return (
+    <div className="py-4 space-y-4">
+      <div className="flex items-start gap-3 p-4 rounded-xl bg-red-500/10 border border-red-500/20">
+        <AlertTriangle className="h-5 w-5 text-red-400 shrink-0 mt-0.5" />
+        <div>
+          <p className="text-sm font-semibold text-red-300">Permanently delete company</p>
+          <p className="text-xs text-red-400/80 mt-1">
+            <span className="font-bold">{company.company_name}</span> and all their data will be removed. This cannot be undone.
+          </p>
+        </div>
+      </div>
+      {error && <p className="text-xs text-red-400 bg-red-500/10 border border-red-500/20 px-3 py-2 rounded-lg">{error}</p>}
+      <div className="flex justify-end gap-3 pt-2 border-t border-white/5">
+        <button onClick={onClose} className="px-4 py-2 rounded-lg border border-white/10 text-white/70 hover:bg-white/5 text-sm font-medium transition-colors">Cancel</button>
+        <button onClick={handleDelete} disabled={isLoading}
+          className="flex items-center gap-2 px-4 py-2 rounded-lg bg-red-600 hover:bg-red-500 disabled:opacity-60 text-white text-sm font-medium transition-colors">
+          {isLoading && <Loader2 className="h-3.5 w-3.5 animate-spin" />}
+          {isLoading ? "Deleting…" : "Yes, Delete"}
+        </button>
+      </div>
+    </div>
+  );
+}
+
+// ── Approve Confirm ────────────────────────────────────────────────────────────
+
+function ApproveConfirm({ company, onClose }: { company: AdminCompanyListItem; onClose: () => void }) {
+  const [approve, { isLoading }] = useApproveAdminCompanyMutation();
+  const [error, setError] = useState("");
+
+  async function handleApprove() {
+    setError("");
+    try {
+      await approve(company.id).unwrap();
+      onClose();
+    } catch (err: unknown) {
+      setError((err as { data?: { details?: string } })?.data?.details ?? "Approval failed.");
+    }
+  }
+
+  return (
+    <div className="py-4 space-y-4">
+      <p className="text-sm text-white/70">
+        Approve <span className="font-semibold text-white">{company.company_name}</span>? They will be able to post jobs and use the platform.
+      </p>
+      {error && <p className="text-xs text-red-400 bg-red-500/10 border border-red-500/20 px-3 py-2 rounded-lg">{error}</p>}
+      <div className="flex justify-end gap-3 pt-2 border-t border-white/5">
+        <button onClick={onClose} className="px-4 py-2 rounded-lg border border-white/10 text-white/70 hover:bg-white/5 text-sm font-medium transition-colors">Cancel</button>
+        <button onClick={handleApprove} disabled={isLoading}
+          className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#00E5A0] hover:bg-[#00c98e] disabled:opacity-60 text-[#0D1117] text-sm font-semibold transition-colors">
+          {isLoading && <Loader2 className="h-3.5 w-3.5 animate-spin" />}
+          {isLoading ? "Approving…" : "Approve"}
+        </button>
+      </div>
+    </div>
+  );
+}
+
+// ── Reset Password Result ──────────────────────────────────────────────────────
+
+function ResetPasswordPanel({ company, onClose }: { company: AdminCompanyListItem; onClose: () => void }) {
+  const [resetPwd, { isLoading }] = useResetAdminCompanyPasswordMutation();
+  const [newPassword, setNewPassword] = useState<string | null>(null);
+  const [copied, setCopied] = useState(false);
+  const [error, setError] = useState("");
+
+  async function handleReset() {
+    setError("");
+    try {
+      const result = await resetPwd(company.id).unwrap();
+      setNewPassword(result.data.new_password);
+    } catch (err: unknown) {
+      setError((err as { data?: { details?: string } })?.data?.details ?? "Reset failed.");
+    }
+  }
+
+  function copyPwd() {
+    if (!newPassword) return;
+    navigator.clipboard.writeText(newPassword);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  }
+
+  return (
+    <div className="py-4 space-y-4">
+      {!newPassword ? (
+        <>
+          <p className="text-sm text-white/70">
+            Reset password for <span className="font-semibold text-white">{company.company_name}</span>? A new password will be generated.
+          </p>
+          {error && <p className="text-xs text-red-400 bg-red-500/10 border border-red-500/20 px-3 py-2 rounded-lg">{error}</p>}
+          <div className="flex justify-end gap-3 pt-2 border-t border-white/5">
+            <button onClick={onClose} className="px-4 py-2 rounded-lg border border-white/10 text-white/70 hover:bg-white/5 text-sm font-medium transition-colors">Cancel</button>
+            <button onClick={handleReset} disabled={isLoading}
+              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#6366f1] hover:bg-[#6366f1]/90 disabled:opacity-60 text-white text-sm font-medium transition-colors">
+              {isLoading && <Loader2 className="h-3.5 w-3.5 animate-spin" />}
+              {isLoading ? "Resetting…" : "Reset Password"}
+            </button>
+          </div>
+        </>
+      ) : (
+        <>
+          <p className="text-sm text-[#00E5A0]">Password reset successfully! Share this with the company:</p>
+          <div className="flex items-center gap-2 bg-[#1A202C] border border-white/10 rounded-lg px-4 py-3">
+            <code className="flex-1 text-sm font-mono text-white tracking-wider">{newPassword}</code>
+            <button onClick={copyPwd} className="text-white/40 hover:text-white transition-colors">
+              {copied ? <Check className="h-4 w-4 text-[#00E5A0]" /> : <Copy className="h-4 w-4" />}
+            </button>
+          </div>
+          <p className="text-xs text-white/40">Store this securely — it won't be shown again.</p>
+          <div className="flex justify-end pt-2 border-t border-white/5">
+            <button onClick={onClose} className="px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 text-white/70 text-sm font-medium transition-colors">Done</button>
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
+
+// ── Main page ──────────────────────────────────────────────────────────────────
+
+const PAGE_SIZE = 10;
+type ModalMode = "view" | "edit" | "delete" | "approve" | "reject" | "reset-pwd" | null;
+
+export default function CompanyManagementPage() {
+  const { data, isLoading, isError } = useGetAdminCompaniesQuery();
+  const companies = data?.data ?? [];
+
+  const [search,   setSearch]   = useState("");
+  const [page,     setPage]     = useState(1);
+  const [modal,    setModal]    = useState<ModalMode>(null);
+  const [selected, setSelected] = useState<AdminCompanyListItem | null>(null);
+
+  function open(mode: ModalMode, c: AdminCompanyListItem) { setSelected(c); setModal(mode); }
+  function close() { setModal(null); setSelected(null); }
+
+  const filtered   = companies.filter((c) =>
+    c.company_name.toLowerCase().includes(search.toLowerCase()) ||
+    c.email.toLowerCase().includes(search.toLowerCase())
+  );
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  const paginated  = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+
+  const modalTitle: Record<NonNullable<ModalMode>, string> = {
+    view:      "Company Details",
+    edit:      "Edit Company",
+    delete:    "Confirm Delete",
+    approve:   "Approve Company",
+    reject:    "Reject Company",
+    "reset-pwd": "Reset Password",
+  };
+
+  return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-white">Company Management</h1>
+      {/* Header */}
+      <div>
+        <h1 className="text-2xl font-bold text-white">Company Management</h1>
+        <p className="text-sm text-white/40 mt-0.5">
+          {isLoading ? "Loading…" : `${companies.length} total companies`}
+        </p>
+      </div>
 
       {/* Toolbar */}
       <div className="flex items-center gap-3">
@@ -130,297 +494,169 @@ export default function CompanyManagementPage() {
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-white/30" />
           <input
             type="text"
-            placeholder="Search companies..."
+            placeholder="Search by name or email…"
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e) => { setSearch(e.target.value); setPage(1); }}
             className="w-full bg-[#111827] border border-white/10 rounded-lg pl-9 pr-4 py-2 text-sm text-white placeholder-white/30 outline-none focus:border-[#00E5A0]/40 transition-colors"
           />
         </div>
-        <button className="flex items-center gap-2 bg-[#111827] border border-white/10 hover:border-white/20 text-white/60 hover:text-white text-sm px-4 py-2 rounded-lg transition-colors">
-          <Filter className="h-3.5 w-3.5" />
-          Filter
-        </button>
       </div>
+
+      {/* Error banner */}
+      {isError && (
+        <div className="flex items-center gap-2 px-4 py-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm">
+          <AlertTriangle className="h-4 w-4 shrink-0" />
+          Failed to load companies. Check your connection and try again.
+        </div>
+      )}
 
       {/* Table */}
       <div className="rounded-xl bg-[#111827] border border-white/5 overflow-hidden">
-        <table className="w-full">
-          <thead>
-            <tr className="border-b border-white/5">
-              <th className="text-left px-5 py-3 text-[11px] font-semibold text-white/30 uppercase tracking-wider">Company</th>
-              <th className="text-left px-5 py-3 text-[11px] font-semibold text-white/30 uppercase tracking-wider">Country</th>
-              <th className="text-left px-5 py-3 text-[11px] font-semibold text-white/30 uppercase tracking-wider">Jobs</th>
-              <th className="text-left px-5 py-3 text-[11px] font-semibold text-white/30 uppercase tracking-wider">Credits</th>
-              <th className="text-left px-5 py-3 text-[11px] font-semibold text-white/30 uppercase tracking-wider">Subscription</th>
-              <th className="text-left px-5 py-3 text-[11px] font-semibold text-white/30 uppercase tracking-wider">Status</th>
-              <th className="text-right px-5 py-3 text-[11px] font-semibold text-white/30 uppercase tracking-wider">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filtered.map((c, idx) => (
-              <tr
-                key={c.id}
-                className={`border-b border-white/5 hover:bg-white/[0.02] transition-colors ${
-                  idx === filtered.length - 1 ? "border-b-0" : ""
-                }`}
-              >
-                {/* Company */}
-                <td className="px-5 py-3.5">
-                  <div className="flex items-center gap-3">
-                    <div
-                      className="w-8 h-8 rounded-md flex items-center justify-center text-xs font-bold text-white flex-shrink-0"
-                      style={{ background: c.color }}
-                    >
-                      {c.initials}
-                    </div>
-                    <div>
-                      <span className="text-sm font-medium text-white block">{c.name}</span>
-                      <span className="text-xs text-white/40 block">{c.email}</span>
-                    </div>
-                  </div>
-                </td>
-
-                {/* Country */}
-                <td className="px-5 py-3.5">
-                  <span className="text-sm text-white/60">{c.country}</span>
-                </td>
-
-                {/* Jobs */}
-                <td className="px-5 py-3.5">
-                  <span className="text-sm text-white/70">{c.jobs}</span>
-                </td>
-
-                {/* Credits */}
-                <td className="px-5 py-3.5">
-                  <span className="text-sm text-white/70">{c.credits}</span>
-                </td>
-
-                {/* Subscription */}
-                <td className="px-5 py-3.5">
-                  <SubscriptionBadge type={c.subscription} />
-                </td>
-
-                {/* Status */}
-                <td className="px-5 py-3.5">
-                  <StatusBadge status={c.status} />
-                </td>
-
-                {/* Actions */}
-                <td className="px-5 py-3.5">
-                  <div className="flex items-center justify-end gap-1">
-                    <button
-                      onClick={() => {
-                        setSelectedCompany(c);
-                        setIsDetailsOpen(true);
-                      }}
-                      className="p-1.5 rounded-md hover:bg-white/5 text-white/40 hover:text-white/80 transition-colors"
-                    >
-                      <Eye className="h-3.5 w-3.5" />
-                    </button>
-                    <button
-                      onClick={() => {
-                        setSelectedCompany(c);
-                        setIsEditOpen(true);
-                      }}
-                      className="p-1.5 rounded-md hover:bg-white/5 text-white/40 hover:text-white/80 transition-colors"
-                    >
-                      <Pencil className="h-3.5 w-3.5" />
-                    </button>
-                    <button className="p-1.5 rounded-md hover:bg-red-500/10 text-white/40 hover:text-red-400 transition-colors">
-                      <Trash2 className="h-3.5 w-3.5" />
-                    </button>
-                  </div>
-                </td>
+        <div className="overflow-x-auto">
+          <table className="w-full min-w-[860px]">
+            <thead>
+              <tr className="border-b border-white/5">
+                {["Company", "Country", "Jobs", "Credits", "Approval", "Status", "Since", "Actions"].map((h) => (
+                  <th key={h} className={`px-5 py-3 text-[11px] font-semibold text-white/30 uppercase tracking-wider ${h === "Actions" ? "text-right" : "text-left"}`}>
+                    {h}
+                  </th>
+                ))}
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {isLoading
+                ? Array.from({ length: 5 }).map((_, i) => <SkeletonRow key={i} />)
+                : paginated.length === 0
+                  ? (
+                    <tr>
+                      <td colSpan={8} className="text-center py-16 text-white/30 text-sm">
+                        {search ? "No companies match your search." : "No companies found."}
+                      </td>
+                    </tr>
+                  )
+                  : paginated.map((c, idx) => (
+                    <tr key={c.id}
+                      className={`border-b border-white/5 hover:bg-white/[0.02] transition-colors ${idx === paginated.length - 1 ? "border-b-0" : ""}`}>
+                      {/* Company */}
+                      <td className="px-5 py-3.5">
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 rounded-md flex items-center justify-center text-xs font-bold text-white shrink-0"
+                            style={{ background: avatarColor(c.id) }}>
+                            {getInitials(c.company_name)}
+                          </div>
+                          <div>
+                            <p className="text-sm font-medium text-white">{c.company_name}</p>
+                            <p className="text-xs text-white/40">{c.email}</p>
+                          </div>
+                        </div>
+                      </td>
+                      {/* Country */}
+                      <td className="px-5 py-3.5">
+                        <div className="flex items-center gap-1.5">
+                          <Globe className="h-3 w-3 text-white/30 shrink-0" />
+                          <span className="text-sm text-white/60">{c.country || "—"}</span>
+                        </div>
+                      </td>
+                      {/* Jobs */}
+                      <td className="px-5 py-3.5">
+                        <span className="text-sm text-white/70">{c.active_jobs}</span>
+                      </td>
+                      {/* Credits */}
+                      <td className="px-5 py-3.5">
+                        <span className="text-sm text-white/70">{c.credits}</span>
+                      </td>
+                      {/* Approval */}
+                      <td className="px-5 py-3.5">
+                        <ApprovalBadge status={c.approval_status} />
+                      </td>
+                      {/* Suspended */}
+                      <td className="px-5 py-3.5">
+                        <SuspendedBadge suspended={c.is_suspended} />
+                      </td>
+                      {/* Since */}
+                      <td className="px-5 py-3.5">
+                        <span className="text-sm text-white/50">{formatDate(c.since)}</span>
+                      </td>
+                      {/* Actions */}
+                      <td className="px-5 py-3.5">
+                        <div className="flex items-center justify-end gap-1">
+                          <button onClick={() => open("view", c)} title="View"
+                            className="p-1.5 rounded-md hover:bg-white/5 text-white/40 hover:text-white/80 transition-colors">
+                            <Eye className="h-3.5 w-3.5" />
+                          </button>
+                          <button onClick={() => open("edit", c)} title="Edit"
+                            className="p-1.5 rounded-md hover:bg-white/5 text-white/40 hover:text-white/80 transition-colors">
+                            <Pencil className="h-3.5 w-3.5" />
+                          </button>
+                          {c.approval_status === "PENDING" && (
+                            <button onClick={() => open("approve", c)} title="Approve"
+                              className="p-1.5 rounded-md hover:bg-[#00E5A0]/10 text-white/40 hover:text-[#00E5A0] transition-colors">
+                              <CheckCircle className="h-3.5 w-3.5" />
+                            </button>
+                          )}
+                          <button onClick={() => open("delete", c)} title="Delete"
+                            className="p-1.5 rounded-md hover:bg-red-500/10 text-white/40 hover:text-red-400 transition-colors">
+                            <Trash2 className="h-3.5 w-3.5" />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))
+              }
+            </tbody>
+          </table>
+        </div>
 
         {/* Pagination */}
-        <div className="flex items-center justify-between px-5 py-3 border-t border-white/5">
-          <span className="text-xs text-white/30">
-            Showing {filtered.length} of {ALL_COMPANIES.length} users
-          </span>
-          <div className="flex items-center gap-1">
-            <button className="p-1.5 rounded-md hover:bg-white/5 text-white/30 hover:text-white/60 transition-colors">
-              <ChevronLeft className="h-3.5 w-3.5" />
-            </button>
-            <button className="w-7 h-7 rounded-md bg-[#00E5A0]/20 text-[#00E5A0] text-xs font-semibold">
-              1
-            </button>
-            <button className="p-1.5 rounded-md hover:bg-white/5 text-white/30 hover:text-white/60 transition-colors">
-              <ChevronRight className="h-3.5 w-3.5" />
-            </button>
+        {!isLoading && filtered.length > 0 && (
+          <div className="flex items-center justify-between px-5 py-3 border-t border-white/5">
+            <span className="text-xs text-white/30">
+              Showing {Math.min((page - 1) * PAGE_SIZE + 1, filtered.length)}–{Math.min(page * PAGE_SIZE, filtered.length)} of {filtered.length}
+            </span>
+            <div className="flex items-center gap-1">
+              <button onClick={() => setPage((p) => Math.max(1, p - 1))} disabled={page === 1}
+                className="p-1.5 rounded-md hover:bg-white/5 text-white/30 hover:text-white/60 disabled:opacity-30 transition-colors">
+                <ChevronLeft className="h-3.5 w-3.5" />
+              </button>
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
+                <button key={n} onClick={() => setPage(n)}
+                  className={`w-7 h-7 rounded-md text-xs font-semibold transition-colors ${n === page ? "bg-[#00E5A0]/20 text-[#00E5A0]" : "hover:bg-white/5 text-white/40"}`}>
+                  {n}
+                </button>
+              ))}
+              <button onClick={() => setPage((p) => Math.min(totalPages, p + 1))} disabled={page === totalPages}
+                className="p-1.5 rounded-md hover:bg-white/5 text-white/30 hover:text-white/60 disabled:opacity-30 transition-colors">
+                <ChevronRight className="h-3.5 w-3.5" />
+              </button>
+            </div>
           </div>
-        </div>
+        )}
       </div>
 
-      {/* Details Dialog */}
-      <Dialog open={isDetailsOpen} onOpenChange={setIsDetailsOpen}>
-        <DialogContent className="bg-[#111827] border-white/5 text-white max-w-[500px] p-6 rounded-xl overflow-hidden !ring-0">
-          <DialogHeader className="flex flex-row items-center justify-between pb-4 border-b border-white/5">
+      {/* Single dialog for all modals */}
+      <Dialog open={modal !== null} onOpenChange={(o) => { if (!o) close(); }}>
+        <DialogContent className="bg-[#111827] border-white/5 text-white max-w-lg p-6 rounded-xl overflow-hidden !ring-0 max-h-[90vh] overflow-y-auto">
+          <DialogHeader className="pb-4 border-b border-white/5">
             <DialogTitle className="text-lg font-bold text-white">
-              {selectedCompany?.name}
+              {modal ? modalTitle[modal] : ""}
             </DialogTitle>
           </DialogHeader>
 
-          <div className="grid grid-cols-2 gap-y-6 gap-x-4 py-4 border-b border-white/5">
-            <div>
-              <p className="text-xs text-white/40 mb-1">Status</p>
-              {selectedCompany && <StatusBadge status={selectedCompany.status} />}
-            </div>
-            <div>
-              <p className="text-xs text-white/40 mb-1">Country</p>
-              <p className="text-sm font-medium text-white/90">{selectedCompany?.country}</p>
-            </div>
-            <div>
-              <p className="text-xs text-white/40 mb-1">Contact</p>
-              <p className="text-sm font-medium text-white/90">{selectedCompany?.contactPerson}</p>
-            </div>
-            <div>
-              <p className="text-xs text-white/40 mb-1">Phone</p>
-              <p className="text-sm font-medium text-white/90">{selectedCompany?.phone}</p>
-            </div>
-            <div>
-              <p className="text-xs text-white/40 mb-1">Credits</p>
-              <p className="text-sm font-medium text-white/90">{selectedCompany?.credits}</p>
-            </div>
-            <div>
-              <p className="text-xs text-white/40 mb-1">Active Jobs</p>
-              <p className="text-sm font-medium text-white/90">{selectedCompany?.jobs}</p>
-            </div>
-            <div>
-              <p className="text-xs text-white/40 mb-1">Subscription</p>
-              {selectedCompany && <SubscriptionBadge type={selectedCompany.subscription} />}
-            </div>
-            <div>
-              <p className="text-xs text-white/40 mb-1">Since</p>
-              <p className="text-sm font-medium text-white/90">{selectedCompany?.since}</p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-2 pt-4 flex-wrap">
-            <button
-              onClick={() => {
-                setIsDetailsOpen(false);
-                setIsEditOpen(true);
-              }}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/10 hover:bg-white/5 text-white/70 text-xs font-medium transition-colors"
-            >
-              <Pencil className="w-3.5 h-3.5" />
-              Edit
-            </button>
-            <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/10 hover:bg-white/5 text-white/70 text-xs font-medium transition-colors">
-              <CreditCard className="w-3.5 h-3.5" />
-              Add Credits
-            </button>
-            <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/10 hover:bg-red-500/10 text-red-400 text-xs font-medium transition-colors">
-              <Lock className="w-3.5 h-3.5" />
-              Suspend
-            </button>
-            <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/10 hover:bg-white/5 text-white/70 text-xs font-medium transition-colors">
-              <Key className="w-3.5 h-3.5" />
-              Reset Password
-            </button>
-            
-            <div className="w-full mt-2 flex gap-2">
-              <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#00E5A0]/20 hover:bg-[#00E5A0]/10 text-[#00E5A0] text-xs font-medium transition-colors">
-                <CheckCircle className="w-3.5 h-3.5" />
-                Approve
-              </button>
-              <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-red-500/20 hover:bg-red-500/10 text-red-400 text-xs font-medium transition-colors">
-                <Trash2 className="w-3.5 h-3.5" />
-                Delete
-              </button>
-            </div>
-          </div>
-        </DialogContent>
-      </Dialog>
-
-      {/* Edit Dialog */}
-      <Dialog open={isEditOpen} onOpenChange={setIsEditOpen}>
-        <DialogContent className="bg-[#111827] border-white/5 text-white max-w-md p-6 rounded-xl overflow-hidden !ring-0">
-          <DialogHeader className="flex flex-row items-center justify-between pb-4 border-b border-white/5">
-            <DialogTitle className="text-lg font-bold text-white">Edit Company</DialogTitle>
-          </DialogHeader>
-
-          <div className="py-4 space-y-4">
-            <div>
-              <label className="text-xs text-white/40 mb-1.5 block">Company Name</label>
-              <input
-                type="text"
-                defaultValue={selectedCompany?.name}
-                className="w-full bg-[#1A202C] border border-white/5 rounded-lg px-3 py-2 text-sm text-white outline-none focus:border-[#6366f1]/50 transition-colors"
-              />
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="text-xs text-white/40 mb-1.5 block">Email</label>
-                <input
-                  type="text"
-                  defaultValue={selectedCompany?.email}
-                  className="w-full bg-[#1A202C] border border-white/5 rounded-lg px-3 py-2 text-sm text-white outline-none focus:border-[#6366f1]/50 transition-colors"
-                />
-              </div>
-              <div>
-                <label className="text-xs text-white/40 mb-1.5 block">Contact Person</label>
-                <input
-                  type="text"
-                  defaultValue={selectedCompany?.contactPerson}
-                  className="w-full bg-[#1A202C] border border-white/5 rounded-lg px-3 py-2 text-sm text-white outline-none focus:border-[#6366f1]/50 transition-colors"
-                />
-              </div>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="text-xs text-white/40 mb-1.5 block">Phone</label>
-                <input
-                  type="text"
-                  defaultValue={selectedCompany?.phone}
-                  className="w-full bg-[#1A202C] border border-white/5 rounded-lg px-3 py-2 text-sm text-white outline-none focus:border-[#6366f1]/50 transition-colors"
-                />
-              </div>
-              <div>
-                <label className="text-xs text-white/40 mb-1.5 block">Country</label>
-                <select
-                  defaultValue={selectedCompany?.country}
-                  className="w-full bg-[#1A202C] border border-white/5 rounded-lg px-3 py-2 text-sm text-white outline-none focus:border-[#6366f1]/50 transition-colors appearance-none"
-                >
-                  <option value="UAE">UAE</option>
-                  <option value="KSA">KSA</option>
-                  <option value="Qatar">Qatar</option>
-                  <option value="Bahrain">Bahrain</option>
-                  <option value="Oman">Oman</option>
-                </select>
-              </div>
-            </div>
-            <div className="w-1/2 pr-2">
-              <label className="text-xs text-white/40 mb-1.5 block">Subscription</label>
-              <select
-                defaultValue={selectedCompany?.subscription}
-                className="w-full bg-[#1A202C] border border-white/5 rounded-lg px-3 py-2 text-sm text-white outline-none focus:border-[#6366f1]/50 transition-colors appearance-none"
-              >
-                <option value="Enterprise">Enterprise</option>
-                <option value="Pro">Pro</option>
-                <option value="Basic">Basic</option>
-              </select>
-            </div>
-          </div>
-
-          <div className="flex justify-end gap-3 pt-4 border-t border-white/5">
-            <button
-              onClick={() => setIsEditOpen(false)}
-              className="px-4 py-2 rounded-lg border border-white/10 text-white/70 hover:bg-white/5 text-sm font-medium transition-colors"
-            >
-              Cancel
-            </button>
-            <button
-              onClick={() => setIsEditOpen(false)}
-              className="px-4 py-2 rounded-lg bg-[#6366f1] hover:bg-[#6366f1]/90 text-white text-sm font-medium transition-colors"
-            >
-              Save
-            </button>
-          </div>
+          {selected && modal === "view" && (
+            <DetailPanel
+              id={selected.id}
+              onEdit={() => setModal("edit")}
+              onDelete={() => setModal("delete")}
+              onApprove={() => setModal("approve")}
+              onReject={() => setModal("reject")}
+              onResetPwd={() => setModal("reset-pwd")}
+            />
+          )}
+          {selected && modal === "edit"      && <EditForm        company={selected} onClose={close} />}
+          {selected && modal === "delete"    && <DeleteConfirm   company={selected} onClose={close} />}
+          {selected && modal === "approve"   && <ApproveConfirm  company={selected} onClose={close} />}
+          {selected && modal === "reject"    && <RejectForm      company={selected} onClose={close} />}
+          {selected && modal === "reset-pwd" && <ResetPasswordPanel company={selected} onClose={close} />}
         </DialogContent>
       </Dialog>
     </div>

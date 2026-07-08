@@ -102,6 +102,55 @@ export interface AdminCandidatePatchPayload {
   plan_id?: string;
 }
 
+// ─── Admin Company types ──────────────────────────────────────────────────────
+
+export interface AdminCompanyListItem {
+  id: number;
+  company_name: string;
+  email: string;
+  country: string | null;
+  active_jobs: number;
+  credits: number;
+  approval_status: string;
+  is_suspended: boolean;
+  since: string;
+}
+
+export interface AdminCompanyDetail {
+  id: number;
+  company_name: string;
+  email: string;
+  contact_person: string | null;
+  phone: string | null;
+  country: string | null;
+  credits: number;
+  active_jobs: number;
+  current_plan: string | null;
+  approval_status: string;
+  is_suspended: boolean;
+  is_licence_verified: boolean;
+  rejection_reason: string | null;
+  logo: string | null;
+  about: string | null;
+  licence_number: string | null;
+  since: string;
+}
+
+export interface AdminCompanyPatchPayload {
+  id: number;
+  company_name?: string;
+  email?: string;
+  contact_person?: string;
+  phone?: string;
+  country?: string;
+  plan_id?: string;
+}
+
+export interface AdminCompanyRejectPayload {
+  id: number;
+  reason: string;
+}
+
 // ─── RTK Query API ────────────────────────────────────────────────────────────
 
 export const authApi = createApi({
@@ -117,7 +166,7 @@ export const authApi = createApi({
       return headers;
     },
   }),
-  tagTypes: ["AdminCandidates"],
+  tagTypes: ["AdminCandidates", "AdminCompanies"],
   endpoints: (builder) => ({
     // POST /auth/login/email/
     loginWithEmail: builder.mutation<ApiResponse<LoginData>, LoginPayload>({
@@ -223,6 +272,57 @@ export const authApi = createApi({
       }),
       invalidatesTags: ["AdminCandidates"],
     }),
+
+    // ── Admin Company endpoints ───────────────────────────────────────────────
+
+    // GET /admin/companies/
+    getAdminCompanies: builder.query<ApiResponse<AdminCompanyListItem[]>, void>({
+      query: () => "admin/companies/",
+      providesTags: ["AdminCompanies"],
+    }),
+
+    // GET /admin/companies/{id}/
+    getAdminCompanyById: builder.query<ApiResponse<AdminCompanyDetail>, number>({
+      query: (id) => `admin/companies/${id}/`,
+      providesTags: (_r, _e, id) => [{ type: "AdminCompanies", id }],
+    }),
+
+    // PATCH /admin/companies/{id}/
+    patchAdminCompany: builder.mutation<ApiResponse<AdminCompanyDetail>, AdminCompanyPatchPayload>({
+      query: ({ id, ...body }) => ({
+        url: `admin/companies/${id}/`,
+        method: "PATCH",
+        body,
+      }),
+      invalidatesTags: (_r, _e, { id }) => ["AdminCompanies", { type: "AdminCompanies", id }],
+    }),
+
+    // DELETE /admin/companies/{id}/
+    deleteAdminCompany: builder.mutation<ApiResponse<null>, number>({
+      query: (id) => ({ url: `admin/companies/${id}/`, method: "DELETE" }),
+      invalidatesTags: ["AdminCompanies"],
+    }),
+
+    // POST /admin/companies/{id}/approve/
+    approveAdminCompany: builder.mutation<ApiResponse<null>, number>({
+      query: (id) => ({ url: `admin/companies/${id}/approve/`, method: "POST" }),
+      invalidatesTags: (_r, _e, id) => ["AdminCompanies", { type: "AdminCompanies", id }],
+    }),
+
+    // POST /admin/companies/{id}/reject/
+    rejectAdminCompany: builder.mutation<ApiResponse<null>, AdminCompanyRejectPayload>({
+      query: ({ id, reason }) => ({
+        url: `admin/companies/${id}/reject/`,
+        method: "POST",
+        body: { reason },
+      }),
+      invalidatesTags: (_r, _e, { id }) => ["AdminCompanies", { type: "AdminCompanies", id }],
+    }),
+
+    // POST /admin/companies/{id}/reset-password/
+    resetAdminCompanyPassword: builder.mutation<ApiResponse<{ new_password: string }>, number>({
+      query: (id) => ({ url: `admin/companies/${id}/reset-password/`, method: "POST" }),
+    }),
   }),
 });
 
@@ -239,4 +339,12 @@ export const {
   useGetAdminCandidateByIdQuery,
   usePatchAdminCandidateMutation,
   useDeleteAdminCandidateMutation,
+  // Admin Companies
+  useGetAdminCompaniesQuery,
+  useGetAdminCompanyByIdQuery,
+  usePatchAdminCompanyMutation,
+  useDeleteAdminCompanyMutation,
+  useApproveAdminCompanyMutation,
+  useRejectAdminCompanyMutation,
+  useResetAdminCompanyPasswordMutation,
 } = authApi;
