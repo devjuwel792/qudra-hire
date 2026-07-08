@@ -3,8 +3,6 @@
 import React from "react";
 import Link from "next/link";
 import { Rocket, Eye, MapPin, Users, Lightbulb, Zap, Heart, ArrowRight } from "lucide-react";
-import QudraHeader from "@/components/layout/QudraHeader";
-import QudraFooter from "@/components/layout/QudraFooter";
 import { Animate } from "@/components/ui/animate";
 
 const delays = ["", "anim-delay-100", "anim-delay-200", "anim-delay-300"];
@@ -12,7 +10,6 @@ const delays = ["", "anim-delay-100", "anim-delay-200", "anim-delay-300"];
 export default function AboutPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background text-on-surface">
-      <QudraHeader activePage="About us" />
 
       {/* Hero */}
       <section className="relative pt-24 pb-16 text-center overflow-hidden">
@@ -154,8 +151,6 @@ export default function AboutPage() {
           </div>
         </Animate>
       </section>
-
-      <QudraFooter />
     </div>
   );
 }

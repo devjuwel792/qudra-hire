@@ -3,8 +3,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { Mail, Phone, Clock, MessageSquare, Send, CheckCircle2, ChevronRight, Headphones } from "lucide-react";
-import QudraHeader from "@/components/layout/QudraHeader";
-import QudraFooter from "@/components/layout/QudraFooter";
 import { Animate } from "@/components/ui/animate";
 
 export default function ContactPage() {
@@ -26,7 +24,6 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-surface text-on-surface">
-      <QudraHeader activePage="Contact us" />
 
       {/* Hero */}
       <section className="relative py-20 sm:py-28 text-center overflow-hidden">
@@ -172,8 +169,6 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-
-      <QudraFooter />
     </div>
   );
 }

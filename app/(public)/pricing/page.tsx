@@ -3,8 +3,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { Check } from "lucide-react";
-import QudraHeader from "@/components/layout/QudraHeader";
-import QudraFooter from "@/components/layout/QudraFooter";
 import { Animate } from "@/components/ui/animate";
 
 const candidatePlans = [
@@ -67,7 +65,6 @@ export default function PricingPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#080C14] text-white">
-      <QudraHeader activePage="Pricing" />
 
       {/* Hero */}
       <section className="relative py-20 sm:py-28 text-center overflow-hidden">
@@ -135,8 +132,6 @@ export default function PricingPage() {
           ))}
         </div>
       </section>
-
-      <QudraFooter />
     </div>
   );
 }

@@ -45,7 +45,7 @@ export default function RootLayout({
           storageKey="careersprint-theme"
         >
           {children}
-          <MobileBottomNav />
+          {/* <MobileBottomNav /> */}
         </ThemeProvider>
       </body>
     </html>

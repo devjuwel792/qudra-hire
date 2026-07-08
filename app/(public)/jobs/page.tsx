@@ -3,8 +3,6 @@
 import React from "react";
 import Link from "next/link";
 import { Search, MapPin, Clock, DollarSign, Settings2 } from "lucide-react";
-import QudraHeader from "@/components/layout/QudraHeader";
-import QudraFooter from "@/components/layout/QudraFooter";
 import { Animate } from "@/components/ui/animate";
 import { useRouter } from "next/navigation";
 
@@ -21,7 +19,6 @@ export default function JobsPage() {
   const router = useRouter();
   return (
     <div className="min-h-screen flex flex-col bg-[#080C14] text-white">
-      <QudraHeader activePage="Find jobs" />
 
       {/* Header */}
       <section className="border-b border-white/5 bg-[#0A0F1D] py-12">
@@ -120,8 +117,6 @@ export default function JobsPage() {
           </div>
         </div>
       </section>
-
-      <QudraFooter />
     </div>
   );
 }

@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { Globe } from "lucide-react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
 
 const navLinks = [
@@ -14,12 +15,14 @@ const navLinks = [
   { href: "/contact", label: "Contact us" },
 ];
 
-interface QudraHeaderProps {
-  activePage?: string; // matches a navLink label, e.g. "Pricing" or "Contact us"
-}
-
-export default function QudraHeader({ activePage }: QudraHeaderProps) {
+export default function QudraHeader() {
+  const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  function isActive(href: string) {
+    if (href === "/") return pathname === "/";
+    return pathname === href || pathname.startsWith(href + "/");
+  }
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-surface header-glass">
@@ -35,7 +38,7 @@ export default function QudraHeader({ activePage }: QudraHeaderProps) {
               key={l.href}
               href={l.href}
               className={
-                l.label === activePage
+                isActive(l.href)
                   ? "text-on-surface font-semibold"
                   : "hover:text-on-surface transition-colors"
               }
@@ -103,7 +106,7 @@ export default function QudraHeader({ activePage }: QudraHeaderProps) {
             <Link
               key={l.href}
               href={l.href}
-              className={l.label === activePage ? "text-on-surface font-semibold" : "hover:text-on-surface transition-colors"}
+              className={isActive(l.href) ? "text-on-surface font-semibold" : "hover:text-on-surface transition-colors"}
               onClick={() => setMobileOpen(false)}
             >
               {l.label}

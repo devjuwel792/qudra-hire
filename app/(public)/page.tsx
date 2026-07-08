@@ -17,8 +17,6 @@ import {
   Clock,
   DollarSign,
 } from "lucide-react";
-import QudraHeader from "@/components/layout/QudraHeader";
-import QudraFooter from "@/components/layout/QudraFooter";
 import {
   Carousel,
   CarouselContent,
@@ -133,7 +131,6 @@ const delays = ["", "anim-delay-100", "anim-delay-200", "anim-delay-300", "anim-
 export default function HomePage() {
   return (
     <div className="min-h-screen flex flex-col bg-surface text-on-surface">
-      <QudraHeader activePage="Home" />
 
       {/* 1. Hero */}
       <section className="relative pt-24 pb-16 text-center overflow-hidden">
@@ -356,8 +353,6 @@ export default function HomePage() {
           </div>
         </Animate>
       </section>
-
-      <QudraFooter />
     </div>
   );
 }
