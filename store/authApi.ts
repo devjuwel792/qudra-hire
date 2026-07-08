@@ -67,6 +67,41 @@ export interface ChangePasswordPayload {
   confirm_password: string;
 }
 
+// ─── Admin Candidate types ────────────────────────────────────────────────────
+
+export interface AdminCandidateListItem {
+  id: number;
+  full_name: string;
+  email: string;
+  location: string;
+  credits: number;
+  subscription: string;
+  is_suspended: boolean;
+  registered: string;
+}
+
+export interface AdminCandidateDetail {
+  id: number;
+  full_name: string;
+  email: string;
+  phone: string;
+  country: string;
+  credits: number;
+  current_plan: string | null;
+  is_suspended: boolean;
+  ats_score: number;
+  registered: string;
+}
+
+export interface AdminCandidatePatchPayload {
+  id: number;
+  full_name?: string;
+  email?: string;
+  phone?: string;
+  country?: string;
+  plan_id?: string;
+}
+
 // ─── RTK Query API ────────────────────────────────────────────────────────────
 
 export const authApi = createApi({
@@ -82,6 +117,7 @@ export const authApi = createApi({
       return headers;
     },
   }),
+  tagTypes: ["AdminCandidates"],
   endpoints: (builder) => ({
     // POST /auth/login/email/
     loginWithEmail: builder.mutation<ApiResponse<LoginData>, LoginPayload>({
@@ -148,6 +184,45 @@ export const authApi = createApi({
         body,
       }),
     }),
+
+    // ── Admin Candidate endpoints ─────────────────────────────────────────────
+
+    // GET /admin/candidates/
+    getAdminCandidates: builder.query<ApiResponse<AdminCandidateListItem[]>, void>({
+      query: () => "admin/candidates/",
+      providesTags: ["AdminCandidates"],
+    }),
+
+    // GET /admin/candidates/{id}/
+    getAdminCandidateById: builder.query<ApiResponse<AdminCandidateDetail>, number>({
+      query: (id) => `admin/candidates/${id}/`,
+      providesTags: (_result, _error, id) => [{ type: "AdminCandidates", id }],
+    }),
+
+    // PATCH /admin/candidates/{id}/
+    patchAdminCandidate: builder.mutation<
+      ApiResponse<AdminCandidateDetail>,
+      AdminCandidatePatchPayload
+    >({
+      query: ({ id, ...body }) => ({
+        url: `admin/candidates/${id}/`,
+        method: "PATCH",
+        body,
+      }),
+      invalidatesTags: (_result, _error, { id }) => [
+        "AdminCandidates",
+        { type: "AdminCandidates", id },
+      ],
+    }),
+
+    // DELETE /admin/candidates/{id}/
+    deleteAdminCandidate: builder.mutation<ApiResponse<null>, number>({
+      query: (id) => ({
+        url: `admin/candidates/${id}/`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["AdminCandidates"],
+    }),
   }),
 });
 
@@ -159,4 +234,9 @@ export const {
   useVerifyOtpMutation,
   useResetPasswordMutation,
   useChangePasswordMutation,
+  // Admin Candidates
+  useGetAdminCandidatesQuery,
+  useGetAdminCandidateByIdQuery,
+  usePatchAdminCandidateMutation,
+  useDeleteAdminCandidateMutation,
 } = authApi;

@@ -11,6 +11,7 @@ import {
   Settings,
   Star,
   Users,
+  UserCheck,
   FileText,
 } from "lucide-react";
 import Image from "next/image";
@@ -32,6 +33,11 @@ const navItems = [
     label: "Company Management",
     href: "/admin/companies",
     icon: Building2,
+  },
+  {
+    label: "Candidates",
+    href: "/admin/candidates",
+    icon: UserCheck,
   },
   {
     label: "Job Management",
