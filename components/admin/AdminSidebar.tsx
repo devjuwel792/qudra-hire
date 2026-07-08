@@ -68,7 +68,7 @@ export default function AdminSidebar() {
       {/* Logo */}
       <div className="flex items-center gap-2 px-5 py-5 border-b border-white/5">
         <div className="flex items-center gap-1">
-          <Image src='/logo.png' height={100} width={100} className="w-8 h-8" alt="logo" />
+          <Image src='/logo.png' height={500} width={500} className="w-48 h-auto" alt="logo" />
         </div>
       </div>
 

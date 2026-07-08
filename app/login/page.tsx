@@ -74,7 +74,7 @@ export default function LoginPage() {
         {/* Logo */}
         <div className="flex justify-center mb-8">
           <Link href="/" className="text-2xl font-bold tracking-tight">
-             <Image src='/logo.png' height={100} width={100} className="w-8 h-8" alt="logo" />
+              <Image src='/logo.png' height={500} width={500} className="w-32 h-12" alt="logo" />
           </Link>
         </div>
 

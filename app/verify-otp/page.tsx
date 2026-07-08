@@ -112,7 +112,7 @@ export default function VerifyOtpPage() {
         {/* Logo */}
         <div className="flex justify-center mb-8">
           <Link href="/" className="text-2xl font-bold tracking-tight">
-           <Image src='/logo.png' height={100} width={100} className="w-8 h-8" alt="logo" />
+            <Image src='/logo.png' height={100} width={100} className="w-48 h-auto" alt="logo" />
           </Link>
         </div>
 
