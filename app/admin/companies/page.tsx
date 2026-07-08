@@ -14,65 +14,67 @@ import {
   X,
   Lock,
   Key,
+  CreditCard,
+  CheckCircle,
 } from "lucide-react";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
-  DialogClose,
 } from "@/components/ui/dialog";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
-type Subscription = "Pro" | "Basic" | "Free" | "Enterprise";
-type Status = "Active" | "Suspended";
+type Subscription = "Pro" | "Basic" | "Enterprise";
+type Status = "Verified" | "Pending" | "Rejected";
 
-interface Candidate {
+interface Company {
+  id: string;
   initials: string;
   name: string;
   email: string;
   country: string;
+  jobs: number;
   credits: number;
   subscription: Subscription;
   status: Status;
-  registered: string;
-  phone?: string;
-  atsScore?: number;
   color: string;
+  contactPerson: string;
+  phone: string;
+  since: string;
 }
 
 // ── Data ──────────────────────────────────────────────────────────────────────
-const ALL_CANDIDATES: Candidate[] = [
+const ALL_COMPANIES: Company[] = [
   {
-    initials: "AA", name: "Ahmed Al-Rashidi", email: "ahmed.rashidi@gmail.com",
-    country: "UAE", credits: 45, subscription: "Pro", status: "Active",
-    registered: "2024-06-12", phone: "+971 50 234 5678", atsScore: 88, color: "#6366f1",
+    id: "1", initials: "TT", name: "Talabat Technologies", email: "hr@talabat.com",
+    country: "UAE", jobs: 18, credits: 240, subscription: "Enterprise", status: "Verified",
+    color: "#6366f1", contactPerson: "Reem Al-Kuwari", phone: "+971 4 555 0100", since: "2024-04-10",
   },
   {
-    initials: "SA", name: "Sara Al-Mansouri", email: "sara.mansouri@outlook.com",
-    country: "KSA", credits: 12, subscription: "Basic", status: "Active",
-    registered: "2024-07-01", phone: "+966 50 123 4567", atsScore: 72, color: "#8b5cf6",
+    id: "2", initials: "AG", name: "ADNOC Group", email: "careers@adnoc.ae",
+    country: "UAE", jobs: 42, credits: 560, subscription: "Enterprise", status: "Verified",
+    color: "#8b5cf6", contactPerson: "Ahmed Sultan", phone: "+971 2 666 1234", since: "2023-11-20",
   },
   {
-    initials: "KI", name: "Khalid Ibrahim", email: "khalid.ibrahim@yahoo.com",
-    country: "Qatar", credits: 8, subscription: "Free", status: "Suspended",
-    registered: "2024-05-20", phone: "+974 33 456 789", atsScore: 65, color: "#10b981",
+    id: "3", initials: "CN", name: "Careem Networks", email: "talents@careem.com",
+    country: "UAE", jobs: 7, credits: 120, subscription: "Pro", status: "Pending",
+    color: "#3b82f6", contactPerson: "Sarah Johnson", phone: "+971 4 444 8888", since: "2024-06-15",
   },
   {
-    initials: "NA", name: "Nora Al-Zaabi", email: "nora.zaabi@gmail.com",
-    country: "UAE", credits: 78, subscription: "Enterprise", status: "Active",
-    registered: "2024-06-28", phone: "+971 55 987 6543", atsScore: 94, color: "#f59e0b",
+    id: "4", initials: "NE", name: "Noon E-Commerce", email: "jobs@noon.com",
+    country: "UAE", jobs: 14, credits: 80, subscription: "Pro", status: "Verified",
+    color: "#10b981", contactPerson: "Omar Khaled", phone: "+971 4 222 9999", since: "2024-02-05",
   },
   {
-    initials: "OH", name: "Omar Hussain", email: "omar.hussain@hotmail.com",
-    country: "Bahrain", credits: 23, subscription: "Pro", status: "Active",
-    registered: "2024-07-05", phone: "+973 39 123 456", atsScore: 81, color: "#ec4899",
+    id: "5", initials: "SG", name: "stc Group", email: "hr@stc.com.sa",
+    country: "KSA", jobs: 29, credits: 310, subscription: "Enterprise", status: "Verified",
+    color: "#f59e0b", contactPerson: "Faisal Al-Dosari", phone: "+966 11 456 7890", since: "2023-09-12",
   },
   {
-    initials: "FA", name: "Fatima Al-Ali", email: "fatima.alali@gmail.com",
-    country: "Oman", credits: 5, subscription: "Basic", status: "Active",
-    registered: "2024-06-18", phone: "+968 99 876 543", atsScore: 75, color: "#3b82f6",
+    id: "6", initials: "GA", name: "Gulf Air", email: "careers@gulfair.com",
+    country: "Bahrain", jobs: 0, credits: 45, subscription: "Basic", status: "Rejected",
+    color: "#ec4899", contactPerson: "Hassan Ali", phone: "+973 17 333 444", since: "2024-07-01",
   },
 ];
 
@@ -80,13 +82,13 @@ const ALL_CANDIDATES: Candidate[] = [
 const subscriptionStyles: Record<Subscription, string> = {
   Pro: "bg-[#6366f1]/20 text-[#818cf8]",
   Basic: "bg-[#3b82f6]/20 text-[#60a5fa]",
-  Free: "bg-white/10 text-white/50",
   Enterprise: "bg-[#f59e0b]/20 text-[#fbbf24]",
 };
 
 const statusStyles: Record<Status, string> = {
-  Active: "bg-[#00E5A0]/15 text-[#00E5A0]",
-  Suspended: "bg-red-500/15 text-red-400",
+  Verified: "bg-[#00E5A0]/15 text-[#00E5A0]",
+  Pending: "bg-amber-500/15 text-amber-400",
+  Rejected: "bg-red-500/15 text-red-400",
 };
 
 function SubscriptionBadge({ type }: { type: Subscription }) {
@@ -106,13 +108,13 @@ function StatusBadge({ status }: { status: Status }) {
 }
 
 // ── Page ──────────────────────────────────────────────────────────────────────
-export default function CandidateManagementPage() {
+export default function CompanyManagementPage() {
   const [search, setSearch] = useState("");
-  const [selectedCandidate, setSelectedCandidate] = useState<Candidate | null>(null);
+  const [selectedCompany, setSelectedCompany] = useState<Company | null>(null);
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
 
-  const filtered = ALL_CANDIDATES.filter(
+  const filtered = ALL_COMPANIES.filter(
     (c) =>
       c.name.toLowerCase().includes(search.toLowerCase()) ||
       c.email.toLowerCase().includes(search.toLowerCase())
@@ -120,7 +122,7 @@ export default function CandidateManagementPage() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-white">Candidate Management</h1>
+      <h1 className="text-2xl font-bold text-white">Company Management</h1>
 
       {/* Toolbar */}
       <div className="flex items-center gap-3">
@@ -128,7 +130,7 @@ export default function CandidateManagementPage() {
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-white/30" />
           <input
             type="text"
-            placeholder="Search users..."
+            placeholder="Search companies..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="w-full bg-[#111827] border border-white/10 rounded-lg pl-9 pr-4 py-2 text-sm text-white placeholder-white/30 outline-none focus:border-[#00E5A0]/40 transition-colors"
@@ -138,10 +140,6 @@ export default function CandidateManagementPage() {
           <Filter className="h-3.5 w-3.5" />
           Filter
         </button>
-        <button className="flex items-center gap-2 bg-[#111827] border border-white/10 hover:border-white/20 text-white/60 hover:text-white text-sm px-4 py-2 rounded-lg transition-colors">
-          <ArrowUpDown className="h-3.5 w-3.5" />
-          Sort
-        </button>
       </div>
 
       {/* Table */}
@@ -149,48 +147,47 @@ export default function CandidateManagementPage() {
         <table className="w-full">
           <thead>
             <tr className="border-b border-white/5">
-              <th className="text-left px-5 py-3 text-[11px] font-semibold text-white/30 uppercase tracking-wider">Name</th>
-              <th className="text-left px-5 py-3 text-[11px] font-semibold text-white/30 uppercase tracking-wider">Email</th>
+              <th className="text-left px-5 py-3 text-[11px] font-semibold text-white/30 uppercase tracking-wider">Company</th>
               <th className="text-left px-5 py-3 text-[11px] font-semibold text-white/30 uppercase tracking-wider">Country</th>
+              <th className="text-left px-5 py-3 text-[11px] font-semibold text-white/30 uppercase tracking-wider">Jobs</th>
               <th className="text-left px-5 py-3 text-[11px] font-semibold text-white/30 uppercase tracking-wider">Credits</th>
               <th className="text-left px-5 py-3 text-[11px] font-semibold text-white/30 uppercase tracking-wider">Subscription</th>
               <th className="text-left px-5 py-3 text-[11px] font-semibold text-white/30 uppercase tracking-wider">Status</th>
-              <th className="text-left px-5 py-3 text-[11px] font-semibold text-white/30 uppercase tracking-wider">Registered</th>
               <th className="text-right px-5 py-3 text-[11px] font-semibold text-white/30 uppercase tracking-wider">Actions</th>
             </tr>
           </thead>
           <tbody>
             {filtered.map((c, idx) => (
               <tr
-                key={c.email}
+                key={c.id}
                 className={`border-b border-white/5 hover:bg-white/[0.02] transition-colors ${
                   idx === filtered.length - 1 ? "border-b-0" : ""
                 }`}
               >
-                {/* Name */}
+                {/* Company */}
                 <td className="px-5 py-3.5">
                   <div className="flex items-center gap-3">
                     <div
-                      className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-white flex-shrink-0"
+                      className="w-8 h-8 rounded-md flex items-center justify-center text-xs font-bold text-white flex-shrink-0"
                       style={{ background: c.color }}
                     >
                       {c.initials}
                     </div>
-                    <span className="text-sm font-medium text-white">{c.name}</span>
+                    <div>
+                      <span className="text-sm font-medium text-white block">{c.name}</span>
+                      <span className="text-xs text-white/40 block">{c.email}</span>
+                    </div>
                   </div>
-                </td>
-
-                {/* Email */}
-                <td className="px-5 py-3.5">
-                  <span className="text-sm text-white/60">{c.email}</span>
                 </td>
 
                 {/* Country */}
                 <td className="px-5 py-3.5">
-                  <div className="flex items-center gap-1.5">
-                    <Globe className="h-3 w-3 text-white/30" />
-                    <span className="text-sm text-white/60">{c.country}</span>
-                  </div>
+                  <span className="text-sm text-white/60">{c.country}</span>
+                </td>
+
+                {/* Jobs */}
+                <td className="px-5 py-3.5">
+                  <span className="text-sm text-white/70">{c.jobs}</span>
                 </td>
 
                 {/* Credits */}
@@ -208,17 +205,12 @@ export default function CandidateManagementPage() {
                   <StatusBadge status={c.status} />
                 </td>
 
-                {/* Registered */}
-                <td className="px-5 py-3.5">
-                  <span className="text-sm text-white/50">{c.registered}</span>
-                </td>
-
                 {/* Actions */}
                 <td className="px-5 py-3.5">
                   <div className="flex items-center justify-end gap-1">
                     <button
                       onClick={() => {
-                        setSelectedCandidate(c);
+                        setSelectedCompany(c);
                         setIsDetailsOpen(true);
                       }}
                       className="p-1.5 rounded-md hover:bg-white/5 text-white/40 hover:text-white/80 transition-colors"
@@ -227,7 +219,7 @@ export default function CandidateManagementPage() {
                     </button>
                     <button
                       onClick={() => {
-                        setSelectedCandidate(c);
+                        setSelectedCompany(c);
                         setIsEditOpen(true);
                       }}
                       className="p-1.5 rounded-md hover:bg-white/5 text-white/40 hover:text-white/80 transition-colors"
@@ -247,7 +239,7 @@ export default function CandidateManagementPage() {
         {/* Pagination */}
         <div className="flex items-center justify-between px-5 py-3 border-t border-white/5">
           <span className="text-xs text-white/30">
-            Showing {filtered.length} of {ALL_CANDIDATES.length} users
+            Showing {filtered.length} of {ALL_COMPANIES.length} users
           </span>
           <div className="flex items-center gap-1">
             <button className="p-1.5 rounded-md hover:bg-white/5 text-white/30 hover:text-white/60 transition-colors">
@@ -265,45 +257,45 @@ export default function CandidateManagementPage() {
 
       {/* Details Dialog */}
       <Dialog open={isDetailsOpen} onOpenChange={setIsDetailsOpen}>
-        <DialogContent className="bg-[#111827] border-white/5 text-white max-w-md p-6 rounded-xl overflow-hidden !ring-0">
+        <DialogContent className="bg-[#111827] border-white/5 text-white max-w-[500px] p-6 rounded-xl overflow-hidden !ring-0">
           <DialogHeader className="flex flex-row items-center justify-between pb-4 border-b border-white/5">
             <DialogTitle className="text-lg font-bold text-white">
-              {selectedCandidate?.name}
+              {selectedCompany?.name}
             </DialogTitle>
           </DialogHeader>
 
           <div className="grid grid-cols-2 gap-y-6 gap-x-4 py-4 border-b border-white/5">
             <div>
-              <p className="text-xs text-white/40 mb-1">Email</p>
-              <p className="text-sm font-medium text-white/90">{selectedCandidate?.email}</p>
-            </div>
-            <div>
-              <p className="text-xs text-white/40 mb-1">Phone</p>
-              <p className="text-sm font-medium text-white/90">{selectedCandidate?.phone}</p>
+              <p className="text-xs text-white/40 mb-1">Status</p>
+              {selectedCompany && <StatusBadge status={selectedCompany.status} />}
             </div>
             <div>
               <p className="text-xs text-white/40 mb-1">Country</p>
-              <p className="text-sm font-medium text-white/90">{selectedCandidate?.country}</p>
+              <p className="text-sm font-medium text-white/90">{selectedCompany?.country}</p>
+            </div>
+            <div>
+              <p className="text-xs text-white/40 mb-1">Contact</p>
+              <p className="text-sm font-medium text-white/90">{selectedCompany?.contactPerson}</p>
+            </div>
+            <div>
+              <p className="text-xs text-white/40 mb-1">Phone</p>
+              <p className="text-sm font-medium text-white/90">{selectedCompany?.phone}</p>
             </div>
             <div>
               <p className="text-xs text-white/40 mb-1">Credits</p>
-              <p className="text-sm font-medium text-white/90">{selectedCandidate?.credits}</p>
+              <p className="text-sm font-medium text-white/90">{selectedCompany?.credits}</p>
+            </div>
+            <div>
+              <p className="text-xs text-white/40 mb-1">Active Jobs</p>
+              <p className="text-sm font-medium text-white/90">{selectedCompany?.jobs}</p>
             </div>
             <div>
               <p className="text-xs text-white/40 mb-1">Subscription</p>
-              {selectedCandidate && <SubscriptionBadge type={selectedCandidate.subscription} />}
+              {selectedCompany && <SubscriptionBadge type={selectedCompany.subscription} />}
             </div>
             <div>
-              <p className="text-xs text-white/40 mb-1">Status</p>
-              {selectedCandidate && <StatusBadge status={selectedCandidate.status} />}
-            </div>
-            <div>
-              <p className="text-xs text-white/40 mb-1">ATS Score</p>
-              <p className="text-sm font-medium text-[#00E5A0]">{selectedCandidate?.atsScore}</p>
-            </div>
-            <div>
-              <p className="text-xs text-white/40 mb-1">Registered</p>
-              <p className="text-sm font-medium text-white/90">{selectedCandidate?.registered}</p>
+              <p className="text-xs text-white/40 mb-1">Since</p>
+              <p className="text-sm font-medium text-white/90">{selectedCompany?.since}</p>
             </div>
           </div>
 
@@ -319,6 +311,10 @@ export default function CandidateManagementPage() {
               Edit
             </button>
             <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/10 hover:bg-white/5 text-white/70 text-xs font-medium transition-colors">
+              <CreditCard className="w-3.5 h-3.5" />
+              Add Credits
+            </button>
+            <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/10 hover:bg-red-500/10 text-red-400 text-xs font-medium transition-colors">
               <Lock className="w-3.5 h-3.5" />
               Suspend
             </button>
@@ -326,10 +322,17 @@ export default function CandidateManagementPage() {
               <Key className="w-3.5 h-3.5" />
               Reset Password
             </button>
-            <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/10 hover:bg-red-500/10 text-red-400 text-xs font-medium transition-colors ml-auto">
-              <Trash2 className="w-3.5 h-3.5" />
-              Delete
-            </button>
+            
+            <div className="w-full mt-2 flex gap-2">
+              <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#00E5A0]/20 hover:bg-[#00E5A0]/10 text-[#00E5A0] text-xs font-medium transition-colors">
+                <CheckCircle className="w-3.5 h-3.5" />
+                Approve
+              </button>
+              <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-red-500/20 hover:bg-red-500/10 text-red-400 text-xs font-medium transition-colors">
+                <Trash2 className="w-3.5 h-3.5" />
+                Delete
+              </button>
+            </div>
           </div>
         </DialogContent>
       </Dialog>
@@ -338,15 +341,15 @@ export default function CandidateManagementPage() {
       <Dialog open={isEditOpen} onOpenChange={setIsEditOpen}>
         <DialogContent className="bg-[#111827] border-white/5 text-white max-w-md p-6 rounded-xl overflow-hidden !ring-0">
           <DialogHeader className="flex flex-row items-center justify-between pb-4 border-b border-white/5">
-            <DialogTitle className="text-lg font-bold text-white">Edit User</DialogTitle>
+            <DialogTitle className="text-lg font-bold text-white">Edit Company</DialogTitle>
           </DialogHeader>
 
           <div className="py-4 space-y-4">
             <div>
-              <label className="text-xs text-white/40 mb-1.5 block">Full Name</label>
+              <label className="text-xs text-white/40 mb-1.5 block">Company Name</label>
               <input
                 type="text"
-                defaultValue={selectedCandidate?.name}
+                defaultValue={selectedCompany?.name}
                 className="w-full bg-[#1A202C] border border-white/5 rounded-lg px-3 py-2 text-sm text-white outline-none focus:border-[#6366f1]/50 transition-colors"
               />
             </div>
@@ -355,24 +358,32 @@ export default function CandidateManagementPage() {
                 <label className="text-xs text-white/40 mb-1.5 block">Email</label>
                 <input
                   type="text"
-                  defaultValue={selectedCandidate?.email}
+                  defaultValue={selectedCompany?.email}
                   className="w-full bg-[#1A202C] border border-white/5 rounded-lg px-3 py-2 text-sm text-white outline-none focus:border-[#6366f1]/50 transition-colors"
                 />
               </div>
               <div>
-                <label className="text-xs text-white/40 mb-1.5 block">Phone</label>
+                <label className="text-xs text-white/40 mb-1.5 block">Contact Person</label>
                 <input
                   type="text"
-                  defaultValue={selectedCandidate?.phone}
+                  defaultValue={selectedCompany?.contactPerson}
                   className="w-full bg-[#1A202C] border border-white/5 rounded-lg px-3 py-2 text-sm text-white outline-none focus:border-[#6366f1]/50 transition-colors"
                 />
               </div>
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div>
+                <label className="text-xs text-white/40 mb-1.5 block">Phone</label>
+                <input
+                  type="text"
+                  defaultValue={selectedCompany?.phone}
+                  className="w-full bg-[#1A202C] border border-white/5 rounded-lg px-3 py-2 text-sm text-white outline-none focus:border-[#6366f1]/50 transition-colors"
+                />
+              </div>
+              <div>
                 <label className="text-xs text-white/40 mb-1.5 block">Country</label>
                 <select
-                  defaultValue={selectedCandidate?.country}
+                  defaultValue={selectedCompany?.country}
                   className="w-full bg-[#1A202C] border border-white/5 rounded-lg px-3 py-2 text-sm text-white outline-none focus:border-[#6366f1]/50 transition-colors appearance-none"
                 >
                   <option value="UAE">UAE</option>
@@ -382,18 +393,17 @@ export default function CandidateManagementPage() {
                   <option value="Oman">Oman</option>
                 </select>
               </div>
-              <div>
-                <label className="text-xs text-white/40 mb-1.5 block">Subscription</label>
-                <select
-                  defaultValue={selectedCandidate?.subscription}
-                  className="w-full bg-[#1A202C] border border-white/5 rounded-lg px-3 py-2 text-sm text-white outline-none focus:border-[#6366f1]/50 transition-colors appearance-none"
-                >
-                  <option value="Pro">Pro</option>
-                  <option value="Basic">Basic</option>
-                  <option value="Free">Free</option>
-                  <option value="Enterprise">Enterprise</option>
-                </select>
-              </div>
+            </div>
+            <div className="w-1/2 pr-2">
+              <label className="text-xs text-white/40 mb-1.5 block">Subscription</label>
+              <select
+                defaultValue={selectedCompany?.subscription}
+                className="w-full bg-[#1A202C] border border-white/5 rounded-lg px-3 py-2 text-sm text-white outline-none focus:border-[#6366f1]/50 transition-colors appearance-none"
+              >
+                <option value="Enterprise">Enterprise</option>
+                <option value="Pro">Pro</option>
+                <option value="Basic">Basic</option>
+              </select>
             </div>
           </div>
 
@@ -408,7 +418,7 @@ export default function CandidateManagementPage() {
               onClick={() => setIsEditOpen(false)}
               className="px-4 py-2 rounded-lg bg-[#6366f1] hover:bg-[#6366f1]/90 text-white text-sm font-medium transition-colors"
             >
-              Save Changes
+              Save
             </button>
           </div>
         </DialogContent>
