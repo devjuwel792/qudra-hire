@@ -7,6 +7,7 @@ import { Eye, EyeOff, Loader2 } from "lucide-react";
 import { useLoginWithEmailMutation } from "@/store/authApi";
 import { setCredentials } from "@/store/authSlice";
 import { useAppDispatch } from "@/store/hooks";
+import Image from "next/image";
 
 // Google SVG inline so no extra dependency
 const GoogleIcon = () => (
@@ -73,31 +74,14 @@ export default function LoginPage() {
         {/* Logo */}
         <div className="flex justify-center mb-8">
           <Link href="/" className="text-2xl font-bold tracking-tight">
-            <span className="text-on-surface">Career</span>
-            <span className="text-[#4BC957]">Sprint</span>
+             <Image src='/logo.png' height={100} width={100} className="w-8 h-8" alt="logo" />
           </Link>
         </div>
 
         <h1 className="text-xl sm:text-2xl font-bold text-on-surface mb-2">Welcome back</h1>
         <p className="text-on-surface-muted text-sm mb-6">Log in to continue progressing.</p>
 
-        {/* Account type toggle */}
-        <div className="flex bg-surface-deep border border-surface p-1 rounded-2xl mb-6">
-          {(["candidate", "company"] as const).map((type) => (
-            <button
-              key={type}
-              type="button"
-              onClick={() => setAccountType(type)}
-              className={`flex-1 py-2.5 text-sm font-medium rounded-xl transition-all capitalize ${
-                accountType === type
-                  ? "bg-[#4BC957] text-[#080C14]"
-                  : "text-on-surface-muted hover:text-on-surface"
-              }`}
-            >
-              {type}
-            </button>
-          ))}
-        </div>
+       
 
         {/* Google button */}
         <button

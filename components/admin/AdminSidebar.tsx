@@ -13,6 +13,7 @@ import {
   Users,
   FileText,
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -63,19 +64,11 @@ export default function AdminSidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="flex h-screen w-[210px] flex-shrink-0 flex-col bg-[#111827] text-white border-r border-white/5">
+    <aside className="flex h-screen w-[210px] shrink-0 flex-col bg-[#111827] text-white border-r border-white/5">
       {/* Logo */}
       <div className="flex items-center gap-2 px-5 py-5 border-b border-white/5">
         <div className="flex items-center gap-1">
-          <div className="relative">
-            <div className="w-7 h-7 rounded bg-[#00E5A0] flex items-center justify-center">
-              <span className="text-[#0D1117] font-black text-sm">≡/</span>
-            </div>
-          </div>
-          <div className="flex flex-col leading-none">
-            <span className="text-white font-bold text-sm tracking-tight">CAREER</span>
-            <span className="text-[#00E5A0] font-black text-sm tracking-tight">SPR<span className="text-white">I</span>NT</span>
-          </div>
+          <Image src='/logo.png' height={100} width={100} className="w-8 h-8" alt="logo" />
         </div>
       </div>
 

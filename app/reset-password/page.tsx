@@ -7,6 +7,7 @@ import { Eye, EyeOff, Loader2, ArrowLeft, KeyRound } from "lucide-react";
 import { useResetPasswordMutation } from "@/store/authApi";
 import { clearPasswordReset } from "@/store/authSlice";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import Image from "next/image";
 
 function PasswordInput({
   label,
@@ -105,8 +106,7 @@ export default function ResetPasswordPage() {
         {/* Logo */}
         <div className="flex justify-center mb-8">
           <Link href="/" className="text-2xl font-bold tracking-tight">
-            <span className="text-on-surface">Career</span>
-            <span className="text-[#4BC957]">Sprint</span>
+             <Image src='/logo.png' height={100} width={100} className="w-8 h-8" alt="logo" />
           </Link>
         </div>
 
