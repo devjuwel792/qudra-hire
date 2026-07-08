@@ -3,59 +3,54 @@
 import { cn } from "@/lib/utils";
 import {
   Bell,
-  Box,
+  Briefcase,
+  Building2,
+  CreditCard,
   LayoutDashboard,
   LogOut,
-  Package,
-  School,
   Settings,
-  ShoppingCart,
-  Upload,
-  Users
+  Star,
+  Users,
+  FileText,
 } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 const navItems = [
   {
-    label: "Overview",
+    label: "Dashboard",
     href: "/admin/dashboard",
     icon: LayoutDashboard,
   },
   {
-    label: "Orders",
-    href: "/admin/orders",
-    icon: ShoppingCart,
-  },
-  {
-    label: "Customers",
-    href: "/admin/customers",
+    label: "User Management",
+    href: "/admin/users",
     icon: Users,
   },
   {
-    label: "Schools",
-    href: "/admin/schools",
-    icon: School,
+    label: "Company Management",
+    href: "/admin/companies",
+    icon: Building2,
   },
   {
-    label: "Products",
-    href: "/admin/products",
-    icon: Package,
+    label: "Job Management",
+    href: "/admin/jobs",
+    icon: Briefcase,
   },
   {
-    label: "Uploads",
-    href: "/admin/uploads",
-    icon: Upload,
-  }, {
-    label: "Spacial Box",
-    href: "/admin/special-package",
-    icon: Box
+    label: "Application Management",
+    href: "/admin/applications",
+    icon: FileText,
   },
   {
-    label: "Inventory Alerts",
-    href: "/admin/inventory-alerts",
-    icon: Bell
+    label: "Credit Management",
+    href: "/admin/credits",
+    icon: CreditCard,
+  },
+  {
+    label: "Subscriptions",
+    href: "/admin/subscriptions",
+    icon: Star,
   },
   {
     label: "Settings",
@@ -68,53 +63,65 @@ export default function AdminSidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="flex h-screen w-[130px] flex-shrink-0 flex-col bg-[#0B2545] text-white">
-      {/* Logo / Brand */}
-      <div className="flex flex-col items-center justify-center border-b border-white/10 py-6 px-3">
-        <Image src="/logo.png" alt="" width={120} height={40} className="hidden md:block h-8 w-auto object-contain" />
-        <Image src="/mobile-logo.png" alt="" width={120} height={40} className="block md:hidden h-8 w-auto object-contain" />
-        <span className="text-[13px] font-normal text-white/60 tracking-widest uppercase mt-2">
-          Admin
-        </span>
+    <aside className="flex h-screen w-[210px] flex-shrink-0 flex-col bg-[#111827] text-white border-r border-white/5">
+      {/* Logo */}
+      <div className="flex items-center gap-2 px-5 py-5 border-b border-white/5">
+        <div className="flex items-center gap-1">
+          <div className="relative">
+            <div className="w-7 h-7 rounded bg-[#00E5A0] flex items-center justify-center">
+              <span className="text-[#0D1117] font-black text-sm">≡/</span>
+            </div>
+          </div>
+          <div className="flex flex-col leading-none">
+            <span className="text-white font-bold text-sm tracking-tight">CAREER</span>
+            <span className="text-[#00E5A0] font-black text-sm tracking-tight">SPR<span className="text-white">I</span>NT</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Welcome text */}
+      <div className="px-5 pt-5 pb-2">
+        <p className="text-white/40 text-[11px] uppercase tracking-widest font-medium">Main Menu</p>
       </div>
 
       {/* Navigation */}
-      <nav className="flex flex-1 flex-col gap-1 overflow-y-auto py-4 px-2">
+      <nav className="flex flex-1 flex-col gap-0.5 overflow-y-auto py-2 px-3">
         {navItems.map(({ label, href, icon: Icon }) => {
           const isActive =
-            pathname === href || (href !== "/admin/dashboard" && pathname.startsWith(href));
+            pathname === href ||
+            (href !== "/admin/dashboard" && pathname.startsWith(href));
 
           return (
             <Link
               key={href}
               href={href}
               className={cn(
-                "group flex flex-col items-center gap-1.5 rounded-xl px-2 py-3 text-center transition-all duration-200",
+                "group flex items-center gap-3 rounded-lg px-3 py-2.5 text-[13px] font-medium transition-all duration-200",
                 isActive
-                  ? "bg-[#FF5C35] text-white shadow-lg shadow-orange-500/30"
-                  : "text-white/60 hover:bg-white/10 hover:text-white"
+                  ? "bg-white/10 text-white"
+                  : "text-white/50 hover:bg-white/5 hover:text-white/80"
               )}
             >
               <Icon
                 className={cn(
-                  "h-[18px] w-[18px] flex-shrink-0 transition-colors",
-                  isActive ? "text-white" : "text-white/60 group-hover:text-white"
+                  "h-4 w-4 flex-shrink-0 transition-colors",
+                  isActive ? "text-white" : "text-white/40 group-hover:text-white/70"
                 )}
               />
-              <span className="text-[13px] font-medium leading-tight">{label}</span>
+              <span className="leading-tight">{label}</span>
             </Link>
           );
         })}
       </nav>
 
       {/* Logout */}
-      <div className="border-t border-white/10 p-3">
+      <div className="border-t border-white/5 p-3">
         <Link
           href="/admin/logout"
-          className="flex flex-col items-center gap-1.5 rounded-xl px-2 py-3 text-center text-[#FF5C35] transition-all duration-200 hover:bg-[#FF5C35]/10"
+          className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-[13px] font-medium text-white/50 transition-all duration-200 hover:bg-white/5 hover:text-white/80"
         >
-          <LogOut className="h-[18px] w-[18px] flex-shrink-0" />
-          <span className="text-[13px] font-medium">Log Out</span>
+          <LogOut className="h-4 w-4 flex-shrink-0 text-white/40" />
+          <span>Log Out</span>
         </Link>
       </div>
     </aside>
