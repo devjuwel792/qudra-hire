@@ -23,30 +23,30 @@ function PricingCard({ plan }: { plan: Plan }) {
   return (
     <div className={`relative flex flex-col rounded-2xl p-6 transition-all duration-300 ${
       plan.popular
-        ? "bg-[#0F1F14] border-2 border-[#4BC957]/60 shadow-2xl shadow-[#4BC957]/10 scale-[1.02]"
-        : "bg-[#0F172A] border border-white/6 hover:border-white/12"
+        ? "bg-green-50 dark:bg-[#0F1F14] border-2 border-green-500/60 dark:border-[#4BC957]/60 shadow-2xl shadow-green-500/10 dark:shadow-[#4BC957]/10 scale-[1.02]"
+        : "bg-white dark:bg-[#0F172A] border border-slate-200 dark:border-white/6 hover:border-slate-300 dark:hover:border-white/12 shadow-sm"
     }`}>
       {plan.popular && (
         <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
-          <span className="bg-[#4BC957] text-[#080C14] text-xs font-bold px-3 py-1 rounded-full shadow-lg">Most popular</span>
+          <span className="bg-green-600 dark:bg-[#4BC957] text-white dark:text-[#080C14] text-xs font-bold px-3 py-1 rounded-full shadow-lg">Most popular</span>
         </div>
       )}
-      <h3 className="text-lg font-bold text-white mb-4">{plan.name}</h3>
+      <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">{plan.name}</h3>
       <div className="mb-1">
-        <span className="text-3xl font-extrabold text-white tracking-tight">{plan.price}</span>
+        <span className="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">{plan.price}</span>
       </div>
-      <p className="text-[#4BC957] font-semibold text-sm mb-1">{plan.credits}</p>
-      <p className="text-slate-600 text-xs mb-6">{plan.creditValue}</p>
+      <p className="text-green-600 dark:text-[#4BC957] font-semibold text-sm mb-1">{plan.credits}</p>
+      <p className="text-slate-500 dark:text-slate-600 text-xs mb-6">{plan.creditValue}</p>
       <button id={plan.id} className={`w-full h-11 rounded-xl font-bold text-sm transition-all active:scale-[0.98] mb-6 ${
         plan.popular
-          ? "bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] shadow-lg shadow-[#4BC957]/20"
-          : "bg-[#1E293B] hover:bg-[#2A3C58] text-white border border-white/8"
+          ? "bg-green-600 hover:bg-green-500 dark:bg-[#4BC957] dark:hover:bg-[#00B96E] text-white dark:text-[#080C14] shadow-lg shadow-green-500/20 dark:shadow-[#4BC957]/20"
+          : "bg-slate-100 hover:bg-slate-200 dark:bg-[#1E293B] dark:hover:bg-[#2A3C58] text-slate-900 dark:text-white border border-slate-200 dark:border-white/8"
       }`}>{plan.cta}</button>
-      <div className="border-t border-white/6 mb-5" />
+      <div className="border-t border-slate-200 dark:border-white/6 mb-5" />
       <ul className="space-y-2.5 flex-1">
         {plan.features.map(f => (
-          <li key={f} className="flex items-start gap-2.5 text-sm text-slate-400">
-            <span className={`mt-0.5 flex-shrink-0 h-4 w-4 rounded-full flex items-center justify-center ${plan.popular ? "bg-[#4BC957]/15 text-[#4BC957]" : "bg-slate-700/50 text-slate-400"}`}>
+          <li key={f} className="flex items-start gap-2.5 text-sm text-slate-600 dark:text-slate-400">
+            <span className={`mt-0.5 flex-shrink-0 h-4 w-4 rounded-full flex items-center justify-center ${plan.popular ? "bg-green-100 text-green-600 dark:bg-[#4BC957]/15 dark:text-[#4BC957]" : "bg-slate-100 text-slate-400 dark:bg-slate-700/50 dark:text-slate-400"}`}>
               <Check className="h-2.5 w-2.5" />
             </span>
             {f}
@@ -64,31 +64,31 @@ export default function PricingPage() {
   const plans = tab === "candidates" ? candidatePlans : companyPlans;
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#080C14] text-white">
+    <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-[#080C14] text-slate-900 dark:text-white">
 
       {/* Hero */}
       <section className="relative py-20 sm:py-28 text-center overflow-hidden">
         <div aria-hidden className="pointer-events-none absolute inset-0 flex items-start justify-center">
-          <div className="w-[700px] h-[320px] bg-[#4BC957]/5 rounded-full blur-[130px] mt-8" />
+          <div className="w-[700px] h-[320px] bg-green-500/10 dark:bg-[#4BC957]/5 rounded-full blur-[130px] mt-8" />
         </div>
-        <div aria-hidden className="pointer-events-none absolute inset-0 opacity-[0.03]"
-          style={{ backgroundImage: "linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)", backgroundSize: "40px 40px" }} />
+        <div aria-hidden className="pointer-events-none absolute inset-0 opacity-[0.03] dark:opacity-[0.03]"
+          style={{ backgroundImage: "linear-gradient(currentColor 1px,transparent 1px),linear-gradient(90deg,currentColor 1px,transparent 1px)", backgroundSize: "40px 40px" }} />
         <div className="relative max-w-3xl mx-auto px-4">
           <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight
             animate-[fadeInUp_0.7s_ease_forwards]">
             Credit bundles that reward{" "}
-            <span className="text-[#4BC957]">momentum.</span>
+            <span className="text-green-600 dark:text-[#4BC957]">momentum.</span>
           </h1>
-          <p className="mt-5 text-[16px] sm:text-lg text-slate-400 leading-relaxed
+          <p className="mt-5 text-[16px] sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed
             animate-[fadeInUp_0.7s_0.2s_ease_forwards] opacity-0">
             Pay-as-you-go in AED. No subscriptions. Credits never expire.
           </p>
-          <div className="mt-10 inline-flex items-center bg-[#0F172A] border border-white/8 rounded-xl p-1 gap-1
+          <div className="mt-10 inline-flex items-center bg-white dark:bg-[#0F172A] border border-slate-200 dark:border-white/8 rounded-xl p-1 gap-1
             animate-[fadeInUp_0.7s_0.35s_ease_forwards] opacity-0">
             {(["candidates", "companies"] as const).map(t => (
               <button key={t} onClick={() => setTab(t)}
                 className={`px-5 py-2.5 rounded-lg text-sm font-semibold transition-all ${
-                  tab === t ? "bg-[#4BC957] text-[#080C14] shadow-md" : "text-slate-400 hover:text-white"
+                  tab === t ? "bg-green-600 dark:bg-[#4BC957] text-white dark:text-[#080C14] shadow-md" : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
                 }`}>
                 For {t.charAt(0).toUpperCase() + t.slice(1)}
               </button>
@@ -107,16 +107,16 @@ export default function PricingPage() {
           ))}
         </div>
         <Animate className="animate-on-scroll" delay="anim-delay-300">
-          <p className="text-center text-xs text-slate-100 mt-10">
+          <p className="text-center text-xs text-slate-500 dark:text-slate-100 mt-10">
             All prices in AED (United Arab Emirates Dirham). Credits are non-refundable and never expire.{" "}
-            <Link href="/contact" className="text-green-500 hover:text-[#4BC957] transition-colors underline underline-offset-2">Contact us</Link>{" "}
+            <Link href="/contact" className="text-green-600 dark:text-green-500 hover:text-green-700 dark:hover:text-[#4BC957] transition-colors underline underline-offset-2">Contact us</Link>{" "}
             for enterprise or volume pricing.
           </p>
         </Animate>
       </section>
 
       {/* FAQ */}
-      <section className="border-t border-white/5 bg-[#0A0F1D]">
+      <section className="border-t border-slate-200 dark:border-white/5 bg-white dark:bg-[#0A0F1D]">
         <div className="max-w-4xl mx-auto px-4 sm:px-8 py-16 grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
           {[
             { q: "Do credits expire?", a: "No. Once purchased, credits are yours to use at your own pace — no monthly reset." },
@@ -125,8 +125,8 @@ export default function PricingPage() {
           ].map(({ q, a }, i) => (
             <Animate key={q} className="animate-on-scroll" delay={["", "anim-delay-100", "anim-delay-200"][i]}>
               <div className="space-y-2">
-                <h3 className="text-sm font-bold text-white">{q}</h3>
-                <p className="text-sm text-slate-500 leading-relaxed">{a}</p>
+                <h3 className="text-sm font-bold text-slate-900 dark:text-white">{q}</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-500 leading-relaxed">{a}</p>
               </div>
             </Animate>
           ))}
@@ -135,4 +135,3 @@ export default function PricingPage() {
     </div>
   );
 }
-
