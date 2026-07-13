@@ -315,7 +315,7 @@ export default function JobApplicantsPage() {
                 </button>
                 <button
                   onClick={applyFilters}
-                  className="bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold px-4 py-2.5 rounded-xl text-sm transition-all shadow-md shadow-[#4BC957]/10 active:scale-[0.98] w-full"
+                  className="bg-[#4BC957] hover:bg-[#00B96E] text-white font-bold px-4 py-2.5 rounded-xl text-sm transition-all shadow-md shadow-[#4BC957]/10 active:scale-[0.98] w-full"
                 >
                   Apply
                 </button>
@@ -334,7 +334,7 @@ export default function JobApplicantsPage() {
               key={tab}
               onClick={() => setFilter(tab)}
               className={` font-bold px-4.5 py-2 rounded-full border transition-all ${isActive
-                ? "bg-[#4BC957] border-[#4BC957] text-[#080C14]"
+                ? "bg-[#4BC957] border-[#4BC957] text-white"
                 : "border-slate-800 text-slate-400 hover:border-slate-700 hover:text-white"
                 }`}
             >
@@ -451,7 +451,7 @@ export default function JobApplicantsPage() {
                 <button onClick={(e) => {
                   e.stopPropagation();
                   router.push(`/company/candidates/${candidate.id}/interview`);
-                }} className="flex items-center gap-1.5 bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold px-4 py-2 rounded-xl  transition-all shadow-md shadow-[#4BC957]/10 active:scale-[0.98]">
+                }} className="flex items-center gap-1.5 bg-[#4BC957] hover:bg-[#00B96E] text-white font-bold px-4 py-2 rounded-xl  transition-all shadow-md shadow-[#4BC957]/10 active:scale-[0.98]">
                   <Video className="h-3.5 w-3.5" />
                   Set AI interview
                 </button>

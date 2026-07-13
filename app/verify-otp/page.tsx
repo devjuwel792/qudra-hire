@@ -172,7 +172,7 @@ export default function VerifyOtpPage() {
           <button
             type="submit"
             disabled={isLoading || otp.length < OTP_LENGTH}
-            className="w-full flex items-center justify-center gap-2 bg-[#4BC957] hover:bg-[#00B96E] disabled:opacity-60 disabled:cursor-not-allowed text-[#080C14] font-bold px-6 py-3 rounded-xl transition-all"
+            className="w-full flex items-center justify-center gap-2 bg-[#4BC957] hover:bg-[#00B96E] disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold px-6 py-3 rounded-xl transition-all"
           >
             {isLoading && <Loader2 size={16} className="animate-spin" />}
             {isLoading ? "Verifying…" : "Verify code"}

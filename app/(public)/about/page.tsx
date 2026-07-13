@@ -141,7 +141,7 @@ export default function AboutPage() {
               Whether you are hiring or searching, CareerSprint is built to move you forward.
             </p>
             <div className="relative flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link href="/signup" className="w-full sm:w-auto bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold px-8 py-3 rounded-xl transition-all active:scale-[0.98]">
+              <Link href="/signup" className="w-full sm:w-auto bg-[#4BC957] hover:bg-[#00B96E] text-white font-bold px-8 py-3 rounded-xl transition-all active:scale-[0.98]">
                 Get started
               </Link>
               <Link href="/contact" className="w-full sm:w-auto bg-transparent border border-surface hover:border-inner text-on-surface font-medium px-8 py-3 rounded-xl transition-all flex items-center justify-center gap-2">

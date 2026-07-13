@@ -38,7 +38,7 @@ export default function CandidateCVPage() {
           <h3 className="text-lg font-bold text-slate-900 dark:text-white">Drop your CV here</h3>
           <p className="text-slate-600 dark:text-slate-400">PDF or DOCX, max 10MB. We'll parse skills, projects and experience.</p>
         </div>
-        <button className="bg-green-600 hover:bg-green-500 dark:bg-[#4BC957] dark:hover:bg-[#00B96E] text-white dark:text-[#080C14] font-bold px-5 py-2.5 rounded-xl transition-all active:scale-[0.98]">
+        <button className="bg-green-600 hover:bg-green-500 dark:bg-[#4BC957] dark:hover:bg-[#00B96E] text-white dark:text-white font-bold px-5 py-2.5 rounded-xl transition-all active:scale-[0.98]">
           Upload CV
         </button>
       </div>
@@ -91,7 +91,7 @@ export default function CandidateCVPage() {
 
           {/* Action buttons */}
           <div className="flex items-center gap-3 pt-4 border-t border-slate-200 dark:border-[#1E293B]/40">
-            <button className="flex items-center gap-1.5 bg-green-600 hover:bg-green-500 dark:bg-[#4BC957] dark:hover:bg-[#00B96E] text-white dark:text-[#080C14] px-4 py-2.5 rounded-xl font-bold transition-all shadow-md shadow-green-500/10 dark:shadow-[#4BC957]/10 active:scale-[0.98]">
+            <button className="flex items-center gap-1.5 bg-green-600 hover:bg-green-500 dark:bg-[#4BC957] dark:hover:bg-[#00B96E] text-white dark:text-white px-4 py-2.5 rounded-xl font-bold transition-all shadow-md shadow-green-500/10 dark:shadow-[#4BC957]/10 active:scale-[0.98]">
               <Sparkles className="h-3.5 w-3.5" />
               Auto suggest
             </button>

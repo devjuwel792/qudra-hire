@@ -82,7 +82,7 @@ export default function CandidateDashboard() {
         </div>
         <div className="flex items-center gap-3 self-start sm:self-center flex-shrink-0">
           <span className="font-bold text-on-surface-muted border border-surface bg-surface-deep px-3 py-1.5 rounded-xl text-sm">Emirates interview</span>
-          <Link href="/candidate/interview" className="flex items-center gap-1.5 bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold px-4 py-2 rounded-xl transition-all shadow-md shadow-[#4BC957]/10 active:scale-[0.98] text-sm">
+          <Link href="/candidate/interview" className="flex items-center gap-1.5 bg-[#4BC957] hover:bg-[#00B96E] text-white font-bold px-4 py-2 rounded-xl transition-all shadow-md shadow-[#4BC957]/10 active:scale-[0.98] text-sm">
             <Play className="h-3.5 w-3.5" />
             Start
           </Link>
@@ -198,7 +198,7 @@ export default function CandidateDashboard() {
               <p className="flex items-center gap-2"><span className="text-[#4BC957]">📄</span> Add a portfolio link</p>
               <p className="flex items-center gap-2"><span className="text-[#4BC957]">📊</span> Quantify 2 more results</p>
             </div>
-            <Link href="/candidate/cv" className="w-full block text-center bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold py-2.5 rounded-xl transition-all active:scale-[0.98] text-sm">
+            <Link href="/candidate/cv" className="w-full block text-center bg-[#4BC957] hover:bg-[#00B96E] text-white font-bold py-2.5 rounded-xl transition-all active:scale-[0.98] text-sm">
               Improve CV
             </Link>
           </div>

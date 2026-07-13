@@ -109,7 +109,7 @@ export default function Wallet({
           <Dialog open={topUpOpen} onOpenChange={setTopUpOpen}>
             <DialogTrigger
               render={
-                <button className="flex items-center justify-center gap-2 bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold py-3 px-5 rounded-xl w-32 transition-all duration-200 active:scale-[0.98]">
+                <button className="flex items-center justify-center gap-2 bg-[#4BC957] hover:bg-[#00B96E] text-white font-bold py-3 px-5 rounded-xl w-32 transition-all duration-200 active:scale-[0.98]">
                   <Plus className="h-4 w-4" />
                   Top up
                 </button>
@@ -142,7 +142,7 @@ export default function Wallet({
                       </div>
                       <div className="flex items-center gap-3">
                         <span className=" font-bold text-on-surface">{pkg.price}</span>
-                        <button className="bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold px-3 py-1.5 rounded-lg transition-colors">
+                        <button className="bg-[#4BC957] hover:bg-[#00B96E] text-white font-bold px-3 py-1.5 rounded-lg transition-colors">
                           Buy
                         </button>
                       </div>
@@ -179,7 +179,7 @@ export default function Wallet({
                 </div>
                 <div className="flex items-center gap-3">
                   <span className=" font-bold text-on-surface">{pkg.price}</span>
-                  <button className="bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold px-3 py-1.5 rounded-lg transition-colors">
+                  <button className="bg-[#4BC957] hover:bg-[#00B96E] text-white font-bold px-3 py-1.5 rounded-lg transition-colors">
                     Buy
                   </button>
                 </div>

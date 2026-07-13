@@ -28,7 +28,7 @@ function PricingCard({ plan }: { plan: Plan }) {
     }`}>
       {plan.popular && (
         <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
-          <span className="bg-green-600 dark:bg-[#4BC957] text-white dark:text-[#080C14] text-xs font-bold px-3 py-1 rounded-full shadow-lg">Most popular</span>
+          <span className="bg-green-600 dark:bg-[#4BC957] text-white dark:text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">Most popular</span>
         </div>
       )}
       <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">{plan.name}</h3>
@@ -39,7 +39,7 @@ function PricingCard({ plan }: { plan: Plan }) {
       <p className="text-slate-500 dark:text-slate-600 text-xs mb-6">{plan.creditValue}</p>
       <button id={plan.id} className={`w-full h-11 rounded-xl font-bold text-sm transition-all active:scale-[0.98] mb-6 ${
         plan.popular
-          ? "bg-green-600 hover:bg-green-500 dark:bg-[#4BC957] dark:hover:bg-[#00B96E] text-white dark:text-[#080C14] shadow-lg shadow-green-500/20 dark:shadow-[#4BC957]/20"
+          ? "bg-green-600 hover:bg-green-500 dark:bg-[#4BC957] dark:hover:bg-[#00B96E] text-white dark:text-white shadow-lg shadow-green-500/20 dark:shadow-[#4BC957]/20"
           : "bg-slate-100 hover:bg-slate-200 dark:bg-[#1E293B] dark:hover:bg-[#2A3C58] text-slate-900 dark:text-white border border-slate-200 dark:border-white/8"
       }`}>{plan.cta}</button>
       <div className="border-t border-slate-200 dark:border-white/6 mb-5" />
@@ -88,7 +88,7 @@ export default function PricingPage() {
             {(["candidates", "companies"] as const).map(t => (
               <button key={t} onClick={() => setTab(t)}
                 className={`px-5 py-2.5 rounded-lg text-sm font-semibold transition-all ${
-                  tab === t ? "bg-green-600 dark:bg-[#4BC957] text-white dark:text-[#080C14] shadow-md" : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                  tab === t ? "bg-green-600 dark:bg-[#4BC957] text-white dark:text-white shadow-md" : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
                 }`}>
                 For {t.charAt(0).toUpperCase() + t.slice(1)}
               </button>

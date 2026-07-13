@@ -39,7 +39,7 @@ export default function JobsPage() {
                 className="w-full bg-slate-50 dark:bg-[#080C14] border border-slate-200 dark:border-white/10 rounded-xl py-3.5 pl-11 pr-4 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-green-500/50 dark:focus:border-[#4BC957]/50 transition-colors"
                 placeholder="Search roles, skills, companies..." />
             </div>
-            <button className="bg-green-600 hover:bg-green-500 dark:bg-[#4BC957] dark:hover:bg-[#00B96E] text-white dark:text-[#080C14] font-bold px-8 py-3.5 rounded-xl transition-all active:scale-[0.98] whitespace-nowrap">
+            <button className="bg-green-600 hover:bg-green-500 dark:bg-[#4BC957] dark:hover:bg-[#00B96E] text-white dark:text-white font-bold px-8 py-3.5 rounded-xl transition-all active:scale-[0.98] whitespace-nowrap">
               Search
             </button>
           </div>

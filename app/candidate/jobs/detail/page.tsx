@@ -211,7 +211,7 @@ function JobDetailContent() {
 
                 <button
                   onClick={startTailoring}
-                  className="w-full flex items-center justify-center gap-2 bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold py-3 px-5 rounded-xl transition-all shadow-md shadow-[#4BC957]/10 active:scale-[0.98]"
+                  className="w-full flex items-center justify-center gap-2 bg-[#4BC957] hover:bg-[#00B96E] text-white font-bold py-3 px-5 rounded-xl transition-all shadow-md shadow-[#4BC957]/10 active:scale-[0.98]"
                 >
                   <Sparkles className="h-4 w-4" />
                   Tailor my CV for this role
@@ -313,7 +313,7 @@ function JobDetailContent() {
                   </button>
                   <button
                     onClick={() => setRightState("success")}
-                    className="bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] py-2.5 rounded-xl text-[13px] font-bold flex items-center justify-center gap-1"
+                    className="bg-[#4BC957] hover:bg-[#00B96E] text-white py-2.5 rounded-xl text-[13px] font-bold flex items-center justify-center gap-1"
                   >
                     Use tailored CV
                     <ArrowRight className="h-3.5 w-3.5" />
@@ -382,7 +382,7 @@ function JobDetailContent() {
 
               <button
                 onClick={() => setRightState("success")}
-                className="w-full flex items-center justify-center gap-1.5 bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold py-3 px-5 rounded-xl transition-all shadow-md shadow-[#4BC957]/10 active:scale-[0.98]"
+                className="w-full flex items-center justify-center gap-1.5 bg-[#4BC957] hover:bg-[#00B96E] text-white font-bold py-3 px-5 rounded-xl transition-all shadow-md shadow-[#4BC957]/10 active:scale-[0.98]"
               >
                 Use tailored CV
                 <ArrowRight className="h-4 w-4" />

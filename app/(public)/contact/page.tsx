@@ -85,7 +85,7 @@ export default function ContactPage() {
                         className="w-full bg-surface-deep border border-surface text-on-surface placeholder:text-on-surface-subtle rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#4BC957]/50 focus:ring-1 focus:ring-[#4BC957]/30 transition-all resize-none" />
                     </div>
                     <button type="submit" disabled={loading}
-                      className="w-full h-12 bg-[#4BC957] hover:bg-[#00B96E] disabled:opacity-60 text-[#080C14] font-bold rounded-xl text-sm flex items-center justify-center gap-2 transition-all active:scale-[0.98] shadow-lg shadow-[#4BC957]/10">
+                      className="w-full h-12 bg-[#4BC957] hover:bg-[#00B96E] disabled:opacity-60 text-white font-bold rounded-xl text-sm flex items-center justify-center gap-2 transition-all active:scale-[0.98] shadow-lg shadow-[#4BC957]/10">
                       {loading ? <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" /></svg> : <Send className="h-4 w-4" />}
                       {loading ? "Sending…" : "Send message"}
                     </button>

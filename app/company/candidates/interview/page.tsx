@@ -210,7 +210,7 @@ export default function SetAIInterviewPage() {
               </div>
             </div>
 
-            <Link href="/company/candidates/interview/sent" className="w-full flex items-center justify-center gap-2 bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold py-3 px-5 rounded-xl transition-all duration-200 active:scale-[0.98]">
+            <Link href="/company/candidates/interview/sent" className="w-full flex items-center justify-center gap-2 bg-[#4BC957] hover:bg-[#00B96E] text-white font-bold py-3 px-5 rounded-xl transition-all duration-200 active:scale-[0.98]">
               <Send className="h-4 w-4" />
               Send interview
             </Link>

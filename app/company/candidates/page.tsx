@@ -216,7 +216,7 @@ export default function CandidatesPage() {
               />
               <button
                 onClick={() => setIsFiltersOpen(false)}
-                className="bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold px-6 py-2.5 rounded-xl text-sm transition-all shadow-md shadow-[#4BC957]/10 active:scale-[0.98]"
+                className="bg-[#4BC957] hover:bg-[#00B96E] text-white font-bold px-6 py-2.5 rounded-xl text-sm transition-all shadow-md shadow-[#4BC957]/10 active:scale-[0.98]"
               >
                 Apply Filters
               </button>
@@ -273,7 +273,7 @@ export default function CandidatesPage() {
             <div className="flex items-center gap-2 pt-1.5 flex-wrap">
               <Link
                 href={`/company/candidates/profile?id=${candidate.id}`}
-                className="flex-1 bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold py-2.5 px-4 rounded-xl  flex items-center justify-center gap-1.5 transition-all shadow-md shadow-[#4BC957]/5 active:scale-[0.98]"
+                className="flex-1 bg-[#4BC957] hover:bg-[#00B96E] text-white font-bold py-2.5 px-4 rounded-xl  flex items-center justify-center gap-1.5 transition-all shadow-md shadow-[#4BC957]/5 active:scale-[0.98]"
               >
                 <Lock className="h-3.5 w-3.5" />
                 View profile

@@ -81,7 +81,7 @@ export default function CandidateInterviewPage() {
           <div className="pt-4">
             <Link 
               href="/candidate" 
-              className="inline-block bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold px-6 py-3 rounded-2xl transition-all shadow-md shadow-[#4BC957]/10 active:scale-[0.98]"
+              className="inline-block bg-[#4BC957] hover:bg-[#00B96E] text-white font-bold px-6 py-3 rounded-2xl transition-all shadow-md shadow-[#4BC957]/10 active:scale-[0.98]"
             >
               Return to dashboard
             </Link>
@@ -125,7 +125,7 @@ export default function CandidateInterviewPage() {
               }}
               className={`flex-1 text-center py-2.5 rounded-xl text-xs font-bold transition-all ${
                 mode === "text"
-                  ? "bg-[#4BC957] text-[#080C14] shadow"
+                  ? "bg-[#4BC957] text-white shadow"
                   : "text-slate-400 hover:text-slate-200"
               }`}
             >
@@ -138,7 +138,7 @@ export default function CandidateInterviewPage() {
               }}
               className={`flex-1 text-center py-2.5 rounded-xl text-xs font-bold transition-all ${
                 mode === "voice"
-                  ? "bg-[#4BC957] text-[#080C14] shadow"
+                  ? "bg-[#4BC957] text-white shadow"
                   : "text-slate-400 hover:text-slate-200"
               }`}
             >
@@ -163,7 +163,7 @@ export default function CandidateInterviewPage() {
               {/* Show transcribed text when available in Voice Mode */}
               {mode === "voice" && response && (
                 <div className="flex gap-3 items-start justify-end">
-                  <div className="bg-[#4BC957] text-[#080C14] px-4 py-3 rounded-2xl rounded-tr-none text-xs font-semibold leading-relaxed max-w-[80%]">
+                  <div className="bg-[#4BC957] text-white px-4 py-3 rounded-2xl rounded-tr-none text-xs font-semibold leading-relaxed max-w-[80%]">
                     {response}
                   </div>
                 </div>
@@ -186,7 +186,7 @@ export default function CandidateInterviewPage() {
                   <button
                     type="submit"
                     disabled={!response.trim()}
-                    className="bg-[#4BC957] hover:bg-[#00B96E] disabled:bg-slate-800 disabled:text-slate-600 disabled:cursor-not-allowed text-[#080C14] p-3 rounded-xl transition-all shadow-md shadow-[#4BC957]/10 flex-shrink-0"
+                    className="bg-[#4BC957] hover:bg-[#00B96E] disabled:bg-slate-800 disabled:text-slate-600 disabled:cursor-not-allowed text-white p-3 rounded-xl transition-all shadow-md shadow-[#4BC957]/10 flex-shrink-0"
                   >
                     <Send className="h-4 w-4" />
                   </button>
@@ -202,7 +202,7 @@ export default function CandidateInterviewPage() {
                       <>
                         <button
                           onClick={handleVoiceToggle}
-                          className="h-12 w-12 rounded-full bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] flex items-center justify-center transition-all shadow shadow-[#4BC957]/10"
+                          className="h-12 w-12 rounded-full bg-[#4BC957] hover:bg-[#00B96E] text-white flex items-center justify-center transition-all shadow shadow-[#4BC957]/10"
                         >
                           <Mic className="h-5 w-5" />
                         </button>
@@ -244,7 +244,7 @@ export default function CandidateInterviewPage() {
                   {mode === "voice" && response && !transcribingLoader && (
                     <button
                       onClick={handleVoiceSubmit}
-                      className="bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] px-4 py-2.5 rounded-xl text-xs font-bold transition-all shadow-md shadow-[#4BC957]/10 active:scale-[0.98]"
+                      className="bg-[#4BC957] hover:bg-[#00B96E] text-white px-4 py-2.5 rounded-xl text-xs font-bold transition-all shadow-md shadow-[#4BC957]/10 active:scale-[0.98]"
                     >
                       Submit answer
                     </button>

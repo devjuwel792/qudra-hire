@@ -47,7 +47,7 @@ export default function InterviewReportPage() {
             <Download className="h-4 w-4 text-slate-400" />
             Export PDF
           </button>
-          <Link href={'/company/inbox?id=2'} className="flex justify-center items-center gap-2 bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold px-4 py-2.5 rounded-xl  transition-all shadow-md shadow-[#4BC957]/10 active:scale-[0.98]">
+          <Link href={'/company/inbox?id=2'} className="flex justify-center items-center gap-2 bg-[#4BC957] hover:bg-[#00B96E] text-white font-bold px-4 py-2.5 rounded-xl  transition-all shadow-md shadow-[#4BC957]/10 active:scale-[0.98]">
             <MessageSquare className="h-4 w-4" />
             Message Candidate
           </Link>

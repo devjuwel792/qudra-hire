@@ -41,7 +41,7 @@ export default function InterviewSentPage() {
           </Link>
           <Link
             href="/company/candidates/interview/report"
-            className="bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold px-6 py-3 rounded-xl text-sm transition-all shadow-md shadow-[#4BC957]/10 active:scale-[0.98]"
+            className="bg-[#4BC957] hover:bg-[#00B96E] text-white font-bold px-6 py-3 rounded-xl text-sm transition-all shadow-md shadow-[#4BC957]/10 active:scale-[0.98]"
           >
             Preview report
           </Link>

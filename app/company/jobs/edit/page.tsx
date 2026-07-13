@@ -178,7 +178,7 @@ export default function EditJobPage() {
             >
               Cancel
             </Link>
-            <button className="bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold px-6 py-2.5 rounded-xl text-sm transition-all shadow-md shadow-[#4BC957]/10 active:scale-[0.98]">
+            <button className="bg-[#4BC957] hover:bg-[#00B96E] text-white font-bold px-6 py-2.5 rounded-xl text-sm transition-all shadow-md shadow-[#4BC957]/10 active:scale-[0.98]">
               Save Changes
             </button>
           </div>

@@ -124,7 +124,7 @@ export default function QudraHeader() {
               {/* Get started — only shown when NOT logged in */}
               <Link
                 href="/signup"
-                className="text-sm bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold px-4 py-2 rounded-lg transition-all active:scale-[0.97]"
+                className="text-sm bg-[#4BC957] hover:bg-[#00B96E] text-white font-bold px-4 py-2 rounded-lg transition-all active:scale-[0.97]"
               >
                 Get started
               </Link>
@@ -199,7 +199,7 @@ export default function QudraHeader() {
                 <Link
                   href="/signup"
                   onClick={() => setMobileOpen(false)}
-                  className="text-sm bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold px-4 py-2 rounded-lg transition-all text-center"
+                  className="text-sm bg-[#4BC957] hover:bg-[#00B96E] text-white font-bold px-4 py-2 rounded-lg transition-all text-center"
                 >
                   Get started
                 </Link>

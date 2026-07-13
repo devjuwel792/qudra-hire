@@ -253,7 +253,7 @@ export default function SignupPage() {
               onClick={() => { setAccountType(type); setErrorMsg(""); }}
               className={`flex-1 py-2.5 text-sm font-medium rounded-xl transition-all capitalize ${
                 accountType === type
-                  ? "bg-[#4BC957] text-[#080C14]"
+                  ? "bg-[#4BC957] text-white"
                   : "text-on-surface-muted hover:text-on-surface"
               }`}
             >
@@ -352,7 +352,7 @@ export default function SignupPage() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full flex items-center justify-center gap-2 bg-[#4BC957] hover:bg-[#00B96E] disabled:opacity-60 disabled:cursor-not-allowed text-[#080C14] font-bold px-6 py-3 rounded-xl transition-all mt-2"
+                className="w-full flex items-center justify-center gap-2 bg-[#4BC957] hover:bg-[#00B96E] disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold px-6 py-3 rounded-xl transition-all mt-2"
               >
                 {isLoading && <Loader2 size={16} className="animate-spin" />}
                 {isLoading ? "Creating account…" : "Create account & start matching"}
@@ -416,7 +416,7 @@ export default function SignupPage() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full flex items-center justify-center gap-2 bg-[#4BC957] hover:bg-[#00B96E] disabled:opacity-60 disabled:cursor-not-allowed text-[#080C14] font-bold px-6 py-3 rounded-xl transition-all mt-2"
+                className="w-full flex items-center justify-center gap-2 bg-[#4BC957] hover:bg-[#00B96E] disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold px-6 py-3 rounded-xl transition-all mt-2"
               >
                 {isLoading && <Loader2 size={16} className="animate-spin" />}
                 {isLoading ? "Creating account…" : "Create account"}

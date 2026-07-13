@@ -167,7 +167,7 @@ export default function HomePage() {
           </p>
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4
             animate-[fadeInUp_0.7s_0.35s_ease_forwards]">
-            <Link href="/jobs" className="w-full sm:w-auto bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold px-8 py-3.5 rounded-xl transition-all active:scale-[0.98]">
+            <Link href="/jobs" className="w-full sm:w-auto bg-[#4BC957] hover:bg-[#00B96E] text-white font-bold px-8 py-3.5 rounded-xl transition-all active:scale-[0.98]">
               Find your next role
             </Link>
             <Link href="/pricing" className="w-full sm:w-auto bg-transparent border border-[#4BC957]/30 hover:border-[#4BC957]/50 text-on-surface font-bold px-8 py-3.5 rounded-xl transition-all">
@@ -248,7 +248,7 @@ export default function HomePage() {
                     </li>
                   ))}
                 </ul>
-                <Link href="/candidate" className="inline-flex items-center justify-center gap-2 bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold px-6 py-3 rounded-xl transition-all w-max">
+                <Link href="/candidate" className="inline-flex items-center justify-center gap-2 bg-[#4BC957] hover:bg-[#00B96E] text-white font-bold px-6 py-3 rounded-xl transition-all w-max">
                   Get candidate workspace <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
@@ -270,7 +270,7 @@ export default function HomePage() {
                     </li>
                   ))}
                 </ul>
-                <Link href="/company" className="inline-flex items-center justify-center gap-2 bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold px-6 py-3 rounded-xl transition-all w-max">
+                <Link href="/company" className="inline-flex items-center justify-center gap-2 bg-[#4BC957] hover:bg-[#00B96E] text-white font-bold px-6 py-3 rounded-xl transition-all w-max">
                   Get company workspace <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
@@ -308,7 +308,7 @@ export default function HomePage() {
                 );
               })}
             </ul>
-            <Link href="/contact" className="inline-flex items-center justify-center gap-2 bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold px-6 py-3 rounded-xl transition-all">
+            <Link href="/contact" className="inline-flex items-center justify-center gap-2 bg-[#4BC957] hover:bg-[#00B96E] text-white font-bold px-6 py-3 rounded-xl transition-all">
               Go to contact page <ArrowRight className="h-4 w-4" />
             </Link>
           </Animate>
@@ -322,7 +322,7 @@ export default function HomePage() {
                   className="w-full bg-surface-deep border border-surface rounded-xl px-4 py-3 text-sm text-on-surface placeholder:text-on-surface-subtle focus:outline-none focus:border-[#4BC957]/50 transition-colors" />
                 <textarea placeholder="How can we help?" rows={4}
                   className="w-full bg-surface-deep border border-surface rounded-xl px-4 py-3 text-sm text-on-surface placeholder:text-on-surface-subtle focus:outline-none focus:border-[#4BC957]/50 transition-colors resize-none" />
-                <button type="button" className="w-full bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold px-6 py-3 rounded-xl transition-all">
+                <button type="button" className="w-full bg-[#4BC957] hover:bg-[#00B96E] text-white font-bold px-6 py-3 rounded-xl transition-all">
                   Send message
                 </button>
               </form>
@@ -343,7 +343,7 @@ export default function HomePage() {
               Join thousands of professionals and companies hiring smarter across the region.
             </p>
             <div className="relative flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link href="/signup" className="w-full sm:w-auto bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold px-8 py-3 rounded-xl transition-all">
+              <Link href="/signup" className="w-full sm:w-auto bg-[#4BC957] hover:bg-[#00B96E] text-white font-bold px-8 py-3 rounded-xl transition-all">
                 Create free account
               </Link>
               <Link href="/pricing" className="w-full sm:w-auto bg-transparent border border-surface hover:border-inner text-on-surface font-medium px-8 py-3 rounded-xl transition-all">

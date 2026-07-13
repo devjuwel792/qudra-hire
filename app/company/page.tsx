@@ -86,7 +86,7 @@ export default function CompanyDashboard() {
             Emirates NBD <span className="text-[#4BC957] font-normal">•</span> Talent
           </p>
         </div>
-        <Link href="/company/jobs/create" className="flex items-center gap-2 bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold px-5 py-3 rounded-xl transition-all duration-200 shadow-lg shadow-[#4BC957]/10 active:scale-[0.98]">
+        <Link href="/company/jobs/create" className="flex items-center gap-2 bg-[#4BC957] hover:bg-[#00B96E] text-white font-bold px-5 py-3 rounded-xl transition-all duration-200 shadow-lg shadow-[#4BC957]/10 active:scale-[0.98]">
           <Plus className="h-5 w-5" />
           Post a job
         </Link>
@@ -227,7 +227,7 @@ export default function CompanyDashboard() {
                 <span className="font-medium text-on-surface-muted text-sm">
                   <strong className="text-on-surface font-semibold">{role.applicants}</strong> applicants
                 </span>
-                <Link href={"/company/jobs/applicants"} className="border border-[#4BC957]/40 text-[#4BC957] hover:bg-[#4BC957] hover:text-[#080C14] px-4 py-1.5 rounded-lg font-semibold transition-all duration-200">
+                <Link href={"/company/jobs/applicants"} className="border border-[#4BC957]/40 text-[#4BC957] hover:bg-[#4BC957] hover:text-white px-4 py-1.5 rounded-lg font-semibold transition-all duration-200">
                   Open
                 </Link>
               </div>

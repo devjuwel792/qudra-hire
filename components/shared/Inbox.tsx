@@ -106,7 +106,7 @@ export default function Inbox({
                   <p className=" text-on-surface-muted truncate mt-1">{chat.lastMsg}</p>
                 </div>
                 {chat.unread > 0 && (
-                  <span className="h-5 w-5 rounded-full bg-[#4BC957] flex items-center justify-center text-[13px] font-bold text-[#080C14] flex-shrink-0 self-center">
+                  <span className="h-5 w-5 rounded-full bg-[#4BC957] flex items-center justify-center text-[13px] font-bold text-white flex-shrink-0 self-center">
                     {chat.unread}
                   </span>
                 )}
@@ -155,7 +155,7 @@ export default function Inbox({
                 >
                   <div
                     className={`px-4 py-3 rounded-2xl font-medium leading-relaxed ${isMe
-                      ? "bg-[#4BC957] text-[#080C14] rounded-tr-none"
+                      ? "bg-[#4BC957] text-white rounded-tr-none"
                       : "bg-surface-item text-on-surface border border-surface rounded-tl-none"
                       }`}
                   >
@@ -177,7 +177,7 @@ export default function Inbox({
             />
             <button
               type="submit"
-              className="bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] p-3 rounded-xl transition-all duration-200 shadow-md shadow-[#4BC957]/10 flex-shrink-0 active:scale-[0.98]"
+              className="bg-[#4BC957] hover:bg-[#00B96E] text-white p-3 rounded-xl transition-all duration-200 shadow-md shadow-[#4BC957]/10 flex-shrink-0 active:scale-[0.98]"
             >
               <Send className="h-4 w-4" />
             </button>

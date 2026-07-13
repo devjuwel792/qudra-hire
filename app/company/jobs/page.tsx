@@ -30,7 +30,7 @@ export default function JobsPage() {
           <h1 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight">Manage jobs</h1>
           <p className="text-sm text-slate-400 mt-1">Post, monitor and close listings.</p>
         </div>
-        <Link href="/company/jobs/create" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#4BC957] hover:bg-[#00B96E] text-[#080C14] font-bold px-5 py-3 rounded-xl transition-all duration-200 shadow-lg shadow-[#4BC957]/10 active:scale-[0.98]">
+        <Link href="/company/jobs/create" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#4BC957] hover:bg-[#00B96E] text-white font-bold px-5 py-3 rounded-xl transition-all duration-200 shadow-lg shadow-[#4BC957]/10 active:scale-[0.98]">
           <Plus className="h-5 w-5" />
           Post a job
         </Link>

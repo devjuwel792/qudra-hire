@@ -186,7 +186,7 @@ export default function ResetPasswordPage() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full flex items-center justify-center gap-2 bg-[#4BC957] hover:bg-[#00B96E] disabled:opacity-60 disabled:cursor-not-allowed text-[#080C14] font-bold px-6 py-3 rounded-xl transition-all mt-2"
+                className="w-full flex items-center justify-center gap-2 bg-[#4BC957] hover:bg-[#00B96E] disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold px-6 py-3 rounded-xl transition-all mt-2"
               >
                 {isLoading && <Loader2 size={16} className="animate-spin" />}
                 {isLoading ? "Resetting…" : "Reset password"}
