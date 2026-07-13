@@ -22,9 +22,17 @@ export default function QudraHeader() {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   const user = useAppSelector((s) => s.auth.user);
-  const isLoggedIn = !!user;
+  // Defer auth state to client-only to avoid SSR/client hydration mismatch.
+  // The server always has an empty store, so we render the logged-out UI on
+  // both server and first client paint, then switch to the real state.
+  const isLoggedIn = mounted && !!user;
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Determine dashboard route from user role
   function getDashboardHref() {
