@@ -46,7 +46,12 @@ export default function ForgotPasswordPage() {
         {/* Logo */}
         <div className="flex justify-center mb-8">
           <Link href="/" className="text-2xl font-bold tracking-tight">
-            <Image src='/logo.png' height={100} width={100} className="w-8 h-8" alt="logo" />
+            <div className="hidden dark:block">
+                          <Image src='/logo.png' height={700} width={700} className="w-48 h-auto" alt="logo" />
+                        </div>
+                        <div className="block dark:hidden">
+                          <Image src='/light-logo.png' height={700} width={700} className="w-48 h-auto" alt="logo" />
+                        </div>
           </Link>
         </div>
 

@@ -74,14 +74,19 @@ export default function LoginPage() {
         {/* Logo */}
         <div className="flex justify-center mb-8">
           <Link href="/" className="text-2xl font-bold tracking-tight">
-              <Image src='/logo.png' height={500} width={500} className="w-32 h-12" alt="logo" />
+            <div className="hidden dark:block">
+              <Image src='/logo.png' height={700} width={700} className="w-48 h-auto" alt="logo" />
+            </div>
+            <div className="block dark:hidden">
+              <Image src='/light-logo.png' height={700} width={700} className="w-48 h-auto" alt="logo" />
+            </div>
           </Link>
         </div>
 
         <h1 className="text-xl sm:text-2xl font-bold text-on-surface mb-2">Welcome back</h1>
         <p className="text-on-surface-muted text-sm mb-6">Log in to continue progressing.</p>
 
-       
+
 
         {/* Google button */}
         <button
