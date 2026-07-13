@@ -73,7 +73,7 @@ export default function AboutPage() {
       </section>
 
       {/* Founders */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-8 py-20 w-full text-center">
+      {/* <section className="max-w-7xl mx-auto px-4 sm:px-8 py-20 w-full text-center">
         <Animate className="animate-on-scroll">
           <h2 className="text-3xl font-bold text-on-surface mb-3">Meet the founders</h2>
           <p className="text-on-surface-muted mb-12">Builders, believers, and GCC natives.</p>
@@ -102,7 +102,7 @@ export default function AboutPage() {
             </Animate>
           ))}
         </div>
-      </section>
+      </section> */}
 
       {/* Values */}
       <section className="max-w-7xl mx-auto px-4 sm:px-8 pb-20 w-full text-center">
