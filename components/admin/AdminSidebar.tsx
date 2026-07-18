@@ -70,9 +70,9 @@ export default function AdminSidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="flex h-screen w-[210px] shrink-0 flex-col bg-[#111827] text-white border-r border-white/5">
+    <aside className="flex h-screen w-[210px] shrink-0 flex-col bg-card text-foreground border-r border-border">
       {/* Logo */}
-      <div className="flex items-center gap-2 px-5 py-5 border-b border-white/5">
+      <div className="flex items-center gap-2 px-5 py-5 border-b border-border">
         <div className="flex items-center gap-1">
           <div className="hidden dark:block">
             <Image src='/logo.png' height={700} width={700} className="w-48 h-auto" alt="logo" />
@@ -85,7 +85,7 @@ export default function AdminSidebar() {
 
       {/* Welcome text */}
       <div className="px-5 pt-5 pb-2">
-        <p className="text-white/40 text-[11px] uppercase tracking-widest font-medium">Main Menu</p>
+        <p className="text-muted-foreground text-[11px] uppercase tracking-widest font-medium">Main Menu</p>
       </div>
 
       {/* Navigation */}
@@ -102,14 +102,14 @@ export default function AdminSidebar() {
               className={cn(
                 "group flex items-center gap-3 rounded-lg px-3 py-2.5 text-[13px] font-medium transition-all duration-200",
                 isActive
-                  ? "bg-white/10 text-white"
-                  : "text-white/50 hover:bg-white/5 hover:text-white/80"
+                  ? "bg-muted text-foreground"
+                  : "text-muted-foreground hover:bg-muted hover:text-foreground"
               )}
             >
               <Icon
                 className={cn(
                   "h-4 w-4 flex-shrink-0 transition-colors",
-                  isActive ? "text-white" : "text-white/40 group-hover:text-white/70"
+                  isActive ? "text-foreground" : "text-muted-foreground group-hover:text-foreground"
                 )}
               />
               <span className="leading-tight">{label}</span>
@@ -119,12 +119,12 @@ export default function AdminSidebar() {
       </nav>
 
       {/* Logout */}
-      <div className="border-t border-white/5 p-3">
+      <div className="border-t border-border p-3">
         <Link
           href="/admin/logout"
-          className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-[13px] font-medium text-white/50 transition-all duration-200 hover:bg-white/5 hover:text-white/80"
+          className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-[13px] font-medium text-muted-foreground transition-all duration-200 hover:bg-muted hover:text-foreground"
         >
-          <LogOut className="h-4 w-4 flex-shrink-0 text-white/40" />
+          <LogOut className="h-4 w-4 flex-shrink-0 text-muted-foreground" />
           <span>Log Out</span>
         </Link>
       </div>
