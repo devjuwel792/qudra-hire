@@ -42,8 +42,13 @@ export default function CandidateSidebar() {
     <aside className="flex h-screen w-64 flex-shrink-0 flex-col border-r border-border bg-card text-foreground">
       {/* Brand */}
       <div className="flex items-center gap-1.5 border-b border-border px-6 py-5 font-sans text-xl font-bold tracking-tight">
-        <Link href="/" className="flex items-center gap-2 group">
-          <Image src="/logo.png" alt="" width={180} height={60} className="block h-12 w-auto object-contain" />
+        <Link href="/" className="text-2xl font-bold tracking-tight">
+          <div className="hidden dark:block">
+            <Image src='/logo.png' height={700} width={700} className="w-48 h-auto" alt="logo" />
+          </div>
+          <div className="block dark:hidden">
+            <Image src='/light-logo.png' height={700} width={700} className="w-48 h-auto" alt="logo" />
+          </div>
         </Link>
       </div>
 
@@ -74,9 +79,9 @@ export default function CandidateSidebar() {
                   </div>
                   <ChevronDown className="h-4 w-4 text-muted-foreground group-hover:text-foreground transition-colors" />
                 </DropdownMenuTrigger>
-                <DropdownMenuContent 
-                  className="w-56 bg-card border border-border p-2 shadow-xl" 
-                  side="right" 
+                <DropdownMenuContent
+                  className="w-56 bg-card border border-border p-2 shadow-xl"
+                  side="right"
                   align="start"
                   sideOffset={16}
                 >

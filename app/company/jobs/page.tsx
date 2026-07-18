@@ -55,10 +55,10 @@ export default function JobsPage() {
               </div>
               <div className="flex items-center gap-2 pt-1">
                 <DropdownMenu>
-                  <DropdownMenuTrigger>
-                    <button className="inline-flex items-center justify-center border border-border bg-muted hover:bg-muted/80 text-muted-foreground hover:text-foreground w-9 h-9 rounded-xl transition-all active:scale-[0.98]">
+                  <DropdownMenuTrigger className="inline-flex items-center justify-center border border-border bg-muted hover:bg-muted/80 text-muted-foreground hover:text-foreground w-9 h-9 rounded-xl transition-all active:scale-[0.98]">
+                    
                       <MoreVertical className="h-4 w-4" />
-                    </button>
+                    
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end" className="w-40 bg-card border border-border text-foreground">
                     <DropdownMenuItem onClick={() => router.push(`/company/jobs/view?id=${idx}`)} className="cursor-pointer gap-2 px-2.5 py-2">
@@ -111,10 +111,10 @@ export default function JobsPage() {
                   {/* Kebab Menu */}
                   <td className="py-5 px-6 text-right">
                     <DropdownMenu>
-                      <DropdownMenuTrigger>
-                        <button className="inline-flex items-center justify-center border border-border bg-muted hover:bg-muted/80 text-muted-foreground hover:text-foreground w-9 h-9 rounded-xl transition-all active:scale-[0.98]">
+                      <DropdownMenuTrigger className="inline-flex items-center justify-center border border-border bg-muted hover:bg-muted/80 text-muted-foreground hover:text-foreground w-9 h-9 rounded-xl transition-all active:scale-[0.98]">
+                     
                           <MoreVertical className="h-4 w-4" />
-                        </button>
+                       
                       </DropdownMenuTrigger>
                       <DropdownMenuContent align="end" className="w-40 bg-card border border-border text-foreground">
                         <DropdownMenuItem onClick={() => router.push(`/company/jobs/view?id=${idx}`)} className="cursor-pointer gap-2 px-2.5 py-2">
