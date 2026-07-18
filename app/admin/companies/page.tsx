@@ -27,7 +27,7 @@ function getInitials(name: string) {
 }
 
 function avatarColor(id: number) {
-  const colors = ["#6366f1","#8b5cf6","#10b981","#f59e0b","#ec4899","#3b82f6","#14b8a6","#f97316"];
+  const colors = ["#6366f1", "#8b5cf6", "#10b981", "#f59e0b", "#ec4899", "#3b82f6", "#14b8a6", "#f97316"];
   return colors[id % colors.length];
 }
 
@@ -39,8 +39,8 @@ function formatDate(iso: string) {
 
 function ApprovalBadge({ status }: { status: string }) {
   const map: Record<string, string> = {
-    APPROVED: "bg-[#00E5A0]/15 text-[#00E5A0]",
-    PENDING:  "bg-amber-500/15 text-amber-400",
+    APPROVED: "bg-[#21c55e]/15 text-[#21c55e]",
+    PENDING: "bg-amber-500/15 text-amber-400",
     REJECTED: "bg-red-500/15 text-red-400",
   };
   return (
@@ -54,7 +54,7 @@ function SuspendedBadge({ suspended }: { suspended: boolean }) {
   return suspended ? (
     <span className="px-2.5 py-0.5 rounded text-[11px] font-semibold bg-red-500/15 text-red-400">Suspended</span>
   ) : (
-    <span className="px-2.5 py-0.5 rounded text-[11px] font-semibold bg-[#00E5A0]/15 text-[#00E5A0]">Active</span>
+    <span className="px-2.5 py-0.5 rounded text-[11px] font-semibold bg-[#21c55e]/15 text-[#21c55e]">Active</span>
   );
 }
 
@@ -125,15 +125,15 @@ function DetailPanel({
       {/* Details grid */}
       <div className="grid grid-cols-2 gap-y-5 gap-x-4 py-5 border-b border-white/5">
         {[
-          ["Contact Person",    c.contact_person   || "—"],
-          ["Phone",             c.phone            || "—"],
-          ["Country",           c.country          || "—"],
-          ["Credits",           String(c.credits)],
-          ["Active Jobs",       String(c.active_jobs)],
-          ["Plan",              c.current_plan     || "Free"],
-          ["Licence No.",       c.licence_number   || "—"],
-          ["Licence Verified",  c.is_licence_verified ? "Yes" : "No"],
-          ["Since",             formatDate(c.since)],
+          ["Contact Person", c.contact_person || "—"],
+          ["Phone", c.phone || "—"],
+          ["Country", c.country || "—"],
+          ["Credits", String(c.credits)],
+          ["Active Jobs", String(c.active_jobs)],
+          ["Plan", c.current_plan || "Free"],
+          ["Licence No.", c.licence_number || "—"],
+          ["Licence Verified", c.is_licence_verified ? "Yes" : "No"],
+          ["Since", formatDate(c.since)],
           ...(c.rejection_reason ? [["Rejection Reason", c.rejection_reason]] : []),
         ].map(([label, val]) => (
           <div key={label}>
@@ -158,7 +158,7 @@ function DetailPanel({
         {c.approval_status === "PENDING" && (
           <>
             <button onClick={onApprove}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#00E5A0]/20 hover:bg-[#00E5A0]/10 text-[#00E5A0] text-xs font-medium transition-colors">
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#21c55e]/20 hover:bg-[#21c55e]/10 text-[#21c55e] text-xs font-medium transition-colors">
               <CheckCircle className="w-3.5 h-3.5" /> Approve
             </button>
             <button onClick={onReject}
@@ -186,14 +186,14 @@ function DetailPanel({
 function EditForm({ company, onClose }: { company: AdminCompanyListItem; onClose: () => void }) {
   const [patch, { isLoading }] = usePatchAdminCompanyMutation();
   const [form, setForm] = useState({
-    company_name:   company.company_name,
-    email:          company.email,
+    company_name: company.company_name,
+    email: company.email,
     contact_person: "",
-    phone:          "",
-    country:        company.country ?? "",
-    plan_id:        "",
+    phone: "",
+    country: company.country ?? "",
+    plan_id: "",
   });
-  const [error,   setError]   = useState("");
+  const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
 
   const set = (k: string, v: string) => setForm((p) => ({ ...p, [k]: v }));
@@ -203,12 +203,12 @@ function EditForm({ company, onClose }: { company: AdminCompanyListItem; onClose
     try {
       await patch({
         id: company.id,
-        company_name:   form.company_name   || undefined,
-        email:          form.email          || undefined,
+        company_name: form.company_name || undefined,
+        email: form.email || undefined,
         contact_person: form.contact_person || undefined,
-        phone:          form.phone          || undefined,
-        country:        form.country        || undefined,
-        plan_id:        form.plan_id        || undefined,
+        phone: form.phone || undefined,
+        country: form.country || undefined,
+        plan_id: form.plan_id || undefined,
       }).unwrap();
       setSuccess(true);
       setTimeout(onClose, 900);
@@ -221,8 +221,8 @@ function EditForm({ company, onClose }: { company: AdminCompanyListItem; onClose
 
   return (
     <div className="py-4 space-y-4">
-      {error   && <p className="text-xs text-red-400 bg-red-500/10 border border-red-500/20 px-3 py-2 rounded-lg">{error}</p>}
-      {success && <p className="text-xs text-[#00E5A0] bg-[#00E5A0]/10 border border-[#00E5A0]/20 px-3 py-2 rounded-lg">Saved!</p>}
+      {error && <p className="text-xs text-red-400 bg-red-500/10 border border-red-500/20 px-3 py-2 rounded-lg">{error}</p>}
+      {success && <p className="text-xs text-[#21c55e] bg-[#21c55e]/10 border border-[#21c55e]/20 px-3 py-2 rounded-lg">Saved!</p>}
       <div>
         <label className="text-xs text-white/40 mb-1.5 block">Company Name</label>
         <input className={inp} value={form.company_name} onChange={(e) => set("company_name", e.target.value)} />
@@ -268,7 +268,7 @@ function EditForm({ company, onClose }: { company: AdminCompanyListItem; onClose
 function RejectForm({ company, onClose }: { company: AdminCompanyListItem; onClose: () => void }) {
   const [reject, { isLoading }] = useRejectAdminCompanyMutation();
   const [reason, setReason] = useState("");
-  const [error,  setError]  = useState("");
+  const [error, setError] = useState("");
 
   async function handleReject() {
     if (!reason.trim()) { setError("Please provide a reason."); return; }
@@ -374,7 +374,7 @@ function ApproveConfirm({ company, onClose }: { company: AdminCompanyListItem; o
       <div className="flex justify-end gap-3 pt-2 border-t border-white/5">
         <button onClick={onClose} className="px-4 py-2 rounded-lg border border-white/10 text-white/70 hover:bg-white/5 text-sm font-medium transition-colors">Cancel</button>
         <button onClick={handleApprove} disabled={isLoading}
-          className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#00E5A0] hover:bg-[#00c98e] disabled:opacity-60 text-[#0D1117] text-sm font-semibold transition-colors">
+          className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#21c55e] hover:bg-[#00c98e] disabled:opacity-60 text-[#0D1117] text-sm font-semibold transition-colors">
           {isLoading && <Loader2 className="h-3.5 w-3.5 animate-spin" />}
           {isLoading ? "Approving…" : "Approve"}
         </button>
@@ -427,11 +427,11 @@ function ResetPasswordPanel({ company, onClose }: { company: AdminCompanyListIte
         </>
       ) : (
         <>
-          <p className="text-sm text-[#00E5A0]">Password reset successfully! Share this with the company:</p>
+          <p className="text-sm text-[#21c55e]">Password reset successfully! Share this with the company:</p>
           <div className="flex items-center gap-2 bg-[#1A202C] border border-white/10 rounded-lg px-4 py-3">
             <code className="flex-1 text-sm font-mono text-white tracking-wider">{newPassword}</code>
             <button onClick={copyPwd} className="text-white/40 hover:text-white transition-colors">
-              {copied ? <Check className="h-4 w-4 text-[#00E5A0]" /> : <Copy className="h-4 w-4" />}
+              {copied ? <Check className="h-4 w-4 text-[#21c55e]" /> : <Copy className="h-4 w-4" />}
             </button>
           </div>
           <p className="text-xs text-white/40">Store this securely — it won't be shown again.</p>
@@ -454,27 +454,27 @@ export default function CompanyManagementPage() {
   const { data, isLoading, isError } = useGetAdminCompaniesQuery();
   const companies = data?.data ?? [];
 
-  const [search,   setSearch]   = useState("");
-  const [page,     setPage]     = useState(1);
-  const [modal,    setModal]    = useState<ModalMode>(null);
+  const [search, setSearch] = useState("");
+  const [page, setPage] = useState(1);
+  const [modal, setModal] = useState<ModalMode>(null);
   const [selected, setSelected] = useState<AdminCompanyListItem | null>(null);
 
   function open(mode: ModalMode, c: AdminCompanyListItem) { setSelected(c); setModal(mode); }
   function close() { setModal(null); setSelected(null); }
 
-  const filtered   = companies.filter((c) =>
+  const filtered = companies.filter((c) =>
     c.company_name.toLowerCase().includes(search.toLowerCase()) ||
     c.email.toLowerCase().includes(search.toLowerCase())
   );
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
-  const paginated  = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+  const paginated = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
 
   const modalTitle: Record<NonNullable<ModalMode>, string> = {
-    view:      "Company Details",
-    edit:      "Edit Company",
-    delete:    "Confirm Delete",
-    approve:   "Approve Company",
-    reject:    "Reject Company",
+    view: "Company Details",
+    edit: "Edit Company",
+    delete: "Confirm Delete",
+    approve: "Approve Company",
+    reject: "Reject Company",
     "reset-pwd": "Reset Password",
   };
 
@@ -497,7 +497,7 @@ export default function CompanyManagementPage() {
             placeholder="Search by name or email…"
             value={search}
             onChange={(e) => { setSearch(e.target.value); setPage(1); }}
-            className="w-full bg-[#111827] border border-white/10 rounded-lg pl-9 pr-4 py-2 text-sm text-white placeholder-white/30 outline-none focus:border-[#00E5A0]/40 transition-colors"
+            className="w-full bg-[#111827] border border-white/10 rounded-lg pl-9 pr-4 py-2 text-sm text-white placeholder-white/30 outline-none focus:border-[#21c55e]/40 transition-colors"
           />
         </div>
       </div>
@@ -590,7 +590,7 @@ export default function CompanyManagementPage() {
                           </button>
                           {c.approval_status === "PENDING" && (
                             <button onClick={() => open("approve", c)} title="Approve"
-                              className="p-1.5 rounded-md hover:bg-[#00E5A0]/10 text-white/40 hover:text-[#00E5A0] transition-colors">
+                              className="p-1.5 rounded-md hover:bg-[#21c55e]/10 text-white/40 hover:text-[#21c55e] transition-colors">
                               <CheckCircle className="h-3.5 w-3.5" />
                             </button>
                           )}
@@ -620,7 +620,7 @@ export default function CompanyManagementPage() {
               </button>
               {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
                 <button key={n} onClick={() => setPage(n)}
-                  className={`w-7 h-7 rounded-md text-xs font-semibold transition-colors ${n === page ? "bg-[#00E5A0]/20 text-[#00E5A0]" : "hover:bg-white/5 text-white/40"}`}>
+                  className={`w-7 h-7 rounded-md text-xs font-semibold transition-colors ${n === page ? "bg-[#21c55e]/20 text-[#21c55e]" : "hover:bg-white/5 text-white/40"}`}>
                   {n}
                 </button>
               ))}
@@ -652,10 +652,10 @@ export default function CompanyManagementPage() {
               onResetPwd={() => setModal("reset-pwd")}
             />
           )}
-          {selected && modal === "edit"      && <EditForm        company={selected} onClose={close} />}
-          {selected && modal === "delete"    && <DeleteConfirm   company={selected} onClose={close} />}
-          {selected && modal === "approve"   && <ApproveConfirm  company={selected} onClose={close} />}
-          {selected && modal === "reject"    && <RejectForm      company={selected} onClose={close} />}
+          {selected && modal === "edit" && <EditForm company={selected} onClose={close} />}
+          {selected && modal === "delete" && <DeleteConfirm company={selected} onClose={close} />}
+          {selected && modal === "approve" && <ApproveConfirm company={selected} onClose={close} />}
+          {selected && modal === "reject" && <RejectForm company={selected} onClose={close} />}
           {selected && modal === "reset-pwd" && <ResetPasswordPanel company={selected} onClose={close} />}
         </DialogContent>
       </Dialog>

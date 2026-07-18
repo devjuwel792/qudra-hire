@@ -78,7 +78,7 @@ const ALL_JOBS: Job[] = [
 
 // ── Badge helpers ──────────────────────────────────────────────────────────────
 const statusStyles: Record<Status, string> = {
-  Active: "bg-[#00E5A0]/15 text-[#00E5A0]",
+  Active: "bg-[#21c55e]/15 text-[#21c55e]",
   Closed: "bg-red-500/15 text-red-400",
   Draft: "bg-gray-500/15 text-gray-400",
 };
@@ -116,7 +116,7 @@ export default function JobManagementPage() {
             placeholder="Search jobs..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full bg-[#111827] border border-white/10 rounded-lg pl-9 pr-4 py-2 text-sm text-white placeholder-white/30 outline-none focus:border-[#00E5A0]/40 transition-colors"
+            className="w-full bg-[#111827] border border-white/10 rounded-lg pl-9 pr-4 py-2 text-sm text-white placeholder-white/30 outline-none focus:border-[#21c55e]/40 transition-colors"
           />
         </div>
         <button className="flex items-center gap-2 bg-[#111827] border border-white/10 hover:border-white/20 text-white/60 hover:text-white text-sm px-4 py-2 rounded-lg transition-colors">
@@ -143,9 +143,8 @@ export default function JobManagementPage() {
             {filtered.map((j, idx) => (
               <tr
                 key={j.id}
-                className={`border-b border-white/5 hover:bg-white/[0.02] transition-colors ${
-                  idx === filtered.length - 1 ? "border-b-0" : ""
-                }`}
+                className={`border-b border-white/5 hover:bg-white/[0.02] transition-colors ${idx === filtered.length - 1 ? "border-b-0" : ""
+                  }`}
               >
                 {/* Job Title */}
                 <td className="px-5 py-3.5">
@@ -217,7 +216,7 @@ export default function JobManagementPage() {
             <button className="p-1.5 rounded-md hover:bg-white/5 text-white/30 hover:text-white/60 transition-colors">
               <ChevronLeft className="h-3.5 w-3.5" />
             </button>
-            <button className="w-7 h-7 rounded-md bg-[#00E5A0]/20 text-[#00E5A0] text-xs font-semibold">
+            <button className="w-7 h-7 rounded-md bg-[#21c55e]/20 text-[#21c55e] text-xs font-semibold">
               1
             </button>
             <button className="p-1.5 rounded-md hover:bg-white/5 text-white/30 hover:text-white/60 transition-colors">

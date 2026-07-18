@@ -32,11 +32,11 @@ function avatarColor(id: number) {
 
 function SubBadge({ label }: { label: string }) {
   const styles: Record<string, string> = {
-    Premium:    "bg-[#6366f1]/20 text-[#6366f1]",
-    Starter:    "bg-muted text-muted-foreground",
-    Pro:        "bg-[#6366f1]/20 text-[#6366f1]",
-    Basic:      "bg-muted text-muted-foreground",
-    Free:       "bg-muted text-muted-foreground",
+    Premium: "bg-[#6366f1]/20 text-[#6366f1]",
+    Starter: "bg-muted text-muted-foreground",
+    Pro: "bg-[#6366f1]/20 text-[#6366f1]",
+    Basic: "bg-muted text-muted-foreground",
+    Free: "bg-muted text-muted-foreground",
     Enterprise: "bg-[#f59e0b]/20 text-[#f59e0b]",
   };
   const cls = styles[label] ?? "bg-muted text-muted-foreground";
@@ -53,7 +53,7 @@ function StatusBadge({ suspended }: { suspended: boolean }) {
       Suspended
     </span>
   ) : (
-    <span className="px-2.5 py-0.5 rounded text-[11px] font-semibold border border-[#00E5A0]/20 text-[#00E5A0] bg-[#00E5A0]/10">
+    <span className="px-2.5 py-0.5 rounded text-[11px] font-semibold border border-[#21c55e]/20 text-[#21c55e] bg-[#21c55e]/10">
       Active
     </span>
   );
@@ -82,8 +82,8 @@ export default function AdminCandidatesPage() {
   const { data, isLoading } = useGetAdminCandidatesQuery();
   const candidates = data?.data ?? [];
 
-  const [search, setSearch]       = useState("");
-  const [page, setPage]           = useState(1);
+  const [search, setSearch] = useState("");
+  const [page, setPage] = useState(1);
 
   const filtered = candidates.filter(
     (c) =>
@@ -92,7 +92,7 @@ export default function AdminCandidatesPage() {
   );
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
-  const paginated  = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+  const paginated = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
 
   return (
     <div className="space-y-6">
@@ -141,95 +141,95 @@ export default function AdminCandidatesPage() {
               {isLoading
                 ? Array.from({ length: 6 }).map((_, i) => <SkeletonRow key={i} />)
                 : paginated.length === 0
-                ? (
-                  <tr>
-                    <td colSpan={7} className="text-center py-16 text-muted-foreground text-sm">
-                      {search ? "No candidates match your search." : "No candidates found."}
-                    </td>
-                  </tr>
-                )
-                : paginated.map((c, idx) => {
-                  // Fallbacks since backend might not have these fields yet
-                  const atsScore = (c as any).ats_score ?? Math.floor(Math.random() * 40) + 50; 
-                  const jobsApplied = (c as any).jobs_applied ?? Math.floor(Math.random() * 20);
-                  const designations = (c as any).designations ?? [
-                    { title: "Software Engineer", plan: c.subscription || "Premium" }
-                  ];
-
-                  return (
-                    <tr
-                      key={c.id}
-                      className={`border-b border-border hover:bg-muted/50 transition-colors ${idx === paginated.length - 1 ? "border-b-0" : ""}`}
-                    >
-                      {/* Name */}
-                      <td className="px-5 py-4">
-                        <div className="flex items-center gap-3">
-                          <div
-                            className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-white flex-shrink-0"
-                            style={{ background: avatarColor(c.id) }}
-                          >
-                            {getInitials(c.full_name)}
-                          </div>
-                          <div>
-                            <span className="block text-sm font-semibold text-foreground">{c.full_name}</span>
-                            <span className="block text-[11px] text-muted-foreground">{c.email}</span>
-                          </div>
-                        </div>
-                      </td>
-                      {/* Location */}
-                      <td className="px-5 py-4">
-                        <span className="text-sm font-medium text-foreground">{c.location || "UAE"}</span>
-                      </td>
-                      {/* Designations & Plans */}
-                      <td className="px-5 py-4">
-                        <div className="space-y-1.5">
-                          {designations.map((d: any, i: number) => (
-                            <div key={i} className="flex items-center gap-2">
-                              <span className="w-1.5 h-1.5 rounded-full bg-[#6366f1]/50" />
-                              <span className="text-xs text-foreground">{d.title}</span>
-                              <SubBadge label={d.plan} />
-                            </div>
-                          ))}
-                        </div>
-                      </td>
-                      {/* ATS Score */}
-                      <td className="px-5 py-4">
-                        <div className="flex items-center gap-3">
-                          <div className="w-16 h-1.5 rounded-full bg-muted overflow-hidden">
-                            <div className="h-full bg-[#00E5A0]" style={{ width: `${atsScore}%` }} />
-                          </div>
-                          <span className="text-xs font-medium text-foreground">{atsScore}</span>
-                        </div>
-                      </td>
-                      {/* Jobs Applied */}
-                      <td className="px-5 py-4">
-                        <span className="text-sm font-medium text-foreground">{jobsApplied}</span>
-                      </td>
-                      {/* Status */}
-                      <td className="px-5 py-4">
-                        <StatusBadge suspended={c.is_suspended} />
-                      </td>
-                      {/* Actions */}
-                      <td className="px-5 py-4">
-                        <div className="flex items-center justify-end gap-2">
-                          <button
-                            onClick={() => router.push(`/admin/candidates/${c.id}`)}
-                            title="View details"
-                            className="p-1.5 rounded-md hover:bg-muted text-muted-foreground hover:text-foreground transition-colors border border-transparent hover:border-border"
-                          >
-                            <Eye className="h-4 w-4" />
-                          </button>
-                          <button
-                            title="Delete"
-                            className="p-1.5 rounded-md hover:bg-red-500/10 text-red-500/60 hover:text-red-500 transition-colors border border-transparent hover:border-red-500/20"
-                          >
-                            <Trash2 className="h-4 w-4" />
-                          </button>
-                        </div>
+                  ? (
+                    <tr>
+                      <td colSpan={7} className="text-center py-16 text-muted-foreground text-sm">
+                        {search ? "No candidates match your search." : "No candidates found."}
                       </td>
                     </tr>
-                  );
-                })
+                  )
+                  : paginated.map((c, idx) => {
+                    // Fallbacks since backend might not have these fields yet
+                    const atsScore = (c as any).ats_score ?? Math.floor(Math.random() * 40) + 50;
+                    const jobsApplied = (c as any).jobs_applied ?? Math.floor(Math.random() * 20);
+                    const designations = (c as any).designations ?? [
+                      { title: "Software Engineer", plan: c.subscription || "Premium" }
+                    ];
+
+                    return (
+                      <tr
+                        key={c.id}
+                        className={`border-b border-border hover:bg-muted/50 transition-colors ${idx === paginated.length - 1 ? "border-b-0" : ""}`}
+                      >
+                        {/* Name */}
+                        <td className="px-5 py-4">
+                          <div className="flex items-center gap-3">
+                            <div
+                              className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-white flex-shrink-0"
+                              style={{ background: avatarColor(c.id) }}
+                            >
+                              {getInitials(c.full_name)}
+                            </div>
+                            <div>
+                              <span className="block text-sm font-semibold text-foreground">{c.full_name}</span>
+                              <span className="block text-[11px] text-muted-foreground">{c.email}</span>
+                            </div>
+                          </div>
+                        </td>
+                        {/* Location */}
+                        <td className="px-5 py-4">
+                          <span className="text-sm font-medium text-foreground">{c.location || "UAE"}</span>
+                        </td>
+                        {/* Designations & Plans */}
+                        <td className="px-5 py-4">
+                          <div className="space-y-1.5">
+                            {designations.map((d: any, i: number) => (
+                              <div key={i} className="flex items-center gap-2">
+                                <span className="w-1.5 h-1.5 rounded-full bg-[#6366f1]/50" />
+                                <span className="text-xs text-foreground">{d.title}</span>
+                                <SubBadge label={d.plan} />
+                              </div>
+                            ))}
+                          </div>
+                        </td>
+                        {/* ATS Score */}
+                        <td className="px-5 py-4">
+                          <div className="flex items-center gap-3">
+                            <div className="w-16 h-1.5 rounded-full bg-muted overflow-hidden">
+                              <div className="h-full bg-[#21c55e]" style={{ width: `${atsScore}%` }} />
+                            </div>
+                            <span className="text-xs font-medium text-foreground">{atsScore}</span>
+                          </div>
+                        </td>
+                        {/* Jobs Applied */}
+                        <td className="px-5 py-4">
+                          <span className="text-sm font-medium text-foreground">{jobsApplied}</span>
+                        </td>
+                        {/* Status */}
+                        <td className="px-5 py-4">
+                          <StatusBadge suspended={c.is_suspended} />
+                        </td>
+                        {/* Actions */}
+                        <td className="px-5 py-4">
+                          <div className="flex items-center justify-end gap-2">
+                            <button
+                              onClick={() => router.push(`/admin/candidates/${c.id}`)}
+                              title="View details"
+                              className="p-1.5 rounded-md hover:bg-muted text-muted-foreground hover:text-foreground transition-colors border border-transparent hover:border-border"
+                            >
+                              <Eye className="h-4 w-4" />
+                            </button>
+                            <button
+                              title="Delete"
+                              className="p-1.5 rounded-md hover:bg-red-500/10 text-red-500/60 hover:text-red-500 transition-colors border border-transparent hover:border-red-500/20"
+                            >
+                              <Trash2 className="h-4 w-4" />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    );
+                  })
               }
             </tbody>
           </table>
@@ -247,11 +247,10 @@ export default function AdminCandidatesPage() {
                 <button
                   key={n}
                   onClick={() => setPage(n)}
-                  className={`w-6 h-6 rounded flex items-center justify-center text-[11px] font-semibold transition-colors ${
-                    n === page
+                  className={`w-6 h-6 rounded flex items-center justify-center text-[11px] font-semibold transition-colors ${n === page
                       ? "bg-[#6366f1] text-white"
                       : "hover:bg-muted text-muted-foreground"
-                  }`}
+                    }`}
                 >
                   {n}
                 </button>

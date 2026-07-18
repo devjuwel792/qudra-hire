@@ -99,7 +99,7 @@ export default function CandidateDetailPage({
               <h2 className="text-lg font-bold text-foreground">{c.full_name}</h2>
               <p className="text-xs text-muted-foreground mb-3">{c.email}</p>
               <div className="flex gap-2">
-                <span className="px-2.5 py-0.5 rounded text-[10px] font-semibold bg-[#00E5A0]/10 border border-[#00E5A0]/20 text-[#00E5A0]">
+                <span className="px-2.5 py-0.5 rounded text-[10px] font-semibold bg-[#21c55e]/10 border border-[#21c55e]/20 text-[#21c55e]">
                   {c.is_suspended ? "Suspended" : "Active"}
                 </span>
                 <span className="px-2.5 py-0.5 rounded text-[10px] font-semibold bg-[#6366f1]/10 border border-[#6366f1]/20 text-[#6366f1]">
@@ -145,7 +145,7 @@ export default function CandidateDetailPage({
             <div className="space-y-2">
               <div className="flex justify-between text-xs">
                 <span className="text-muted-foreground">ATS Score</span>
-                <span className="font-bold text-[#00E5A0]">{atsScore}/100</span>
+                <span className="font-bold text-[#21c55e]">{atsScore}/100</span>
               </div>
               <div className="flex justify-between text-xs">
                 <span className="text-muted-foreground">Designations</span>
@@ -165,14 +165,14 @@ export default function CandidateDetailPage({
 
         {/* Right Column */}
         <div className="lg:col-span-8 space-y-4">
-          
+
           {/* Designation Plans */}
           <div className="rounded-xl bg-card border border-border p-5 shadow-sm">
             <div className="mb-4">
               <h3 className="text-sm font-bold text-foreground">Designation Plans</h3>
               <p className="text-[11px] text-muted-foreground">Each designation requires its own subscription. Changing designation = new plan required.</p>
             </div>
-            
+
             <div className="space-y-3">
               {/* Plan 1 */}
               <div className="rounded-lg border border-border bg-muted/20 p-4">
@@ -185,12 +185,12 @@ export default function CandidateDetailPage({
                       <div className="flex items-center gap-2">
                         <span className="text-sm font-bold text-foreground">Software Engineer</span>
                         <span className="text-[10px] text-muted-foreground">Technology</span>
-                        <span className="px-2 py-0.5 rounded text-[9px] font-bold bg-[#00E5A0]/10 text-[#00E5A0]">Active</span>
+                        <span className="px-2 py-0.5 rounded text-[9px] font-bold bg-[#21c55e]/10 text-[#21c55e]">Active</span>
                         <span className="px-2 py-0.5 rounded text-[9px] font-bold bg-[#6366f1]/10 text-[#6366f1]">Premium</span>
                       </div>
                       <div className="flex items-center gap-4 text-[10px] text-muted-foreground mt-1">
-                        <span className="flex items-center gap-1"><Calendar className="w-3 h-3"/> Started 2024-06-12</span>
-                        <span className="flex items-center gap-1"><Calendar className="w-3 h-3"/> Expires 2024-07-12</span>
+                        <span className="flex items-center gap-1"><Calendar className="w-3 h-3" /> Started 2024-06-12</span>
+                        <span className="flex items-center gap-1"><Calendar className="w-3 h-3" /> Expires 2024-07-12</span>
                         <span>$ AED 79/mo</span>
                         <span>{jobsApplied} jobs applied</span>
                       </div>
@@ -217,12 +217,12 @@ export default function CandidateDetailPage({
                       <div className="flex items-center gap-2">
                         <span className="text-sm font-bold text-foreground">DevOps Engineer</span>
                         <span className="text-[10px] text-muted-foreground">Technology</span>
-                        <span className="px-2 py-0.5 rounded text-[9px] font-bold bg-[#00E5A0]/10 text-[#00E5A0]">Active</span>
+                        <span className="px-2 py-0.5 rounded text-[9px] font-bold bg-[#21c55e]/10 text-[#21c55e]">Active</span>
                         <span className="px-2 py-0.5 rounded text-[9px] font-bold bg-muted text-muted-foreground">Free</span>
                       </div>
                       <div className="flex items-center gap-4 text-[10px] text-muted-foreground mt-1">
-                        <span className="flex items-center gap-1"><Calendar className="w-3 h-3"/> Started 2024-06-20</span>
-                        <span className="text-[#00E5A0]">No expiry (Free)</span>
+                        <span className="flex items-center gap-1"><Calendar className="w-3 h-3" /> Started 2024-06-20</span>
+                        <span className="text-[#21c55e]">No expiry (Free)</span>
                         <span>3 jobs applied</span>
                       </div>
                     </div>
@@ -245,7 +245,7 @@ export default function CandidateDetailPage({
               <h3 className="text-sm font-bold text-foreground">Application History</h3>
               <p className="text-[11px] text-muted-foreground">Jobs applied under each designation</p>
             </div>
-            
+
             <div className="space-y-4">
               <div className="border-b border-border pb-4">
                 <div className="flex justify-between items-center mb-3">
@@ -256,14 +256,14 @@ export default function CandidateDetailPage({
                   </div>
                   <span className="text-[10px] text-muted-foreground">8 applications</span>
                 </div>
-                
+
                 <div className="flex items-center justify-between pl-6">
                   <div>
                     <span className="block text-xs font-semibold text-foreground">Senior React Developer</span>
                     <span className="text-[10px] text-muted-foreground">Talabat Technologies - 2024-07-06</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <span className="text-[10px] font-bold text-[#00E5A0]">94%</span>
+                    <span className="text-[10px] font-bold text-[#21c55e]">94%</span>
                     <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-[#f59e0b]/10 text-[#f59e0b] border border-[#f59e0b]/20">Interview</span>
                   </div>
                 </div>
@@ -295,7 +295,7 @@ export default function CandidateDetailPage({
         <button className="py-2.5 rounded-lg border border-border bg-card hover:bg-muted text-sm font-semibold text-foreground transition-colors shadow-sm">
           Suspend
         </button>
-        <button 
+        <button
           onClick={handleDelete}
           className="py-2.5 rounded-lg border border-red-500/20 bg-card hover:bg-red-500/10 text-sm font-semibold text-red-500 transition-colors shadow-sm"
         >

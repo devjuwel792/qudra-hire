@@ -1,165 +1,359 @@
 "use client";
 
-import React, { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogFooter, DialogClose } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Label } from "@/components/ui/label";
-import { Edit2, Trash2 } from "lucide-react";
+import { useState } from "react";
+import {
+  Sparkles, Star, DollarSign, TrendingUp,
+  Pencil, Check, Plus, X, Briefcase
+} from "lucide-react";
+import {
+  Dialog, DialogContent, DialogHeader, DialogTitle,
+} from "@/components/ui/dialog";
 
-const candidatePlans = [
-  { id: 1, name: "Starter", price: 99, credits: 50, subscribers: 284 },
-  { id: 2, name: "Momentum", price: 249, credits: 150, subscribers: 631 },
-  { id: 3, name: "Sprint", price: 499, credits: 400, subscribers: 631 },
+// ── Data ──────────────────────────────────────────────────────────────────────
+
+const statsData = [
+  { icon: Sparkles, label: "Premium Plans Active", value: "5", change: "+14.2%" },
+  { icon: Star, label: "Starter Plans Active", value: "4", change: "+8.1%" },
+  { icon: DollarSign, label: "Monthly Revenue", value: "AED 88,400", change: "+10.7%" },
+  { icon: TrendingUp, label: "Conversion Rate", value: "62%", change: "+3.2%" },
 ];
 
-const companyPlans = [
-  { id: 1, name: "Starter", price: 199, credits: 50, subscribers: 284 },
-  { id: 2, name: "Growth", price: 499, credits: 150, subscribers: 631 },
-  { id: 3, name: "Sprint", price: 999, credits: 400, subscribers: 631 },
+const freePlanFeatures = [
+  "Browse & apply to unlimited jobs",
+  "Basic AI job matching",
+  "Resume upload & profile",
+  "Application tracking",
+  "Standard support",
 ];
 
-export default function SubscriptionsPage() {
-  const [activeTab, setActiveTab] = useState("company");
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
+const premiumPlanFeatures = [
+  "Everything in Free",
+  "Auto Apply — AI submits tailored applications daily",
+  "AI Resume Tailoring per job",
+  "AI Resume Improvement & ATS score",
+  "Priority AI matching & shortlisting",
+  "AI interview prep & practice",
+  "Direct messaging inbox",
+  "WhatsApp daily match digest",
+  "Priority support",
+];
 
-  const PlanCard = ({ plan }: { plan: any }) => (
-    <div className="bg-[#172033]/70 border border-gray-800 rounded-xl overflow-hidden flex flex-col p-5 h-[140px]">
-      <div className="flex justify-between items-start mb-1">
-        <h3 className="font-semibold text-white text-base">{plan.name}</h3>
-        <div className="text-white font-semibold text-sm">
-          <span className="text-gray-400 text-xs font-normal mr-1">AED</span> 
-          {plan.price}
+const activePremiumPlans = [
+  { name: "Ahmed Al-Rashidi", designation: "Software Engineer", billing: "Monthly", start: "2024-06-12", expires: "2024-07-12", jobs: 8 },
+  { name: "Sara Al-Mansouri", designation: "Marketing Manager", billing: "Yearly", start: "2024-01-01", expires: "2025-01-01", jobs: 12 },
+  { name: "Nora Al-Zaabi", designation: "Data Scientist", billing: "Yearly", start: "2024-03-01", expires: "2025-03-01", jobs: 15 },
+  { name: "Omar Hussain", designation: "Civil Engineer", billing: "Monthly", start: "2024-07-05", expires: "2024-08-05", jobs: 4 },
+  { name: "Fatima Al-Ali", designation: "Marketing Manager", billing: "Monthly", start: "2024-06-18", expires: "2024-07-18", jobs: 2 },
+];
+
+// ── Types ─────────────────────────────────────────────────────────────────────
+
+interface PlanForm {
+  name: string;
+  type: string;
+  title: string;
+  price: string;
+  renewal: string;
+  discount: string;
+  feature: string;
+}
+
+// ── Sub-components ────────────────────────────────────────────────────────────
+
+function StatCard({ icon: Icon, label, value, change }: {
+  icon: React.ElementType; label: string; value: string; change: string;
+}) {
+  return (
+    <div className="rounded-xl bg-card border border-border p-5 flex flex-col gap-3 shadow-sm">
+      <div className="flex items-start justify-between">
+        <div className="w-9 h-9 rounded-lg bg-muted flex items-center justify-center">
+          <Icon className="h-4 w-4 text-muted-foreground" />
         </div>
+        <span className="text-xs font-medium text-[#21c55e]">↑ {change}</span>
       </div>
-      <div className="text-gray-500 text-xs mb-auto">{plan.credits} credits</div>
-      
-      <div className="w-full h-px bg-gray-800 my-3"></div>
-      
-      <div className="flex justify-between items-center text-xs">
-        <div>
-          <span className="text-white font-medium">{plan.subscribers}</span> <span className="text-gray-500">subscribers</span>
-        </div>
-        <div className="flex gap-3 text-gray-500">
-          <button onClick={() => setIsDialogOpen(true)} className="hover:text-indigo-400 transition-colors">
-            <Edit2 className="w-3.5 h-3.5" />
-          </button>
-          <button className="hover:text-red-400 text-red-500/70 transition-colors">
-            <Trash2 className="w-3.5 h-3.5" />
-          </button>
-        </div>
+      <div>
+        <p className="text-2xl font-bold text-foreground">{value}</p>
+        <p className="text-xs text-muted-foreground mt-0.5">{label}</p>
       </div>
     </div>
   );
+}
+
+function PlanModal({
+  open,
+  onClose,
+  mode,
+}: {
+  open: boolean;
+  onClose: () => void;
+  mode: "add" | "edit";
+}) {
+  const [form, setForm] = useState<PlanForm>({
+    name: mode === "edit" ? "Starter" : "",
+    type: mode === "edit" ? "Free" : "",
+    title: mode === "edit" ? "Your always-on AI Recruiter." : "",
+    price: mode === "edit" ? "0" : "",
+    renewal: mode === "edit" ? "month" : "",
+    discount: mode === "edit" ? "• Save 16%" : "",
+    feature: mode === "edit" ? "Everything in Free" : "",
+  });
+
+  function set(field: keyof PlanForm, value: string) {
+    setForm(prev => ({ ...prev, [field]: value }));
+  }
+
+  const inputCls =
+    "w-full bg-muted border border-border rounded-lg px-3 py-2.5 text-sm text-foreground outline-none focus:border-[#6366f1] transition-colors placeholder:text-muted-foreground";
 
   return (
-    <div className="max-w-6xl w-full p-2 text-white">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold">Subscriptions</h1>
-        <Button 
-          onClick={() => setIsDialogOpen(true)}
-          className="bg-indigo-500 hover:bg-indigo-600 text-white rounded-lg px-4 h-9 font-medium"
+    <Dialog open={open} onOpenChange={(o) => { if (!o) onClose(); }}>
+      <DialogContent className="bg-card border border-border text-foreground max-w-md p-0 rounded-xl overflow-hidden">
+        <DialogHeader className="px-6 py-5 border-b border-border">
+          <DialogTitle className="text-lg font-bold text-foreground">
+            {mode === "add" ? "Add plans" : "Edit Plan"}
+          </DialogTitle>
+        </DialogHeader>
+
+        <div className="px-6 py-5 space-y-4">
+          <div>
+            <label className="text-xs font-medium text-muted-foreground mb-1.5 block">Plan Name</label>
+            <input className={inputCls} value={form.name} onChange={e => set("name", e.target.value)} placeholder="e.g. Starter" />
+          </div>
+          <div>
+            <label className="text-xs font-medium text-muted-foreground mb-1.5 block">Plan Type</label>
+            <input className={inputCls} value={form.type} onChange={e => set("type", e.target.value)} placeholder="e.g. Free / Premium" />
+          </div>
+          <div>
+            <label className="text-xs font-medium text-muted-foreground mb-1.5 block">Plan title</label>
+            <input className={inputCls} value={form.title} onChange={e => set("title", e.target.value)} placeholder="Short description" />
+          </div>
+          <div>
+            <label className="text-xs font-medium text-muted-foreground mb-1.5 block">Price (AED)</label>
+            <input className={inputCls} type="number" value={form.price} onChange={e => set("price", e.target.value)} placeholder="0" />
+          </div>
+          <div>
+            <label className="text-xs font-medium text-muted-foreground mb-1.5 block">Renewal</label>
+            <input className={inputCls} value={form.renewal} onChange={e => set("renewal", e.target.value)} placeholder="month / year" />
+          </div>
+          <div>
+            <label className="text-xs font-medium text-muted-foreground mb-1.5 block">Discount</label>
+            <input className={inputCls} value={form.discount} onChange={e => set("discount", e.target.value)} placeholder="e.g. • Save 16%" />
+          </div>
+          <div>
+            <label className="text-xs font-medium text-muted-foreground mb-1.5 block">Feature</label>
+            <div className="flex gap-2">
+              <input className={inputCls} value={form.feature} onChange={e => set("feature", e.target.value)} placeholder="Add a feature" />
+              <button className="flex-shrink-0 w-10 h-10 rounded-lg bg-muted border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-[#6366f1] transition-colors">
+                <Plus className="h-4 w-4" />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex items-center justify-end gap-3 px-6 py-4 border-t border-border">
+          <button
+            onClick={onClose}
+            className="px-4 py-2 rounded-lg border border-border text-sm font-medium text-foreground hover:bg-muted transition-colors"
+          >
+            Cancel
+          </button>
+          <button
+            className="px-5 py-2 rounded-lg bg-[#6366f1] hover:bg-[#6366f1]/90 text-white text-sm font-medium transition-colors"
+          >
+            Save
+          </button>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+// ── Main Page ─────────────────────────────────────────────────────────────────
+
+export default function SubscriptionsPage() {
+  const [billing, setBilling] = useState<"monthly" | "yearly">("monthly");
+  const [modalMode, setModalMode] = useState<"add" | "edit" | null>(null);
+
+  const monthlyPrice = 79;
+  const yearlyPrice = Math.round(monthlyPrice * 12 * 0.84);
+
+  return (
+    <div className="space-y-6 max-w-6xl">
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-bold text-foreground">Subscription Plans</h1>
+        <button
+          onClick={() => setModalMode("add")}
+          className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#6366f1] hover:bg-[#6366f1]/90 text-white text-sm font-semibold transition-colors shadow"
         >
-          Add plans
-        </Button>
+          <Plus className="h-4 w-4" /> Add plans
+        </button>
       </div>
 
-      <Tabs defaultValue="company" className="w-full" onValueChange={setActiveTab}>
-        <TabsList className="bg-[#111827] border border-gray-800 rounded-lg p-1 h-10 mb-6 flex space-x-1">
-          <TabsTrigger 
-            value="candidate" 
-            className="rounded-md px-4 py-1.5 text-sm data-[state=active]:bg-[#1e293b] data-[state=active]:text-white text-gray-400 hover:text-gray-200"
-          >
-            Candidate
-          </TabsTrigger>
-          <TabsTrigger 
-            value="company" 
-            className="rounded-md px-4 py-1.5 text-sm data-[state=active]:bg-[#1e293b] data-[state=active]:text-white text-gray-400 hover:text-gray-200"
-          >
-            Company
-          </TabsTrigger>
-        </TabsList>
+      {/* Stats */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {statsData.map((s) => (
+          <StatCard key={s.label} {...s} />
+        ))}
+      </div>
 
-        <TabsContent value="candidate" className="mt-0">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {candidatePlans.map((plan) => (
-              <PlanCard key={plan.id} plan={plan} />
+      {/* Billing toggle */}
+      <div className="flex items-center gap-3">
+        <button
+          onClick={() => setBilling("monthly")}
+          className={`px-4 py-1.5 rounded-full text-sm font-semibold transition-all ${billing === "monthly"
+              ? "bg-[#21c55e] text-[#0f172a]"
+              : "bg-muted text-muted-foreground hover:text-foreground"
+            }`}
+        >
+          Monthly
+        </button>
+        <button
+          onClick={() => setBilling("yearly")}
+          className={`flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-semibold transition-all ${billing === "yearly"
+              ? "bg-[#21c55e] text-[#0f172a]"
+              : "bg-muted text-muted-foreground hover:text-foreground"
+            }`}
+        >
+          Yearly
+          <span className="text-[11px] font-medium text-[#21c55e] bg-[#21c55e]/10 px-1.5 py-0.5 rounded-full">
+            • Save 16%
+          </span>
+        </button>
+      </div>
+
+      {/* Plan Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        {/* Free Plan */}
+        <div className="rounded-xl bg-card border border-border p-6 shadow-sm">
+          <div className="flex items-start justify-between mb-4">
+            <div>
+              <p className="text-[11px] font-bold text-muted-foreground uppercase tracking-widest mb-1">⚡ STARTER</p>
+              <h2 className="text-4xl font-black text-foreground">Free</h2>
+              <p className="text-sm text-muted-foreground mt-1">Everything you need to start your search.</p>
+            </div>
+            <button
+              onClick={() => setModalMode("edit")}
+              className="p-1.5 rounded-md hover:bg-muted text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <Pencil className="h-4 w-4" />
+            </button>
+          </div>
+          <div className="mb-5">
+            <span className="text-3xl font-black text-foreground">AED 0 </span>
+            <span className="text-muted-foreground text-sm">forever</span>
+          </div>
+          <button className="w-full py-2.5 rounded-lg border border-border text-sm font-semibold text-foreground hover:bg-muted transition-colors mb-5">
+            Get started free
+          </button>
+          <ul className="space-y-2.5">
+            {freePlanFeatures.map(f => (
+              <li key={f} className="flex items-start gap-2.5 text-sm text-foreground">
+                <Check className="h-4 w-4 text-[#21c55e] flex-shrink-0 mt-0.5" />
+                {f}
+              </li>
             ))}
-          </div>
-        </TabsContent>
+          </ul>
+        </div>
 
-        <TabsContent value="company" className="mt-0">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {companyPlans.map((plan) => (
-              <PlanCard key={plan.id} plan={plan} />
+        {/* Premium Plan */}
+        <div className="rounded-xl bg-card border border-[#6366f1]/40 p-6 shadow-md relative overflow-hidden">
+          {/* Most popular badge */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2">
+            <span className="inline-block bg-[#21c55e] text-[#0f172a] text-[10px] font-black px-4 py-1 rounded-b-full tracking-wide">
+              Most popular
+            </span>
+          </div>
+          <div className="flex items-start justify-between mb-4 mt-3">
+            <div>
+              <p className="text-[11px] font-bold text-[#6366f1] uppercase tracking-widest mb-1">⭐ RECOMMENDED</p>
+              <h2 className="text-4xl font-black text-foreground">Premium</h2>
+              <p className="text-sm text-muted-foreground mt-1">Your always-on AI Recruiter.</p>
+            </div>
+            <button
+              onClick={() => setModalMode("edit")}
+              className="p-1.5 rounded-md hover:bg-muted text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <Pencil className="h-4 w-4" />
+            </button>
+          </div>
+          <div className="mb-5">
+            <span className="text-3xl font-black text-foreground">
+              AED {billing === "monthly" ? monthlyPrice : yearlyPrice}{" "}
+            </span>
+            <span className="text-muted-foreground text-sm">
+              / {billing === "monthly" ? "month" : "year"}
+            </span>
+          </div>
+          <button className="w-full py-2.5 rounded-lg bg-[#21c55e] hover:bg-[#21c55e]/90 text-[#0f172a] text-sm font-bold transition-colors mb-5">
+            Upgrade to Premium
+          </button>
+          <ul className="space-y-2.5">
+            {premiumPlanFeatures.map(f => (
+              <li key={f} className="flex items-start gap-2.5 text-sm text-foreground">
+                <Check className="h-4 w-4 text-[#21c55e] flex-shrink-0 mt-0.5" />
+                {f}
+              </li>
             ))}
-          </div>
-        </TabsContent>
-      </Tabs>
+          </ul>
+        </div>
+      </div>
 
-      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent className="bg-[#111827] border border-gray-800 text-white sm:max-w-[425px] p-0 overflow-hidden">
-          <DialogHeader className="px-6 py-5 border-b border-gray-800/50">
-            <DialogTitle className="text-xl font-semibold">Edit Plan</DialogTitle>
-          </DialogHeader>
-          <div className="px-6 py-5 space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="name" className="text-sm font-medium text-gray-400">Plan Name</Label>
-              <Input
-                id="name"
-                defaultValue="Starter"
-                className="bg-[#172033] border-gray-800 text-white h-10"
-              />
-            </div>
-            
-            <div className="space-y-2">
-              <Label htmlFor="category" className="text-sm font-medium text-gray-400">Category</Label>
-              <Select defaultValue="company">
-                <SelectTrigger id="category" className="bg-[#172033] border-gray-800 text-white h-10 w-full">
-                  <SelectValue placeholder="Select Category" />
-                </SelectTrigger>
-                <SelectContent className="bg-[#1f2937] text-white border-gray-700">
-                  <SelectItem value="company">Company</SelectItem>
-                  <SelectItem value="candidate">Candidate</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="price" className="text-sm font-medium text-gray-400">Price (AED)</Label>
-                <Input
-                  id="price"
-                  type="number"
-                  defaultValue="199"
-                  className="bg-[#172033] border-gray-800 text-white h-10"
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="credits" className="text-sm font-medium text-gray-400">Credits</Label>
-                <Input
-                  id="credits"
-                  type="number"
-                  defaultValue="50"
-                  className="bg-[#172033] border-gray-800 text-white h-10"
-                />
-              </div>
-            </div>
+      {/* Active Premium Plans Table */}
+      <div>
+        <h2 className="text-base font-bold text-foreground mb-3">Active Premium Plans</h2>
+        <div className="rounded-xl bg-card border border-border overflow-hidden shadow-sm">
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[700px]">
+              <thead>
+                <tr className="border-b border-border bg-muted/50">
+                  {["CANDIDATE", "DESIGNATION", "BILLING", "START", "EXPIRES", "JOBS APPLIED"].map(h => (
+                    <th key={h} className="px-5 py-3 text-[10px] font-bold text-muted-foreground uppercase tracking-wider text-left">
+                      {h}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {activePremiumPlans.map((row, idx) => (
+                  <tr
+                    key={row.name}
+                    className={`border-b border-border hover:bg-muted/40 transition-colors ${idx === activePremiumPlans.length - 1 ? "border-b-0" : ""}`}
+                  >
+                    <td className="px-5 py-3.5 text-sm font-semibold text-foreground">{row.name}</td>
+                    <td className="px-5 py-3.5">
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <Briefcase className="h-3.5 w-3.5" />
+                        {row.designation}
+                      </div>
+                    </td>
+                    <td className="px-5 py-3.5">
+                      <span className={`px-2.5 py-0.5 rounded text-[10px] font-semibold border ${row.billing === "Monthly"
+                          ? "bg-muted border-border text-foreground"
+                          : "bg-[#6366f1]/10 border-[#6366f1]/20 text-[#6366f1]"
+                        }`}>
+                        {row.billing}
+                      </span>
+                    </td>
+                    <td className="px-5 py-3.5 text-sm text-muted-foreground">{row.start}</td>
+                    <td className="px-5 py-3.5 text-sm text-muted-foreground">{row.expires}</td>
+                    <td className="px-5 py-3.5 text-sm font-semibold text-foreground">{row.jobs}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
-          <DialogFooter className="px-6 py-4 bg-transparent border-t-0 sm:justify-end gap-2 flex-row justify-end">
-            <DialogClose >
-              <Button type="button" variant="outline" className="bg-transparent border-gray-700 text-white hover:bg-gray-800 hover:text-white">
-                Cancel
-              </Button>
-            </DialogClose>
-            <Button type="button" className="bg-indigo-500 hover:bg-indigo-600 text-white">
-              Save
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
+        </div>
+      </div>
+
+      {/* Modals */}
+      {(modalMode === "add" || modalMode === "edit") && (
+        <PlanModal
+          open={true}
+          onClose={() => setModalMode(null)}
+          mode={modalMode}
+        />
+      )}
     </div>
   );
 }

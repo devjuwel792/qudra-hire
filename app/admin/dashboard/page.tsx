@@ -40,7 +40,7 @@ const revenueData = [
 
 const planDistributionData = [
   { name: "Premium", value: 5, color: "#6366f1" },
-  { name: "Starter (Free)", value: 4, color: "#00E5A0" },
+  { name: "Starter (Free)", value: 4, color: "#21c55e" },
 ];
 
 const userGrowthData = [
@@ -99,7 +99,7 @@ function StatCard({
         <div className="w-9 h-9 rounded-lg bg-[#6366f1]/10 flex items-center justify-center">
           <Icon className="h-4 w-4 text-[#6366f1]" />
         </div>
-        <span className="text-xs font-medium text-[#00E5A0]">↑ {change}</span>
+        <span className="text-xs font-medium text-[#21c55e]">↑ {change}</span>
       </div>
       <div>
         <p className="text-2xl font-bold text-foreground">{value}</p>
@@ -111,7 +111,7 @@ function StatCard({
 
 function StatusBadge({ status }: { status: string }) {
   const map: Record<string, string> = {
-    Successful: "bg-[#00E5A0]/10 text-[#00E5A0]",
+    Successful: "bg-[#21c55e]/10 text-[#21c55e]",
     Failed: "bg-red-500/10 text-red-500",
     Pending: "bg-amber-500/10 text-amber-500",
   };
@@ -163,8 +163,8 @@ export default function AdminDashboardPage() {
             <AreaChart data={revenueData} margin={{ top: 10, right: 0, left: -20, bottom: 0 }}>
               <defs>
                 <linearGradient id="revGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#00E5A0" stopOpacity={0.3} />
-                  <stop offset="95%" stopColor="#00E5A0" stopOpacity={0} />
+                  <stop offset="5%" stopColor="#21c55e" stopOpacity={0.3} />
+                  <stop offset="95%" stopColor="#21c55e" stopOpacity={0} />
                 </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="currentColor" strokeOpacity={0.05} />
@@ -173,9 +173,9 @@ export default function AdminDashboardPage() {
                 tickFormatter={(v: number) => `${v / 1000}k`} />
               <Tooltip
                 contentStyle={{ background: "hsl(var(--card))", border: "1px solid hsl(var(--border))", borderRadius: 8, color: "hsl(var(--foreground))" }}
-                itemStyle={{ color: "#00E5A0" }}
+                itemStyle={{ color: "#21c55e" }}
               />
-              <Area type="monotone" dataKey="value" stroke="#00E5A0" strokeWidth={2} fill="url(#revGrad)" />
+              <Area type="monotone" dataKey="value" stroke="#21c55e" strokeWidth={2} fill="url(#revGrad)" />
             </AreaChart>
           </ResponsiveContainer>
         </div>
@@ -222,9 +222,9 @@ export default function AdminDashboardPage() {
               <YAxis tick={{ fill: "currentColor", opacity: 0.5, fontSize: 11 }} axisLine={false} tickLine={false} />
               <Tooltip
                 contentStyle={{ background: "hsl(var(--card))", border: "1px solid hsl(var(--border))", borderRadius: 8, color: "hsl(var(--foreground))" }}
-                itemStyle={{ color: "#00E5A0" }}
+                itemStyle={{ color: "#21c55e" }}
               />
-              <Bar dataKey="users" fill="#00E5A0" radius={[4, 4, 0, 0]} barSize={20} />
+              <Bar dataKey="users" fill="#21c55e" radius={[4, 4, 0, 0]} barSize={20} />
             </BarChart>
           </ResponsiveContainer>
         </div>
