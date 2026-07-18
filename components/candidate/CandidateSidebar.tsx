@@ -7,6 +7,8 @@ import {
   ClipboardList,
   MessageSquare,
   Wallet,
+  Star,
+  User,
   LogOut,
   ChevronRight
 } from "lucide-react";
@@ -19,21 +21,22 @@ const navItems = [
   { label: "My CV", href: "/candidate/cv", icon: FileText },
   { label: "Applications", href: "/candidate/applications", icon: ClipboardList },
   { label: "Inbox", href: "/candidate/inbox", icon: MessageSquare },
-  { label: "Wallet", href: "/candidate/wallet", icon: Wallet },
+  { label: "Subscription", href: "/candidate/subscription", icon: Star },
+  { label: "My profile", href: "/candidate/profile", icon: User },
 ];
 
 export default function CandidateSidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="flex h-screen w-64 flex-shrink-0 flex-col border-r border-border bg-card text-foreground">
+    <aside className="flex h-screen w-64 flex-shrink-0 flex-col border-r border-border bg-card text-card-foreground">
       {/* Brand */}
       <div className="flex items-center gap-1.5 border-b border-border px-6 py-5 font-sans text-xl font-bold tracking-tight">
-  {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
-            <Image src="/logo.png" alt="" width={180} height={60} className="block h-12 w-auto object-contain" />
-          
-          </Link>
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-2 group">
+          <Image src="/logo.png" alt="" width={180} height={60} className="block h-12 w-auto object-contain" />
+
+        </Link>
       </div>
 
       {/* Nav */}

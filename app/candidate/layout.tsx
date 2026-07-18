@@ -16,7 +16,7 @@ export default function CandidateLayout({
       <main className="flex-1 h-screen flex flex-col bg-background overflow-hidden">
         {/* Mobile header + overlay handled in client component */}
         <CandidateMobileNav />
-        <div className="flex-1 overflow-y-auto">
+        <div className="flex-1 w-full overflow-y-auto">
           {children}
         </div>
       </main>
