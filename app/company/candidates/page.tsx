@@ -115,31 +115,30 @@ export default function CandidatesPage() {
 
   return (
     <div className="p-4 md:p-8 space-y-6 md:space-y-8 max-w-full mx-auto">
-      {/* Header section matching the screenshot */}
+      {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
         <div>
-          <h1 className="text-xl md:text-2xl font-bold text-white tracking-tight">AI-ranked candidates</h1>
-          <p className="text-sm text-slate-400 mt-1">Unlock full profiles using credits.</p>
+          <h1 className="text-xl md:text-2xl font-bold text-foreground tracking-tight">AI-ranked candidates</h1>
+          <p className="text-sm text-muted-foreground mt-1">Unlock full profiles using credits.</p>
         </div>
 
-        {/* Shadcn Dialog Trigger for Filters */}
+        {/* Filters Dialog */}
         <Dialog open={isFiltersOpen} onOpenChange={setIsFiltersOpen}>
           <DialogTrigger
             render={
-              <button className="flex items-center gap-2 border border-slate-700/80 bg-[#0F172A] hover:bg-[#1E293B] text-slate-200 px-4 py-2 rounded-xl text-sm font-semibold transition-all active:scale-[0.98]">
-                <SlidersHorizontal className="h-4 w-4 text-slate-400" />
+              <button className="flex items-center gap-2 border border-border bg-card hover:bg-muted text-foreground px-4 py-2 rounded-xl text-sm font-semibold transition-all active:scale-[0.98]">
+                <SlidersHorizontal className="h-4 w-4 text-muted-foreground" />
                 Filters
               </button>
             }
           />
 
-          {/* Filters Modal Content matching the screenshot exactly */}
-          <DialogContent className="max-w-md w-full bg-[#0B0F19] border border-[#1E293B] p-6 rounded-2xl text-slate-200 shadow-2xl! ring-0! outline-hidden">
-            <DialogHeader className="flex flex-row items-center justify-between border-b border-[#1E293B]/60 pb-4">
-              <DialogTitle className="text-xl font-bold text-white tracking-tight">Filters</DialogTitle>
+          <DialogContent className="max-w-md w-full bg-card border border-border p-6 rounded-2xl text-foreground shadow-2xl! ring-0! outline-hidden">
+            <DialogHeader className="flex flex-row items-center justify-between border-b border-border pb-4">
+              <DialogTitle className="text-xl font-bold text-foreground tracking-tight">Filters</DialogTitle>
               <DialogClose
                 render={
-                  <button className="p-1 rounded-lg hover:bg-[#162032] text-slate-400 hover:text-white transition-colors">
+                  <button className="p-1 rounded-lg hover:bg-muted text-muted-foreground hover:text-foreground transition-colors">
                     <X className="h-5 w-5" />
                   </button>
                 }
@@ -147,30 +146,28 @@ export default function CandidatesPage() {
             </DialogHeader>
 
             <div className="space-y-5 py-4">
-              {/* Role filter */}
               <div className="space-y-2">
-                <label className=" font-semibold text-slate-400 uppercase tracking-wider">Role</label>
+                <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Role</label>
                 <input
                   type="text"
                   value={roleFilter}
                   onChange={(e) => setRoleFilter(e.target.value)}
                   placeholder="Search by role (e.g. Senior Designer)"
-                  className="w-full bg-[#131926] border border-[#2A3C58]/60 focus:border-[#4BC957] text-slate-200 placeholder-slate-500 rounded-xl px-4 py-3 text-sm focus:outline-none transition-colors"
+                  className="w-full bg-background border border-border focus:border-[#4BC957] text-foreground placeholder:text-muted-foreground rounded-xl px-4 py-3 text-sm focus:outline-none transition-colors"
                 />
               </div>
 
-              {/* Skills Filter with Tag Input */}
               <div className="space-y-2">
-                <label className=" font-semibold text-slate-400 uppercase tracking-wider">Skills</label>
-                <div className="flex flex-wrap gap-2 items-center w-full bg-[#131926] border border-[#2A3C58]/60 focus-within:border-[#4BC957] rounded-xl p-2.5 transition-colors">
+                <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Skills</label>
+                <div className="flex flex-wrap gap-2 items-center w-full bg-background border border-border focus-within:border-[#4BC957] rounded-xl p-2.5 transition-colors">
                   {skills.map((skill, idx) => (
                     <Badge
                       key={idx}
                       variant="outline"
-                      className="bg-[#1C263A] text-slate-200 border-[#2A3C58] rounded-md px-2 py-1 flex items-center gap-1.5  font-medium"
+                      className="bg-muted text-foreground border-border rounded-md px-2 py-1 flex items-center gap-1.5 font-medium"
                     >
                       {skill}
-                      <button onClick={() => handleRemoveSkill(skill)} className="text-slate-400 hover:text-white">
+                      <button onClick={() => handleRemoveSkill(skill)} className="text-muted-foreground hover:text-foreground">
                         <X className="h-3 w-3" />
                       </button>
                     </Badge>
@@ -180,36 +177,34 @@ export default function CandidatesPage() {
                     value={skillInput}
                     onChange={(e) => setSkillInput(e.target.value)}
                     onKeyDown={handleAddSkill}
-                    placeholder={skills.length === 0 ? "Add skills..." : "Add skills..."}
-                    className="flex-1 min-w-[120px] bg-transparent  text-slate-200 placeholder-slate-500 focus:outline-none py-1"
+                    placeholder="Add skills..."
+                    className="flex-1 min-w-[120px] bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none py-1 text-sm"
                   />
                 </div>
-                <p className="text-[13px] text-slate-500">Separate skills with a comma or press Enter.</p>
+                <p className="text-[13px] text-muted-foreground">Separate skills with a comma or press Enter.</p>
               </div>
 
-              {/* Experience level using Shadcn Select */}
               <div className="space-y-2">
-                <label className=" font-semibold text-slate-400 uppercase tracking-wider">Experience Level</label>
+                <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Experience Level</label>
                 <Select value={experienceLevel} onValueChange={(val) => setExperienceLevel(val || "All Levels")}>
-                  <SelectTrigger className="w-full bg-[#131926] border-[#2A3C58]/60 text-slate-200 rounded-xl px-4 py-6 text-sm focus:border-[#4BC957] focus:ring-0! transition-colors">
+                  <SelectTrigger className="w-full bg-background border-border text-foreground rounded-xl px-4 py-6 text-sm focus:border-[#4BC957] focus:ring-0! transition-colors">
                     <SelectValue placeholder="Select level" />
                   </SelectTrigger>
-                  <SelectContent className="bg-[#0B0F19] border-[#2A3C58]/60 text-slate-200 rounded-xl overflow-hidden shadow-xl">
-                    <SelectItem value="All Levels" className="focus:bg-[#162032] focus:text-white">All Levels</SelectItem>
-                    <SelectItem value="Entry Level" className="focus:bg-[#162032] focus:text-white">Entry Level (0-2 yrs)</SelectItem>
-                    <SelectItem value="Mid Level" className="focus:bg-[#162032] focus:text-white">Mid Level (2-5 yrs)</SelectItem>
-                    <SelectItem value="Senior" className="focus:bg-[#162032] focus:text-white">Senior (5-8 yrs)</SelectItem>
-                    <SelectItem value="Lead / Director" className="focus:bg-[#162032] focus:text-white">Lead / Director (8+ yrs)</SelectItem>
+                  <SelectContent className="bg-card border-border text-foreground rounded-xl overflow-hidden shadow-xl">
+                    <SelectItem value="All Levels">All Levels</SelectItem>
+                    <SelectItem value="Entry Level">Entry Level (0-2 yrs)</SelectItem>
+                    <SelectItem value="Mid Level">Mid Level (2-5 yrs)</SelectItem>
+                    <SelectItem value="Senior">Senior (5-8 yrs)</SelectItem>
+                    <SelectItem value="Lead / Director">Lead / Director (8+ yrs)</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
             </div>
 
-            {/* Modal actions */}
-            <div className="flex justify-end gap-3 border-t border-[#1E293B]/60 pt-4 mt-2">
+            <div className="flex justify-end gap-3 border-t border-border pt-4 mt-2">
               <DialogClose
                 render={
-                  <button className="border border-slate-700/80 hover:bg-slate-800/60 text-slate-300 font-semibold px-6 py-2.5 rounded-xl text-sm transition-colors">
+                  <button className="border border-border hover:bg-muted text-foreground font-semibold px-6 py-2.5 rounded-xl text-sm transition-colors">
                     Cancel
                   </button>
                 }
@@ -225,27 +220,25 @@ export default function CandidatesPage() {
         </Dialog>
       </div>
 
-      {/* Candidates Cards Grid matching the second screenshot */}
+      {/* Candidates Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6">
         {initialCandidates.map((candidate, idx) => (
           <div
             key={idx}
-            className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-5 space-y-4 flex flex-col justify-between hover:border-[#2A3C58] transition-all duration-300 relative group cursor-pointer"
+            className="bg-card border border-border rounded-2xl p-5 space-y-4 flex flex-col justify-between hover:border-[#4BC957]/30 transition-all duration-300 relative group cursor-pointer shadow-sm"
           >
             {/* Top row: Avatar, Name, Role, Match score */}
             <div className="flex items-start justify-between gap-3">
               <div className="flex items-center gap-3">
-                <div className="h-11 w-11 rounded-xl bg-gradient-to-br from-[#1E293B] to-[#0F172A] border border-[#2E3C51] flex items-center justify-center font-bold text-slate-300 text-sm shadow-inner flex-shrink-0">
+                <div className="h-11 w-11 rounded-xl bg-muted border border-border flex items-center justify-center font-bold text-foreground text-sm shadow-inner flex-shrink-0">
                   {candidate.initials}
                 </div>
                 <div>
-                  <h3 className="text-base font-bold text-white tracking-tight">{candidate.name}</h3>
-                  <p className=" text-slate-500 font-medium">{candidate.role}</p>
+                  <h3 className="text-base font-bold text-foreground tracking-tight">{candidate.name}</h3>
+                  <p className="text-sm text-muted-foreground font-medium">{candidate.role}</p>
                 </div>
               </div>
-
-              {/* Match percentage badge with star */}
-              <span className=" font-semibold text-[#4BC957] bg-[#4BC957]/10 border border-[#4BC957]/20 px-2.5 py-0.5 rounded-lg flex items-center gap-1">
+              <span className="text-sm font-semibold text-[#4BC957] bg-[#4BC957]/10 border border-[#4BC957]/20 px-2.5 py-0.5 rounded-lg flex items-center gap-1">
                 <Sparkles className="h-3 w-3" />
                 {candidate.match}
               </span>
@@ -256,7 +249,7 @@ export default function CandidatesPage() {
               {candidate.skills.map((skill, sIdx) => (
                 <span
                   key={sIdx}
-                  className="bg-[#162032] border border-[#2A3C58]/60 text-slate-400 text-[13px] font-semibold px-2.5 py-1 rounded-md"
+                  className="bg-muted border border-border text-muted-foreground text-[13px] font-semibold px-2.5 py-1 rounded-md"
                 >
                   {skill}
                 </span>
@@ -264,30 +257,27 @@ export default function CandidatesPage() {
             </div>
 
             {/* Experience, Location & Credit cost */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1 text-slate-500 font-medium border-t border-[#1E293B]/40 pt-3">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1 text-muted-foreground font-medium border-t border-border pt-3 text-sm">
               <span>{candidate.exp} • {candidate.location}</span>
-              <span className="text-sm">{candidate.credits} credits to unlock</span>
+              <span>{candidate.credits} credits to unlock</span>
             </div>
 
-            {/* Footer actions: Lock View profile, Message, Bot, Document */}
+            {/* Footer actions */}
             <div className="flex items-center gap-2 pt-1.5 flex-wrap">
               <Link
                 href={`/company/candidates/profile?id=${candidate.id}`}
-                className="flex-1 bg-[#4BC957] hover:bg-[#00B96E] text-white font-bold py-2.5 px-4 rounded-xl  flex items-center justify-center gap-1.5 transition-all shadow-md shadow-[#4BC957]/5 active:scale-[0.98]"
+                className="flex-1 bg-[#4BC957] hover:bg-[#00B96E] text-white font-bold py-2.5 px-4 rounded-xl text-sm flex items-center justify-center gap-1.5 transition-all shadow-md shadow-[#4BC957]/5 active:scale-[0.98]"
               >
                 <Lock className="h-3.5 w-3.5" />
                 View profile
               </Link>
-
-              <Link href={`/company/inbox?id=${candidate.id}`} className="p-2.5 bg-[#162032] border border-[#2A3C58]/60 text-slate-400 hover:text-white rounded-xl hover:border-[#4BC957]/40 transition-colors">
+              <Link href={`/company/inbox?id=${candidate.id}`} className="p-2.5 bg-muted border border-border text-muted-foreground hover:text-foreground rounded-xl hover:border-[#4BC957]/40 transition-colors">
                 <MessageSquare className="h-4 w-4" />
               </Link>
-
-              <Link href={`/company/candidates/interview?id=${candidate.id}`} className="p-2.5 bg-[#162032] border border-[#2A3C58]/60 text-slate-400 hover:text-white rounded-xl hover:border-[#4BC957]/40 transition-colors">
+              <Link href={`/company/candidates/interview?id=${candidate.id}`} className="p-2.5 bg-muted border border-border text-muted-foreground hover:text-foreground rounded-xl hover:border-[#4BC957]/40 transition-colors">
                 <Bot className="h-4 w-4" />
               </Link>
-
-              <button onClick={() => { }} className="p-2.5 bg-[#162032] border border-[#2A3C58]/60 text-slate-400 hover:text-white rounded-xl hover:border-[#4BC957]/40 transition-colors">
+              <button className="p-2.5 bg-muted border border-border text-muted-foreground hover:text-foreground rounded-xl hover:border-[#4BC957]/40 transition-colors">
                 <FileText className="h-4 w-4" />
               </button>
             </div>

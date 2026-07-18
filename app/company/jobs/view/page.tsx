@@ -33,7 +33,7 @@ function JobViewContent() {
       <div>
         <Link
           href="/company/jobs"
-          className="inline-flex items-center gap-2  font-semibold text-slate-400 hover:text-white transition-colors"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground hover:text-foreground transition-colors"
         >
           <ArrowLeft className="h-4 w-4" />
           Back
@@ -44,26 +44,26 @@ function JobViewContent() {
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div className="space-y-2">
           <div className="flex items-center gap-3">
-            <h1 className="text-3xl font-extrabold text-white tracking-tight">{job.role}</h1>
-            <span className="bg-[#4BC957]/10 text-[#4BC957] border border-[#4BC957]/20 px-3 py-0.5 rounded-full  font-semibold">
+            <h1 className="text-3xl font-extrabold text-foreground tracking-tight">{job.role}</h1>
+            <span className="bg-[#4BC957]/10 text-[#4BC957] border border-[#4BC957]/20 px-3 py-0.5 rounded-full text-sm font-semibold">
               {job.status}
             </span>
           </div>
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-slate-400">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted-foreground">
             <span className="flex items-center gap-1.5">
-              <MapPin className="h-4 w-4 text-slate-500" />
+              <MapPin className="h-4 w-4 shrink-0" />
               {job.location}
             </span>
             <span className="flex items-center gap-1.5">
-              <Briefcase className="h-4 w-4 text-slate-500" />
+              <Briefcase className="h-4 w-4 shrink-0" />
               {job.type}
             </span>
             <span className="flex items-center gap-1.5">
-              <DollarSign className="h-4 w-4 text-slate-500" />
+              <DollarSign className="h-4 w-4 shrink-0" />
               {job.salary}
             </span>
             <span className="flex items-center gap-1.5">
-              <Clock className="h-4 w-4 text-slate-500" />
+              <Clock className="h-4 w-4 shrink-0" />
               Posted {job.posted}
             </span>
           </div>
@@ -71,7 +71,7 @@ function JobViewContent() {
         <div className="flex items-center gap-2">
           <Link
             href={`/company/jobs/edit?id=${id}`}
-            className="border border-slate-700/80 hover:bg-slate-800/60 text-slate-300 font-semibold px-4 py-2.5 rounded-xl text-sm transition-colors"
+            className="border border-border hover:bg-muted text-foreground font-semibold px-4 py-2.5 rounded-xl text-sm transition-colors"
           >
             Edit job
           </Link>
@@ -87,23 +87,23 @@ function JobViewContent() {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4">
-        <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-5 space-y-1">
-          <p className=" font-semibold text-slate-500 uppercase tracking-wider">Applicants</p>
-          <p className="text-3xl font-extrabold text-white">{job.applicants}</p>
-          <p className=" text-slate-500">Total candidates applied</p>
+        <div className="bg-card border border-border rounded-2xl p-5 space-y-1 shadow-sm">
+          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Applicants</p>
+          <p className="text-3xl font-extrabold text-foreground">{job.applicants}</p>
+          <p className="text-sm text-muted-foreground">Total candidates applied</p>
         </div>
-        <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-5 space-y-1">
-          <p className=" font-semibold text-slate-500 uppercase tracking-wider">AI Match Score</p>
+        <div className="bg-card border border-border rounded-2xl p-5 space-y-1 shadow-sm">
+          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">AI Match Score</p>
           <p className="text-3xl font-extrabold text-[#4BC957]">{job.matches}%</p>
-          <p className=" text-slate-500">Average match across applicants</p>
+          <p className="text-sm text-muted-foreground">Average match across applicants</p>
         </div>
-        <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-5 space-y-1">
-          <p className=" font-semibold text-slate-500 uppercase tracking-wider">Status</p>
-          <p className="text-3xl font-extrabold text-white flex items-center gap-2">
+        <div className="bg-card border border-border rounded-2xl p-5 space-y-1 shadow-sm">
+          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Status</p>
+          <p className="text-3xl font-extrabold text-foreground flex items-center gap-2">
             <span className="h-3 w-3 rounded-full bg-[#4BC957] inline-block" />
             {job.status}
           </p>
-          <p className=" text-slate-500">Listing is active and visible</p>
+          <p className="text-sm text-muted-foreground">Listing is active and visible</p>
         </div>
       </div>
 
@@ -111,17 +111,17 @@ function JobViewContent() {
         {/* Main Content */}
         <div className="lg:col-span-2 space-y-6">
           {/* Description */}
-          <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-6 space-y-4">
-            <h2 className="text-sm font-bold text-white uppercase tracking-wider">Job Description</h2>
-            <p className="text-sm text-slate-300 leading-relaxed">{job.description}</p>
+          <div className="bg-card border border-border rounded-2xl p-6 space-y-4 shadow-sm">
+            <h2 className="text-sm font-bold text-foreground uppercase tracking-wider">Job Description</h2>
+            <p className="text-sm text-muted-foreground leading-relaxed">{job.description}</p>
           </div>
 
           {/* Requirements */}
-          <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-6 space-y-4">
-            <h2 className="text-sm font-bold text-white uppercase tracking-wider">Requirements</h2>
+          <div className="bg-card border border-border rounded-2xl p-6 space-y-4 shadow-sm">
+            <h2 className="text-sm font-bold text-foreground uppercase tracking-wider">Requirements</h2>
             <ul className="space-y-2">
               {job.requirements.map((req, i) => (
-                <li key={i} className="flex items-start gap-2 text-sm text-slate-300">
+                <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
                   <span className="h-1.5 w-1.5 rounded-full bg-[#4BC957] mt-2 flex-shrink-0" />
                   {req}
                 </li>
@@ -133,14 +133,14 @@ function JobViewContent() {
         {/* Sidebar */}
         <div className="space-y-6">
           {/* Skills */}
-          <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-6 space-y-3">
-            <h3 className="text-sm font-bold text-white flex items-center gap-1.5">
+          <div className="bg-card border border-border rounded-2xl p-6 space-y-3 shadow-sm">
+            <h3 className="text-sm font-bold text-foreground flex items-center gap-1.5">
               <Sparkles className="h-4 w-4 text-[#4BC957]" />
               Skills
             </h3>
             <div className="flex flex-wrap gap-2">
               {job.skills.split(", ").map((skill, i) => (
-                <span key={i} className="bg-[#1E293B] text-slate-300  font-semibold px-2.5 py-1 rounded-lg border border-[#2A3C58]/40">
+                <span key={i} className="bg-muted text-foreground text-sm font-semibold px-2.5 py-1 rounded-lg border border-border">
                   {skill}
                 </span>
               ))}
@@ -148,28 +148,28 @@ function JobViewContent() {
           </div>
 
           {/* Verification */}
-          <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-6 space-y-3">
-            <h3 className="text-sm font-bold text-white">Verification</h3>
-            <div className="flex items-center gap-2  text-slate-400">
+          <div className="bg-card border border-border rounded-2xl p-6 space-y-3 shadow-sm">
+            <h3 className="text-sm font-bold text-foreground">Verification</h3>
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <ShieldCheck className="h-4 w-4 text-[#4BC957]" />
               Trade-licence verified
             </div>
           </div>
 
           {/* Cost */}
-          <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-2xl p-6 space-y-4">
-            <h3 className="text-sm font-bold text-white">Cost</h3>
-            <div className="space-y-2  font-semibold">
-              <div className="flex justify-between text-slate-400">
+          <div className="bg-card border border-border rounded-2xl p-6 space-y-4 shadow-sm">
+            <h3 className="text-sm font-bold text-foreground">Cost</h3>
+            <div className="space-y-2 text-sm font-semibold">
+              <div className="flex justify-between text-muted-foreground">
                 <span>Listing</span>
-                <span className="text-white">5 credits</span>
+                <span className="text-foreground">5 credits</span>
               </div>
-              <div className="flex justify-between text-slate-400">
+              <div className="flex justify-between text-muted-foreground">
                 <span>Top 10 shortlist</span>
-                <span className="text-white">Free</span>
+                <span className="text-foreground">Free</span>
               </div>
             </div>
-            <div className="border-t border-[#1E293B]/60 pt-4  font-bold text-[#4BC957]">
+            <div className="border-t border-border pt-4 text-sm font-bold text-[#4BC957]">
               Balance: 1,240 credits
             </div>
           </div>
