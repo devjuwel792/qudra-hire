@@ -42,6 +42,11 @@ const navItems = [
     href: "/company/subscription",
     icon: Star,
   },
+  {
+    label: "Settings",
+    href: "/company/settings",
+    icon: Settings,
+  },
 ];
 
 export default function CompanySidebar() {
