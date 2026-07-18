@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -36,6 +36,7 @@ const navItems = [
 
 export default function CandidateSidebar() {
   const pathname = usePathname();
+  const router = useRouter()
 
   return (
     <aside className="flex h-screen w-64 flex-shrink-0 flex-col border-r border-white/5 bg-[#0f172a] text-white">
@@ -79,11 +80,11 @@ export default function CandidateSidebar() {
                   align="start"
                   sideOffset={16}
                 >
-                  <DropdownMenuItem className="flex items-center justify-between text-slate-900 dark:text-white hover:bg-slate-100 hover:text-slate-900 dark:hover:bg-white/10 dark:hover:text-white cursor-pointer focus:bg-slate-100 focus:text-slate-900 dark:focus:bg-white/10 dark:focus:text-white rounded-md px-3 py-2.5">
+                  <DropdownMenuItem onClick={() => router.push('/candidate/profile/1')} className="flex items-center justify-between text-slate-900 dark:text-white hover:bg-slate-100 hover:text-slate-900 dark:hover:bg-white/10 dark:hover:text-white cursor-pointer focus:bg-slate-100 focus:text-slate-900 dark:focus:bg-white/10 dark:focus:text-white rounded-md px-3 py-2.5">
                     <span className="font-semibold text-sm">Senior Product Designer</span>
                     <ChevronRight className="h-4 w-4 text-slate-500 dark:text-white/70" />
                   </DropdownMenuItem>
-                  <DropdownMenuItem className="flex items-center justify-between text-slate-700 dark:text-slate-300 hover:bg-slate-100 hover:text-slate-900 dark:hover:bg-white/10 dark:hover:text-white cursor-pointer focus:bg-slate-100 focus:text-slate-900 dark:focus:bg-white/10 dark:focus:text-white rounded-md px-3 py-2.5">
+                  <DropdownMenuItem onClick={() => router.push('/candidate/profile/2')} className="flex items-center justify-between text-slate-700 dark:text-slate-300 hover:bg-slate-100 hover:text-slate-900 dark:hover:bg-white/10 dark:hover:text-white cursor-pointer focus:bg-slate-100 focus:text-slate-900 dark:focus:bg-white/10 dark:focus:text-white rounded-md px-3 py-2.5">
                     <span className="font-semibold text-sm">UX Research Lead</span>
                     <ChevronRight className="h-4 w-4 text-slate-500 dark:text-white/70" />
                   </DropdownMenuItem>
