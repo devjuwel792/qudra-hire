@@ -58,8 +58,8 @@ export default function CompanySidebar() {
       <div className="flex items-center gap-2 border-b border-border px-6 py-5">
         <div className="flex items-center gap-1.5 font-sans text-xl font-bold tracking-tight">  {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            <Image src="/logo.png" alt="" width={180} height={60} className="block h-12 w-auto object-contain" />
-
+            <Image src="/logo.png" alt="" width={180} height={60} className="hidden h-12 w-auto dark:block object-contain" />
+            <Image src="/logo-dark.png" alt="" width={180} height={60} className="block h-12 w-auto dark:hidden object-contain" />
           </Link>
         </div>
       </div>
