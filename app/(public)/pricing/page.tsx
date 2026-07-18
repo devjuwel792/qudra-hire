@@ -2,131 +2,339 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { Check } from "lucide-react";
+import { Check, Zap, Star } from "lucide-react";
 import { Animate } from "@/components/ui/animate";
 
 const candidatePlans = [
-  { id: "candidate-starter", name: "Starter", price: "AED 99", credits: "50 credits", creditValue: "~AED 2.00 / credit", cta: "Buy Starter", popular: false, features: [] },
-  { id: "candidate-momentum", name: "Momentum", price: "AED 249", credits: "150 credits", creditValue: "~AED 1.66 / credit", cta: "Buy Momentum", popular: true, features: [] },
-  { id: "candidate-sprint", name: "Sprint", price: "AED 499", credits: "400 credits", creditValue: "~AED 1.25 / credit", cta: "Buy Sprint", popular: false, features: [] },
+  {
+    id: "candidate-starter",
+    tier: "STARTER",
+    name: "Free",
+    tagline: "Everything you need to start your search.",
+    monthlyPrice: 0,
+    yearlyPrice: 0,
+    priceLabel: "forever",
+    cta: "Get started free",
+    popular: false,
+    ctaHref: "/register",
+    features: [
+      "Browse limited jobs",
+      "Basic AI job matching",
+      "Resume upload & profile",
+    ],
+  },
+  {
+    id: "candidate-premium",
+    tier: "RECOMMENDED",
+    name: "Premium",
+    tagline: "Your always-on AI Recruiter.",
+    monthlyPrice: 79,
+    yearlyPrice: 66,
+    priceLabel: "/ month",
+    cta: "Upgrade to Premium",
+    popular: true,
+    ctaHref: "/register?plan=premium",
+    features: [
+      "Everything in Free",
+      "Auto Apply AI submits tailored applications daily",
+      "AI Resume Tailoring per job",
+      "AI Resume Improvement & ATS score",
+      "Priority AI matching & shortlisting",
+      "AI interview prep & practice",
+      "Direct messaging inbox",
+      "Priority support",
+    ],
+  },
 ];
 
 const companyPlans = [
-  { id: "company-starter", name: "Starter", price: "AED 199", credits: "50 credits", creditValue: "~AED 3.98 / credit", cta: "Buy Starter", popular: false, features: [] },
-  { id: "company-growth", name: "Growth", price: "AED 499", credits: "150 credits", creditValue: "~AED 3.33 / credit", cta: "Buy Growth", popular: true, features: [] },
-  { id: "company-sprint", name: "Sprint", price: "AED 999", credits: "400 credits", creditValue: "~AED 2.50 / credit", cta: "Buy Sprint", popular: false, features: [] },
+  {
+    id: "company-starter",
+    tier: "STARTER",
+    name: "Free",
+    tagline: "Post and discover talent at no cost.",
+    monthlyPrice: 0,
+    yearlyPrice: 0,
+    priceLabel: "forever",
+    cta: "Get started free",
+    popular: false,
+    ctaHref: "/register?type=company",
+    features: [
+      "Post up to 2 jobs",
+      "Basic candidate search",
+      "Company profile listing",
+    ],
+  },
+  {
+    id: "company-growth",
+    tier: "RECOMMENDED",
+    name: "Growth",
+    tagline: "Hire smarter with AI-powered matching.",
+    monthlyPrice: 199,
+    yearlyPrice: 167,
+    priceLabel: "/ month",
+    cta: "Upgrade to Growth",
+    popular: true,
+    ctaHref: "/register?type=company&plan=growth",
+    features: [
+      "Everything in Free",
+      "Unlimited job postings",
+      "AI candidate shortlisting",
+      "Smart applicant ranking",
+      "Priority listing in search",
+      "Direct messaging candidates",
+      "Analytics & insights dashboard",
+      "Dedicated account support",
+    ],
+  },
 ];
 
-interface Plan { id: string; name: string; price: string; credits: string; creditValue: string; cta: string; popular: boolean; features: string[]; }
+type Plan = (typeof candidatePlans)[number];
 
-function PricingCard({ plan }: { plan: Plan }) {
+function PricingCard({ plan, yearly }: { plan: Plan; yearly: boolean }) {
+  const price =
+    plan.monthlyPrice === 0
+      ? null
+      : yearly
+      ? plan.yearlyPrice
+      : plan.monthlyPrice;
+
   return (
-    <div className={`relative flex flex-col rounded-2xl p-6 transition-all duration-300 ${
-      plan.popular
-        ? "bg-green-50 dark:bg-[#0F1F14] border-2 border-green-500/60 dark:border-[#4BC957]/60 shadow-2xl shadow-green-500/10 dark:shadow-[#4BC957]/10 scale-[1.02]"
-        : "bg-white dark:bg-[#0F172A] border border-slate-200 dark:border-white/6 hover:border-slate-300 dark:hover:border-white/12 shadow-sm"
-    }`}>
+    <div
+      className={`relative flex flex-col rounded-2xl transition-all duration-300 ${
+        plan.popular
+          ? "bg-[#0D1117] border-2 border-[#4BC957]/60 shadow-2xl shadow-[#4BC957]/10"
+          : "bg-[#0F172A]/60 border border-white/8 hover:border-white/14"
+      }`}
+    >
       {plan.popular && (
-        <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
-          <span className="bg-green-600 dark:bg-[#4BC957] text-white dark:text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">Most popular</span>
+        <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-10">
+          <span className="bg-[#4BC957] text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg tracking-wide">
+            MOST POPULAR
+          </span>
         </div>
       )}
-      <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">{plan.name}</h3>
-      <div className="mb-1">
-        <span className="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">{plan.price}</span>
+
+      <div className="p-7 flex flex-col flex-1">
+        {/* Tier label */}
+        <div className="flex items-center gap-2 mb-3">
+          {plan.popular ? (
+            <Star className="w-4 h-4 text-[#4BC957]" />
+          ) : (
+            <Zap className="w-4 h-4 text-slate-500" />
+          )}
+          <span
+            className={`text-xs font-bold tracking-widest uppercase ${
+              plan.popular ? "text-[#4BC957]" : "text-slate-500"
+            }`}
+          >
+            {plan.tier}
+          </span>
+        </div>
+
+        {/* Plan name */}
+        <h3 className="text-4xl font-extrabold text-white mb-1 tracking-tight">
+          {plan.name}
+        </h3>
+        <p className="text-slate-400 text-sm mb-5 leading-snug">{plan.tagline}</p>
+
+        {/* Price */}
+        <div className="mb-6">
+          {price === null ? (
+            <div className="flex items-baseline gap-2">
+              <span className="text-4xl font-extrabold text-white">AED 0</span>
+              <span className="text-slate-400 text-sm">forever</span>
+            </div>
+          ) : (
+            <div className="flex items-baseline gap-2">
+              <span className="text-4xl font-extrabold text-white">AED {price}</span>
+              <span className="text-slate-400 text-sm">{plan.priceLabel}</span>
+            </div>
+          )}
+        </div>
+
+        {/* CTA */}
+        <Link
+          href={plan.ctaHref}
+          id={plan.id}
+          className={`w-full h-12 rounded-xl font-bold text-sm transition-all active:scale-[0.98] flex items-center justify-center mb-6 ${
+            plan.popular
+              ? "bg-[#4BC957] hover:bg-[#3DAF49] text-white shadow-lg shadow-[#4BC957]/25"
+              : "bg-white/8 hover:bg-white/12 text-white border border-white/10"
+          }`}
+        >
+          {plan.cta}
+        </Link>
+
+        {/* Divider */}
+        <div className="border-t border-white/6 mb-5" />
+
+        {/* Features */}
+        <ul className="space-y-3 flex-1">
+          {plan.features.map((f) => (
+            <li key={f} className="flex items-start gap-2.5 text-sm text-slate-300">
+              <span
+                className={`mt-0.5 flex-shrink-0 h-4 w-4 rounded-full flex items-center justify-center ${
+                  plan.popular
+                    ? "bg-[#4BC957]/15 text-[#4BC957]"
+                    : "bg-slate-700/60 text-slate-400"
+                }`}
+              >
+                <Check className="h-2.5 w-2.5" />
+              </span>
+              {f}
+            </li>
+          ))}
+        </ul>
       </div>
-      <p className="text-green-600 dark:text-[#4BC957] font-semibold text-sm mb-1">{plan.credits}</p>
-      <p className="text-slate-500 dark:text-slate-600 text-xs mb-6">{plan.creditValue}</p>
-      <button id={plan.id} className={`w-full h-11 rounded-xl font-bold text-sm transition-all active:scale-[0.98] mb-6 ${
-        plan.popular
-          ? "bg-green-600 hover:bg-green-500 dark:bg-[#4BC957] dark:hover:bg-[#00B96E] text-white dark:text-white shadow-lg shadow-green-500/20 dark:shadow-[#4BC957]/20"
-          : "bg-slate-100 hover:bg-slate-200 dark:bg-[#1E293B] dark:hover:bg-[#2A3C58] text-slate-900 dark:text-white border border-slate-200 dark:border-white/8"
-      }`}>{plan.cta}</button>
-      <div className="border-t border-slate-200 dark:border-white/6 mb-5" />
-      <ul className="space-y-2.5 flex-1">
-        {plan.features.map(f => (
-          <li key={f} className="flex items-start gap-2.5 text-sm text-slate-600 dark:text-slate-400">
-            <span className={`mt-0.5 flex-shrink-0 h-4 w-4 rounded-full flex items-center justify-center ${plan.popular ? "bg-green-100 text-green-600 dark:bg-[#4BC957]/15 dark:text-[#4BC957]" : "bg-slate-100 text-slate-400 dark:bg-slate-700/50 dark:text-slate-400"}`}>
-              <Check className="h-2.5 w-2.5" />
-            </span>
-            {f}
-          </li>
-        ))}
-      </ul>
     </div>
   );
 }
 
-const cardDelays = ["anim-delay-100", "", "anim-delay-200"];
-
 export default function PricingPage() {
-  const [tab, setTab] = useState<"candidates" | "companies">("companies");
+  const [tab, setTab] = useState<"candidates" | "companies">("candidates");
+  const [yearly, setYearly] = useState(false);
   const plans = tab === "candidates" ? candidatePlans : companyPlans;
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-[#080C14] text-slate-900 dark:text-white">
-
+    <div className="min-h-screen flex flex-col bg-[#080C14] text-white">
       {/* Hero */}
       <section className="relative py-20 sm:py-28 text-center overflow-hidden">
-        <div aria-hidden className="pointer-events-none absolute inset-0 flex items-start justify-center">
-          <div className="w-[700px] h-[320px] bg-green-500/10 dark:bg-[#4BC957]/5 rounded-full blur-[130px] mt-8" />
+        {/* Glow */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 flex items-start justify-center"
+        >
+          <div className="w-[700px] h-[320px] bg-[#4BC957]/6 rounded-full blur-[140px] mt-8" />
         </div>
-        <div aria-hidden className="pointer-events-none absolute inset-0 opacity-[0.03] dark:opacity-[0.03]"
-          style={{ backgroundImage: "linear-gradient(currentColor 1px,transparent 1px),linear-gradient(90deg,currentColor 1px,transparent 1px)", backgroundSize: "40px 40px" }} />
+        {/* Grid */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 opacity-[0.025]"
+          style={{
+            backgroundImage:
+              "linear-gradient(currentColor 1px,transparent 1px),linear-gradient(90deg,currentColor 1px,transparent 1px)",
+            backgroundSize: "40px 40px",
+          }}
+        />
+
         <div className="relative max-w-3xl mx-auto px-4">
-          <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight
-            animate-[fadeInUp_0.7s_ease_forwards]">
-            Credit bundles that reward{" "}
-            <span className="text-green-600 dark:text-[#4BC957]">momentum.</span>
+          <h1
+            className="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight
+            animate-[fadeInUp_0.7s_ease_forwards]"
+          >
+            Simple plans.{" "}
+            <span className="text-[#4BC957]">Serious hiring outcomes.</span>
           </h1>
-          <p className="mt-5 text-[16px] sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed
-            animate-[fadeInUp_0.7s_0.2s_ease_forwards] opacity-0">
-            Pay-as-you-go in AED. No subscriptions. Credits never expire.
+          <p
+            className="mt-5 text-[16px] sm:text-lg text-slate-400 leading-relaxed max-w-2xl mx-auto
+            animate-[fadeInUp_0.7s_0.2s_ease_forwards] opacity-0"
+          >
+            Start free. Upgrade to Premium when you want QudraHire&apos;s AI to apply, tailor and
+            optimize for you.
           </p>
-          <div className="mt-10 inline-flex items-center bg-white dark:bg-[#0F172A] border border-slate-200 dark:border-white/8 rounded-xl p-1 gap-1
-            animate-[fadeInUp_0.7s_0.35s_ease_forwards] opacity-0">
-            {(["candidates", "companies"] as const).map(t => (
-              <button key={t} onClick={() => setTab(t)}
-                className={`px-5 py-2.5 rounded-lg text-sm font-semibold transition-all ${
-                  tab === t ? "bg-green-600 dark:bg-[#4BC957] text-white dark:text-white shadow-md" : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
-                }`}>
-                For {t.charAt(0).toUpperCase() + t.slice(1)}
-              </button>
-            ))}
+
+          {/* Billing toggle */}
+          <div
+            className="mt-10 inline-flex items-center bg-[#0F172A] border border-white/8 rounded-xl p-1 gap-1
+            animate-[fadeInUp_0.7s_0.35s_ease_forwards] opacity-0"
+          >
+            <button
+              onClick={() => setYearly(false)}
+              className={`px-5 py-2.5 rounded-lg text-sm font-semibold transition-all ${
+                !yearly
+                  ? "bg-white/10 text-white shadow"
+                  : "text-slate-400 hover:text-white"
+              }`}
+            >
+              Monthly
+            </button>
+            <button
+              onClick={() => setYearly(true)}
+              className={`px-5 py-2.5 rounded-lg text-sm font-semibold transition-all ${
+                yearly
+                  ? "bg-[#4BC957] text-white shadow-md shadow-[#4BC957]/20"
+                  : "text-slate-400 hover:text-white"
+              }`}
+            >
+              Yearly. Save 16%
+            </button>
           </div>
+
+          {/* Tab toggle */}
+          {/* <div className="mt-5 flex justify-center">
+            <div className="inline-flex items-center bg-[#0F172A] border border-white/8 rounded-xl p-1 gap-1">
+              {(["candidates", "companies"] as const).map((t) => (
+                <button
+                  key={t}
+                  onClick={() => setTab(t)}
+                  className={`px-5 py-2 rounded-lg text-sm font-semibold transition-all ${
+                    tab === t
+                      ? "bg-white/10 text-white shadow"
+                      : "text-slate-500 hover:text-white"
+                  }`}
+                >
+                  For {t.charAt(0).toUpperCase() + t.slice(1)}
+                </button>
+              ))}
+            </div>
+          </div> */}
         </div>
       </section>
 
       {/* Cards */}
-      <section className="max-w-5xl mx-auto px-4 sm:px-8 pb-28 w-full">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-center">
+      <section className="max-w-4xl mx-auto px-4 sm:px-8 pb-28 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6  items-baseline">
           {plans.map((plan, i) => (
-            <Animate key={plan.id} className="animate-on-scroll" delay={cardDelays[i]}>
-              <PricingCard plan={plan} />
+            <Animate
+              key={plan.id}
+              className="animate-on-scroll"
+              delay={i === 0 ? "anim-delay-100" : "anim-delay-200"}
+            >
+              <PricingCard plan={plan} yearly={yearly} />
             </Animate>
           ))}
         </div>
+
         <Animate className="animate-on-scroll" delay="anim-delay-300">
-          <p className="text-center text-xs text-slate-500 dark:text-slate-100 mt-10">
-            All prices in AED (United Arab Emirates Dirham). Credits are non-refundable and never expire.{" "}
-            <Link href="/contact" className="text-green-600 dark:text-green-500 hover:text-green-700 dark:hover:text-[#4BC957] transition-colors underline underline-offset-2">Contact us</Link>{" "}
+          <p className="text-center text-xs text-slate-500 mt-10">
+            All prices in AED (United Arab Emirates Dirham).{" "}
+            <Link
+              href="/contact"
+              className="text-[#4BC957] hover:text-[#3DAF49] transition-colors underline underline-offset-2"
+            >
+              Contact us
+            </Link>{" "}
             for enterprise or volume pricing.
           </p>
         </Animate>
       </section>
 
       {/* FAQ */}
-      <section className="border-t border-slate-200 dark:border-white/5 bg-white dark:bg-[#0A0F1D]">
+      <section className="border-t border-white/5 bg-[#0A0F1D]">
         <div className="max-w-4xl mx-auto px-4 sm:px-8 py-16 grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
           {[
-            { q: "Do credits expire?", a: "No. Once purchased, credits are yours to use at your own pace — no monthly reset." },
-            { q: "Can I top up anytime?", a: "Yes. Buy any bundle whenever you need more credits. There is no subscription commitment." },
-            { q: "What currency?", a: "All prices are in AED (UAE Dirham). Payments processed securely via Stripe." },
+            {
+              q: "Can I switch plans?",
+              a: "Yes. You can upgrade or downgrade your plan at any time from your account settings.",
+            },
+            {
+              q: "Is there a free trial?",
+              a: "The Free plan is yours forever. Upgrade to Premium whenever you're ready — no credit card required to start.",
+            },
+            {
+              q: "What currency?",
+              a: "All prices are in AED (UAE Dirham). Payments processed securely.",
+            },
           ].map(({ q, a }, i) => (
-            <Animate key={q} className="animate-on-scroll" delay={["", "anim-delay-100", "anim-delay-200"][i]}>
+            <Animate
+              key={q}
+              className="animate-on-scroll"
+              delay={["", "anim-delay-100", "anim-delay-200"][i]}
+            >
               <div className="space-y-2">
-                <h3 className="text-sm font-bold text-slate-900 dark:text-white">{q}</h3>
-                <p className="text-sm text-slate-600 dark:text-slate-500 leading-relaxed">{a}</p>
+                <h3 className="text-sm font-bold text-white">{q}</h3>
+                <p className="text-sm text-slate-500 leading-relaxed">{a}</p>
               </div>
             </Animate>
           ))}
