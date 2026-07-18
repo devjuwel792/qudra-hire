@@ -22,7 +22,7 @@ export default function CandidateCVPage() {
   ];
 
   return (
-    <div className="p-4 md:p-8 space-y-6 md:space-y-8 max-w-7xl mx-auto text-slate-900 dark:text-white">
+    <div className="p-4 md:p-8 space-y-6 md:space-y-8 max-w-full mx-auto text-slate-900 dark:text-white">
       {/* Title */}
       <div>
         <h1 className="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">CV & ATS optimization</h1>

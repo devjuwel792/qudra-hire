@@ -65,7 +65,7 @@ export default function Inbox({
   const selectedChat = currentChats[activeChat];
 
   return (
-    <div className="p-4 md:p-8 max-w-7xl mx-auto h-[calc(100vh-2rem)] flex flex-col space-y-4 md:space-y-6">
+    <div className="p-4 md:p-8 max-w-full mx-auto h-[calc(100vh-2rem)] flex flex-col space-y-4 md:space-y-6">
       <div>
         <h1 className="text-sm font-medium text-on-surface-muted uppercase tracking-widest">{title}</h1>
         <p className="text-2xl md:text-3xl font-extrabold text-on-surface mt-1 tracking-tight">{subtitle}</p>

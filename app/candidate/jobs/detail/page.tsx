@@ -62,7 +62,7 @@ function JobDetailContent() {
   };
 
   return (
-    <div className="p-4 md:p-8 space-y-6 max-w-7xl mx-auto text-on-surface">
+    <div className="p-4 md:p-8 space-y-6 max-w-full mx-auto text-on-surface">
       {/* Back button */}
       <div>
         <Link

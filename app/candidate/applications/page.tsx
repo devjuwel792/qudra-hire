@@ -44,7 +44,7 @@ export default function CandidateApplicationsPage() {
   ];
 
   return (
-    <div className="p-4 md:p-8 space-y-6 md:space-y-8 max-w-7xl mx-auto">
+    <div className="p-4 md:p-8 space-y-6 md:space-y-8 max-w-full mx-auto">
       {/* Title */}
       <div>
         <h1 className="text-2xl md:text-3xl font-extrabold text-on-surface tracking-tight">My applications</h1>

@@ -64,7 +64,7 @@ export default function CandidateInterviewPage() {
 
   if (isFinished) {
     return (
-      <div className="p-8 max-w-xl mx-auto min-h-[calc(100vh-4rem)] flex flex-col justify-center text-white">
+      <div className="p-8 max-w-full mx-auto min-h-[calc(100vh-4rem)] flex flex-col justify-center text-white">
         <div className="bg-[#0F172A] border border-[#1E293B]/60 rounded-3xl p-8 md:p-10 text-center space-y-6 shadow-2xl">
           <div className="h-16 w-16 bg-[#4BC957]/10 border border-[#4BC957]/20 rounded-full flex items-center justify-center mx-auto text-[#4BC957] shadow-lg shadow-[#4BC957]/10">
             <CheckCircle2 className="h-8 w-8" />

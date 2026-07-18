@@ -10,11 +10,20 @@ import {
   Star,
   User,
   LogOut,
-  ChevronRight
+  ChevronRight,
+  ChevronDown,
+  Plus
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const navItems = [
   { label: "Browse jobs", href: "/candidate", icon: Briefcase },
@@ -44,6 +53,53 @@ export default function CandidateSidebar() {
             href === "/candidate"
               ? pathname === "/candidate"
               : pathname.startsWith(href);
+          if (label === "My profile") {
+            return (
+              <DropdownMenu key={href}>
+                <DropdownMenuTrigger className={cn(
+                  "w-full group flex items-center justify-between rounded-xl px-4 py-3.5 text-sm font-medium transition-all duration-200 outline-none",
+                  isActive
+                    ? "bg-white/10 text-white border border-white/10 shadow-sm"
+                    : "text-slate-400 hover:bg-white/6 hover:text-white"
+                )}>
+                  <div className="flex items-center gap-3.5">
+                    <Icon
+                      className={cn(
+                        "h-5 w-5 transition-colors",
+                        isActive ? "text-[#4BC957]" : "text-slate-500 group-hover:text-white"
+                      )}
+                    />
+                    <span>{label}</span>
+                  </div>
+                  <ChevronDown className="h-4 w-4 text-slate-500 group-hover:text-white transition-colors" />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent 
+                  className="w-56 bg-white dark:bg-[#0f172a] border border-slate-200 dark:border-white/10 p-2 shadow-xl shadow-black/5 dark:shadow-black/50" 
+                  side="right" 
+                  align="start"
+                  sideOffset={16}
+                >
+                  <DropdownMenuItem className="flex items-center justify-between text-slate-900 dark:text-white hover:bg-slate-100 hover:text-slate-900 dark:hover:bg-white/10 dark:hover:text-white cursor-pointer focus:bg-slate-100 focus:text-slate-900 dark:focus:bg-white/10 dark:focus:text-white rounded-md px-3 py-2.5">
+                    <span className="font-semibold text-sm">Senior Product Designer</span>
+                    <ChevronRight className="h-4 w-4 text-slate-500 dark:text-white/70" />
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="flex items-center justify-between text-slate-700 dark:text-slate-300 hover:bg-slate-100 hover:text-slate-900 dark:hover:bg-white/10 dark:hover:text-white cursor-pointer focus:bg-slate-100 focus:text-slate-900 dark:focus:bg-white/10 dark:focus:text-white rounded-md px-3 py-2.5">
+                    <span className="font-semibold text-sm">UX Research Lead</span>
+                    <ChevronRight className="h-4 w-4 text-slate-500 dark:text-white/70" />
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="flex items-center justify-between text-slate-600 dark:text-slate-400 hover:bg-slate-100 hover:text-slate-900 dark:hover:bg-white/10 dark:hover:text-white cursor-pointer focus:bg-slate-100 focus:text-slate-900 dark:focus:bg-white/10 dark:focus:text-white rounded-md px-3 py-2.5">
+                    <span className="text-sm">Add more</span>
+                    <Plus className="h-4 w-4 text-slate-500 dark:text-slate-400" />
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator className="bg-slate-200 dark:bg-white/10 my-1" />
+                  <DropdownMenuItem className="text-red-600 dark:text-red-500 hover:bg-red-50 hover:text-red-700 dark:hover:bg-red-500/10 dark:hover:text-red-400 cursor-pointer focus:bg-red-50 focus:text-red-700 dark:focus:bg-red-500/10 dark:focus:text-red-400 rounded-md px-3 py-2.5">
+                    <span className="text-sm">Log Out</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            );
+          }
+
           return (
             <Link
               key={href}

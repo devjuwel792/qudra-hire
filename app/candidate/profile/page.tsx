@@ -20,7 +20,7 @@ import {
 export default function CandidateProfilePage() {
   return (
     <div className="min-h-full bg-background text-foreground pb-20">
-      <div className="max-w-4xl mx-auto px-6 py-8 space-y-6">
+      <div className="max-w-full mx-auto px-6 py-8 space-y-6">
         
         {/* Header */}
         <div className="flex items-center justify-between border-b border-border pb-4">
