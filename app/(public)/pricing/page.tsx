@@ -101,10 +101,10 @@ function PricingCard({ plan, yearly }: { plan: Plan; yearly: boolean }) {
 
   return (
     <div
-      className={`relative flex flex-col rounded-2xl transition-all duration-300 ${
+      className={`relative flex flex-col h-full rounded-2xl transition-all duration-300 ${
         plan.popular
-          ? "bg-[#0D1117] border-2 border-[#4BC957]/60 shadow-2xl shadow-[#4BC957]/10"
-          : "bg-[#0F172A]/60 border border-white/8 hover:border-white/14"
+          ? "bg-green-50 dark:bg-[#0D1117] border-2 border-[#4BC957]/60 shadow-2xl shadow-[#4BC957]/10"
+          : "bg-white dark:bg-[#0F172A]/60 border border-slate-200 dark:border-white/8 hover:border-slate-300 dark:hover:border-white/14 shadow-sm"
       }`}
     >
       {plan.popular && (
@@ -121,11 +121,11 @@ function PricingCard({ plan, yearly }: { plan: Plan; yearly: boolean }) {
           {plan.popular ? (
             <Star className="w-4 h-4 text-[#4BC957]" />
           ) : (
-            <Zap className="w-4 h-4 text-slate-500" />
+            <Zap className="w-4 h-4 text-slate-400 dark:text-slate-500" />
           )}
           <span
             className={`text-xs font-bold tracking-widest uppercase ${
-              plan.popular ? "text-[#4BC957]" : "text-slate-500"
+              plan.popular ? "text-[#4BC957]" : "text-slate-400 dark:text-slate-500"
             }`}
           >
             {plan.tier}
@@ -133,22 +133,26 @@ function PricingCard({ plan, yearly }: { plan: Plan; yearly: boolean }) {
         </div>
 
         {/* Plan name */}
-        <h3 className="text-4xl font-extrabold text-white mb-1 tracking-tight">
+        <h3 className="text-4xl font-extrabold mb-1 tracking-tight text-slate-900 dark:text-white">
           {plan.name}
         </h3>
-        <p className="text-slate-400 text-sm mb-5 leading-snug">{plan.tagline}</p>
+        <p className={`text-sm mb-5 leading-snug ${
+          plan.popular ? "text-slate-600 dark:text-slate-400" : "text-slate-500 dark:text-slate-400"
+        }`}>
+          {plan.tagline}
+        </p>
 
         {/* Price */}
         <div className="mb-6">
           {price === null ? (
             <div className="flex items-baseline gap-2">
-              <span className="text-4xl font-extrabold text-white">AED 0</span>
-              <span className="text-slate-400 text-sm">forever</span>
+              <span className="text-4xl font-extrabold text-slate-900 dark:text-white">AED 0</span>
+              <span className={`text-sm ${plan.popular ? "text-slate-600 dark:text-slate-400" : "text-slate-500 dark:text-slate-400"}`}>forever</span>
             </div>
           ) : (
             <div className="flex items-baseline gap-2">
-              <span className="text-4xl font-extrabold text-white">AED {price}</span>
-              <span className="text-slate-400 text-sm">{plan.priceLabel}</span>
+              <span className="text-4xl font-extrabold text-slate-900 dark:text-white">AED {price}</span>
+              <span className={`text-sm ${plan.popular ? "text-slate-600 dark:text-slate-400" : "text-slate-500 dark:text-slate-400"}`}>{plan.priceLabel}</span>
             </div>
           )}
         </div>
@@ -160,26 +164,20 @@ function PricingCard({ plan, yearly }: { plan: Plan; yearly: boolean }) {
           className={`w-full h-12 rounded-xl font-bold text-sm transition-all active:scale-[0.98] flex items-center justify-center mb-6 ${
             plan.popular
               ? "bg-[#4BC957] hover:bg-[#3DAF49] text-white shadow-lg shadow-[#4BC957]/25"
-              : "bg-white/8 hover:bg-white/12 text-white border border-white/10"
+              : "bg-slate-100 hover:bg-slate-200 dark:bg-white/8 dark:hover:bg-white/12 text-slate-900 dark:text-white border border-slate-200 dark:border-white/10"
           }`}
         >
           {plan.cta}
         </Link>
 
         {/* Divider */}
-        <div className="border-t border-white/6 mb-5" />
+        <div className={`border-t mb-5 ${plan.popular ? "border-green-200 dark:border-white/6" : "border-slate-200 dark:border-white/6"}`} />
 
         {/* Features */}
         <ul className="space-y-3 flex-1">
           {plan.features.map((f) => (
-            <li key={f} className="flex items-start gap-2.5 text-sm text-slate-300">
-              <span
-                className={`mt-0.5 flex-shrink-0 h-4 w-4 rounded-full flex items-center justify-center ${
-                  plan.popular
-                    ? "bg-[#4BC957]/15 text-[#4BC957]"
-                    : "bg-slate-700/60 text-slate-400"
-                }`}
-              >
+            <li key={f} className={`flex items-start gap-2.5 text-sm ${plan.popular ? "text-slate-700 dark:text-slate-300" : "text-slate-600 dark:text-slate-300"}`}>
+              <span className={`mt-0.5 flex-shrink-0 h-4 w-4 rounded-full flex items-center justify-center ${plan.popular ? "bg-[#4BC957]/20 text-[#4BC957]" : "bg-slate-100 dark:bg-slate-700/60 text-slate-400"}`}>
                 <Check className="h-2.5 w-2.5" />
               </span>
               {f}
@@ -197,7 +195,7 @@ export default function PricingPage() {
   const plans = tab === "candidates" ? candidatePlans : companyPlans;
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#080C14] text-white">
+    <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-[#080C14] text-slate-900 dark:text-white">
       {/* Hero */}
       <section className="relative py-20 sm:py-28 text-center overflow-hidden">
         {/* Glow */}
@@ -205,12 +203,12 @@ export default function PricingPage() {
           aria-hidden
           className="pointer-events-none absolute inset-0 flex items-start justify-center"
         >
-          <div className="w-[700px] h-[320px] bg-[#4BC957]/6 rounded-full blur-[140px] mt-8" />
+          <div className="w-[700px] h-[320px] bg-[#4BC957]/5 dark:bg-[#4BC957]/6 rounded-full blur-[140px] mt-8" />
         </div>
         {/* Grid */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 opacity-[0.025]"
+          className="pointer-events-none absolute inset-0 opacity-[0.04] dark:opacity-[0.025]"
           style={{
             backgroundImage:
               "linear-gradient(currentColor 1px,transparent 1px),linear-gradient(90deg,currentColor 1px,transparent 1px)",
@@ -227,7 +225,7 @@ export default function PricingPage() {
             <span className="text-[#4BC957]">Serious hiring outcomes.</span>
           </h1>
           <p
-            className="mt-5 text-[16px] sm:text-lg text-slate-400 leading-relaxed max-w-2xl mx-auto
+            className="mt-5 text-[16px] sm:text-lg text-slate-500 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto
             animate-[fadeInUp_0.7s_0.2s_ease_forwards] opacity-0"
           >
             Start free. Upgrade to Premium when you want QudraHire&apos;s AI to apply, tailor and
@@ -236,15 +234,15 @@ export default function PricingPage() {
 
           {/* Billing toggle */}
           <div
-            className="mt-10 inline-flex items-center bg-[#0F172A] border border-white/8 rounded-xl p-1 gap-1
+            className="mt-10 inline-flex items-center bg-white dark:bg-[#0F172A] border border-slate-200 dark:border-white/8 rounded-xl p-1 gap-1
             animate-[fadeInUp_0.7s_0.35s_ease_forwards] opacity-0"
           >
             <button
               onClick={() => setYearly(false)}
               className={`px-5 py-2.5 rounded-lg text-sm font-semibold transition-all ${
                 !yearly
-                  ? "bg-white/10 text-white shadow"
-                  : "text-slate-400 hover:text-white"
+                  ? "bg-slate-100 dark:bg-white/10 text-slate-900 dark:text-white shadow"
+                  : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
               }`}
             >
               Monthly
@@ -254,37 +252,18 @@ export default function PricingPage() {
               className={`px-5 py-2.5 rounded-lg text-sm font-semibold transition-all ${
                 yearly
                   ? "bg-[#4BC957] text-white shadow-md shadow-[#4BC957]/20"
-                  : "text-slate-400 hover:text-white"
+                  : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
               }`}
             >
               Yearly. Save 16%
             </button>
           </div>
-
-          {/* Tab toggle */}
-          {/* <div className="mt-5 flex justify-center">
-            <div className="inline-flex items-center bg-[#0F172A] border border-white/8 rounded-xl p-1 gap-1">
-              {(["candidates", "companies"] as const).map((t) => (
-                <button
-                  key={t}
-                  onClick={() => setTab(t)}
-                  className={`px-5 py-2 rounded-lg text-sm font-semibold transition-all ${
-                    tab === t
-                      ? "bg-white/10 text-white shadow"
-                      : "text-slate-500 hover:text-white"
-                  }`}
-                >
-                  For {t.charAt(0).toUpperCase() + t.slice(1)}
-                </button>
-              ))}
-            </div>
-          </div> */}
         </div>
       </section>
 
       {/* Cards */}
       <section className="max-w-4xl mx-auto px-4 sm:px-8 pb-28 w-full">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6  items-baseline">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
           {plans.map((plan, i) => (
             <Animate
               key={plan.id}
@@ -297,7 +276,7 @@ export default function PricingPage() {
         </div>
 
         <Animate className="animate-on-scroll" delay="anim-delay-300">
-          <p className="text-center text-xs text-slate-500 mt-10">
+          <p className="text-center text-xs text-slate-500 dark:text-slate-500 mt-10">
             All prices in AED (United Arab Emirates Dirham).{" "}
             <Link
               href="/contact"
@@ -311,7 +290,7 @@ export default function PricingPage() {
       </section>
 
       {/* FAQ */}
-      <section className="border-t border-white/5 bg-[#0A0F1D]">
+      <section className="border-t border-slate-200 dark:border-white/5 bg-white dark:bg-[#0A0F1D]">
         <div className="max-w-4xl mx-auto px-4 sm:px-8 py-16 grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
           {[
             {
@@ -333,8 +312,8 @@ export default function PricingPage() {
               delay={["", "anim-delay-100", "anim-delay-200"][i]}
             >
               <div className="space-y-2">
-                <h3 className="text-sm font-bold text-white">{q}</h3>
-                <p className="text-sm text-slate-500 leading-relaxed">{a}</p>
+                <h3 className="text-sm font-bold text-slate-900 dark:text-white">{q}</h3>
+                <p className="text-sm text-slate-500 dark:text-slate-500 leading-relaxed">{a}</p>
               </div>
             </Animate>
           ))}
