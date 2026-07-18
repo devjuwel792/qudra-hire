@@ -24,7 +24,7 @@ export default function InterviewReportPage() {
   ];
 
   return (
-    <div className="p-4 md:p-8 space-y-6 md:space-y-8 max-w-7xl mx-auto">
+    <div className="p-4 md:p-8 space-y-6 md:space-y-8 max-w-full mx-auto">
       {/* Back */}
       <div>
         <Link

@@ -9,6 +9,7 @@ import {
   Wallet,
   Settings,
   LogOut,
+  Star,
   ChevronRight
 } from "lucide-react";
 import Image from "next/image";
@@ -37,9 +38,9 @@ const navItems = [
     icon: MessageSquare,
   },
   {
-    label: "Wallet",
-    href: "/company/wallet",
-    icon: Wallet,
+    label: "Subscription",
+    href: "/company/subscription",
+    icon: Star,
   },
 ];
 
