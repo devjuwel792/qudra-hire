@@ -17,12 +17,14 @@ import {
   Clock,
   DollarSign,
 } from "lucide-react";
+import Autoplay from "embla-carousel-autoplay";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  type CarouselApi,
   useCarousel,
 } from "@/components/ui/carousel";
 import { Animate } from "@/components/ui/animate";
@@ -100,6 +102,9 @@ function JobCarouselInner() {
 }
 
 function JobCardsCarousel() {
+  const autoplay = React.useRef(Autoplay({ delay: 3000, stopOnInteraction: false }));
+  const [api, setApi] = React.useState<CarouselApi | null>(null);
+
   return (
     <section className="py-16 max-w-7xl mx-auto px-4 sm:px-8 w-full">
       <Animate className="animate-on-scroll text-center mb-10">
@@ -107,7 +112,14 @@ function JobCardsCarousel() {
         <p className="text-on-surface-muted">AI-ranked roles based on your profile.</p>
       </Animate>
       <Animate className="animate-scale">
-        <Carousel opts={{ loop: true, align: "center" }} className="relative">
+        <Carousel
+          opts={{ loop: true, align: "center" }}
+          plugins={[autoplay.current]}
+          setApi={setApi}
+          className="relative"
+          onMouseEnter={() => api?.plugins().autoplay.stop()}
+          onMouseLeave={() => api?.plugins().autoplay.play()}
+        >
           <JobCarouselInner />
           <CarouselPrevious className="left-0 h-10 w-10 bg-transparent border border-surface text-on-surface-muted hover:bg-surface-card hover:text-on-surface" />
           <CarouselNext className="right-0 h-10 w-10 bg-transparent border border-[#4BC957]/40 text-[#4BC957] hover:bg-[#4BC957]/10" />
