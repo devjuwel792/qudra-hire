@@ -29,13 +29,11 @@ export default function CandidateSidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="flex h-screen w-64 flex-shrink-0 flex-col border-r border-border bg-card text-card-foreground">
+    <aside className="flex h-screen w-64 flex-shrink-0 flex-col border-r border-white/5 bg-[#0f172a] text-white">
       {/* Brand */}
-      <div className="flex items-center gap-1.5 border-b border-border px-6 py-5 font-sans text-xl font-bold tracking-tight">
-        {/* Logo */}
+      <div className="flex items-center gap-1.5 border-b border-white/5 px-6 py-5 font-sans text-xl font-bold tracking-tight">
         <Link href="/" className="flex items-center gap-2 group">
           <Image src="/logo.png" alt="" width={180} height={60} className="block h-12 w-auto object-contain" />
-
         </Link>
       </div>
 
@@ -53,14 +51,14 @@ export default function CandidateSidebar() {
               className={cn(
                 "group flex items-center gap-3.5 rounded-xl px-4 py-3.5 text-sm font-medium transition-all duration-200",
                 isActive
-                  ? "bg-muted text-foreground border border-border shadow-sm"
-                  : "text-muted-foreground hover:bg-muted/70 hover:text-foreground"
+                  ? "bg-white/10 text-white border border-white/10 shadow-sm"
+                  : "text-slate-400 hover:bg-white/6 hover:text-white"
               )}
             >
               <Icon
                 className={cn(
                   "h-5 w-5 transition-colors",
-                  isActive ? "text-primary" : "text-muted-foreground group-hover:text-foreground"
+                  isActive ? "text-[#4BC957]" : "text-slate-500 group-hover:text-white"
                 )}
               />
               <span>{label}</span>
@@ -70,16 +68,16 @@ export default function CandidateSidebar() {
       </nav>
 
       {/* Profile */}
-      <div className="border-t border-border p-4 bg-muted/30">
-        <div className="flex items-center gap-3 rounded-xl p-2 hover:bg-muted transition-colors cursor-pointer">
-          <div className="h-9 w-9 rounded-full bg-gradient-to-tr from-primary to-emerald-500 flex items-center justify-center font-bold text-primary-foreground text-sm shadow-md">
+      <div className="border-t border-white/5 p-4">
+        <div className="flex items-center gap-3 rounded-xl p-2 hover:bg-white/6 transition-colors cursor-pointer">
+          <div className="h-9 w-9 rounded-full bg-gradient-to-tr from-[#4BC957] to-emerald-400 flex items-center justify-center font-bold text-white text-sm shadow-md">
             LM
           </div>
           <div className="flex-1 min-w-0">
-            <p className=" font-semibold text-foreground truncate">Majid Al-Mansoori</p>
-            <p className="text-[13px] text-muted-foreground truncate">Majid@example.com</p>
+            <p className="font-semibold text-white truncate">Majid Al-Mansoori</p>
+            <p className="text-[13px] text-slate-400 truncate">Majid@example.com</p>
           </div>
-          <ChevronRight className="h-4 w-4 text-muted-foreground" />
+          <ChevronRight className="h-4 w-4 text-slate-500" />
         </div>
       </div>
     </aside>

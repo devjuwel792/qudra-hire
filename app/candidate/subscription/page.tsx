@@ -102,7 +102,7 @@ export default function CandidateSubscriptionPage() {
         {/* Stats */}
         <div className="grid grid-cols-3 gap-4">
           {stats.map((s) => (
-            <div key={s.label} className="bg-muted/40 border border-border rounded-xl px-5 py-4">
+            <div key={s.label} className="bg-card border border-border rounded-xl px-5 py-4 shadow-sm">
               <div className="flex items-center gap-2 mb-2">
                 {s.icon}
                 <span className="text-[10px] font-bold tracking-widest text-muted-foreground uppercase">{s.label}</span>
@@ -117,7 +117,7 @@ export default function CandidateSubscriptionPage() {
           <h2 className="text-lg font-bold text-foreground mb-3">Your career profiles</h2>
           <div className="space-y-3">
             {careerProfiles.map((p) => (
-              <div key={p.id} className="bg-muted/30 border border-border rounded-xl px-5 py-4">
+              <div key={p.id} className="bg-card border border-border rounded-xl px-5 py-4 shadow-sm">
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex items-start gap-3 flex-1 min-w-0">
                     <div className={`mt-0.5 w-7 h-7 rounded-full flex items-center justify-center shrink-0 ${p.status === "active" ? "bg-[#4BC957]/15" : "bg-muted"}`}>
@@ -189,7 +189,7 @@ export default function CandidateSubscriptionPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-stretch">
             {/* Free card */}
-            <div className="bg-muted/30 border border-border rounded-2xl p-6 flex flex-col h-full">
+            <div className="bg-card border border-border rounded-2xl p-6 flex flex-col h-full shadow-sm">
               <div className="flex items-center gap-2 mb-3">
                 <Zap className="w-4 h-4 text-muted-foreground" />
                 <span className="text-[10px] font-bold tracking-widest text-muted-foreground uppercase">{freePlan.tier}</span>
@@ -252,7 +252,7 @@ export default function CandidateSubscriptionPage() {
         {/* Billing History */}
         <div>
           <h2 className="text-lg font-bold text-foreground mb-3">Billing history</h2>
-          <div className="border border-border rounded-xl overflow-hidden">
+          <div className="border border-border rounded-xl overflow-hidden bg-card shadow-sm">
             <table className="w-full text-sm">
               <thead>
                 <tr className="bg-muted/50 border-b border-border text-[11px] font-bold text-muted-foreground uppercase tracking-wider">
@@ -284,5 +284,4 @@ export default function CandidateSubscriptionPage() {
 
       </div>
     </div>
-  );
-}
+  );}
