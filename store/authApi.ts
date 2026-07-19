@@ -199,6 +199,7 @@ export interface AdminCompanyListItem {
   approval_status: string;
   is_suspended: boolean;
   since: string;
+  subscription:string;
 }
 
 export interface AdminCompanyDetail {

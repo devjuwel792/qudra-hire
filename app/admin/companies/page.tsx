@@ -40,11 +40,11 @@ function formatDate(iso: string) {
 function ApprovalBadge({ status }: { status: string }) {
   const map: Record<string, string> = {
     VERIFIED: "bg-[#21c55e]/15 text-[#21c55e]",
-    PENDING: "bg-amber-500/15 text-amber-400",
-    REJECTED: "bg-red-500/15 text-red-400",
+    PENDING: "bg-amber-500/15 text-amber-500",
+    REJECTED: "bg-red-500/15 text-red-500",
   };
   return (
-    <span className={`px-2.5 py-0.5 rounded text-[11px] font-semibold ${map[status] ?? "bg-white/10 text-white/50"}`}>
+    <span className={`px-2.5 py-0.5 rounded text-[11px] font-semibold ${map[status] ?? "bg-muted text-muted-foreground"}`}>
       {status}
     </span>
   );
@@ -52,7 +52,7 @@ function ApprovalBadge({ status }: { status: string }) {
 
 function SuspendedBadge({ suspended }: { suspended: boolean }) {
   return suspended ? (
-    <span className="px-2.5 py-0.5 rounded text-[11px] font-semibold bg-red-500/15 text-red-400">Suspended</span>
+    <span className="px-2.5 py-0.5 rounded text-[11px] font-semibold bg-red-500/15 text-red-500">Suspended</span>
   ) : (
     <span className="px-2.5 py-0.5 rounded text-[11px] font-semibold bg-[#21c55e]/15 text-[#21c55e]">Active</span>
   );
@@ -62,10 +62,10 @@ function SuspendedBadge({ suspended }: { suspended: boolean }) {
 
 function SkeletonRow() {
   return (
-    <tr className="border-b border-white/5">
+    <tr className="border-b border-border">
       {[140, 160, 60, 60, 70, 80, 80, 60].map((w, i) => (
         <td key={i} className="px-5 py-4">
-          <div className="h-3 rounded bg-white/5 animate-pulse" style={{ width: w }} />
+          <div className="h-3 rounded bg-muted animate-pulse" style={{ width: w }} />
         </td>
       ))}
     </tr>
@@ -95,17 +95,17 @@ function DetailPanel({
 
   if (isLoading) return (
     <div className="flex items-center justify-center py-16">
-      <Loader2 className="h-6 w-6 animate-spin text-white/30" />
+      <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
     </div>
   );
   if (isError || !c) return (
-    <p className="text-sm text-red-400 py-8 text-center">Failed to load company.</p>
+    <p className="text-sm text-red-500 py-8 text-center">Failed to load company.</p>
   );
 
   return (
     <>
       {/* Header row */}
-      <div className="flex items-center gap-4 pb-5 border-b border-white/5">
+      <div className="flex items-center gap-4 pb-5 border-b border-border">
         <div
           className="w-12 h-12 rounded-lg flex items-center justify-center text-sm font-bold text-white shrink-0"
           style={{ background: avatarColor(c.id) }}
@@ -113,8 +113,8 @@ function DetailPanel({
           {getInitials(c.company_name)}
         </div>
         <div className="flex-1 min-w-0">
-          <p className="text-base font-bold text-white truncate">{c.company_name}</p>
-          <p className="text-xs text-white/40">{c.email}</p>
+          <p className="text-base font-bold text-foreground truncate">{c.company_name}</p>
+          <p className="text-xs text-muted-foreground">{c.email}</p>
         </div>
         <div className="flex flex-col gap-1 items-end shrink-0">
           <ApprovalBadge status={c.approval_status} />
@@ -123,7 +123,7 @@ function DetailPanel({
       </div>
 
       {/* Details grid */}
-      <div className="grid grid-cols-2 gap-y-5 gap-x-4 py-5 border-b border-white/5">
+      <div className="grid grid-cols-2 gap-y-5 gap-x-4 py-5 border-b border-border">
         {[
           ["Contact Person", c.contact_person || "—"],
           ["Phone", c.phone || "—"],
@@ -137,14 +137,14 @@ function DetailPanel({
           ...(c.rejection_reason ? [["Rejection Reason", c.rejection_reason]] : []),
         ].map(([label, val]) => (
           <div key={label}>
-            <p className="text-[11px] text-white/40 mb-1">{label}</p>
-            <p className="text-sm font-medium text-white/90 break-words">{val}</p>
+            <p className="text-[11px] text-muted-foreground mb-1">{label}</p>
+            <p className="text-sm font-medium text-foreground break-words">{val}</p>
           </div>
         ))}
         {c.about && (
           <div className="col-span-2">
-            <p className="text-[11px] text-white/40 mb-1">About</p>
-            <p className="text-sm text-white/70 leading-relaxed">{c.about}</p>
+            <p className="text-[11px] text-muted-foreground mb-1">About</p>
+            <p className="text-sm text-muted-foreground leading-relaxed">{c.about}</p>
           </div>
         )}
       </div>
@@ -152,7 +152,7 @@ function DetailPanel({
       {/* Action buttons */}
       <div className="flex flex-wrap gap-2 pt-4">
         <button onClick={onEdit}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/10 hover:bg-white/5 text-white/70 text-xs font-medium transition-colors">
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-border hover:bg-muted text-muted-foreground text-xs font-medium transition-colors">
           <Pencil className="w-3.5 h-3.5" /> Edit
         </button>
         {c.approval_status === "PENDING" && (
@@ -162,17 +162,17 @@ function DetailPanel({
               <CheckCircle className="w-3.5 h-3.5" /> Approve
             </button>
             <button onClick={onReject}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-amber-500/20 hover:bg-amber-500/10 text-amber-400 text-xs font-medium transition-colors">
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-amber-500/20 hover:bg-amber-500/10 text-amber-500 text-xs font-medium transition-colors">
               <XCircle className="w-3.5 h-3.5" /> Reject
             </button>
           </>
         )}
         <button onClick={onResetPwd}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/10 hover:bg-white/5 text-white/70 text-xs font-medium transition-colors">
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-border hover:bg-muted text-muted-foreground text-xs font-medium transition-colors">
           <Key className="w-3.5 h-3.5" /> Reset Password
         </button>
         <button onClick={onDelete}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-red-500/20 hover:bg-red-500/10 text-red-400 text-xs font-medium transition-colors ml-auto">
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-red-500/20 hover:bg-red-500/10 text-red-500 text-xs font-medium transition-colors ml-auto">
           <Trash2 className="w-3.5 h-3.5" /> Delete
         </button>
       </div>
@@ -217,42 +217,42 @@ function EditForm({ company, onClose }: { company: AdminCompanyListItem; onClose
     }
   }
 
-  const inp = "w-full bg-[#1A202C] border border-white/5 rounded-lg px-3 py-2 text-sm text-white outline-none focus:border-[#6366f1]/50 transition-colors placeholder:text-white/20";
+  const inp = "w-full bg-background border border-border rounded-lg px-3 py-2 text-sm text-foreground outline-none focus:border-[#6366f1]/50 transition-colors placeholder:text-muted-foreground";
 
   return (
     <div className="py-4 space-y-4">
-      {error && <p className="text-xs text-red-400 bg-red-500/10 border border-red-500/20 px-3 py-2 rounded-lg">{error}</p>}
+      {error && <p className="text-xs text-red-500 bg-red-500/10 border border-red-500/20 px-3 py-2 rounded-lg">{error}</p>}
       {success && <p className="text-xs text-[#21c55e] bg-[#21c55e]/10 border border-[#21c55e]/20 px-3 py-2 rounded-lg">Saved!</p>}
       <div>
-        <label className="text-xs text-white/40 mb-1.5 block">Company Name</label>
+        <label className="text-xs text-muted-foreground mb-1.5 block">Company Name</label>
         <input className={inp} value={form.company_name} onChange={(e) => set("company_name", e.target.value)} />
       </div>
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label className="text-xs text-white/40 mb-1.5 block">Email</label>
+          <label className="text-xs text-muted-foreground mb-1.5 block">Email</label>
           <input type="email" className={inp} value={form.email} onChange={(e) => set("email", e.target.value)} />
         </div>
         <div>
-          <label className="text-xs text-white/40 mb-1.5 block">Contact Person</label>
+          <label className="text-xs text-muted-foreground mb-1.5 block">Contact Person</label>
           <input className={inp} placeholder="Full name" value={form.contact_person} onChange={(e) => set("contact_person", e.target.value)} />
         </div>
       </div>
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label className="text-xs text-white/40 mb-1.5 block">Phone</label>
+          <label className="text-xs text-muted-foreground mb-1.5 block">Phone</label>
           <input className={inp} placeholder="+971 50 000 0000" value={form.phone} onChange={(e) => set("phone", e.target.value)} />
         </div>
         <div>
-          <label className="text-xs text-white/40 mb-1.5 block">Country</label>
+          <label className="text-xs text-muted-foreground mb-1.5 block">Country</label>
           <input className={inp} placeholder="UAE" value={form.country} onChange={(e) => set("country", e.target.value)} />
         </div>
       </div>
       <div>
-        <label className="text-xs text-white/40 mb-1.5 block">Plan ID</label>
+        <label className="text-xs text-muted-foreground mb-1.5 block">Plan ID</label>
         <input className={inp} placeholder="UUID" value={form.plan_id} onChange={(e) => set("plan_id", e.target.value)} />
       </div>
-      <div className="flex justify-end gap-3 pt-4 border-t border-white/5">
-        <button onClick={onClose} className="px-4 py-2 rounded-lg border border-white/10 text-white/70 hover:bg-white/5 text-sm font-medium transition-colors">Cancel</button>
+      <div className="flex justify-end gap-3 pt-4 border-t border-border">
+        <button onClick={onClose} className="px-4 py-2 rounded-lg border border-border text-muted-foreground hover:bg-muted text-sm font-medium transition-colors">Cancel</button>
         <button onClick={handleSave} disabled={isLoading || success}
           className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#6366f1] hover:bg-[#6366f1]/90 disabled:opacity-60 text-white text-sm font-medium transition-colors">
           {isLoading && <Loader2 className="h-3.5 w-3.5 animate-spin" />}
@@ -283,22 +283,22 @@ function RejectForm({ company, onClose }: { company: AdminCompanyListItem; onClo
 
   return (
     <div className="py-4 space-y-4">
-      <p className="text-sm text-white/60">
-        Rejecting <span className="font-semibold text-white">{company.company_name}</span>. Please state the reason.
+      <p className="text-sm text-muted-foreground">
+        Rejecting <span className="font-semibold text-foreground">{company.company_name}</span>. Please state the reason.
       </p>
-      {error && <p className="text-xs text-red-400 bg-red-500/10 border border-red-500/20 px-3 py-2 rounded-lg">{error}</p>}
+      {error && <p className="text-xs text-red-500 bg-red-500/10 border border-red-500/20 px-3 py-2 rounded-lg">{error}</p>}
       <div>
-        <label className="text-xs text-white/40 mb-1.5 block">Reason</label>
+        <label className="text-xs text-muted-foreground mb-1.5 block">Reason</label>
         <textarea
           rows={3}
           value={reason}
           onChange={(e) => setReason(e.target.value)}
           placeholder="e.g. Invalid trade licence…"
-          className="w-full bg-[#1A202C] border border-white/5 rounded-lg px-3 py-2 text-sm text-white outline-none focus:border-amber-500/40 transition-colors resize-none placeholder:text-white/20"
+          className="w-full bg-background border border-border rounded-lg px-3 py-2 text-sm text-foreground outline-none focus:border-amber-500/40 transition-colors resize-none placeholder:text-muted-foreground"
         />
       </div>
-      <div className="flex justify-end gap-3 pt-2 border-t border-white/5">
-        <button onClick={onClose} className="px-4 py-2 rounded-lg border border-white/10 text-white/70 hover:bg-white/5 text-sm font-medium transition-colors">Cancel</button>
+      <div className="flex justify-end gap-3 pt-2 border-t border-border">
+        <button onClick={onClose} className="px-4 py-2 rounded-lg border border-border text-muted-foreground hover:bg-muted text-sm font-medium transition-colors">Cancel</button>
         <button onClick={handleReject} disabled={isLoading}
           className="flex items-center gap-2 px-4 py-2 rounded-lg bg-amber-600 hover:bg-amber-500 disabled:opacity-60 text-white text-sm font-medium transition-colors">
           {isLoading && <Loader2 className="h-3.5 w-3.5 animate-spin" />}
@@ -328,17 +328,17 @@ function DeleteConfirm({ company, onClose }: { company: AdminCompanyListItem; on
   return (
     <div className="py-4 space-y-4">
       <div className="flex items-start gap-3 p-4 rounded-xl bg-red-500/10 border border-red-500/20">
-        <AlertTriangle className="h-5 w-5 text-red-400 shrink-0 mt-0.5" />
+        <AlertTriangle className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
         <div>
-          <p className="text-sm font-semibold text-red-300">Permanently delete company</p>
-          <p className="text-xs text-red-400/80 mt-1">
+          <p className="text-sm font-semibold text-red-500">Permanently delete company</p>
+          <p className="text-xs text-red-500/80 mt-1">
             <span className="font-bold">{company.company_name}</span> and all their data will be removed. This cannot be undone.
           </p>
         </div>
       </div>
-      {error && <p className="text-xs text-red-400 bg-red-500/10 border border-red-500/20 px-3 py-2 rounded-lg">{error}</p>}
-      <div className="flex justify-end gap-3 pt-2 border-t border-white/5">
-        <button onClick={onClose} className="px-4 py-2 rounded-lg border border-white/10 text-white/70 hover:bg-white/5 text-sm font-medium transition-colors">Cancel</button>
+      {error && <p className="text-xs text-red-500 bg-red-500/10 border border-red-500/20 px-3 py-2 rounded-lg">{error}</p>}
+      <div className="flex justify-end gap-3 pt-2 border-t border-border">
+        <button onClick={onClose} className="px-4 py-2 rounded-lg border border-border text-muted-foreground hover:bg-muted text-sm font-medium transition-colors">Cancel</button>
         <button onClick={handleDelete} disabled={isLoading}
           className="flex items-center gap-2 px-4 py-2 rounded-lg bg-red-600 hover:bg-red-500 disabled:opacity-60 text-white text-sm font-medium transition-colors">
           {isLoading && <Loader2 className="h-3.5 w-3.5 animate-spin" />}
@@ -367,14 +367,14 @@ function ApproveConfirm({ company, onClose }: { company: AdminCompanyListItem; o
 
   return (
     <div className="py-4 space-y-4">
-      <p className="text-sm text-white/70">
-        Approve <span className="font-semibold text-white">{company.company_name}</span>? They will be able to post jobs and use the platform.
+      <p className="text-sm text-muted-foreground">
+        Approve <span className="font-semibold text-foreground">{company.company_name}</span>? They will be able to post jobs and use the platform.
       </p>
-      {error && <p className="text-xs text-red-400 bg-red-500/10 border border-red-500/20 px-3 py-2 rounded-lg">{error}</p>}
-      <div className="flex justify-end gap-3 pt-2 border-t border-white/5">
-        <button onClick={onClose} className="px-4 py-2 rounded-lg border border-white/10 text-white/70 hover:bg-white/5 text-sm font-medium transition-colors">Cancel</button>
+      {error && <p className="text-xs text-red-500 bg-red-500/10 border border-red-500/20 px-3 py-2 rounded-lg">{error}</p>}
+      <div className="flex justify-end gap-3 pt-2 border-t border-border">
+        <button onClick={onClose} className="px-4 py-2 rounded-lg border border-border text-muted-foreground hover:bg-muted text-sm font-medium transition-colors">Cancel</button>
         <button onClick={handleApprove} disabled={isLoading}
-          className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#21c55e] hover:bg-[#00c98e] disabled:opacity-60 text-[#0D1117] text-sm font-semibold transition-colors">
+          className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#21c55e] hover:bg-[#00c98e] disabled:opacity-60 text-white text-sm font-semibold transition-colors">
           {isLoading && <Loader2 className="h-3.5 w-3.5 animate-spin" />}
           {isLoading ? "Approving…" : "Approve"}
         </button>
@@ -412,12 +412,12 @@ function ResetPasswordPanel({ company, onClose }: { company: AdminCompanyListIte
     <div className="py-4 space-y-4">
       {!newPassword ? (
         <>
-          <p className="text-sm text-white/70">
-            Reset password for <span className="font-semibold text-white">{company.company_name}</span>? A new password will be generated.
+          <p className="text-sm text-muted-foreground">
+            Reset password for <span className="font-semibold text-foreground">{company.company_name}</span>? A new password will be generated.
           </p>
-          {error && <p className="text-xs text-red-400 bg-red-500/10 border border-red-500/20 px-3 py-2 rounded-lg">{error}</p>}
-          <div className="flex justify-end gap-3 pt-2 border-t border-white/5">
-            <button onClick={onClose} className="px-4 py-2 rounded-lg border border-white/10 text-white/70 hover:bg-white/5 text-sm font-medium transition-colors">Cancel</button>
+          {error && <p className="text-xs text-red-500 bg-red-500/10 border border-red-500/20 px-3 py-2 rounded-lg">{error}</p>}
+          <div className="flex justify-end gap-3 pt-2 border-t border-border">
+            <button onClick={onClose} className="px-4 py-2 rounded-lg border border-border text-muted-foreground hover:bg-muted text-sm font-medium transition-colors">Cancel</button>
             <button onClick={handleReset} disabled={isLoading}
               className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#6366f1] hover:bg-[#6366f1]/90 disabled:opacity-60 text-white text-sm font-medium transition-colors">
               {isLoading && <Loader2 className="h-3.5 w-3.5 animate-spin" />}
@@ -428,15 +428,15 @@ function ResetPasswordPanel({ company, onClose }: { company: AdminCompanyListIte
       ) : (
         <>
           <p className="text-sm text-[#21c55e]">Password reset successfully! Share this with the company:</p>
-          <div className="flex items-center gap-2 bg-[#1A202C] border border-white/10 rounded-lg px-4 py-3">
-            <code className="flex-1 text-sm font-mono text-white tracking-wider">{newPassword}</code>
-            <button onClick={copyPwd} className="text-white/40 hover:text-white transition-colors">
+          <div className="flex items-center gap-2 bg-background border border-border rounded-lg px-4 py-3">
+            <code className="flex-1 text-sm font-mono text-foreground tracking-wider">{newPassword}</code>
+            <button onClick={copyPwd} className="text-muted-foreground hover:text-foreground transition-colors">
               {copied ? <Check className="h-4 w-4 text-[#21c55e]" /> : <Copy className="h-4 w-4" />}
             </button>
           </div>
-          <p className="text-xs text-white/40">Store this securely — it won't be shown again.</p>
-          <div className="flex justify-end pt-2 border-t border-white/5">
-            <button onClick={onClose} className="px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 text-white/70 text-sm font-medium transition-colors">Done</button>
+          <p className="text-xs text-muted-foreground">Store this securely — it won't be shown again.</p>
+          <div className="flex justify-end pt-2 border-t border-border">
+            <button onClick={onClose} className="px-4 py-2 rounded-lg bg-muted hover:bg-accent text-muted-foreground text-sm font-medium transition-colors">Done</button>
           </div>
         </>
       )}
@@ -482,8 +482,8 @@ export default function CompanyManagementPage() {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-bold text-white">Company Management</h1>
-        <p className="text-sm text-white/40 mt-0.5">
+        <h1 className="text-2xl font-bold text-foreground">Company Management</h1>
+        <p className="text-sm text-muted-foreground mt-0.5">
           {isLoading ? "Loading…" : `${companies.length} total companies`}
         </p>
       </div>
@@ -491,40 +491,40 @@ export default function CompanyManagementPage() {
       {/* Toolbar */}
       <div className="flex items-center gap-3">
         <div className="relative flex-1 max-w-xs">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-white/30" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
           <input
             type="text"
             placeholder="Search by name or email…"
             value={search}
             onChange={(e) => { setSearch(e.target.value); setPage(1); }}
-            className="w-full bg-[#111827] border border-white/10 rounded-lg pl-9 pr-4 py-2 text-sm text-white placeholder-white/30 outline-none focus:border-[#21c55e]/40 transition-colors"
+            className="w-full bg-background border border-border rounded-lg pl-9 pr-4 py-2 text-sm text-foreground placeholder-muted-foreground outline-none focus:border-[#21c55e]/40 transition-colors"
           />
         </div>
       </div>
 
       {/* Error banner */}
       {isError && (
-        <div className="flex items-center gap-2 px-4 py-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm">
+        <div className="flex items-center gap-2 px-4 py-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-500 text-sm">
           <AlertTriangle className="h-4 w-4 shrink-0" />
           Failed to load companies. Check your connection and try again.
         </div>
       )}
 
       {/* Table */}
-      <div className="rounded-xl bg-[#111827] border border-white/5 overflow-hidden">
+      <div className="rounded-xl bg-card border border-border overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full min-w-[860px]">
             <thead>
-              <tr className="border-b border-white/5">
+              <tr className="border-b border-border">
                 {["Company", "Country", "Jobs", "Subcription",
-                //  "Approval", 
-                 "Status",
+                  //  "Approval",
+                  "Status",
                   // "Since",
-                   "Actions"].map((h) => (
-                  <th key={h} className={`px-5 py-3 text-[11px] font-semibold text-white/30 uppercase tracking-wider ${h === "Actions" ? "text-right" : "text-left"}`}>
-                    {h}
-                  </th>
-                ))}
+                  "Actions"].map((h) => (
+                    <th key={h} className={`px-5 py-3 text-[11px] font-semibold text-muted-foreground uppercase tracking-wider ${h === "Actions" ? "text-right" : "text-left"}`}>
+                      {h}
+                    </th>
+                  ))}
               </tr>
             </thead>
             <tbody>
@@ -533,14 +533,14 @@ export default function CompanyManagementPage() {
                 : paginated.length === 0
                   ? (
                     <tr>
-                      <td colSpan={8} className="text-center py-16 text-white/30 text-sm">
+                      <td colSpan={8} className="text-center py-16 text-muted-foreground text-sm">
                         {search ? "No companies match your search." : "No companies found."}
                       </td>
                     </tr>
                   )
                   : paginated.map((c, idx) => (
                     <tr key={c.id}
-                      className={`border-b border-white/5 hover:bg-white/[0.02] transition-colors ${idx === paginated.length - 1 ? "border-b-0" : ""}`}>
+                      className={`border-b border-border hover:bg-muted/50 transition-colors ${idx === paginated.length - 1 ? "border-b-0" : ""}`}>
                       {/* Company */}
                       <td className="px-5 py-3.5">
                         <div className="flex items-center gap-3">
@@ -549,27 +549,27 @@ export default function CompanyManagementPage() {
                             {getInitials(c.company_name)}
                           </div>
                           <div>
-                            <p className="text-sm font-medium text-white">{c.company_name}</p>
-                            <p className="text-xs text-white/40">{c.email}</p>
+                            <p className="text-sm font-medium text-foreground">{c.company_name}</p>
+                            <p className="text-xs text-muted-foreground">{c.email}</p>
                           </div>
                         </div>
                       </td>
                       {/* Country */}
                       <td className="px-5 py-3.5">
                         <div className="flex items-center gap-1.5">
-                          <Globe className="h-3 w-3 text-white/30 shrink-0" />
-                          <span className="text-sm text-white/60">{c.country || "—"}</span>
+                          <Globe className="h-3 w-3 text-muted-foreground shrink-0" />
+                          <span className="text-sm text-muted-foreground">{c.country || "—"}</span>
                         </div>
                       </td>
                       {/* Jobs */}
                       <td className="px-5 py-3.5">
-                        <span className="text-sm text-white/70">{c.active_jobs}</span>
+                        <span className="text-sm text-muted-foreground">{c.active_jobs}</span>
                       </td>
 
-                      {/* Approval */}
+                      {/* subscription */}
                       <td className="px-5 py-3.5">
                         {/* <ApprovalBadge status={c.approval_status} /> */}
-                        <p className="text-sm text-blue-400 bg-blue-50 border border-blue-100 rounded-full py-0.5 px-2">{c.current_plan}</p>
+                        <span className="capitalize text-blue-600 bg-blue-600/10 px-2 py-1 inline-block text-center rounded-md"> {c.subscription ?? "....."}</span>
                       </td>
                       {/* Suspended */}
                       <td className="px-5 py-3.5">
@@ -577,27 +577,27 @@ export default function CompanyManagementPage() {
                       </td>
                       {/* Since */}
                       {/* <td className="px-5 py-3.5">
-                        <span className="text-sm text-white/50">{formatDate(c.since)}</span>
+                        <span className="text-sm text-muted-foreground">{formatDate(c.since)}</span>
                       </td> */}
                       {/* Actions */}
                       <td className="px-5 py-3.5">
                         <div className="flex items-center justify-end gap-1">
                           <button onClick={() => open("view", c)} title="View"
-                            className="p-1.5 rounded-md hover:bg-white/5 text-white/40 hover:text-white/80 transition-colors">
+                            className="p-1.5 rounded-md hover:bg-muted text-muted-foreground hover:text-foreground transition-colors">
                             <Eye className="h-3.5 w-3.5" />
                           </button>
                           <button onClick={() => open("edit", c)} title="Edit"
-                            className="p-1.5 rounded-md hover:bg-white/5 text-white/40 hover:text-white/80 transition-colors">
+                            className="p-1.5 rounded-md hover:bg-muted text-muted-foreground hover:text-foreground transition-colors">
                             <Pencil className="h-3.5 w-3.5" />
                           </button>
                           {c.approval_status === "PENDING" && (
                             <button onClick={() => open("approve", c)} title="Approve"
-                              className="p-1.5 rounded-md hover:bg-[#21c55e]/10 text-white/40 hover:text-[#21c55e] transition-colors">
+                              className="p-1.5 rounded-md hover:bg-[#21c55e]/10 text-muted-foreground hover:text-[#21c55e] transition-colors">
                               <CheckCircle className="h-3.5 w-3.5" />
                             </button>
                           )}
                           <button onClick={() => open("delete", c)} title="Delete"
-                            className="p-1.5 rounded-md hover:bg-red-500/10 text-white/40 hover:text-red-400 transition-colors">
+                            className="p-1.5 rounded-md hover:bg-red-500/10 text-muted-foreground hover:text-red-500 transition-colors">
                             <Trash2 className="h-3.5 w-3.5" />
                           </button>
                         </div>
@@ -611,23 +611,23 @@ export default function CompanyManagementPage() {
 
         {/* Pagination */}
         {!isLoading && filtered.length > 0 && (
-          <div className="flex items-center justify-between px-5 py-3 border-t border-white/5">
-            <span className="text-xs text-white/30">
+          <div className="flex items-center justify-between px-5 py-3 border-t border-border">
+            <span className="text-xs text-muted-foreground">
               Showing {Math.min((page - 1) * PAGE_SIZE + 1, filtered.length)}–{Math.min(page * PAGE_SIZE, filtered.length)} of {filtered.length}
             </span>
             <div className="flex items-center gap-1">
               <button onClick={() => setPage((p) => Math.max(1, p - 1))} disabled={page === 1}
-                className="p-1.5 rounded-md hover:bg-white/5 text-white/30 hover:text-white/60 disabled:opacity-30 transition-colors">
+                className="p-1.5 rounded-md hover:bg-muted text-muted-foreground hover:text-foreground disabled:opacity-30 transition-colors">
                 <ChevronLeft className="h-3.5 w-3.5" />
               </button>
               {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
                 <button key={n} onClick={() => setPage(n)}
-                  className={`w-7 h-7 rounded-md text-xs font-semibold transition-colors ${n === page ? "bg-[#21c55e]/20 text-[#21c55e]" : "hover:bg-white/5 text-white/40"}`}>
+                  className={`w-7 h-7 rounded-md text-xs font-semibold transition-colors ${n === page ? "bg-[#21c55e]/20 text-[#21c55e]" : "hover:bg-muted text-muted-foreground"}`}>
                   {n}
                 </button>
               ))}
               <button onClick={() => setPage((p) => Math.min(totalPages, p + 1))} disabled={page === totalPages}
-                className="p-1.5 rounded-md hover:bg-white/5 text-white/30 hover:text-white/60 disabled:opacity-30 transition-colors">
+                className="p-1.5 rounded-md hover:bg-muted text-muted-foreground hover:text-foreground disabled:opacity-30 transition-colors">
                 <ChevronRight className="h-3.5 w-3.5" />
               </button>
             </div>
@@ -637,9 +637,9 @@ export default function CompanyManagementPage() {
 
       {/* Single dialog for all modals */}
       <Dialog open={modal !== null} onOpenChange={(o) => { if (!o) close(); }}>
-        <DialogContent className="bg-[#111827] border-white/5 text-white max-w-lg p-6 rounded-xl overflow-hidden !ring-0 max-h-[90vh] overflow-y-auto">
-          <DialogHeader className="pb-4 border-b border-white/5">
-            <DialogTitle className="text-lg font-bold text-white">
+        <DialogContent className="bg-card border-border text-foreground max-w-lg p-6 rounded-xl overflow-hidden !ring-0 max-h-[90vh] overflow-y-auto">
+          <DialogHeader className="pb-4 border-b border-border">
+            <DialogTitle className="text-lg font-bold text-foreground">
               {modal ? modalTitle[modal] : ""}
             </DialogTitle>
           </DialogHeader>
