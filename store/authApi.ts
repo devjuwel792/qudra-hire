@@ -73,9 +73,11 @@ export interface AdminCandidateListItem {
   id: number;
   full_name: string;
   email: string;
-  location: string;
-  credits: number;
+  location: string | null;
   subscription: string;
+  designations_plans: { designation: string; plan: string }[];
+  ats_score: number;
+  jobs_applied: number;
   is_suspended: boolean;
   registered: string;
 }

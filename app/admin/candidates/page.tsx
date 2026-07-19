@@ -148,15 +148,7 @@ export default function AdminCandidatesPage() {
                       </td>
                     </tr>
                   )
-                  : paginated.map((c, idx) => {
-                    // Fallbacks since backend might not have these fields yet
-                    const atsScore = (c as any).ats_score ?? Math.floor(Math.random() * 40) + 50;
-                    const jobsApplied = (c as any).jobs_applied ?? Math.floor(Math.random() * 20);
-                    const designations = (c as any).designations ?? [
-                      { title: "Software Engineer", plan: c.subscription || "Premium" }
-                    ];
-
-                    return (
+                  : paginated.map((c, idx) => (
                       <tr
                         key={c.id}
                         className={`border-b border-border hover:bg-muted/50 transition-colors ${idx === paginated.length - 1 ? "border-b-0" : ""}`}
@@ -178,15 +170,15 @@ export default function AdminCandidatesPage() {
                         </td>
                         {/* Location */}
                         <td className="px-5 py-4">
-                          <span className="text-sm font-medium text-foreground">{c.location || "UAE"}</span>
+                          <span className="text-sm font-medium text-foreground">{c.location || "—"}</span>
                         </td>
                         {/* Designations & Plans */}
                         <td className="px-5 py-4">
                           <div className="space-y-1.5">
-                            {designations.map((d: any, i: number) => (
+                            {c.designations_plans.map((d, i) => (
                               <div key={i} className="flex items-center gap-2">
                                 <span className="w-1.5 h-1.5 rounded-full bg-[#6366f1]/50" />
-                                <span className="text-xs text-foreground">{d.title}</span>
+                                <span className="text-xs text-foreground">{d.designation || "—"}</span>
                                 <SubBadge label={d.plan} />
                               </div>
                             ))}
@@ -196,14 +188,14 @@ export default function AdminCandidatesPage() {
                         <td className="px-5 py-4">
                           <div className="flex items-center gap-3">
                             <div className="w-16 h-1.5 rounded-full bg-muted overflow-hidden">
-                              <div className="h-full bg-[#21c55e]" style={{ width: `${atsScore}%` }} />
+                              <div className="h-full bg-[#21c55e]" style={{ width: `${c.ats_score}%` }} />
                             </div>
-                            <span className="text-xs font-medium text-foreground">{atsScore}</span>
+                            <span className="text-xs font-medium text-foreground">{c.ats_score}</span>
                           </div>
                         </td>
                         {/* Jobs Applied */}
                         <td className="px-5 py-4">
-                          <span className="text-sm font-medium text-foreground">{jobsApplied}</span>
+                          <span className="text-sm font-medium text-foreground">{c.jobs_applied}</span>
                         </td>
                         {/* Status */}
                         <td className="px-5 py-4">
@@ -228,8 +220,7 @@ export default function AdminCandidatesPage() {
                           </div>
                         </td>
                       </tr>
-                    );
-                  })
+                    ))
               }
             </tbody>
           </table>
