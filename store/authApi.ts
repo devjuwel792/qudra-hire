@@ -414,8 +414,24 @@ export const authApi = createApi({
     }),
 
     // POST /admin/companies/{id}/reset-password/
-    resetAdminCompanyPassword: builder.mutation<ApiResponse<{ new_password: string }>, number>({
-      query: (id) => ({ url: `admin/companies/${id}/reset-password/`, method: "POST" }),
+    resetAdminCompanyPassword: builder.mutation<ApiResponse<{ new_password: string }>, { id: number; new_password: string }>({
+      query: ({ id, new_password }) => ({
+        url: `admin/companies/${id}/reset-password/`,
+        method: "POST",
+        body: { new_password },
+      }),
+    }),
+
+    // POST /admin/companies/{id}/suspend/
+    suspendAdminCompany: builder.mutation<ApiResponse<null>, number>({
+      query: (id) => ({ url: `admin/companies/${id}/suspend/`, method: "POST" }),
+      invalidatesTags: (_r, _e, id) => ["AdminCompanies", { type: "AdminCompanies", id }],
+    }),
+
+    // DELETE /admin/companies/{id}/suspend/
+    unsuspendAdminCompany: builder.mutation<ApiResponse<null>, number>({
+      query: (id) => ({ url: `admin/companies/${id}/suspend/`, method: "DELETE" }),
+      invalidatesTags: (_r, _e, id) => ["AdminCompanies", { type: "AdminCompanies", id }],
     }),
   }),
 });
@@ -443,4 +459,6 @@ export const {
   useApproveAdminCompanyMutation,
   useRejectAdminCompanyMutation,
   useResetAdminCompanyPasswordMutation,
+  useSuspendAdminCompanyMutation,
+  useUnsuspendAdminCompanyMutation,
 } = authApi;

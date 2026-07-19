@@ -4,7 +4,7 @@ import { useState } from "react";
 import {
   Search, Eye, Pencil, Trash2, Globe,
   ChevronLeft, ChevronRight, Loader2,
-  CheckCircle, XCircle, Key, AlertTriangle, Copy, Check,
+  CheckCircle, XCircle, Key, AlertTriangle, Copy, Check, Ban,
 } from "lucide-react";
 import {
   Dialog, DialogContent, DialogHeader, DialogTitle,
@@ -17,6 +17,8 @@ import {
   useApproveAdminCompanyMutation,
   useRejectAdminCompanyMutation,
   useResetAdminCompanyPasswordMutation,
+  useSuspendAdminCompanyMutation,
+  useUnsuspendAdminCompanyMutation,
   type AdminCompanyListItem,
 } from "@/store/authApi";
 
@@ -82,6 +84,7 @@ function DetailPanel({
   onApprove,
   onReject,
   onResetPwd,
+  onSuspend,
 }: {
   id: number;
   onEdit: () => void;
@@ -89,6 +92,7 @@ function DetailPanel({
   onApprove: () => void;
   onReject: () => void;
   onResetPwd: () => void;
+  onSuspend: () => void;
 }) {
   const { data, isLoading, isError } = useGetAdminCompanyByIdQuery(id);
   const c = data?.data;
@@ -122,6 +126,14 @@ function DetailPanel({
         </div>
       </div>
 
+      {/* Logo */}
+      {c.logo && (
+        <div className="py-4 border-b border-border">
+          <p className="text-[11px] text-muted-foreground mb-2">Logo</p>
+          <img src={c.logo} alt={`${c.company_name} logo`} className="h-16 w-16 rounded-lg object-cover" />
+        </div>
+      )}
+
       {/* Details grid */}
       <div className="grid grid-cols-2 gap-y-5 gap-x-4 py-5 border-b border-border">
         {[
@@ -130,7 +142,7 @@ function DetailPanel({
           ["Country", c.country || "—"],
           ["Subscription", c.subsription || "—"],
           ["Active Jobs", String(c.active_jobs)],
-         // ["Status", c.is_suspended ? "Suspended" : "Active"],
+          // ["Status", c.is_suspended ? "Suspended" : "Active"],
           // ["Licence No.", c.licence_number || "—"],
           // ["Licence Verified", c.is_licence_verified ? "Yes" : "No"],
           // ["Since", formatDate(c.since)],
@@ -170,6 +182,14 @@ function DetailPanel({
         <button onClick={onResetPwd}
           className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-border hover:bg-muted text-muted-foreground text-xs font-medium transition-colors">
           <Key className="w-3.5 h-3.5" /> Reset Password
+        </button>
+        <button onClick={onSuspend}
+          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-medium transition-colors ${
+            c.is_suspended
+              ? "border-amber-500/20 hover:bg-amber-500/10 text-amber-500"
+              : "border-orange-500/20 hover:bg-orange-500/10 text-orange-500"
+          }`}>
+          <Ban className="w-3.5 h-3.5" /> {c.is_suspended ? "Unsuspend" : "Suspend"}
         </button>
         <button onClick={onDelete}
           className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-red-500/20 hover:bg-red-500/10 text-red-500 text-xs font-medium transition-colors ml-auto">
@@ -383,6 +403,58 @@ function ApproveConfirm({ company, onClose }: { company: AdminCompanyListItem; o
   );
 }
 
+// ── Suspend Confirm ──────────────────────────────────────────────────────────
+
+function SuspendConfirm({ company, onClose }: { company: AdminCompanyListItem; onClose: () => void }) {
+  const [suspend, { isLoading: isSuspending }] = useSuspendAdminCompanyMutation();
+  const [unsuspend, { isLoading: isUnsuspending }] = useUnsuspendAdminCompanyMutation();
+  const [error, setError] = useState("");
+  const isLoading = isSuspending || isUnsuspending;
+  const isSuspended = company.is_suspended;
+
+  async function handleToggle() {
+    setError("");
+    try {
+      if (isSuspended) {
+        await unsuspend(company.id).unwrap();
+      } else {
+        await suspend(company.id).unwrap();
+      }
+      onClose();
+    } catch (err: unknown) {
+      setError((err as { data?: { details?: string } })?.data?.details ?? "Action failed.");
+    }
+  }
+
+  return (
+    <div className="py-4 space-y-4">
+      <div className="flex items-start gap-3 p-4 rounded-xl bg-orange-500/10 border border-orange-500/20">
+        <Ban className="h-5 w-5 text-orange-500 shrink-0 mt-0.5" />
+        <div>
+          <p className="text-sm font-semibold text-orange-500">
+            {isSuspended ? "Unsuspend company" : "Suspend company"}
+          </p>
+          <p className="text-xs text-orange-500/80 mt-1">
+            {isSuspended
+              ? <>Re-activate <span className="font-bold">{company.company_name}</span>. They will regain platform access.</>
+              : <>Suspend <span className="font-bold">{company.company_name}</span>. They will lose platform access.</>
+            }
+          </p>
+        </div>
+      </div>
+      {error && <p className="text-xs text-red-500 bg-red-500/10 border border-red-500/20 px-3 py-2 rounded-lg">{error}</p>}
+      <div className="flex justify-end gap-3 pt-2 border-t border-border">
+        <button onClick={onClose} className="px-4 py-2 rounded-lg border border-border text-muted-foreground hover:bg-muted text-sm font-medium transition-colors">Cancel</button>
+        <button onClick={handleToggle} disabled={isLoading}
+          className="flex items-center gap-2 px-4 py-2 rounded-lg bg-orange-600 hover:bg-orange-500 disabled:opacity-60 text-white text-sm font-medium transition-colors">
+          {isLoading && <Loader2 className="h-3.5 w-3.5 animate-spin" />}
+          {isLoading ? "Processing…" : isSuspended ? "Unsuspend" : "Suspend"}
+        </button>
+      </div>
+    </div>
+  );
+}
+
 // ── Reset Password Result ──────────────────────────────────────────────────────
 
 function ResetPasswordPanel({ company, onClose }: { company: AdminCompanyListItem; onClose: () => void }) {
@@ -448,7 +520,7 @@ function ResetPasswordPanel({ company, onClose }: { company: AdminCompanyListIte
 // ── Main page ──────────────────────────────────────────────────────────────────
 
 const PAGE_SIZE = 10;
-type ModalMode = "view" | "edit" | "delete" | "approve" | "reject" | "reset-pwd" | null;
+type ModalMode = "view" | "edit" | "delete" | "approve" | "reject" | "reset-pwd" | "suspend" | null;
 
 export default function CompanyManagementPage() {
   const { data, isLoading, isError } = useGetAdminCompaniesQuery();
@@ -476,6 +548,7 @@ export default function CompanyManagementPage() {
     approve: "Approve Company",
     reject: "Reject Company",
     "reset-pwd": "Reset Password",
+    suspend: "Suspend / Unsuspend",
   };
 
   return (
@@ -652,6 +725,7 @@ export default function CompanyManagementPage() {
               onApprove={() => setModal("approve")}
               onReject={() => setModal("reject")}
               onResetPwd={() => setModal("reset-pwd")}
+              onSuspend={() => setModal("suspend")}
             />
           )}
           {selected && modal === "edit" && <EditForm company={selected} onClose={close} />}
@@ -659,6 +733,7 @@ export default function CompanyManagementPage() {
           {selected && modal === "approve" && <ApproveConfirm company={selected} onClose={close} />}
           {selected && modal === "reject" && <RejectForm company={selected} onClose={close} />}
           {selected && modal === "reset-pwd" && <ResetPasswordPanel company={selected} onClose={close} />}
+          {selected && modal === "suspend" && <SuspendConfirm company={selected} onClose={close} />}
         </DialogContent>
       </Dialog>
     </div>
