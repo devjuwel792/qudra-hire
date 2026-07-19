@@ -241,8 +241,8 @@ export default function AdminDashboardPage() {
                 </ResponsiveContainer>
               </div>
               <div className="space-y-2 mt-4">
-                {planDistributionData.map((item) => (
-                  <div key={item.name} className="flex items-center justify-between">
+                {planDistributionData.map((item, idx) => (
+                  <div key={`${item.name}-${idx}`} className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: item.color }} />
                       <span className="text-[11px] text-muted-foreground">{item.name}</span>
