@@ -128,12 +128,12 @@ function DetailPanel({
           ["Contact Person", c.contact_person || "—"],
           ["Phone", c.phone || "—"],
           ["Country", c.country || "—"],
-          ["Credits", String(c.credits)],
+          ["Subscription", c.subsription || "—"],
           ["Active Jobs", String(c.active_jobs)],
-          ["Plan", c.current_plan || "Free"],
-          ["Licence No.", c.licence_number || "—"],
-          ["Licence Verified", c.is_licence_verified ? "Yes" : "No"],
-          ["Since", formatDate(c.since)],
+         // ["Status", c.is_suspended ? "Suspended" : "Active"],
+          // ["Licence No.", c.licence_number || "—"],
+          // ["Licence Verified", c.is_licence_verified ? "Yes" : "No"],
+          // ["Since", formatDate(c.since)],
           ...(c.rejection_reason ? [["Rejection Reason", c.rejection_reason]] : []),
         ].map(([label, val]) => (
           <div key={label}>

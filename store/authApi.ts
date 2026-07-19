@@ -209,9 +209,9 @@ export interface AdminCompanyDetail {
   contact_person: string | null;
   phone: string | null;
   country: string | null;
-  credits: number;
   active_jobs: number;
   current_plan: string | null;
+  subsription: string | null;
   approval_status: string;
   is_suspended: boolean;
   is_licence_verified: boolean;
