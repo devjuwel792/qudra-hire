@@ -113,12 +113,7 @@ export default function AdminCandidatesPage() {
             className="w-full bg-card border border-border rounded-lg pl-9 pr-4 py-2 text-sm text-foreground placeholder:text-muted-foreground outline-none focus:border-[#6366f1] transition-colors"
           />
         </div>
-        <button className="flex items-center gap-2 px-4 py-2 rounded-lg border border-border bg-card text-sm font-medium text-foreground hover:bg-muted transition-colors">
-          <Filter className="h-4 w-4" /> Filter
-        </button>
-        <button className="flex items-center gap-2 px-4 py-2 rounded-lg border border-border bg-card text-sm font-medium text-foreground hover:bg-muted transition-colors">
-          <ArrowUpDown className="h-4 w-4" /> Sort
-        </button>
+       
       </div>
 
       {/* Table */}

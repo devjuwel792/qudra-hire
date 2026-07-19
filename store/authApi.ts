@@ -88,8 +88,43 @@ export interface AdminCandidateDetail {
   email: string;
   phone: string;
   country: string;
-  credits: number;
   current_plan: string | null;
+  joined: string;
+  status: string;
+  plan_badge: string;
+  skills: string[];
+  profile_summary: {
+    ats_score: string;
+    designations: number;
+    active_plans: number;
+    jobs_applied: number;
+  };
+  designation_plans: {
+    id: number;
+    designation: string;
+    industry: string;
+    status: string;
+    plan: string;
+    started_at: string;
+    expires_at: string;
+    price_text: string;
+    jobs_applied_count: number;
+    features: string[];
+  }[];
+  application_history: {
+    designation: string;
+    plan: string;
+    applications_count: number;
+    applications: {
+      title?: string;
+      company?: string;
+      date?: string;
+      status?: string;
+      score?: string;
+    }[];
+  }[];
+  age: string | null;
+  gender: string | null;
   is_suspended: boolean;
   ats_score: number;
   registered: string;
@@ -368,6 +403,33 @@ export const authApi = createApi({
       invalidatesTags: ["AdminCandidates"],
     }),
 
+    // POST /admin/candidates/{id}/suspend/
+    suspendAdminCandidate: builder.mutation<ApiResponse<null>, number>({
+      query: (id) => ({
+        url: `admin/candidates/${id}/suspend/`,
+        method: "POST",
+      }),
+      invalidatesTags: (_r, _e, id) => ["AdminCandidates", { type: "AdminCandidates", id }],
+    }),
+
+    // DELETE /admin/candidates/{id}/suspend/
+    unsuspendAdminCandidate: builder.mutation<ApiResponse<null>, number>({
+      query: (id) => ({
+        url: `admin/candidates/${id}/suspend/`,
+        method: "DELETE",
+      }),
+      invalidatesTags: (_r, _e, id) => ["AdminCandidates", { type: "AdminCandidates", id }],
+    }),
+
+    // POST /admin/candidates/{id}/reset-password/
+    resetAdminCandidatePassword: builder.mutation<ApiResponse<{ new_password: string }>, { id: number; new_password: string }>({
+      query: ({ id, new_password }) => ({
+        url: `admin/candidates/${id}/reset-password/`,
+        method: "POST",
+        body: { new_password },
+      }),
+    }),
+
     // ── Admin Company endpoints ───────────────────────────────────────────────
 
     // GET /admin/companies/
@@ -452,6 +514,9 @@ export const {
   useGetAdminCandidateByIdQuery,
   usePatchAdminCandidateMutation,
   useDeleteAdminCandidateMutation,
+  useSuspendAdminCandidateMutation,
+  useUnsuspendAdminCandidateMutation,
+  useResetAdminCandidatePasswordMutation,
   // Admin Companies
   useGetAdminCompaniesQuery,
   useGetAdminCompanyByIdQuery,
