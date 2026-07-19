@@ -102,6 +102,91 @@ export interface AdminCandidatePatchPayload {
   plan_id?: string;
 }
 
+// ─── Admin Dashboard types ────────────────────────────────────────────────────
+
+export interface DashboardCard {
+  value: number | string;
+  change: string;
+}
+
+export interface DashboardDataset {
+  label: string;
+  data: number[];
+}
+
+export interface DashboardRevenueOverview {
+  title: string;
+  subtitle: string;
+  period: string;
+  labels: string[];
+  datasets: DashboardDataset[];
+}
+
+export interface DashboardPlanItem {
+  name: string;
+  value: number;
+}
+
+export interface DashboardPlanDistribution {
+  title: string;
+  subtitle: string;
+  data: DashboardPlanItem[];
+}
+
+export interface DashboardUserGrowth {
+  title: string;
+  labels: string[];
+  data: number[];
+}
+
+export interface DashboardApplicationsTrend {
+  title: string;
+  labels: string[];
+  data: number[];
+}
+
+export interface DashboardRecentCandidate {
+  name: string;
+  email: string;
+  designations: string;
+  plan: string;
+  initials: string;
+}
+
+export interface DashboardPendingVerification {
+  company_name: string;
+  industry: string;
+  location: string;
+  status: string;
+}
+
+export interface DashboardRecentPayment {
+  candidate_name: string;
+  designation: string;
+  amount: string;
+  status: string;
+}
+
+export interface DashboardData {
+  cards: {
+    total_users: DashboardCard;
+    total_candidates: DashboardCard;
+    total_companies: DashboardCard;
+    active_jobs: DashboardCard;
+    applications_today: DashboardCard;
+    yearly_revenue: DashboardCard;
+    active_subscriptions: DashboardCard;
+    premium_subscriptions: DashboardCard;
+  };
+  revenue_overview: DashboardRevenueOverview;
+  plan_distribution: DashboardPlanDistribution;
+  user_growth: DashboardUserGrowth;
+  applications_trend: DashboardApplicationsTrend;
+  recent_candidates: DashboardRecentCandidate[];
+  pending_verifications: DashboardPendingVerification[];
+  recent_payments: DashboardRecentPayment[];
+}
+
 // ─── Admin Company types ──────────────────────────────────────────────────────
 
 export interface AdminCompanyListItem {
@@ -166,7 +251,7 @@ export const authApi = createApi({
       return headers;
     },
   }),
-  tagTypes: ["AdminCandidates", "AdminCompanies"],
+  tagTypes: ["AdminCandidates", "AdminCompanies", "AdminDashboard"],
   endpoints: (builder) => ({
     // POST /auth/login/email/
     loginWithEmail: builder.mutation<ApiResponse<LoginData>, LoginPayload>({
@@ -232,6 +317,14 @@ export const authApi = createApi({
         method: "POST",
         body,
       }),
+    }),
+
+    // ── Admin Dashboard ─────────────────────────────────────────────────────
+
+    // GET /admin/dashboard/
+    getAdminDashboard: builder.query<ApiResponse<DashboardData>, void>({
+      query: () => "admin/dashboard/",
+      providesTags: ["AdminDashboard"],
     }),
 
     // ── Admin Candidate endpoints ─────────────────────────────────────────────
@@ -334,6 +427,8 @@ export const {
   useVerifyOtpMutation,
   useResetPasswordMutation,
   useChangePasswordMutation,
+  // Admin Dashboard
+  useGetAdminDashboardQuery,
   // Admin Candidates
   useGetAdminCandidatesQuery,
   useGetAdminCandidateByIdQuery,
