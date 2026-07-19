@@ -9,6 +9,7 @@ import {
 import { useRouter } from "next/navigation";
 import {
   useGetAdminCandidatesQuery,
+  useDeleteAdminCandidateMutation,
   type AdminCandidateListItem,
 } from "@/store/authApi";
 
@@ -81,9 +82,16 @@ export default function AdminCandidatesPage() {
   const router = useRouter();
   const { data, isLoading } = useGetAdminCandidatesQuery();
   const candidates = data?.data ?? [];
+  const [deleteCandidate] = useDeleteAdminCandidateMutation();
 
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
+
+  async function handleDelete(id: number, name: string) {
+    if (confirm(`Are you sure you want to delete ${name}?`)) {
+      await deleteCandidate(id);
+    }
+  }
 
   const filtered = candidates.filter(
     (c) =>
@@ -207,6 +215,7 @@ export default function AdminCandidatesPage() {
                               <Eye className="h-4 w-4" />
                             </button>
                             <button
+                              onClick={() => handleDelete(c.id, c.full_name)}
                               title="Delete"
                               className="p-1.5 rounded-md hover:bg-red-500/10 text-red-500/60 hover:text-red-500 transition-colors border border-transparent hover:border-red-500/20"
                             >
