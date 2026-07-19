@@ -39,7 +39,7 @@ function formatDate(iso: string) {
 
 function ApprovalBadge({ status }: { status: string }) {
   const map: Record<string, string> = {
-    APPROVED: "bg-[#21c55e]/15 text-[#21c55e]",
+    VERIFIED: "bg-[#21c55e]/15 text-[#21c55e]",
     PENDING: "bg-amber-500/15 text-amber-400",
     REJECTED: "bg-red-500/15 text-red-400",
   };
@@ -516,7 +516,11 @@ export default function CompanyManagementPage() {
           <table className="w-full min-w-[860px]">
             <thead>
               <tr className="border-b border-white/5">
-                {["Company", "Country", "Jobs", "Credits", "Approval", "Status", "Since", "Actions"].map((h) => (
+                {["Company", "Country", "Jobs", "Subcription",
+                //  "Approval", 
+                 "Status",
+                  // "Since",
+                   "Actions"].map((h) => (
                   <th key={h} className={`px-5 py-3 text-[11px] font-semibold text-white/30 uppercase tracking-wider ${h === "Actions" ? "text-right" : "text-left"}`}>
                     {h}
                   </th>
@@ -561,22 +565,20 @@ export default function CompanyManagementPage() {
                       <td className="px-5 py-3.5">
                         <span className="text-sm text-white/70">{c.active_jobs}</span>
                       </td>
-                      {/* Credits */}
-                      <td className="px-5 py-3.5">
-                        <span className="text-sm text-white/70">{c.credits}</span>
-                      </td>
+
                       {/* Approval */}
                       <td className="px-5 py-3.5">
-                        <ApprovalBadge status={c.approval_status} />
+                        {/* <ApprovalBadge status={c.approval_status} /> */}
+                        <p className="text-sm text-blue-400 bg-blue-50 border border-blue-100 rounded-full py-0.5 px-2">{c.current_plan}</p>
                       </td>
                       {/* Suspended */}
                       <td className="px-5 py-3.5">
                         <SuspendedBadge suspended={c.is_suspended} />
                       </td>
                       {/* Since */}
-                      <td className="px-5 py-3.5">
+                      {/* <td className="px-5 py-3.5">
                         <span className="text-sm text-white/50">{formatDate(c.since)}</span>
-                      </td>
+                      </td> */}
                       {/* Actions */}
                       <td className="px-5 py-3.5">
                         <div className="flex items-center justify-end gap-1">
