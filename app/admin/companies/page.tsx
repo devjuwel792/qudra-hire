@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Search, Eye, Pencil, Trash2, Globe,
   ChevronLeft, ChevronRight, Loader2,
@@ -167,17 +167,17 @@ function DetailPanel({
           className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-border hover:bg-muted text-muted-foreground text-xs font-medium transition-colors">
           <Pencil className="w-3.5 h-3.5" /> Edit
         </button>
-        {c.approval_status === "PENDING" && (
-          <>
-            <button onClick={onApprove}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#21c55e]/20 hover:bg-[#21c55e]/10 text-[#21c55e] text-xs font-medium transition-colors">
-              <CheckCircle className="w-3.5 h-3.5" /> Approve
-            </button>
-            <button onClick={onReject}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-amber-500/20 hover:bg-amber-500/10 text-amber-500 text-xs font-medium transition-colors">
-              <XCircle className="w-3.5 h-3.5" /> Reject
-            </button>
-          </>
+        {c.approval_status !== "VERIFIED" && (
+          <button onClick={onApprove}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#21c55e]/20 hover:bg-[#21c55e]/10 text-[#21c55e] text-xs font-medium transition-colors">
+            <CheckCircle className="w-3.5 h-3.5" /> Approve
+          </button>
+        )}
+        {c.approval_status !== "REJECTED" && (
+          <button onClick={onReject}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-amber-500/20 hover:bg-amber-500/10 text-amber-500 text-xs font-medium transition-colors">
+            <XCircle className="w-3.5 h-3.5" /> Reject
+          </button>
         )}
         <button onClick={onResetPwd}
           className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-border hover:bg-muted text-muted-foreground text-xs font-medium transition-colors">
@@ -204,17 +204,28 @@ function DetailPanel({
 // ── Edit Form ──────────────────────────────────────────────────────────────────
 
 function EditForm({ company, onClose }: { company: AdminCompanyListItem; onClose: () => void }) {
+  const { data: detail } = useGetAdminCompanyByIdQuery(company.id);
+  const c = detail?.data;
   const [patch, { isLoading }] = usePatchAdminCompanyMutation();
   const [form, setForm] = useState({
     company_name: company.company_name,
     email: company.email,
-    contact_person: "",
-    phone: "",
+    contact_person: c?.contact_person ?? "",
+    phone: c?.phone ?? "",
     country: company.country ?? "",
-    plan_id: "",
   });
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
+
+  useEffect(() => {
+    if (c) {
+      setForm((p) => ({
+        ...p,
+        contact_person: c.contact_person ?? "",
+        phone: c.phone ?? "",
+      }));
+    }
+  }, [c]);
 
   const set = (k: string, v: string) => setForm((p) => ({ ...p, [k]: v }));
 
@@ -228,7 +239,6 @@ function EditForm({ company, onClose }: { company: AdminCompanyListItem; onClose
         contact_person: form.contact_person || undefined,
         phone: form.phone || undefined,
         country: form.country || undefined,
-        plan_id: form.plan_id || undefined,
       }).unwrap();
       setSuccess(true);
       setTimeout(onClose, 900);
@@ -266,10 +276,6 @@ function EditForm({ company, onClose }: { company: AdminCompanyListItem; onClose
           <label className="text-xs text-muted-foreground mb-1.5 block">Country</label>
           <input className={inp} placeholder="UAE" value={form.country} onChange={(e) => set("country", e.target.value)} />
         </div>
-      </div>
-      <div>
-        <label className="text-xs text-muted-foreground mb-1.5 block">Plan ID</label>
-        <input className={inp} placeholder="UUID" value={form.plan_id} onChange={(e) => set("plan_id", e.target.value)} />
       </div>
       <div className="flex justify-end gap-3 pt-4 border-t border-border">
         <button onClick={onClose} className="px-4 py-2 rounded-lg border border-border text-muted-foreground hover:bg-muted text-sm font-medium transition-colors">Cancel</button>
@@ -459,35 +465,48 @@ function SuspendConfirm({ company, onClose }: { company: AdminCompanyListItem; o
 
 function ResetPasswordPanel({ company, onClose }: { company: AdminCompanyListItem; onClose: () => void }) {
   const [resetPwd, { isLoading }] = useResetAdminCompanyPasswordMutation();
-  const [newPassword, setNewPassword] = useState<string | null>(null);
+  const [password, setPassword] = useState("");
+  const [success, setSuccess] = useState(false);
   const [copied, setCopied] = useState(false);
   const [error, setError] = useState("");
 
   async function handleReset() {
+    if (!password.trim()) { setError("Please enter a new password."); return; }
     setError("");
     try {
-      const result = await resetPwd(company.id).unwrap();
-      setNewPassword(result.data.new_password);
+      await resetPwd({ id: company.id, new_password: password }).unwrap();
+      setSuccess(true);
     } catch (err: unknown) {
       setError((err as { data?: { details?: string } })?.data?.details ?? "Reset failed.");
     }
   }
 
   function copyPwd() {
-    if (!newPassword) return;
-    navigator.clipboard.writeText(newPassword);
+    navigator.clipboard.writeText(password);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   }
 
+  const inp = "w-full bg-background border border-border rounded-lg px-3 py-2 text-sm text-foreground outline-none focus:border-[#6366f1]/50 transition-colors placeholder:text-muted-foreground";
+
   return (
     <div className="py-4 space-y-4">
-      {!newPassword ? (
+      {!success ? (
         <>
           <p className="text-sm text-muted-foreground">
-            Reset password for <span className="font-semibold text-foreground">{company.company_name}</span>? A new password will be generated.
+            Set a new password for <span className="font-semibold text-foreground">{company.company_name}</span>.
           </p>
           {error && <p className="text-xs text-red-500 bg-red-500/10 border border-red-500/20 px-3 py-2 rounded-lg">{error}</p>}
+          <div>
+            <label className="text-xs text-muted-foreground mb-1.5 block">New Password</label>
+            <input
+              type="text"
+              className={inp}
+              placeholder="Enter new password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
           <div className="flex justify-end gap-3 pt-2 border-t border-border">
             <button onClick={onClose} className="px-4 py-2 rounded-lg border border-border text-muted-foreground hover:bg-muted text-sm font-medium transition-colors">Cancel</button>
             <button onClick={handleReset} disabled={isLoading}
@@ -501,7 +520,7 @@ function ResetPasswordPanel({ company, onClose }: { company: AdminCompanyListIte
         <>
           <p className="text-sm text-[#21c55e]">Password reset successfully! Share this with the company:</p>
           <div className="flex items-center gap-2 bg-background border border-border rounded-lg px-4 py-3">
-            <code className="flex-1 text-sm font-mono text-foreground tracking-wider">{newPassword}</code>
+            <code className="flex-1 text-sm font-mono text-foreground tracking-wider">{password}</code>
             <button onClick={copyPwd} className="text-muted-foreground hover:text-foreground transition-colors">
               {copied ? <Check className="h-4 w-4 text-[#21c55e]" /> : <Copy className="h-4 w-4" />}
             </button>

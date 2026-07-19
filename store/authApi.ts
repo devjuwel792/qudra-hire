@@ -229,7 +229,6 @@ export interface AdminCompanyPatchPayload {
   contact_person?: string;
   phone?: string;
   country?: string;
-  plan_id?: string;
 }
 
 export interface AdminCompanyRejectPayload {
